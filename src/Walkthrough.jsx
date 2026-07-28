@@ -14,11 +14,20 @@ const SX = IMG_W / 1280, SY = IMG_H / 800;         // cursor coord -> displayed-
 // Per-step "camera": zoom toward the click on action steps; pull back, gently
 // zoomed + centered, on the result/loading states (the result is scrolled to
 // the viewport centre at capture time). Pan/glide between steps (Arcade-style).
+// Defaults tuned for Streamlit-style CENTERED panels, where cropping the outer
+// 12% costs nothing. Full-bleed product pages lose their left margin at 1.14 —
+// mid-sentence — so a spec can flatten the camera with `scales: {...}`.
 const ACTION_SCALE = 1.36, RESULT_SCALE = 1.14, OPEN_SCALE = 1.04;
-const camTarget = (step) =>
+const camTarget = (step, sc) =>
   step.cursor
-    ? { s: ACTION_SCALE, fx: step.cursor.x * SX, fy: step.cursor.y * SY }
-    : { s: RESULT_SCALE, fx: IMG_W / 2, fy: IMG_H / 2 };
+    ? { s: sc.action, fx: step.cursor.x * SX, fy: step.cursor.y * SY }
+    : { s: sc.result, fx: IMG_W / 2, fy: IMG_H / 2 };
+
+const scalesOf = (wt) => ({
+  action: wt.scales?.action ?? ACTION_SCALE,
+  result: wt.scales?.result ?? RESULT_SCALE,
+  open: wt.scales?.open ?? OPEN_SCALE,
+});
 
 export const wtDuration = (wt) => wt.steps.reduce((a, s) => a + (s.hold || 60), 0);
 
@@ -53,14 +62,17 @@ const Ripple = ({ x, y, lf, accent }) => {
   return <div style={{ position: "absolute", left: x - size / 2, top: y - size / 2, width: size, height: size, borderRadius: "50%", border: `4px solid ${accent}`, opacity: op, zIndex: 29 }} />;
 };
 
-const Chrome = ({ accent }) => (
+// The address bar is part of the CLAIM the clip makes. It was hardcoded to
+// parselyfi.streamlit.app, so every NodeRoom and NodeSlide render shipped with
+// another product's URL above its own UI. It comes from the spec now.
+const Chrome = ({ accent, url }) => (
   <div style={{ height: 44, display: "flex", alignItems: "center", gap: 9, padding: "0 18px", background: "linear-gradient(#1b2740,#141f33)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
     <span style={{ width: 12, height: 12, borderRadius: 99, background: "#ff5f57" }} />
     <span style={{ width: 12, height: 12, borderRadius: 99, background: "#febc2e" }} />
     <span style={{ width: 12, height: 12, borderRadius: 99, background: "#28c840" }} />
     <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
       <div style={{ background: "rgba(255,255,255,0.07)", color: "#9fb3c8", fontFamily: FONT, fontSize: 17, padding: "5px 16px", borderRadius: 8 }}>
-        <span style={{ color: accent }}>🔒</span> parselyfi.streamlit.app
+        <span style={{ color: accent }}>🔒</span> {url}
       </div>
     </div>
   </div>
@@ -83,8 +95,9 @@ export const Walkthrough = ({ wt }) => {
 
   // ---- Camera: ease from previous target to this step's target (pre-move delay
   // then a gentle glide), so the eye registers context before the camera moves.
-  const tgt = camTarget(cur);
-  const prevTgt = i > 0 ? camTarget(prev) : { s: OPEN_SCALE, fx: IMG_W / 2, fy: IMG_H / 2 };
+  const sc = scalesOf(wt);
+  const tgt = camTarget(cur, sc);
+  const prevTgt = i > 0 ? camTarget(prev, sc) : { s: sc.open, fx: IMG_W / 2, fy: IMG_H / 2 };
   const ct = interpolate(lf, [6, 26], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.cubic) });
   const s = prevTgt.s + (tgt.s - prevTgt.s) * ct;
   const fx = prevTgt.fx + (tgt.fx - prevTgt.fx) * ct;
@@ -130,7 +143,7 @@ export const Walkthrough = ({ wt }) => {
 
       {/* Browser window — overflow clips the zoomed camera */}
       <div style={{ position: "absolute", left: winLeft, top: winTop, width: IMG_W, borderRadius: 14, overflow: "hidden", boxShadow: "0 36px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06)", background: "#0d1526" }}>
-        <Chrome accent={wt.accent} />
+        <Chrome accent={wt.accent} url={wt.chromeUrl || "localhost"} />
         <div style={{ position: "relative", width: IMG_W, height: IMG_H, overflow: "hidden", background: "#fff" }}>
           {/* Camera: zoom + pan toward the active region */}
           <div style={{ position: "absolute", top: 0, left: 0, width: IMG_W, height: IMG_H, transformOrigin: "0 0", transform: `translate(${tx}px, ${ty}px) scale(${s})` }}>

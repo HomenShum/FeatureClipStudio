@@ -1,0 +1,28 @@
+[
+  {
+    "scene": "welcome",
+    "text": "Welcome to our app — let me show you around.",
+    "overlay": {
+      "type": "lower-third",
+      "text": "Welcome to our app",
+      "motion": "fade-in"
+    }
+  },
+  {
+    "scene": "action",
+    "text": "It only takes one click to get started.",
+    "voice": "af_heart",
+    "overlay": {
+      "type": "headline-card",
+      "title": "One-click setup",
+      "body": "Just press the button to get started.",
+      "placement": "top-left",
+      "motion": "slide-in"
+    }
+  },
+  {
+    "scene": "done",
+    "text": "And that's it. You're all set.",
+    "voice": "af_heart"
+  }
+]

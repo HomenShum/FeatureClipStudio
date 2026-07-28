@@ -1,0 +1,44 @@
+[
+  {
+    "scene": "linkguard",
+    "text": "Start where most people actually start — someone sent you a link. Paste a raw deck I.D. and NodeSlide refuses it. This is an editor link, not a share link. Raw deck I.D.s do not grant access. You need the private recovery key, a deck this browser already owns, or a view-only presentation link.",
+    "overlay": {
+      "type": "lower-third",
+      "text": "The refusal is the feature",
+      "motion": "fade-in"
+    }
+  },
+  {
+    "scene": "byok",
+    "text": "Now the developer's door. Connect your own runtime — use your provider without giving NodeSlide the key. Values live in this tab's session storage and run in a local process you launch. They are never sent to the backend, never written into Trace, and never returned by a tool."
+  },
+  {
+    "scene": "agents",
+    "text": "The other half of that panel lets Claude Code, Codex, or Cursor drive NodeSlide directly. An agent can read decks and traces, upload evidence, and propose edits — and proposals stay unapplied until a separate accept call. Same locks, second front door."
+  },
+  {
+    "scene": "lab",
+    "text": "For anyone asking whether the output quality is real, there is the Artifact Lab — thirty-eight evidence-bound recipes, with route comparison and export receipts."
+  },
+  {
+    "scene": "receipts",
+    "text": "Every card carries its own evidence: source J.SON, a trace, and an export receipt. Even the headline number stays tied to a frozen receipt — eighty-two of eighty-four candidates cleared browser and PowerPoint proof — instead of becoming marketing shorthand."
+  },
+  {
+    "scene": "present",
+    "text": "When the deck is ready, it presents. Full screen, speaker notes one key away, seven slides of the same structured content you have been editing."
+  },
+  {
+    "scene": "export",
+    "text": "And it leaves. Interactive H.T.M.L. — a web-native deck with notes — or PowerPoint, as editable P.P.T.X. with fallbacks. The structure survives the trip out."
+  },
+  {
+    "scene": "close",
+    "text": "Refused safely, connected on your terms, evidenced, presented, exported. Five doors, one system.",
+    "overlay": {
+      "type": "lower-third",
+      "text": "nodeslide — five doors, one system",
+      "motion": "fade-in"
+    }
+  }
+]

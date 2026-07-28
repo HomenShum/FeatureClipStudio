@@ -1,0 +1,17 @@
+{
+  "name": "argo-demos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@argo-video/cli": "^0.38.1",
+    "@playwright/test": "^1.62.0",
+    "playwright": "^1.62.0"
+  }
+}
