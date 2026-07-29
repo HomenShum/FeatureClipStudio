@@ -1,0 +1,32 @@
+name: CI
+
+# What this proves: the syntax gate passes and the Remotion render pipeline
+# reproduces from the committed walkthrough data (src/walkthrough.data.js +
+# public/wt/) alone. What it deliberately excludes: the Playwright capture
+# step (walkthrough.mjs), which needs live localhost apps and cannot run here.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check-and-smoke-render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Ensure Remotion headless browser
+        run: npx remotion browser ensure
+      - name: Smoke render (frames 0-30 of a bundled walkthrough)
+        run: npx remotion render src/index.js WT-NodeRoom /tmp/wt-smoke.mp4 --frames=0-30 --concurrency=2
+      - name: Verify artifact exists and is non-trivial
+        run: test -s /tmp/wt-smoke.mp4 && stat -c '%s bytes' /tmp/wt-smoke.mp4
