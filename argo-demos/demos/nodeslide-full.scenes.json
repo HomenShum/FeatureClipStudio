@@ -1,0 +1,44 @@
+[
+  {
+    "scene": "landing",
+    "text": "This is NodeSlide. It starts with one question — what presentation should we build? You bring an idea, a structured spec, or evidence, and it becomes a reviewable deck. Not a stack of static images.",
+    "overlay": {
+      "type": "lower-third",
+      "text": "NodeSlide — decks that stay editable",
+      "motion": "fade-in"
+    }
+  },
+  {
+    "scene": "brief",
+    "text": "You type a brief, in plain language. The brief drives the deck — there is no template underneath."
+  },
+  {
+    "scene": "workspace",
+    "text": "And this is a real deck. An outline rail on the left, the slide canvas in the middle, and an inspector on the right. Presenter notes travel with every slide."
+  },
+  {
+    "scene": "element",
+    "text": "Everything on a slide is a typed element. Select the headline — it is addressable and editable, not flattened into a picture."
+  },
+  {
+    "scene": "versions",
+    "text": "The inspector is where the trust lives. Versions keeps revision history — you can compare snapshots and restore an earlier one."
+  },
+  {
+    "scene": "evidence",
+    "text": "Evidence keeps citations attached to the elements they support. And it is honest about its limits — it checks attachment and disclosure, and says plainly that it does not independently verify facts."
+  },
+  {
+    "scene": "trace",
+    "text": "Trace shows one auditable run — the provider, the work performed, and validation. Where cost was not measured, it says not recorded, instead of printing a number it does not have."
+  },
+  {
+    "scene": "close",
+    "text": "Editable, versioned, evidenced, traced. That is what it means for a deck to stay editable.",
+    "overlay": {
+      "type": "lower-third",
+      "text": "nodeslide — reviewable by construction",
+      "motion": "fade-in"
+    }
+  }
+]

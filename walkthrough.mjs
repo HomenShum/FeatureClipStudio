@@ -20,7 +20,11 @@ const BASE = process.env.DEMO_URL || "http://127.0.0.1:8502";
 const VW = 1280, VH = 800, DEFAULT_HOLD = 60;
 
 const sleep = (p, ms) => p.waitForTimeout(ms);
-const panel = (p) => p.locator('[data-baseweb="tab-panel"]:visible').first();
+// Streamlit scopes everything to a tab panel. A plain React/Vite app has none,
+// and scoping to a selector that does not exist makes every step fail while the
+// run still "completes" — a walkthrough that captures nothing looks the same as
+// one that captured a blank app. So: use the panel when present, else the page.
+const panel = (p) => p.locator('[data-baseweb="tab-panel"]:visible, body').first();
 // PRESENCE BEFORE NEGATIVE ASSERTION: "the status widget is gone" passes vacuously on a page
 // that never rendered at all (blank tab, crashed app) — so first require the active panel to
 // exist, THEN wait for the spinner's absence. A negative wait without a presence guard is the
@@ -34,12 +38,15 @@ const waitText = (p, s, t = 220000) => p.waitForFunction((x) => new RegExp(x).te
 // Resolve a spec selector to a Playwright Locator scoped to the ACTIVE tab panel.
 const loc = (p, sel) => {
   const P = panel(p);
-  if (sel === "textarea") return P.locator('[data-testid="stTextArea"] textarea').first();
-  if (sel === "input") return P.locator('[data-testid="stTextInput"] input').first();
+  if (sel === "textarea") return P.locator('[data-testid="stTextArea"] textarea, textarea, [contenteditable="true"]').first();
+  if (sel === "input") return P.locator('[data-testid="stTextInput"] input, input[type="text"], input:not([type])').first();
   if (sel === "file") return P.locator('input[type="file"]').first();
   if (sel === "drop") return P.locator('[data-testid="stFileUploaderDropzone"]').first();
   if (sel === "chat") return P.locator('[data-testid="stChatInput"] textarea').first();
   if (sel.startsWith("btn:")) return P.getByRole("button", { name: new RegExp(sel.slice(4), "i") }).first();
+  // Landing CTAs are anchors, not buttons — a btn: selector for "Create a room"
+  // times out against the hydrated NodeRoom landing. Roles are facts, not vibes.
+  if (sel.startsWith("link:")) return P.getByRole("link", { name: new RegExp(sel.slice(5), "i") }).first();
   if (sel.startsWith("aria^:")) return P.locator(`input[aria-label^="${sel.slice(6)}"]`).first();
   if (sel.startsWith("aria:")) return P.locator(`input[aria-label="${sel.slice(5)}"]`).first();
   return P.locator(sel).first();
@@ -65,6 +72,7 @@ const doAct = async (p, a) => {
   if (a.act === "fill") { const el = loc(p, a.sel); await el.click(); await el.fill(String(a.value)); if (a.commit) await el.press(a.commit); await sleep(p, 600); }
   else if (a.act === "click") { await loc(p, a.sel).click(); await sleep(p, 300); }
   else if (a.act === "upload") { await loc(p, a.sel).setInputFiles(join(__dirname, "fixtures", a.file)); }
+  else if (a.act === "press") { await p.keyboard.press(a.key); await sleep(p, 500); }
   else if (a.act === "sleep") { await sleep(p, a.ms); }
   else if (a.act === "waitText") { await waitText(p, a.value); }
   else if (a.act === "notRunning") { await notRunning(p); }
@@ -78,20 +86,49 @@ const doAct = async (p, a) => {
     const map = { df: '[data-testid="stDataFrame"]', iframe: "iframe", metric: '[data-testid="stMetric"]' };
     const css = map[a.sel] || a.sel;
     const L = panel(p).locator(css);
+    // A scroll to a target that does not exist used to be swallowed by
+    // .catch(() => {}), so a mistyped selector produced a step that captured the
+    // PREVIOUS position under a new caption — indistinguishable from a scroll
+    // that worked. Same shape as the unknown-act no-op below: an instrument
+    // reporting success about something it never touched.
+    const n = await L.count();
+    if (n === 0) throw new Error(`scrollEl: no element matches ${JSON.stringify(css)} — nothing was scrolled to`);
     const el = a.last ? L.last() : L.first();
-    await el.evaluate((n) => n.scrollIntoView({ block: "center", inline: "nearest" })).catch(() => {});
+    await el.evaluate((node) => node.scrollIntoView({ block: "center", inline: "nearest" }));
     await sleep(p, 600);
+  }
+  else {
+    // An unrecognised act used to fall out of this chain doing NOTHING, with no
+    // error. A spec written with `scroll` instead of `scrollY` therefore produced
+    // a clip where the page never moved — four captioned steps over one frozen
+    // viewport, which looks exactly like a walkthrough that worked.
+    //
+    // A capture tool that silently does nothing is worse than one that crashes:
+    // it emits something that passes for evidence.
+    throw new Error(
+      `unknown act "${a.act}" — valid: fill, click, upload, sleep, waitText, notRunning, ` +
+      `scrollTop, scrollY, scrollText, scrollLastChat, scrollEl`,
+    );
   }
 };
 
 // Fresh harness page — used at start AND for per-spec retries. A retried spec must run in a
 // brand-new page (LLM-backed steps flake ~50% in our experience, and a half-driven UI poisons
 // every frame after the failure; reusing the page just re-captures the poisoned state).
-const openHarness = async (browser) => {
+const openHarness = async (browser, spec) => {
   const page = await browser.newPage({ viewport: { width: VW, height: VH }, deviceScaleFactor: 2 });
   page.setDefaultTimeout(60000);
-  await page.goto(BASE, { waitUntil: "networkidle" });
-  await page.waitForFunction(() => [...document.querySelectorAll('[data-baseweb="tab"]')].some((t) => /List Intelligence/.test(t.innerText)), { timeout: 60000 });
+  // A spec may carry its own url, so one run can walk through several apps on
+  // different dev servers instead of assuming a single DEMO_URL.
+  await page.goto(spec?.url || BASE, { waitUntil: "networkidle" });
+  if (spec?.ready) {
+    // PRESENCE BEFORE CAPTURE. A proof selector, not a sleep: if the app never
+    // renders, fail here rather than emit frames of a blank page.
+    await page.getByText(new RegExp(spec.ready, "i")).first()
+      .waitFor({ state: "visible", timeout: 30000 });
+  } else if (!spec?.url) {
+    await page.waitForFunction(() => [...document.querySelectorAll('[data-baseweb="tab"]')].some((t) => /List Intelligence/.test(t.innerText)), { timeout: 60000 });
+  }
   await sleep(page, 1500);
   return page;
 };
@@ -99,7 +136,7 @@ const openHarness = async (browser) => {
 const run = async () => {
   rmSync(PUB, { recursive: true, force: true });
   const browser = await chromium.launch({ headless: true });
-  let page = await openHarness(browser);
+  let page = null;
 
   const out = [];
   for (const spec of SPECS) {
@@ -110,11 +147,13 @@ const run = async () => {
     const maxAttempts = 1 + (spec.retries || 0);
     let steps = [];
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    if (page) await page.close().catch(() => {});
+    page = await openHarness(browser, spec);
     rmSync(dir, { recursive: true, force: true });
     mkdirSync(dir, { recursive: true });
     steps = [];
     try {
-      await clickTab(page, spec.tab);
+      if (spec.tab) await clickTab(page, spec.tab);
       let n = 0;
       for (const op of spec.steps) {
         if (op.cap && op.burst) {
@@ -161,7 +200,9 @@ const run = async () => {
       }
     }
     }
-    out.push({ id: spec.id, title: spec.title, accent: spec.accent, steps });
+    // chromeUrl must be carried through: the renderer falls back to a generic
+    // "localhost" when it is missing, which silently discards the spec's value.
+    out.push({ id: spec.id, title: spec.title, accent: spec.accent, chromeUrl: spec.chromeUrl, scales: spec.scales, steps });
   }
   await browser.close();
 

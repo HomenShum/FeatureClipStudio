@@ -1,0 +1,39 @@
+[
+  {
+    "scene": "landing",
+    "text": "This is NodeRoom — a shared workspace where people and A.I. agents edit the same spreadsheets, and every agent edit stays reviewable. The demo on the right is running live: the room agent commits variance numbers, and each one carries a citation back to its source.",
+    "overlay": {
+      "type": "lower-third",
+      "text": "NodeRoom — review every agent change",
+      "motion": "fade-in"
+    }
+  },
+  {
+    "scene": "create",
+    "text": "Creating a room asks one question before anything else: how should agent edits land? The recommended default is review — every artifact change waits for your approval. Auto-approve is available, and even then, every write remains traced."
+  },
+  {
+    "scene": "join",
+    "text": "Joining is just as light. A room shares a code, not a seat."
+  },
+  {
+    "scene": "sample",
+    "text": "And the sample room is honest about itself — it tells you its data is synthetic, not live research."
+  },
+  {
+    "scene": "story",
+    "text": "The landing can also prove its claims. These drills run the very same engine calls as a live room."
+  },
+  {
+    "scene": "noclobber",
+    "text": "First, a stale write. The engine rejects it and returns the conflict as data. Nothing is overwritten."
+  },
+  {
+    "scene": "review",
+    "text": "When an agent loses a race to a human, its draft does not silently merge. It becomes a review proposal."
+  },
+  {
+    "scene": "approve",
+    "text": "A person approves, and the change re-applies at the current version — not the stale baseline. Reviewed, then applied. That is the whole product."
+  }
+]
