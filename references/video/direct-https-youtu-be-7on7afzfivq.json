@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "direct-https-youtu-be-7on7afzfivq",
+  "source": {
+    "url": "https://youtu.be/7oN7aFzfIvQ",
+    "channel": "(direct)",
+    "title": "https://youtu.be/7oN7aFzfIvQ",
+    "declaredSeconds": null
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-03T22:45:25.347Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 17462,
+  "watched": true,
+  "runtimeSeconds": 188,
+  "hookSeconds": 6,
+  "singleMoment": {
+    "ts": "00:22",
+    "what": "A step-by-step walkthrough of a daily workflow routine ('a day in the life') for a software team using Linear."
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "00:00",
+      "kind": "structure",
+      "subject": "intro title card",
+      "property": "duration",
+      "value": "4 seconds centered logo display before presenter on camera"
+    },
+    {
+      "id": "f2",
+      "ts": "00:05",
+      "kind": "structure",
+      "subject": "presenter on-camera",
+      "property": "shot composition",
+      "value": "head-and-shoulders direct-to-camera talk in a warmly lit interior setting"
+    },
+    {
+      "id": "f3",
+      "ts": "00:13",
+      "kind": "pacing",
+      "subject": "roadmap UI clip",
+      "property": "clip duration",
+      "value": "2 seconds cut showing project timeline roadmap cards"
+    },
+    {
+      "id": "f4",
+      "ts": "00:28",
+      "kind": "motion",
+      "subject": "screen capture transition",
+      "property": "zoom effect",
+      "value": "gentle zoom-in to sidebar menu when highlighting the Inbox section"
+    },
+    {
+      "id": "f5",
+      "ts": "01:07",
+      "kind": "structure",
+      "subject": "UI dropdown interaction",
+      "property": "menu option highlight",
+      "value": "opening Display menu and selecting Focus grouping to re-sort issue items"
+    },
+    {
+      "id": "f6",
+      "ts": "02:22",
+      "kind": "structure",
+      "subject": "GitHub integration view",
+      "property": "split screen",
+      "value": "side-by-side presentation showing Linear issue on left and GitHub pull request on right"
+    }
+  ],
+  "statesShown": [
+    "empty",
+    "result"
+  ],
+  "motionPurpose": "At 00:30, smooth camera zoom-in is used to direct viewer attention to specific left-sidebar navigation items and notification counters.",
+  "whatToSteal": {
+    "ts": "02:22",
+    "technique": "Demonstrate external developer tools (GitHub PRs) in a side-by-side split screen to prove seamless integration and real-time status syncing."
+  },
+  "whatNotToSteal": {
+    "ts": "01:45",
+    "why": "Leaving empty search results on screen ('No issues matching the filters') during a features overview video without showing the populated view."
+  },
+  "notRun": [
+    "Exact screen resolution of recordings",
+    "Specific keystrokes used during navigation"
+  ]
+}

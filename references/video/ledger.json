@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "featureclip.reference-ledger/v1",
+  "observed": {
+    "Mi173xGb0ZA::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\raycast-new-raycast-coming-2026.json",
+      "url": "https://youtu.be/Mi173xGb0ZA",
+      "referenceId": "raycast-new-raycast-coming-2026",
+      "factCount": 6,
+      "promptTokens": 3882,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-03T23:00:49.341Z"
+    },
+    "xPK3nBLbpxc::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\arcade-what-is-arcade-create-interactive-product-demos-in-mi.json",
+      "url": "https://youtu.be/xPK3nBLbpxc",
+      "referenceId": "arcade-what-is-arcade-create-interactive-product-demos-in-mi",
+      "factCount": 6,
+      "promptTokens": 14621,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-03T23:01:23.265Z"
+    }
+  },
+  "rejected": {
+    "NuIpZoQwuVY": {
+      "url": "https://youtu.be/NuIpZoQwuVY",
+      "title": "101 Things You Can Do With Raycast",
+      "seconds": 489,
+      "reason": "489s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-03T23:00:24.046Z"
+    },
+    "AXce_yexL0o": {
+      "url": "https://youtu.be/AXce_yexL0o",
+      "title": "My Raycast Setup: The Ultimate Spotlight Replacement",
+      "seconds": 1092,
+      "reason": "1092s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-03T23:00:24.048Z"
+    },
+    "FGbmmgH97ms": {
+      "url": "https://youtu.be/FGbmmgH97ms",
+      "title": "First Look at Glaze: A new Product by Raycast",
+      "seconds": 478,
+      "reason": "478s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-03T23:00:24.048Z"
+    },
+    "cqaY2rSwXpE": {
+      "url": "https://youtu.be/cqaY2rSwXpE",
+      "title": "Best Interactive Demo Software in 2026: Supademo vs Navattic vs Storylane vs Arcade",
+      "seconds": 775,
+      "reason": "775s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-03T23:01:12.089Z"
+    },
+    "n5Bi5GHifp0": {
+      "url": "https://youtu.be/n5Bi5GHifp0",
+      "title": "How to Edit, Personalize, and Publish Interactive Demos with Arcade",
+      "seconds": 192,
+      "reason": "192s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-03T23:01:12.092Z"
+    },
+    "gVWhntZqOec": {
+      "url": "https://youtu.be/gVWhntZqOec",
+      "title": "Interactive Demo Software Compared: HowdyGo vs Storylane vs Arcade vs Navattic vs Supademo (2026)",
+      "seconds": 1242,
+      "reason": "1242s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-03T23:01:12.092Z"
+    }
+  }
+}

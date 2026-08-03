@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "raycast-new-raycast-coming-2026",
+  "source": {
+    "url": "https://youtu.be/Mi173xGb0ZA",
+    "channel": "Raycast",
+    "title": "New Raycast. Coming 2026",
+    "declaredSeconds": 39
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-03T23:00:49.341Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 3882,
+  "watched": true,
+  "runtimeSeconds": 39,
+  "hookSeconds": 1,
+  "singleMoment": {
+    "ts": "0:22",
+    "what": "Revealing GPT-5 option in an AI focus session menu"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "0:01",
+      "kind": "structure",
+      "subject": "Background and launch UI",
+      "property": "visual setup",
+      "value": "Glassmorphic search bar overlaying dark animated fabric wallpaper appears 1s in"
+    },
+    {
+      "id": "f2",
+      "ts": "0:08",
+      "kind": "state",
+      "subject": "Hotkey recorder UI",
+      "property": "completion state",
+      "value": "Key combinations turn green with a checkmark and 'Saved' label"
+    },
+    {
+      "id": "f3",
+      "ts": "0:10",
+      "kind": "state",
+      "subject": "Clipboard history list",
+      "property": "item previews",
+      "value": "Displays inline color swatches alongside hex color codes (#FF6363, #56C2FF)"
+    },
+    {
+      "id": "f4",
+      "ts": "0:18",
+      "kind": "motion",
+      "subject": "Voice dictation widget",
+      "property": "expansion transition",
+      "value": "Mic icon pill expands horizontally into an active audio waveform indicator"
+    },
+    {
+      "id": "f5",
+      "ts": "0:23",
+      "kind": "state",
+      "subject": "Agent task list",
+      "property": "execution step indicators",
+      "value": "Progressive spinners next to active Linear, GitHub, and Notes tasks"
+    },
+    {
+      "id": "f6",
+      "ts": "0:28",
+      "kind": "pacing",
+      "subject": "Feature summary text sequence",
+      "property": "text card duration",
+      "value": "5 feature titles switch on center-aligned black background at ~1 second intervals"
+    }
+  ],
+  "statesShown": [
+    "empty",
+    "loading",
+    "result"
+  ],
+  "motionPurpose": "at 0:00 to 0:25, dramatic extreme macro close-ups keep focus purely on micro-animations and smooth UI state transitions",
+  "whatToSteal": {
+    "ts": "0:18",
+    "technique": "Inline expansion of a compact mic button into a sleek real-time soundwave bar"
+  },
+  "whatNotToSteal": {
+    "ts": "0:34",
+    "why": "Announcing mock far-future release dates or hypothetical future models (GPT-5) as a tease unless clearly framed as satire"
+  },
+  "notRun": []
+}

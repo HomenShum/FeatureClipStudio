@@ -3,6 +3,8 @@
 // stage only human eyes ever check.
 //
 //   node judge-video.mjs out/example.mp4            (writes out/example.judge.md + .judge.json)
+//   node find-references.mjs "<query>"              (build the reference corpus first — it is used
+//                                                    automatically; --no-reference opts out)
 //   GEMINI_JUDGE_MODEL=gemini-3.5-flash node judge-video.mjs renders/feature.mp4   (pin an older judge)
 //
 // Judge the MP4 (the pre-palette render), not the GIF — GIF is not a supported video MIME for
@@ -10,7 +12,7 @@
 // Key: GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY (env, or a local .env/.env.local line).
 // Severity policy: P0 blocks publishing · P1 fix before posting · P2 log and ship — do NOT enter
 // a re-render polish loop for P2s the judge already passed.
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 
 const argv = process.argv.slice(2);
 const video = argv.find((a) => !a.startsWith("--"));
@@ -18,7 +20,18 @@ const video = argv.find((a) => !a.startsWith("--"));
 // directly — verified: it described the opening seconds and runtime of a real video from the URL
 // alone — so a reference is CITED rather than copied. That is the Mobbin discipline arriving for
 // free: observe and attribute, never re-host, and the locator is the URL plus a timestamp.
-const references = argv.filter((a) => a.startsWith("--reference=")).map((a) => a.slice("--reference=".length));
+let references = argv.filter((a) => a.startsWith("--reference=")).map((a) => a.slice("--reference=".length));
+// Self-directing by default: with no explicit --reference, use whatever find-references.mjs has
+// already observed. A corpus nobody has to remember to pass is the difference between a bar that
+// applies and a bar that exists. --no-reference opts out.
+if (references.length === 0 && !argv.includes("--no-reference") && existsSync("references/video")) {
+  references = readdirSync("references/video")
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => { try { return JSON.parse(readFileSync(`references/video/${f}`, "utf8")).source?.url; } catch { return null; } })
+    .filter(Boolean)
+    .slice(0, 2);   // two is a comparison; more is mostly token cost
+  if (references.length) console.log(`[judge] using ${references.length} reference(s) from references/video (--no-reference to skip)`);
+}
 if (!video || !existsSync(video)) {
   console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--reference=<youtube-url> ...]");
   process.exit(1);

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "arcade-what-is-arcade-create-interactive-product-demos-in-mi",
+  "source": {
+    "url": "https://youtu.be/xPK3nBLbpxc",
+    "channel": "Arcade",
+    "title": "What is Arcade? | Create Interactive Product Demos in Minutes",
+    "declaredSeconds": 157
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-03T23:01:23.265Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 14621,
+  "watched": true,
+  "runtimeSeconds": 156,
+  "hookSeconds": 2,
+  "singleMoment": {
+    "ts": "0:07",
+    "what": "Demonstrating an interactive product demo flow inside a browser frame to immediately prove what Arcade creates"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "0:00",
+      "kind": "structure",
+      "subject": "Intro title text",
+      "property": "duration",
+      "value": "2 seconds text card before first product frame"
+    },
+    {
+      "id": "f2",
+      "ts": "0:07",
+      "kind": "caption",
+      "subject": "Screen context label",
+      "property": "placement and styling",
+      "value": "Sub-label 'Arcade Flow (Fri Sep 13 2024)' fixed at bottom center below browser frame"
+    },
+    {
+      "id": "f3",
+      "ts": "0:17",
+      "kind": "structure",
+      "subject": "Social proof grid",
+      "property": "layout",
+      "value": "12,000+ Teams headline above 10 customer logo vectors on white background"
+    },
+    {
+      "id": "f4",
+      "ts": "0:28",
+      "kind": "motion",
+      "subject": "Screen crop zoom",
+      "property": "target focus",
+      "value": "Smooth zoom in on top-right corner extension bar when initiating recording"
+    },
+    {
+      "id": "f5",
+      "ts": "1:07",
+      "kind": "pacing",
+      "subject": "Action bar feature walkthrough",
+      "property": "step duration",
+      "value": "Tooltips cycle across top menu items every 0.8 seconds"
+    },
+    {
+      "id": "f6",
+      "ts": "2:10",
+      "kind": "state",
+      "subject": "Insights analytics UI",
+      "property": "data state",
+      "value": "Populated state showing aggregate metrics card grid and tabular breakdown below"
+    }
+  ],
+  "statesShown": [
+    "result",
+    "empty"
+  ],
+  "motionPurpose": "At 0:28, a smooth zoom into the top-right toolbar directs viewer attention specifically to the extension icon action.",
+  "whatToSteal": {
+    "ts": "0:28",
+    "technique": "Cropping and zooming into specific UI regions during action steps to keep focus clear on small controls."
+  },
+  "whatNotToSteal": {
+    "ts": "1:31",
+    "why": "Ultra-fast color picker hovering and font swapping without pauses can feel overwhelming and disorienting."
+  },
+  "notRun": [
+    "Exact source framerate of captured desktop application demonstrations."
+  ]
+}
