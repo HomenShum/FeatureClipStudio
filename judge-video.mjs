@@ -12,8 +12,17 @@
 // a re-render polish loop for P2s the judge already passed.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
-const video = process.argv[2];
-if (!video || !existsSync(video)) { console.error("usage: node judge-video.mjs <video.mp4|webm|mov>"); process.exit(1); }
+const argv = process.argv.slice(2);
+const video = argv.find((a) => !a.startsWith("--"));
+// Reference videos are passed as YouTube URLs and never downloaded. Gemini reads a YouTube URI
+// directly — verified: it described the opening seconds and runtime of a real video from the URL
+// alone — so a reference is CITED rather than copied. That is the Mobbin discipline arriving for
+// free: observe and attribute, never re-host, and the locator is the URL plus a timestamp.
+const references = argv.filter((a) => a.startsWith("--reference=")).map((a) => a.slice("--reference=".length));
+if (!video || !existsSync(video)) {
+  console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--reference=<youtube-url> ...]");
+  process.exit(1);
+}
 
 const key = () => {
   for (const k of ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"]) if (process.env[k]) return process.env[k];
@@ -80,8 +89,33 @@ Return STRICT JSON: {"scores":{"storyboard_clarity":{"score":n,"evidence":"..."}
 "singleMoment":"the one moment this video is built around, or null if it has none",
 "verdict":"...","summary":"2-3 sentences"}`;
 
+/**
+ * Added when reference videos are supplied. The candidate is video 1; references follow in order.
+ *
+ * The point is not "be more like them". It is to convert taste into a comparison a reader can
+ * check: the reference is on screen, so a claim about it carries a timestamp and can be disputed.
+ */
+const COMPARE = (uris) => `REFERENCE COMPARISON. Video 1 is the CANDIDATE under judgement. Videos 2..${uris.length + 1}
+are REFERENCE videos supplied as exemplars, in this order:
+${uris.map((u, i) => `  video ${i + 2}: ${u}`).join("\n")}
+
+Judge the candidate on its own terms first — the scores and defects above are about video 1 only.
+Then add a "reference" block comparing them on the axes that actually transfer:
+  singleMoment      what is each reference built around, and how early does it land?
+  statePacing       how long does a reference hold a state before moving on, in seconds?
+  motionPurpose     when a reference moves the camera, what is it revealing?
+  whatToSteal       one concrete, transferable technique, with a timestamp in the reference
+  whatNotToSteal    something a reference does that would be dishonest for THIS product, and why
+
+Cite a timestamp in the reference for every claim about it. "Their pacing is good" is not an
+observation; "at 0:12 the loading state holds for about 1.4s before the result" is. If a reference
+cannot be watched, say so in that block rather than describing it from memory.
+
+Add to the JSON: "reference":{"watched":["<uri>"],"unwatched":["<uri>"],"singleMoment":"...",
+"statePacing":"...","motionPurpose":"...","whatToSteal":"...","whatNotToSteal":"..."}`;
+
 /** Bumped whenever the rubric changes, so an old verdict is not read as a current one. */
-const RUBRIC_VERSION = "2026-08-03.motion-and-reference";
+const RUBRIC_VERSION = "2026-08-03.youtube-reference-comparison";
 
 const run = async () => {
   const bytes = readFileSync(video);
@@ -101,7 +135,16 @@ const run = async () => {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      contents: [{ parts: [{ inline_data: { mime_type: mime, data: bytes.toString("base64") } }, { text: RUBRIC }] }],
+      contents: [{
+        parts: [
+          { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
+          // References follow the candidate so "the first video" is unambiguous.
+          ...references.map((uri) => ({ file_data: { file_uri: uri } })),
+          { text: references.length ? `${RUBRIC}
+
+${COMPARE(references)}` : RUBRIC },
+        ],
+      }],
       generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
     }),
   });
@@ -118,6 +161,7 @@ const run = async () => {
     judgedBy: model,
     rubricVersion: RUBRIC_VERSION,
     videoBytes: bytes.length,
+    referencesCited: references,
     judgedAt: new Date().toISOString(),
   }, null, 2));
   const scores = Object.entries(judge.scores);
