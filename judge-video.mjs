@@ -44,6 +44,32 @@ Score each dimension 0-2 (0=fails, 1=acceptable, 2=strong) WITH specific evidenc
 7. proof_feel - does it read as evidence of a real working product (real states, real data motion) rather than staged marketing?
 8. safety - any visible secrets, API keys, tokens, real personal data, or internal URLs that should not ship?
 9. loop_etiquette - if this loops as a GIF, is the total length and final-state hold reasonable (viewers lost on the second loop = too long)?
+10. motion_craft - do camera moves REVEAL evidence rather than decorate? Is the zoom-to-focus landing on the region the caption is talking about, held long enough to read, and eased rather than snapped? Any jitter, drift, competing simultaneous motion, or a move that ends somewhere the viewer did not need to look?
+11. visual_hierarchy - at every moment, is exactly one thing asking for attention? Is the focused region actually distinguished (framing, scale, contrast, dimming of the rest) rather than merely centred? Does anything decorative compete with the evidence?
+
+REFERENCE STANDARD. Score against how the best product demos actually work, not against
+"a video was produced":
+- ONE moment carries it. Vercel's demo is push code, watch it deploy — the aha lands in seconds and
+  the brevity IS the message. Ask: what is THIS video's single moment, and does it arrive early?
+- SPEED IS SHOWN, NOT CLAIMED. Linear's demo leans on the product being fast: issue creation,
+  filtering and navigation happen visibly instantly, with the keystrokes and snappy transitions on
+  screen. Latency edited out is a hero shot; latency shown and short is proof.
+- COMPOUND VALUE reads as one conversation. Stripe's tour makes many capabilities feel like a single
+  system rather than a feature list. A demo that is a tour of tabs has no thesis.
+If the video has no identifiable single moment, say so as a P0 under storyboard_clarity — that is
+the defect that makes a technically-correct walkthrough forgettable.
+
+WHAT YOU CANNOT SEE, and must not claim. You are watching PIXELS. Three different things can be
+true or false independently — what was INTENDED, what the RUNTIME actually did, and what a viewer
+can SEE — and four mismatch classes live between them:
+  intent-runtime      the thing that was supposed to happen never happened
+  runtime-pixel       it happened but was never visible in frame
+  pixel-experience    it was visible but framed or paced so the viewer cannot read it
+  experience-interaction  it reads fine but a user could not actually reach or trigger it
+You can only judge the last two. Never assert that a number is correct, that a backend really ran,
+or that data is real — a convincing render of a fabricated result looks identical to a true one from
+here. When a claim's truth depends on something off-screen, record it in defects with severity P1
+and observed starting "unverifiable-from-video:" so a human knows to check it another way.
 
 Then list DEFECTS: each with timestamp, severity (P0 blocks publishing / P1 fix before posting /
 P2 polish, log and ship), what you observed, and a concrete fix.
@@ -51,7 +77,11 @@ Finally an overall verdict: publish | fix-then-publish | rework.
 
 Return STRICT JSON: {"scores":{"storyboard_clarity":{"score":n,"evidence":"..."},"state_coverage":{"score":n,"evidence":"..."},...},
 "defects":[{"ts":"m:ss","severity":"P0|P1|P2","observed":"...","fix":"..."}],
+"singleMoment":"the one moment this video is built around, or null if it has none",
 "verdict":"...","summary":"2-3 sentences"}`;
+
+/** Bumped whenever the rubric changes, so an old verdict is not read as a current one. */
+const RUBRIC_VERSION = "2026-08-03.motion-and-reference";
 
 const run = async () => {
   const bytes = readFileSync(video);
@@ -72,7 +102,16 @@ const run = async () => {
   const judge = JSON.parse((body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join(""));
 
   const base = video.replace(/\.(mp4|webm|mov)$/i, "");
-  writeFileSync(`${base}.judge.json`, JSON.stringify(judge, null, 2));
+  // The markdown named the model; the JSON did not, so the machine-readable verdict — the one a gate
+  // would consume — could not say which judge or which bar produced it. A verdict whose rubric
+  // version is unknown cannot be told apart from one scored against a weaker bar.
+  writeFileSync(`${base}.judge.json`, JSON.stringify({
+    ...judge,
+    judgedBy: model,
+    rubricVersion: RUBRIC_VERSION,
+    videoBytes: bytes.length,
+    judgedAt: new Date().toISOString(),
+  }, null, 2));
   const scores = Object.entries(judge.scores);
   const total = scores.reduce((a, [, v]) => a + v.score, 0);
   const md = [
