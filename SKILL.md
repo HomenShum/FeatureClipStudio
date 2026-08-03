@@ -83,6 +83,42 @@ Selector shorthand (resolved against the **active tab panel** — see lesson #1)
 `"btn:Run pipeline"` (button by accessible-name regex), `"aria:Net income"` /
 `"aria^:Revenue"` (input by aria-label exact / prefix), or any raw CSS selector.
 
+
+## Where to find reference videos
+
+Two kinds, and they are not interchangeable. Getting this wrong is why "look at
+good demos" produces nothing usable.
+
+**Flow references — what a real product actually does, step by step.**
+[Page Flows](https://pageflows.com) is the Mobbin of video: recorded user
+journeys rather than screenshots, 20,000+ apps indexed by task (sign up, upgrade,
+cancel), and it keeps the consent dialog, the field error, and the empty state
+that a marketing cut removes. Their own positioning is this skill's anti-hero-shot
+rule stated from the other side: *Mobbin shows you the destination, Page Flows
+shows you the trip.* ScreensDesign covers onboarding and paywall flows. Both are
+paid, and both are for studying what to CAPTURE.
+
+**Craft references — how a launch film is built.**
+Just use YouTube. `judge-video.mjs` reads a YouTube watch URL directly:
+
+    REFERENCE_VIDEOS="https://youtube.com/watch?v=...,https://youtube.com/watch?v=..."       node judge-video.mjs out/feature.mp4
+
+Verified, not assumed: Gemini returns `modality: VIDEO` and ~100k prompt tokens
+per reference, so it is watching the video, not reading the page. Nothing is
+downloaded, hosted, or re-encoded — no licence problem, no storage. Point at
+Linear's changelog reels, a Stripe launch film, the Vercel homepage demo.
+
+**Why a URL beats a paid library here.** A reference video is something the judge
+can WATCH and compare against. Prose anchors ("Linear ships 45-90s reels") are a
+claim it has to take on faith. Cost is the tradeoff: ~100k prompt tokens per
+reference, so `REFERENCE_VIDEOS` is empty by default.
+
+**The discipline that makes any of this work.** Mobbin is useful because each
+record is one atomic fact with a locator, not an impression. For video the
+locator is a TIMESTAMP. "At 0:12 the loading state holds 1.4s before the result
+lands" can become a rule and can score a cut. "Their pacing is good" cannot.
+Every reference note should be the first kind.
+
 ## Hard-won capture lessons (THIS is why naive captures fail)
 1. **Scope every locator to the ACTIVE tab panel.** Streamlit (and many tab UIs)
    render ALL tab panels in the DOM; an unscoped `.first()` silently matches a hidden

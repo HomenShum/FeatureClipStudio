@@ -1150,5 +1150,377 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       }
     ]
+  },
+  {
+    "id": "TShero",
+    "title": "TrialScope — every number is a probe you can re-issue",
+    "accent": "#0f766e",
+    "vw": 1440,
+    "vh": 900,
+    "cropVH": null,
+    "paneLabels": [
+      "TrialScope — live on Vercel + Cloud Run"
+    ],
+    "steps": [
+      {
+        "caption": "TrialScope — ask about clinical trials, get a chart you can audit",
+        "hold": 62,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_00.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Twelve planner models. The choice scopes the request, not the answer.",
+        "hold": 74,
+        "burst": false,
+        "zoomScale": 1.62,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_01.png",
+            "cursor": {
+              "x": 630,
+              "y": 522
+            },
+            "click": true,
+            "zoom": {
+              "x": 630,
+              "y": 522
+            }
+          }
+        ]
+      },
+      {
+        "caption": "The model plans WHICH questions to ask the API",
+        "hold": 48,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_02.png",
+            "cursor": {
+              "x": 1160,
+              "y": 522
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "It plans the dimension, then probes the registry — six buckets, six counts",
+        "hold": 104,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TShero/p0_03_00.png",
+              "wt-collab/TShero/p0_03_01.png",
+              "wt-collab/TShero/p0_03_02.png",
+              "wt-collab/TShero/p0_03_03.png",
+              "wt-collab/TShero/p0_03_04.png",
+              "wt-collab/TShero/p0_03_05.png",
+              "wt-collab/TShero/p0_03_06.png",
+              "wt-collab/TShero/p0_03_07.png",
+              "wt-collab/TShero/p0_03_08.png",
+              "wt-collab/TShero/p0_03_09.png",
+              "wt-collab/TShero/p0_03_10.png",
+              "wt-collab/TShero/p0_03_11.png",
+              "wt-collab/TShero/p0_03_12.png",
+              "wt-collab/TShero/p0_03_13.png",
+              "wt-collab/TShero/p0_03_14.png",
+              "wt-collab/TShero/p0_03_15.png",
+              "wt-collab/TShero/p0_03_16.png",
+              "wt-collab/TShero/p0_03_17.png",
+              "wt-collab/TShero/p0_03_18.png",
+              "wt-collab/TShero/p0_03_19.png",
+              "wt-collab/TShero/p0_03_20.png",
+              "wt-collab/TShero/p0_03_21.png",
+              "wt-collab/TShero/p0_03_22.png",
+              "wt-collab/TShero/p0_03_23.png",
+              "wt-collab/TShero/p0_03_24.png",
+              "wt-collab/TShero/p0_03_25.png",
+              "wt-collab/TShero/p0_03_26.png",
+              "wt-collab/TShero/p0_03_27.png",
+              "wt-collab/TShero/p0_03_28.png",
+              "wt-collab/TShero/p0_03_29.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Exact counts — and the overlap declared, so nobody draws a pie",
+        "hold": 92,
+        "burst": false,
+        "zoomScale": 1.34,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_04.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 562
+            }
+          }
+        ]
+      },
+      {
+        "caption": "Every number is one row here",
+        "hold": 54,
+        "burst": false,
+        "zoomScale": 1.42,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_05.png",
+            "cursor": {
+              "x": 847,
+              "y": 665
+            },
+            "click": true,
+            "zoom": {
+              "x": 847,
+              "y": 665
+            }
+          }
+        ]
+      },
+      {
+        "caption": "The literal URL and params. Re-issue it and you get the same figure.",
+        "hold": 168,
+        "burst": false,
+        "zoomScale": 1.85,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_06.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 665
+            }
+          }
+        ]
+      },
+      {
+        "caption": "A harder question: which sponsors and drugs co-occur?",
+        "hold": 44,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_07.png",
+            "cursor": {
+              "x": 1160,
+              "y": 522
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "37 probes fan out — every edge weight is its own exact count",
+        "hold": 112,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TShero/p0_08_00.png",
+              "wt-collab/TShero/p0_08_01.png",
+              "wt-collab/TShero/p0_08_02.png",
+              "wt-collab/TShero/p0_08_03.png",
+              "wt-collab/TShero/p0_08_04.png",
+              "wt-collab/TShero/p0_08_05.png",
+              "wt-collab/TShero/p0_08_06.png",
+              "wt-collab/TShero/p0_08_07.png",
+              "wt-collab/TShero/p0_08_08.png",
+              "wt-collab/TShero/p0_08_09.png",
+              "wt-collab/TShero/p0_08_10.png",
+              "wt-collab/TShero/p0_08_11.png",
+              "wt-collab/TShero/p0_08_12.png",
+              "wt-collab/TShero/p0_08_13.png",
+              "wt-collab/TShero/p0_08_14.png",
+              "wt-collab/TShero/p0_08_15.png",
+              "wt-collab/TShero/p0_08_16.png",
+              "wt-collab/TShero/p0_08_17.png",
+              "wt-collab/TShero/p0_08_18.png",
+              "wt-collab/TShero/p0_08_19.png",
+              "wt-collab/TShero/p0_08_20.png",
+              "wt-collab/TShero/p0_08_21.png",
+              "wt-collab/TShero/p0_08_22.png",
+              "wt-collab/TShero/p0_08_23.png",
+              "wt-collab/TShero/p0_08_24.png",
+              "wt-collab/TShero/p0_08_25.png",
+              "wt-collab/TShero/p0_08_26.png",
+              "wt-collab/TShero/p0_08_27.png",
+              "wt-collab/TShero/p0_08_28.png",
+              "wt-collab/TShero/p0_08_29.png",
+              "wt-collab/TShero/p0_08_30.png",
+              "wt-collab/TShero/p0_08_31.png",
+              "wt-collab/TShero/p0_08_32.png",
+              "wt-collab/TShero/p0_08_33.png",
+              "wt-collab/TShero/p0_08_34.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Open the interactive map",
+        "hold": 46,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_09.png",
+            "cursor": {
+              "x": 597,
+              "y": 188
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "A real graph — and the traversal that built it, step by step",
+        "hold": 128,
+        "burst": false,
+        "zoomScale": 1.26,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_10.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 440
+            }
+          }
+        ]
+      },
+      {
+        "caption": "Beside it, the traversal that built it — 37 steps, each one a probe",
+        "hold": 104,
+        "burst": false,
+        "zoomScale": 1.42,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_11.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 440
+            }
+          }
+        ]
+      },
+      {
+        "caption": "A question a single count cannot answer: who else works on what NCI works on?",
+        "hold": 52,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_12.png",
+            "cursor": {
+              "x": 1160,
+              "y": 522
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Two hops through the index — then every peer is probed, and every claim checked",
+        "hold": 104,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TShero/p0_13_00.png",
+              "wt-collab/TShero/p0_13_01.png",
+              "wt-collab/TShero/p0_13_02.png",
+              "wt-collab/TShero/p0_13_03.png",
+              "wt-collab/TShero/p0_13_04.png",
+              "wt-collab/TShero/p0_13_05.png",
+              "wt-collab/TShero/p0_13_06.png",
+              "wt-collab/TShero/p0_13_07.png",
+              "wt-collab/TShero/p0_13_08.png",
+              "wt-collab/TShero/p0_13_09.png",
+              "wt-collab/TShero/p0_13_10.png",
+              "wt-collab/TShero/p0_13_11.png",
+              "wt-collab/TShero/p0_13_12.png",
+              "wt-collab/TShero/p0_13_13.png",
+              "wt-collab/TShero/p0_13_14.png",
+              "wt-collab/TShero/p0_13_15.png",
+              "wt-collab/TShero/p0_13_16.png",
+              "wt-collab/TShero/p0_13_17.png",
+              "wt-collab/TShero/p0_13_18.png",
+              "wt-collab/TShero/p0_13_19.png",
+              "wt-collab/TShero/p0_13_20.png",
+              "wt-collab/TShero/p0_13_21.png",
+              "wt-collab/TShero/p0_13_22.png",
+              "wt-collab/TShero/p0_13_23.png",
+              "wt-collab/TShero/p0_13_24.png",
+              "wt-collab/TShero/p0_13_25.png",
+              "wt-collab/TShero/p0_13_26.png",
+              "wt-collab/TShero/p0_13_27.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The graph proposed them. The registry confirmed each one.",
+        "hold": 116,
+        "burst": false,
+        "zoomScale": 1.3,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_14.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 437
+            }
+          }
+        ]
+      },
+      {
+        "caption": "The model chose the questions. ClinicalTrials.gov gave every answer.",
+        "hold": 150,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_15.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      }
+    ]
   }
 ];
