@@ -1153,6 +1153,7 @@ export const COLLAB_WALKTHROUGHS = [
   },
   {
     "id": "TShero",
+    "frame": false,
     "title": "TrialScope — a graph you can audit, edge by edge",
     "accent": "#0f766e",
     "vw": 1440,

@@ -238,6 +238,11 @@ const run = async () => {
       vw: spec.vw || VW,
       vh: spec.vh || VH,
       cropVH: spec.cropVH || null,
+      // This object is a WHITELIST, not a spread: a field the renderer needs but
+      // that is not copied here is silently dropped, and the symptom is a spec
+      // change that appears to do nothing after a re-render. `frame` was added
+      // for exactly that reason -- add new render-time spec fields HERE too.
+      frame: spec.frame !== false,
       paneLabels: spec.panes.map((p) => p.label),
       steps,
     });

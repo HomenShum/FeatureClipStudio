@@ -65,9 +65,20 @@ const Chrome = ({ accent, label, acting }) => (
 );
 
 // One browser window for a single pane (dimensions passed in, so 2-up and 3-up share this).
-const PaneWindow = ({ left, top, paneW, paneH, accent, label, acting, img, prevImg, cursor, cursorOp, click, lf, fadeIn, cam, imgH }) => (
-  <div style={{ position: "absolute", left, top, width: paneW, borderRadius: 14, overflow: "hidden", boxShadow: acting ? `0 30px 70px rgba(0,0,0,0.55), 0 0 0 2px ${accent}` : "0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)", background: "#0d1526" }}>
-    <Chrome accent={accent} label={label} acting={acting} />
+const PaneWindow = ({ left, top, paneW, paneH, accent, label, acting, img, prevImg, cursor, cursorOp, click, lf, fadeIn, cam, imgH, framed = true }) => (
+  <div style={{
+    position: "absolute", left, top, width: paneW, overflow: "hidden",
+    // Frameless drops the rounded corners, the drop shadow and the acting-pane
+    // outline along with the chrome -- a bezel that is not there cannot glow.
+    // Multi-pane still needs them: they are what says "these are two clients".
+    borderRadius: framed ? 14 : 0,
+    boxShadow: framed
+      ? (acting ? `0 30px 70px rgba(0,0,0,0.55), 0 0 0 2px ${accent}`
+                : "0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)")
+      : "none",
+    background: "#0d1526",
+  }}>
+    {framed && <Chrome accent={accent} label={label} acting={acting} />}
     <div style={{ position: "relative", width: paneW, height: paneH, overflow: "hidden", background: "#fff" }}>
       {/* camera container: img + cursor zoom/pan together so the cursor stays glued to the image */}
       <div style={{ position: "absolute", top: 0, left: 0, width: paneW, height: imgH || paneH, transformOrigin: "0 0", transform: cam || "none" }}>
@@ -105,14 +116,31 @@ export const Walkthrough2up = ({ wt }) => {
   const cropVH = wt.cropVH || capVH;
   // Fit each pane to the per-N width budget, then cap to available height so a tall 1-up
   // (a dense app) never overflows the canvas; center the row both ways.
-  const MAX_H = WT2_H - 230;
-  let PANE_W = Math.floor((WT2_W - SIDE_MARGIN * 2 - GAP * (N - 1)) / N);
+  // FRAMELESS (`frame: false`, single pane): the capture fills the canvas edge to
+  // edge -- no window chrome, no title bar, no step counter, no margin. The frame
+  // was costing ~38% of the canvas to say things the viewer already knows (that
+  // this is a browser, that a demo has steps), and every pixel it took came out
+  // of the only thing worth looking at. Letterboxing to preserve the full page
+  // height would just reintroduce the bars in black, so the pane is sized to
+  // FILL and the surplus height is cropped -- correct here because app content is
+  // top-weighted, which is the same reason `cropVH` exists.
+  const framed = wt.frame !== false;
+  const MAX_H = framed ? WT2_H - 230 : WT2_H;
+  const margin = framed ? SIDE_MARGIN : 0;
+  let PANE_W = Math.floor((WT2_W - margin * 2 - GAP * (N - 1)) / N);
   let PANE_H = Math.round(PANE_W * cropVH / capVW);
-  if (PANE_H > MAX_H) { PANE_H = MAX_H; PANE_W = Math.round(PANE_H * capVW / cropVH); }
+  if (PANE_H > MAX_H) {
+    PANE_H = MAX_H;
+    // Framed: shrink the width too, so the whole page stays visible (letterbox).
+    // Frameless: keep full width and crop the overflow (fill).
+    if (framed) PANE_W = Math.round(PANE_H * capVW / cropVH);
+  }
   const SCALE = PANE_W / capVW;                               // uniform cursor-coord scale
   const rowW = PANE_W * N + GAP * (N - 1);
   const startX = Math.round((WT2_W - rowW) / 2);              // center the row horizontally
-  const winTop = Math.max(116, Math.round((WT2_H - (CHROME_H + PANE_H)) / 2) - 4);
+  const winTop = framed
+    ? Math.max(116, Math.round((WT2_H - (CHROME_H + PANE_H)) / 2) - 4)
+    : 0;
 
   const fadeIn = interpolate(lf, [0, 11], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const capY = interpolate(lf, [4, 22], [26, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -155,6 +183,7 @@ export const Walkthrough2up = ({ wt }) => {
     <AbsoluteFill style={{ background: "#0b1220" }}>
       <Background />
 
+      {framed && (
       <div style={{ position: "absolute", top: 30, left: SIDE_MARGIN, display: "flex", alignItems: "center", gap: 16 }}>
         <span style={{ fontSize: 30 }}>🌱</span>
         <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 28, color: "#eaf2ff" }}>{wt.title}</div>
@@ -163,6 +192,7 @@ export const Walkthrough2up = ({ wt }) => {
         </div>
         {N > 1 && <div style={{ fontFamily: FONT, fontWeight: 600, fontSize: 15, color: "#9fb3c8" }}>· {N} clients, one shared backend</div>}
       </div>
+      )}
 
       {Array.from({ length: N }, (_, pi) => {
         const p = panes[pi] || {};
@@ -173,7 +203,7 @@ export const Walkthrough2up = ({ wt }) => {
             accent={wt.accent} label={paneLabels[pi] || `Client ${String.fromCharCode(65 + pi)}`}
             acting={p.acting} img={p.img} prevImg={p.prevImg}
             cursor={p.cursor} cursorOp={p.cursorOp} click={p.click} lf={lf} fadeIn={fadeIn}
-            cam={p.cam} imgH={p.imgH}
+            cam={p.cam} imgH={p.imgH} framed={framed}
           />
         );
       })}

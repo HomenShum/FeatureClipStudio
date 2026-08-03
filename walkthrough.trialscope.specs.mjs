@@ -33,6 +33,10 @@ export const TRIALSCOPE_SPECS = [
     id: "TShero",
     title: "TrialScope — a graph you can audit, edge by edge",
     accent: "#0f766e",
+    // Frameless: no window chrome, no title bar, no step counter. The capture
+    // fills 1920x1080 edge to edge. The frame was spending ~38% of the canvas
+    // restating things the viewer already knows.
+    frame: false,
     vw: 1440,
     vh: 900,
     retries: 3,
