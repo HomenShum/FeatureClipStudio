@@ -13,6 +13,7 @@
 // Severity policy: P0 blocks publishing · P1 fix before posting · P2 log and ship — do NOT enter
 // a re-render polish loop for P2s the judge already passed.
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { COMPREHENSION_RUBRIC, COMPREHENSION_VERSION, evaluateComprehension, formatComprehension } from "./comprehension-rubric.mjs";
 
 const argv = process.argv.slice(2);
 const video = argv.find((a) => !a.startsWith("--"));
@@ -102,6 +103,13 @@ Return STRICT JSON: {"scores":{"storyboard_clarity":{"score":n,"evidence":"..."}
 "singleMoment":"the one moment this video is built around, or null if it has none",
 "verdict":"...","summary":"2-3 sentences"}`;
 
+// Always appended. Comprehension is not an optional lens — a video nobody outside the team can
+// follow has failed whatever its craft score says, and making it opt-in would mean it is asked for
+// only by someone who already suspects the answer.
+const FULL_RUBRIC = `${RUBRIC}
+
+${COMPREHENSION_RUBRIC}`;
+
 /**
  * Added when reference videos are supplied. The candidate is video 1; references follow in order.
  *
@@ -153,9 +161,9 @@ const run = async () => {
           { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
           // References follow the candidate so "the first video" is unambiguous.
           ...references.map((uri) => ({ file_data: { file_uri: uri } })),
-          { text: references.length ? `${RUBRIC}
+          { text: references.length ? `${FULL_RUBRIC}
 
-${COMPARE(references)}` : RUBRIC },
+${COMPARE(references)}` : FULL_RUBRIC },
         ],
       }],
       generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
@@ -165,6 +173,7 @@ ${COMPARE(references)}` : RUBRIC },
   const body = await res.json();
   const judge = JSON.parse((body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join(""));
 
+  const comprehension = evaluateComprehension(judge.comprehension);
   const base = video.replace(/\.(mp4|webm|mov)$/i, "");
   // The markdown named the model; the JSON did not, so the machine-readable verdict — the one a gate
   // would consume — could not say which judge or which bar produced it. A verdict whose rubric
@@ -173,6 +182,8 @@ ${COMPARE(references)}` : RUBRIC },
     ...judge,
     judgedBy: model,
     rubricVersion: RUBRIC_VERSION,
+    comprehensionVersion: COMPREHENSION_VERSION,
+    comprehensionVerdict: comprehension,
     videoBytes: bytes.length,
     referencesCited: references,
     judgedAt: new Date().toISOString(),
