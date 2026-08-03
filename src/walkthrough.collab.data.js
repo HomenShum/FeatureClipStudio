@@ -1163,27 +1163,13 @@ export const COLLAB_WALKTHROUGHS = [
     ],
     "steps": [
       {
-        "caption": "TrialScope — ask about clinical trials, get a chart you can audit",
-        "hold": 62,
-        "burst": false,
-        "zoomScale": null,
-        "panes": [
-          {
-            "img": "wt-collab/TShero/p0_00.png",
-            "cursor": null,
-            "click": false,
-            "zoom": null
-          }
-        ]
-      },
-      {
         "caption": "Twelve planner models. The choice scopes the request, not the answer.",
-        "hold": 74,
+        "hold": 40,
         "burst": false,
         "zoomScale": 1.62,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_01.png",
+            "img": "wt-collab/TShero/p0_00.png",
             "cursor": {
               "x": 630,
               "y": 522
@@ -1198,12 +1184,12 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The model plans WHICH questions to ask the API",
-        "hold": 48,
+        "hold": 34,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_02.png",
+            "img": "wt-collab/TShero/p0_01.png",
             "cursor": {
               "x": 1160,
               "y": 522
@@ -1215,42 +1201,30 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "It plans the dimension, then probes the registry — six buckets, six counts",
-        "hold": 104,
+        "hold": 60,
         "burst": true,
         "zoomScale": null,
         "panes": [
           {
             "imgs": [
-              "wt-collab/TShero/p0_03_00.png",
-              "wt-collab/TShero/p0_03_01.png",
-              "wt-collab/TShero/p0_03_02.png",
-              "wt-collab/TShero/p0_03_03.png",
-              "wt-collab/TShero/p0_03_04.png",
-              "wt-collab/TShero/p0_03_05.png",
-              "wt-collab/TShero/p0_03_06.png",
-              "wt-collab/TShero/p0_03_07.png",
-              "wt-collab/TShero/p0_03_08.png",
-              "wt-collab/TShero/p0_03_09.png",
-              "wt-collab/TShero/p0_03_10.png",
-              "wt-collab/TShero/p0_03_11.png",
-              "wt-collab/TShero/p0_03_12.png",
-              "wt-collab/TShero/p0_03_13.png",
-              "wt-collab/TShero/p0_03_14.png",
-              "wt-collab/TShero/p0_03_15.png",
-              "wt-collab/TShero/p0_03_16.png",
-              "wt-collab/TShero/p0_03_17.png",
-              "wt-collab/TShero/p0_03_18.png",
-              "wt-collab/TShero/p0_03_19.png",
-              "wt-collab/TShero/p0_03_20.png",
-              "wt-collab/TShero/p0_03_21.png",
-              "wt-collab/TShero/p0_03_22.png",
-              "wt-collab/TShero/p0_03_23.png",
-              "wt-collab/TShero/p0_03_24.png",
-              "wt-collab/TShero/p0_03_25.png",
-              "wt-collab/TShero/p0_03_26.png",
-              "wt-collab/TShero/p0_03_27.png",
-              "wt-collab/TShero/p0_03_28.png",
-              "wt-collab/TShero/p0_03_29.png"
+              "wt-collab/TShero/p0_02_00.png",
+              "wt-collab/TShero/p0_02_01.png",
+              "wt-collab/TShero/p0_02_02.png",
+              "wt-collab/TShero/p0_02_03.png",
+              "wt-collab/TShero/p0_02_04.png",
+              "wt-collab/TShero/p0_02_05.png",
+              "wt-collab/TShero/p0_02_06.png",
+              "wt-collab/TShero/p0_02_07.png",
+              "wt-collab/TShero/p0_02_08.png",
+              "wt-collab/TShero/p0_02_09.png",
+              "wt-collab/TShero/p0_02_10.png",
+              "wt-collab/TShero/p0_02_11.png",
+              "wt-collab/TShero/p0_02_12.png",
+              "wt-collab/TShero/p0_02_13.png",
+              "wt-collab/TShero/p0_02_14.png",
+              "wt-collab/TShero/p0_02_15.png",
+              "wt-collab/TShero/p0_02_16.png",
+              "wt-collab/TShero/p0_02_17.png"
             ],
             "cursor": null,
             "click": false,
@@ -1260,12 +1234,12 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Exact counts — and the overlap declared, so nobody draws a pie",
-        "hold": 92,
+        "hold": 58,
         "burst": false,
         "zoomScale": 1.34,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_04.png",
+            "img": "wt-collab/TShero/p0_03.png",
             "cursor": null,
             "click": false,
             "zoom": {
@@ -1277,12 +1251,12 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Every number is one row here",
-        "hold": 54,
+        "hold": 34,
         "burst": false,
         "zoomScale": 1.42,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_05.png",
+            "img": "wt-collab/TShero/p0_04.png",
             "cursor": {
               "x": 847,
               "y": 665
@@ -1297,12 +1271,12 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The literal URL and params. Re-issue it and you get the same figure.",
-        "hold": 168,
+        "hold": 190,
         "burst": false,
         "zoomScale": 1.85,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_06.png",
+            "img": "wt-collab/TShero/p0_05.png",
             "cursor": null,
             "click": false,
             "zoom": {
@@ -1319,7 +1293,7 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_07.png",
+            "img": "wt-collab/TShero/p0_06.png",
             "cursor": {
               "x": 1160,
               "y": 522
@@ -1337,41 +1311,41 @@ export const COLLAB_WALKTHROUGHS = [
         "panes": [
           {
             "imgs": [
-              "wt-collab/TShero/p0_08_00.png",
-              "wt-collab/TShero/p0_08_01.png",
-              "wt-collab/TShero/p0_08_02.png",
-              "wt-collab/TShero/p0_08_03.png",
-              "wt-collab/TShero/p0_08_04.png",
-              "wt-collab/TShero/p0_08_05.png",
-              "wt-collab/TShero/p0_08_06.png",
-              "wt-collab/TShero/p0_08_07.png",
-              "wt-collab/TShero/p0_08_08.png",
-              "wt-collab/TShero/p0_08_09.png",
-              "wt-collab/TShero/p0_08_10.png",
-              "wt-collab/TShero/p0_08_11.png",
-              "wt-collab/TShero/p0_08_12.png",
-              "wt-collab/TShero/p0_08_13.png",
-              "wt-collab/TShero/p0_08_14.png",
-              "wt-collab/TShero/p0_08_15.png",
-              "wt-collab/TShero/p0_08_16.png",
-              "wt-collab/TShero/p0_08_17.png",
-              "wt-collab/TShero/p0_08_18.png",
-              "wt-collab/TShero/p0_08_19.png",
-              "wt-collab/TShero/p0_08_20.png",
-              "wt-collab/TShero/p0_08_21.png",
-              "wt-collab/TShero/p0_08_22.png",
-              "wt-collab/TShero/p0_08_23.png",
-              "wt-collab/TShero/p0_08_24.png",
-              "wt-collab/TShero/p0_08_25.png",
-              "wt-collab/TShero/p0_08_26.png",
-              "wt-collab/TShero/p0_08_27.png",
-              "wt-collab/TShero/p0_08_28.png",
-              "wt-collab/TShero/p0_08_29.png",
-              "wt-collab/TShero/p0_08_30.png",
-              "wt-collab/TShero/p0_08_31.png",
-              "wt-collab/TShero/p0_08_32.png",
-              "wt-collab/TShero/p0_08_33.png",
-              "wt-collab/TShero/p0_08_34.png"
+              "wt-collab/TShero/p0_07_00.png",
+              "wt-collab/TShero/p0_07_01.png",
+              "wt-collab/TShero/p0_07_02.png",
+              "wt-collab/TShero/p0_07_03.png",
+              "wt-collab/TShero/p0_07_04.png",
+              "wt-collab/TShero/p0_07_05.png",
+              "wt-collab/TShero/p0_07_06.png",
+              "wt-collab/TShero/p0_07_07.png",
+              "wt-collab/TShero/p0_07_08.png",
+              "wt-collab/TShero/p0_07_09.png",
+              "wt-collab/TShero/p0_07_10.png",
+              "wt-collab/TShero/p0_07_11.png",
+              "wt-collab/TShero/p0_07_12.png",
+              "wt-collab/TShero/p0_07_13.png",
+              "wt-collab/TShero/p0_07_14.png",
+              "wt-collab/TShero/p0_07_15.png",
+              "wt-collab/TShero/p0_07_16.png",
+              "wt-collab/TShero/p0_07_17.png",
+              "wt-collab/TShero/p0_07_18.png",
+              "wt-collab/TShero/p0_07_19.png",
+              "wt-collab/TShero/p0_07_20.png",
+              "wt-collab/TShero/p0_07_21.png",
+              "wt-collab/TShero/p0_07_22.png",
+              "wt-collab/TShero/p0_07_23.png",
+              "wt-collab/TShero/p0_07_24.png",
+              "wt-collab/TShero/p0_07_25.png",
+              "wt-collab/TShero/p0_07_26.png",
+              "wt-collab/TShero/p0_07_27.png",
+              "wt-collab/TShero/p0_07_28.png",
+              "wt-collab/TShero/p0_07_29.png",
+              "wt-collab/TShero/p0_07_30.png",
+              "wt-collab/TShero/p0_07_31.png",
+              "wt-collab/TShero/p0_07_32.png",
+              "wt-collab/TShero/p0_07_33.png",
+              "wt-collab/TShero/p0_07_34.png"
             ],
             "cursor": null,
             "click": false,
@@ -1386,7 +1360,7 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_09.png",
+            "img": "wt-collab/TShero/p0_08.png",
             "cursor": {
               "x": 597,
               "y": 188
@@ -1403,7 +1377,7 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": 1.26,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_10.png",
+            "img": "wt-collab/TShero/p0_09.png",
             "cursor": null,
             "click": false,
             "zoom": {
@@ -1420,7 +1394,7 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": 1.42,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_11.png",
+            "img": "wt-collab/TShero/p0_10.png",
             "cursor": null,
             "click": false,
             "zoom": {
@@ -1437,7 +1411,7 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_12.png",
+            "img": "wt-collab/TShero/p0_11.png",
             "cursor": {
               "x": 1160,
               "y": 522
@@ -1455,34 +1429,34 @@ export const COLLAB_WALKTHROUGHS = [
         "panes": [
           {
             "imgs": [
-              "wt-collab/TShero/p0_13_00.png",
-              "wt-collab/TShero/p0_13_01.png",
-              "wt-collab/TShero/p0_13_02.png",
-              "wt-collab/TShero/p0_13_03.png",
-              "wt-collab/TShero/p0_13_04.png",
-              "wt-collab/TShero/p0_13_05.png",
-              "wt-collab/TShero/p0_13_06.png",
-              "wt-collab/TShero/p0_13_07.png",
-              "wt-collab/TShero/p0_13_08.png",
-              "wt-collab/TShero/p0_13_09.png",
-              "wt-collab/TShero/p0_13_10.png",
-              "wt-collab/TShero/p0_13_11.png",
-              "wt-collab/TShero/p0_13_12.png",
-              "wt-collab/TShero/p0_13_13.png",
-              "wt-collab/TShero/p0_13_14.png",
-              "wt-collab/TShero/p0_13_15.png",
-              "wt-collab/TShero/p0_13_16.png",
-              "wt-collab/TShero/p0_13_17.png",
-              "wt-collab/TShero/p0_13_18.png",
-              "wt-collab/TShero/p0_13_19.png",
-              "wt-collab/TShero/p0_13_20.png",
-              "wt-collab/TShero/p0_13_21.png",
-              "wt-collab/TShero/p0_13_22.png",
-              "wt-collab/TShero/p0_13_23.png",
-              "wt-collab/TShero/p0_13_24.png",
-              "wt-collab/TShero/p0_13_25.png",
-              "wt-collab/TShero/p0_13_26.png",
-              "wt-collab/TShero/p0_13_27.png"
+              "wt-collab/TShero/p0_12_00.png",
+              "wt-collab/TShero/p0_12_01.png",
+              "wt-collab/TShero/p0_12_02.png",
+              "wt-collab/TShero/p0_12_03.png",
+              "wt-collab/TShero/p0_12_04.png",
+              "wt-collab/TShero/p0_12_05.png",
+              "wt-collab/TShero/p0_12_06.png",
+              "wt-collab/TShero/p0_12_07.png",
+              "wt-collab/TShero/p0_12_08.png",
+              "wt-collab/TShero/p0_12_09.png",
+              "wt-collab/TShero/p0_12_10.png",
+              "wt-collab/TShero/p0_12_11.png",
+              "wt-collab/TShero/p0_12_12.png",
+              "wt-collab/TShero/p0_12_13.png",
+              "wt-collab/TShero/p0_12_14.png",
+              "wt-collab/TShero/p0_12_15.png",
+              "wt-collab/TShero/p0_12_16.png",
+              "wt-collab/TShero/p0_12_17.png",
+              "wt-collab/TShero/p0_12_18.png",
+              "wt-collab/TShero/p0_12_19.png",
+              "wt-collab/TShero/p0_12_20.png",
+              "wt-collab/TShero/p0_12_21.png",
+              "wt-collab/TShero/p0_12_22.png",
+              "wt-collab/TShero/p0_12_23.png",
+              "wt-collab/TShero/p0_12_24.png",
+              "wt-collab/TShero/p0_12_25.png",
+              "wt-collab/TShero/p0_12_26.png",
+              "wt-collab/TShero/p0_12_27.png"
             ],
             "cursor": null,
             "click": false,
@@ -1497,24 +1471,24 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": 1.3,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_14.png",
+            "img": "wt-collab/TShero/p0_13.png",
             "cursor": null,
             "click": false,
             "zoom": {
               "x": 847,
-              "y": 437
+              "y": 471
             }
           }
         ]
       },
       {
         "caption": "The model chose the questions. ClinicalTrials.gov gave every answer.",
-        "hold": 150,
+        "hold": 210,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_15.png",
+            "img": "wt-collab/TShero/p0_14.png",
             "cursor": null,
             "click": false,
             "zoom": null

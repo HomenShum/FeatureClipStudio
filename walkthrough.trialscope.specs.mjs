@@ -43,17 +43,13 @@ export const TRIALSCOPE_SPECS = [
 
       // 1 — the empty state, and the one control that scopes the request
       {
-        cap: "TrialScope — ask about clinical trials, get a chart you can audit",
-        hold: 62,
-      },
-      {
         cap: "Twelve planner models. The choice scopes the request, not the answer.",
         cursor: "testid:model-select",
         cursorPane: 0,
         click: true,
         zoom: "testid:model-select",
         zoomScale: 1.62,
-        hold: 74,
+        hold: 40,
       },
 
       // 2 — ask
@@ -69,7 +65,7 @@ export const TRIALSCOPE_SPECS = [
         cursor: "btn:Send message",
         cursorPane: 0,
         click: true,
-        hold: 48,
+        hold: 34,
       },
       { act: "click", pane: 0, sel: "btn:Send message" },
 
@@ -78,8 +74,8 @@ export const TRIALSCOPE_SPECS = [
       { act: "sleep", pane: 0, ms: 600 },
       {
         cap: "It plans the dimension, then probes the registry — six buckets, six counts",
-        burst: { ms: 9000, every: 300 },
-        hold: 104,
+        burst: { ms: 5400, every: 300 },
+        hold: 60,
       },
 
       // 4 — the result, with the honesty panel that most tools omit
@@ -89,7 +85,7 @@ export const TRIALSCOPE_SPECS = [
         cap: "Exact counts — and the overlap declared, so nobody draws a pie",
         zoom: "testid:panel-reconciliation",
         zoomScale: 1.34,
-        hold: 92,
+        hold: 58,
       },
 
       // 5 — THE BEAT. This is where a chart stops being a claim.
@@ -101,7 +97,7 @@ export const TRIALSCOPE_SPECS = [
         click: true,
         zoom: "testid:trace-disclosure",
         zoomScale: 1.42,
-        hold: 54,
+        hold: 34,
       },
       { act: "click", pane: 0, sel: "testid:trace-disclosure" },
       { act: "sleep", pane: 0, ms: 1100 },
@@ -115,7 +111,7 @@ export const TRIALSCOPE_SPECS = [
         cap: "The literal URL and params. Re-issue it and you get the same figure.",
         zoom: "testid:trace-disclosure",
         zoomScale: 1.85,
-        hold: 168,
+        hold: 190,
       },
 
       // 6 — the harder question: a relationship, not a distribution
@@ -218,7 +214,7 @@ export const TRIALSCOPE_SPECS = [
       // 11 — the verdict
       {
         cap: "The model chose the questions. ClinicalTrials.gov gave every answer.",
-        hold: 150,
+        hold: 210,
       },
     ],
   },
