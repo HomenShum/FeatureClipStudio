@@ -99,7 +99,9 @@ shows you the trip.* ScreensDesign covers onboarding and paywall flows. Both are
 paid, and both are for studying what to CAPTURE.
 
 **Craft references — how a launch film is built.**
-Just use YouTube. `judge-video.mjs` reads a YouTube watch URL directly:
+Just use YouTube. Find them with `yt-dlp "ytsearch4:<query>"`, which returns
+duration and channel and so beats web search at this; the shortlist and the
+measured facts for each live in [`REFERENCES.md`](REFERENCES.md). `judge-video.mjs` reads a YouTube watch URL directly:
 
     REFERENCE_VIDEOS="https://youtube.com/watch?v=...,https://youtube.com/watch?v=..."       node judge-video.mjs out/feature.mp4
 
