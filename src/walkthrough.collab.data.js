@@ -1153,7 +1153,7 @@ export const COLLAB_WALKTHROUGHS = [
   },
   {
     "id": "TShero",
-    "title": "TrialScope — every number is a probe you can re-issue",
+    "title": "TrialScope — a graph you can audit, edge by edge",
     "accent": "#0f766e",
     "vw": 1440,
     "vh": 900,
@@ -1163,33 +1163,13 @@ export const COLLAB_WALKTHROUGHS = [
     ],
     "steps": [
       {
-        "caption": "Twelve planner models. The choice scopes the request, not the answer.",
-        "hold": 40,
-        "burst": false,
-        "zoomScale": 1.62,
-        "panes": [
-          {
-            "img": "wt-collab/TShero/p0_00.png",
-            "cursor": {
-              "x": 630,
-              "y": 522
-            },
-            "click": true,
-            "zoom": {
-              "x": 630,
-              "y": 522
-            }
-          }
-        ]
-      },
-      {
-        "caption": "The model plans WHICH questions to ask the API",
+        "caption": "Which sponsors and drugs co-occur across melanoma trials?",
         "hold": 34,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_01.png",
+            "img": "wt-collab/TShero/p0_00.png",
             "cursor": {
               "x": 1160,
               "y": 522
@@ -1200,31 +1180,47 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "It plans the dimension, then probes the registry — six buckets, six counts",
-        "hold": 60,
+        "caption": "37 probes fan out across the registry",
+        "hold": 64,
         "burst": true,
         "zoomScale": null,
         "panes": [
           {
             "imgs": [
-              "wt-collab/TShero/p0_02_00.png",
-              "wt-collab/TShero/p0_02_01.png",
-              "wt-collab/TShero/p0_02_02.png",
-              "wt-collab/TShero/p0_02_03.png",
-              "wt-collab/TShero/p0_02_04.png",
-              "wt-collab/TShero/p0_02_05.png",
-              "wt-collab/TShero/p0_02_06.png",
-              "wt-collab/TShero/p0_02_07.png",
-              "wt-collab/TShero/p0_02_08.png",
-              "wt-collab/TShero/p0_02_09.png",
-              "wt-collab/TShero/p0_02_10.png",
-              "wt-collab/TShero/p0_02_11.png",
-              "wt-collab/TShero/p0_02_12.png",
-              "wt-collab/TShero/p0_02_13.png",
-              "wt-collab/TShero/p0_02_14.png",
-              "wt-collab/TShero/p0_02_15.png",
-              "wt-collab/TShero/p0_02_16.png",
-              "wt-collab/TShero/p0_02_17.png"
+              "wt-collab/TShero/p0_01_00.png",
+              "wt-collab/TShero/p0_01_01.png",
+              "wt-collab/TShero/p0_01_02.png",
+              "wt-collab/TShero/p0_01_03.png",
+              "wt-collab/TShero/p0_01_04.png",
+              "wt-collab/TShero/p0_01_05.png",
+              "wt-collab/TShero/p0_01_06.png",
+              "wt-collab/TShero/p0_01_07.png",
+              "wt-collab/TShero/p0_01_08.png",
+              "wt-collab/TShero/p0_01_09.png",
+              "wt-collab/TShero/p0_01_10.png",
+              "wt-collab/TShero/p0_01_11.png",
+              "wt-collab/TShero/p0_01_12.png",
+              "wt-collab/TShero/p0_01_13.png",
+              "wt-collab/TShero/p0_01_14.png",
+              "wt-collab/TShero/p0_01_15.png",
+              "wt-collab/TShero/p0_01_16.png",
+              "wt-collab/TShero/p0_01_17.png",
+              "wt-collab/TShero/p0_01_18.png",
+              "wt-collab/TShero/p0_01_19.png",
+              "wt-collab/TShero/p0_01_20.png",
+              "wt-collab/TShero/p0_01_21.png",
+              "wt-collab/TShero/p0_01_22.png",
+              "wt-collab/TShero/p0_01_23.png",
+              "wt-collab/TShero/p0_01_24.png",
+              "wt-collab/TShero/p0_01_25.png",
+              "wt-collab/TShero/p0_01_26.png",
+              "wt-collab/TShero/p0_01_27.png",
+              "wt-collab/TShero/p0_01_28.png",
+              "wt-collab/TShero/p0_01_29.png",
+              "wt-collab/TShero/p0_01_30.png",
+              "wt-collab/TShero/p0_01_31.png",
+              "wt-collab/TShero/p0_01_32.png",
+              "wt-collab/TShero/p0_01_33.png"
             ],
             "cursor": null,
             "click": false,
@@ -1233,134 +1229,13 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Exact counts — and the overlap declared, so nobody draws a pie",
-        "hold": 58,
-        "burst": false,
-        "zoomScale": 1.34,
-        "panes": [
-          {
-            "img": "wt-collab/TShero/p0_03.png",
-            "cursor": null,
-            "click": false,
-            "zoom": {
-              "x": 847,
-              "y": 562
-            }
-          }
-        ]
-      },
-      {
-        "caption": "Every number is one row here",
-        "hold": 34,
-        "burst": false,
-        "zoomScale": 1.42,
-        "panes": [
-          {
-            "img": "wt-collab/TShero/p0_04.png",
-            "cursor": {
-              "x": 847,
-              "y": 665
-            },
-            "click": true,
-            "zoom": {
-              "x": 847,
-              "y": 665
-            }
-          }
-        ]
-      },
-      {
-        "caption": "The literal URL and params. Re-issue it and you get the same figure.",
-        "hold": 190,
-        "burst": false,
-        "zoomScale": 1.85,
-        "panes": [
-          {
-            "img": "wt-collab/TShero/p0_05.png",
-            "cursor": null,
-            "click": false,
-            "zoom": {
-              "x": 847,
-              "y": 665
-            }
-          }
-        ]
-      },
-      {
-        "caption": "A harder question: which sponsors and drugs co-occur?",
+        "caption": "A sponsor-drug network, built entirely from exact counts",
         "hold": 44,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_06.png",
-            "cursor": {
-              "x": 1160,
-              "y": 522
-            },
-            "click": true,
-            "zoom": null
-          }
-        ]
-      },
-      {
-        "caption": "37 probes fan out — every edge weight is its own exact count",
-        "hold": 112,
-        "burst": true,
-        "zoomScale": null,
-        "panes": [
-          {
-            "imgs": [
-              "wt-collab/TShero/p0_07_00.png",
-              "wt-collab/TShero/p0_07_01.png",
-              "wt-collab/TShero/p0_07_02.png",
-              "wt-collab/TShero/p0_07_03.png",
-              "wt-collab/TShero/p0_07_04.png",
-              "wt-collab/TShero/p0_07_05.png",
-              "wt-collab/TShero/p0_07_06.png",
-              "wt-collab/TShero/p0_07_07.png",
-              "wt-collab/TShero/p0_07_08.png",
-              "wt-collab/TShero/p0_07_09.png",
-              "wt-collab/TShero/p0_07_10.png",
-              "wt-collab/TShero/p0_07_11.png",
-              "wt-collab/TShero/p0_07_12.png",
-              "wt-collab/TShero/p0_07_13.png",
-              "wt-collab/TShero/p0_07_14.png",
-              "wt-collab/TShero/p0_07_15.png",
-              "wt-collab/TShero/p0_07_16.png",
-              "wt-collab/TShero/p0_07_17.png",
-              "wt-collab/TShero/p0_07_18.png",
-              "wt-collab/TShero/p0_07_19.png",
-              "wt-collab/TShero/p0_07_20.png",
-              "wt-collab/TShero/p0_07_21.png",
-              "wt-collab/TShero/p0_07_22.png",
-              "wt-collab/TShero/p0_07_23.png",
-              "wt-collab/TShero/p0_07_24.png",
-              "wt-collab/TShero/p0_07_25.png",
-              "wt-collab/TShero/p0_07_26.png",
-              "wt-collab/TShero/p0_07_27.png",
-              "wt-collab/TShero/p0_07_28.png",
-              "wt-collab/TShero/p0_07_29.png",
-              "wt-collab/TShero/p0_07_30.png",
-              "wt-collab/TShero/p0_07_31.png",
-              "wt-collab/TShero/p0_07_32.png",
-              "wt-collab/TShero/p0_07_33.png",
-              "wt-collab/TShero/p0_07_34.png"
-            ],
-            "cursor": null,
-            "click": false,
-            "zoom": null
-          }
-        ]
-      },
-      {
-        "caption": "Open the interactive map",
-        "hold": 46,
-        "burst": false,
-        "zoomScale": null,
-        "panes": [
-          {
-            "img": "wt-collab/TShero/p0_08.png",
+            "img": "wt-collab/TShero/p0_02.png",
             "cursor": {
               "x": 597,
               "y": 188
@@ -1371,13 +1246,13 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "A real graph — and the traversal that built it, step by step",
-        "hold": 128,
+        "caption": "Node size is trial count. Edge thickness is co-occurring trials.",
+        "hold": 96,
         "burst": false,
-        "zoomScale": 1.26,
+        "zoomScale": 1.3,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_09.png",
+            "img": "wt-collab/TShero/p0_03.png",
             "cursor": null,
             "click": false,
             "zoom": {
@@ -1388,13 +1263,13 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Beside it, the traversal that built it — 37 steps, each one a probe",
-        "hold": 104,
+        "caption": "A network diagram is exactly what a model would invent.",
+        "hold": 80,
         "burst": false,
         "zoomScale": 1.42,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_10.png",
+            "img": "wt-collab/TShero/p0_04.png",
             "cursor": null,
             "click": false,
             "zoom": {
@@ -1405,13 +1280,50 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "A question a single count cannot answer: who else works on what NCI works on?",
-        "hold": 52,
+        "caption": "So every edge is one row here",
+        "hold": 34,
+        "burst": false,
+        "zoomScale": 1.4,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_05.png",
+            "cursor": {
+              "x": 847,
+              "y": 665
+            },
+            "click": true,
+            "zoom": {
+              "x": 847,
+              "y": 665
+            }
+          }
+        ]
+      },
+      {
+        "caption": "37 URLs. Re-issue any one and it returns the same number.",
+        "hold": 176,
+        "burst": false,
+        "zoomScale": 1.85,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_06.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 665
+            }
+          }
+        ]
+      },
+      {
+        "caption": "The same contract on a simpler question",
+        "hold": 32,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_11.png",
+            "img": "wt-collab/TShero/p0_07.png",
             "cursor": {
               "x": 1160,
               "y": 522
@@ -1422,41 +1334,105 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Two hops through the index — then every peer is probed, and every claim checked",
-        "hold": 104,
+        "caption": "It plans the dimension, then probes each bucket",
+        "hold": 52,
         "burst": true,
         "zoomScale": null,
         "panes": [
           {
             "imgs": [
-              "wt-collab/TShero/p0_12_00.png",
-              "wt-collab/TShero/p0_12_01.png",
-              "wt-collab/TShero/p0_12_02.png",
-              "wt-collab/TShero/p0_12_03.png",
-              "wt-collab/TShero/p0_12_04.png",
-              "wt-collab/TShero/p0_12_05.png",
-              "wt-collab/TShero/p0_12_06.png",
-              "wt-collab/TShero/p0_12_07.png",
-              "wt-collab/TShero/p0_12_08.png",
-              "wt-collab/TShero/p0_12_09.png",
-              "wt-collab/TShero/p0_12_10.png",
-              "wt-collab/TShero/p0_12_11.png",
-              "wt-collab/TShero/p0_12_12.png",
-              "wt-collab/TShero/p0_12_13.png",
-              "wt-collab/TShero/p0_12_14.png",
-              "wt-collab/TShero/p0_12_15.png",
-              "wt-collab/TShero/p0_12_16.png",
-              "wt-collab/TShero/p0_12_17.png",
-              "wt-collab/TShero/p0_12_18.png",
-              "wt-collab/TShero/p0_12_19.png",
-              "wt-collab/TShero/p0_12_20.png",
-              "wt-collab/TShero/p0_12_21.png",
-              "wt-collab/TShero/p0_12_22.png",
-              "wt-collab/TShero/p0_12_23.png",
-              "wt-collab/TShero/p0_12_24.png",
-              "wt-collab/TShero/p0_12_25.png",
-              "wt-collab/TShero/p0_12_26.png",
-              "wt-collab/TShero/p0_12_27.png"
+              "wt-collab/TShero/p0_08_00.png",
+              "wt-collab/TShero/p0_08_01.png",
+              "wt-collab/TShero/p0_08_02.png",
+              "wt-collab/TShero/p0_08_03.png",
+              "wt-collab/TShero/p0_08_04.png",
+              "wt-collab/TShero/p0_08_05.png",
+              "wt-collab/TShero/p0_08_06.png",
+              "wt-collab/TShero/p0_08_07.png",
+              "wt-collab/TShero/p0_08_08.png",
+              "wt-collab/TShero/p0_08_09.png",
+              "wt-collab/TShero/p0_08_10.png",
+              "wt-collab/TShero/p0_08_11.png",
+              "wt-collab/TShero/p0_08_12.png",
+              "wt-collab/TShero/p0_08_13.png",
+              "wt-collab/TShero/p0_08_14.png",
+              "wt-collab/TShero/p0_08_15.png",
+              "wt-collab/TShero/p0_08_16.png",
+              "wt-collab/TShero/p0_08_17.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "And it declares the overlap itself -- so nobody draws a pie",
+        "hold": 104,
+        "burst": false,
+        "zoomScale": 1.4,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_09.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 562
+            }
+          }
+        ]
+      },
+      {
+        "caption": "And one a single count cannot answer at all",
+        "hold": 34,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_10.png",
+            "cursor": {
+              "x": 1160,
+              "y": 522
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Two hops through the index -- then every peer probed, every claim checked",
+        "hold": 76,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TShero/p0_11_00.png",
+              "wt-collab/TShero/p0_11_01.png",
+              "wt-collab/TShero/p0_11_02.png",
+              "wt-collab/TShero/p0_11_03.png",
+              "wt-collab/TShero/p0_11_04.png",
+              "wt-collab/TShero/p0_11_05.png",
+              "wt-collab/TShero/p0_11_06.png",
+              "wt-collab/TShero/p0_11_07.png",
+              "wt-collab/TShero/p0_11_08.png",
+              "wt-collab/TShero/p0_11_09.png",
+              "wt-collab/TShero/p0_11_10.png",
+              "wt-collab/TShero/p0_11_11.png",
+              "wt-collab/TShero/p0_11_12.png",
+              "wt-collab/TShero/p0_11_13.png",
+              "wt-collab/TShero/p0_11_14.png",
+              "wt-collab/TShero/p0_11_15.png",
+              "wt-collab/TShero/p0_11_16.png",
+              "wt-collab/TShero/p0_11_17.png",
+              "wt-collab/TShero/p0_11_18.png",
+              "wt-collab/TShero/p0_11_19.png",
+              "wt-collab/TShero/p0_11_20.png",
+              "wt-collab/TShero/p0_11_21.png",
+              "wt-collab/TShero/p0_11_22.png",
+              "wt-collab/TShero/p0_11_23.png",
+              "wt-collab/TShero/p0_11_24.png"
             ],
             "cursor": null,
             "click": false,
@@ -1466,29 +1442,29 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The graph proposed them. The registry confirmed each one.",
-        "hold": 116,
+        "hold": 104,
         "burst": false,
-        "zoomScale": 1.3,
+        "zoomScale": 1.32,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_13.png",
+            "img": "wt-collab/TShero/p0_12.png",
             "cursor": null,
             "click": false,
             "zoom": {
               "x": 847,
-              "y": 471
+              "y": 251
             }
           }
         ]
       },
       {
         "caption": "The model chose the questions. ClinicalTrials.gov gave every answer.",
-        "hold": 210,
+        "hold": 200,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TShero/p0_14.png",
+            "img": "wt-collab/TShero/p0_13.png",
             "cursor": null,
             "click": false,
             "zoom": null
