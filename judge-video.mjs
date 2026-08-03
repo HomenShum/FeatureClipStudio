@@ -3,7 +3,7 @@
 // stage only human eyes ever check.
 //
 //   node judge-video.mjs out/example.mp4            (writes out/example.judge.md + .judge.json)
-//   GEMINI_JUDGE_MODEL=gemini-3.5-flash node judge-video.mjs renders/feature.mp4
+//   GEMINI_JUDGE_MODEL=gemini-3.5-flash node judge-video.mjs renders/feature.mp4   (pin an older judge)
 //
 // Judge the MP4 (the pre-palette render), not the GIF — GIF is not a supported video MIME for
 // Gemini; the MP4 has identical content plus the audio track if you added narration.
@@ -87,7 +87,15 @@ const run = async () => {
   const bytes = readFileSync(video);
   if (bytes.length > 19_000_000) throw new Error(`${(bytes.length / 1048576).toFixed(1)}MB > inline limit — use the Gemini Files API or render a smaller cut`);
   console.log(`[judge] ${video} — ${(bytes.length / 1048576).toFixed(1)}MB → gemini`);
-  const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.5-flash";
+  // gemini-3.6-flash, GA 2026-07-21. Pinned rather than floating: a judge whose model changes
+  // underneath it produces verdicts that cannot be compared, and rubricVersion + judgedBy in the
+  // receipt only mean something if the model is a stated choice.
+  //
+  // I previously reported this model did not exist, on the evidence of a ListModels response that
+  // did not include it. ListModels is not an existence proof — it was stale for that key, and a
+  // direct generateContent call returns 200 with valid strict JSON. Absence from an index is
+  // absence from an index.
+  const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
   const mime = video.endsWith(".webm") ? "video/webm" : video.endsWith(".mov") ? "video/quicktime" : "video/mp4";
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
     method: "POST",
