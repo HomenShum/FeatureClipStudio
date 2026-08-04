@@ -98,6 +98,17 @@ const doAct = async (page, a) => {
     await sleep(page, a.ms);
   } else if (a.act === "waitText") {
     await waitText(page, a.value, a.timeout);
+  } else if (a.act === "wheel") {
+    // A real wheel event at a real cursor position, because an IDE editor is not
+    // the document: Monaco, terminals and file trees each own their own scroll
+    // container, and window.scrollTo moves none of them. Scrolling code the way
+    // a person scrolls code is the entire point of an IDE walkthrough.
+    const { x = 900, y = 520, dy = 400, steps = 1, gap = 90 } = a;
+    await page.mouse.move(x, y);
+    for (let n = 0; n < steps; n++) {
+      await page.mouse.wheel(0, dy);
+      await sleep(page, gap);
+    }
   } else if (a.act === "scrollTop") {
     await page.evaluate(() => window.scrollTo(0, 0));
     await sleep(page, 250);

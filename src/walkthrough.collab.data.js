@@ -1891,5 +1891,173 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       }
     ]
+  },
+  {
+    "id": "TSide",
+    "title": "TrialScope — the code",
+    "accent": "#38bdf8",
+    "vw": 1600,
+    "vh": 1000,
+    "cropVH": null,
+    "frame": false,
+    "paneLabels": [
+      "VS Code — cheiron-ai-take-home"
+    ],
+    "steps": [
+      {
+        "caption": "This is the whole repo. Let us open it.",
+        "hold": 86,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_00.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The app folder. Each file does one job.",
+        "hold": 89,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_01.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "This file asks the registry for counts. Nothing else.",
+        "hold": 113,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_02.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Read down and you can see the cache, and the queue for one call at a time.",
+        "hold": 132,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_03.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "All of that exists to pay for one rule. Ask, never guess.",
+        "hold": 128,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_04.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "This one turns a question into a list of asks.",
+        "hold": 96,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_05.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "One ask per bar. Six bars is six trips to the site.",
+        "hold": 112,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_06.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "And this is the best file in the repo.",
+        "hold": 76,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_07.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Every thing I believed here that turned out to be wrong.",
+        "hold": 97,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_08.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "With the test that proved it wrong, and what I changed.",
+        "hold": 100,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_09.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "That list is how you read this repo.",
+        "hold": 76,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_10.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      }
+    ]
   }
 ];

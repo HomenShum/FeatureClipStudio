@@ -18,6 +18,7 @@
 import { NODEROOM_SPECS } from "./walkthrough.noderoom.specs.mjs";
 import { TRIALSCOPE_SPECS } from "./walkthrough.trialscope.specs.mjs";
 import { TRIALSCOPE_CODE_SPECS } from "./walkthrough.trialscope-code.specs.mjs";
+import { TRIALSCOPE_IDE_SPECS } from "./walkthrough.trialscope-ide.specs.mjs";
 
 export const COLLAB_SPECS = [
   {
@@ -102,4 +103,5 @@ export const COLLAB_SPECS = [
   ...NODEROOM_SPECS,
   ...TRIALSCOPE_SPECS,
   ...TRIALSCOPE_CODE_SPECS,
+  ...TRIALSCOPE_IDE_SPECS,
 ];
