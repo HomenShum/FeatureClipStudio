@@ -1598,7 +1598,7 @@ export const COLLAB_WALKTHROUGHS = [
     "steps": [
       {
         "caption": "Every number in this app came from the registry. None were made up.",
-        "hold": 70,
+        "hold": 122,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1612,7 +1612,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Rule one. The model picks which questions to ask. It never answers one.",
-        "hold": 80,
+        "hold": 143,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1626,7 +1626,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "A chart with six bars is six real questions, not one question and five sums.",
-        "hold": 80,
+        "hold": 165,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1640,7 +1640,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The cost is real. Six requests where one would do.",
-        "hold": 70,
+        "hold": 103,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1654,7 +1654,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "There is no database. A copy of the registry is a promise to be wrong later.",
-        "hold": 84,
+        "hold": 142,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1668,7 +1668,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "That sets a hard limit. If the API cannot ask it, neither can we.",
-        "hold": 76,
+        "hold": 139,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1682,7 +1682,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Neo4j fit the job on paper. It could not ship here.",
-        "hold": 74,
+        "hold": 121,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1696,7 +1696,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Its wire protocol needs a raw port. This host only serves web traffic.",
-        "hold": 80,
+        "hold": 146,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1710,7 +1710,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "So both back ends run in the test, and the results are diffed.",
-        "hold": 76,
+        "hold": 114,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1724,7 +1724,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "One trial can sit in two groups. So the bars do not add up.",
-        "hold": 78,
+        "hold": 119,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1738,7 +1738,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "I believed a matching sum proved the groups were clean. It does not.",
-        "hold": 80,
+        "hold": 125,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1752,7 +1752,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Overlap and blanks cancel out. The sum matches while the groups still overlap.",
-        "hold": 84,
+        "hold": 146,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1766,7 +1766,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Many users share one budget. Random waits felt like the fix.",
-        "hold": 76,
+        "hold": 131,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1780,7 +1780,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "They did almost nothing. Fairness went from 0.14 to 0.15.",
-        "hold": 76,
+        "hold": 160,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1794,7 +1794,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Taking turns in order did work. It went to 0.99.",
-        "hold": 74,
+        "hold": 129,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1808,7 +1808,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The worst bug here passed every test it had.",
-        "hold": 72,
+        "hold": 84,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1822,7 +1822,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The code was right, tested, and written up. Nothing ever called it.",
-        "hold": 80,
+        "hold": 117,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1836,7 +1836,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "So now: if there is no screenshot of it, it has not been checked.",
-        "hold": 78,
+        "hold": 131,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1850,7 +1850,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Twenty seven things I believed here turned out to be wrong.",
-        "hold": 78,
+        "hold": 102,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1864,7 +1864,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "That list is the best way in. It shows which hunches do not hold up.",
-        "hold": 82,
+        "hold": 136,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1878,7 +1878,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Ask any of it one question. Which measurement would change your mind?",
-        "hold": 92,
+        "hold": 133,
         "burst": false,
         "zoomScale": null,
         "panes": [

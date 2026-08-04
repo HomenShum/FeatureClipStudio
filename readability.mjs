@@ -72,6 +72,25 @@ if (import.meta.url.endsWith(process.argv[1].replace(/\\/g, "/").split("/").pop(
       `${r.words}w/${r.sentences}s  ${JSON.stringify(c.text.slice(0, 62))}` +
       (hard.length ? `\n            hard: ${hard.join(", ")}` : ""));
   });
+  // SPEAKING RATE, measured against the genre rather than guessed.
+  // Long-form walkthroughs on YouTube run 170-190 wpm:
+  //   Perplexica code walkthrough   48.6 min   8,380 words   172 wpm
+  //   Hello Interview, design Twitter 23.1 min 4,436 words   192 wpm
+  // The first cut of this repo's own decisions video ran 288 wpm -- 1.6x the
+  // band -- because holds were shrunk to exactly fit the speech with no room to
+  // breathe. Fast narration does not read as energetic, it reads as a person
+  // who does not expect to be understood.
+  const totalWords = caps.reduce((a, c) => a + c.text.split(/\s+/).filter(Boolean).length, 0);
+  const minutes = wt.steps.reduce((a, st) => a + (st.hold || 60), 0) / 30 / 60;
+  const wpm = Math.round(totalWords / minutes);
+  const RATE = [165, 195];
+  const rateOk = wpm >= RATE[0] && wpm <= RATE[1];
+  console.log(`
+${rateOk ? "  ok" : "FAIL"}  speaking rate ${wpm} wpm over ${minutes.toFixed(1)} min ` +
+              `(${totalWords} words) · reference band ${RATE[0]}-${RATE[1]}`);
+  if (!rateOk) console.log(`        ${wpm > RATE[1] ? "too fast — lengthen holds" : "too slow — trim holds or add content"}`);
+  if (MIN && !rateOk) fails++;
+
   const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
   console.log(`\nmean reading ease ${mean} over ${caps.length} captions` + (MIN ? ` · gate ${MIN} · ${fails} below` : ""));
   if (MIN && fails) process.exit(1);
