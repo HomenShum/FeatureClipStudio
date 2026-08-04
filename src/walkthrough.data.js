@@ -27,27 +27,27 @@ export const WALKTHROUGHS = [
       },
       {
         "img": "wt/NodeRoom/02.png",
-        "caption": "Watch the AI try to overwrite your edit — and fail. Your number stays yours.",
+        "caption": "That button — the no-clobber test — just means: the AI tries to overwrite your edit, and gets told no. Your number stays yours.",
         "cursor": {
           "x": 392,
           "y": 428
         },
         "click": true,
-        "hold": 147
+        "hold": 262
       },
       {
         "img": "wt/NodeRoom/03.png",
         "caption": "When you and the AI disagree, you see both versions side by side. Nothing is lost.",
         "cursor": null,
         "click": false,
-        "hold": 161
+        "hold": 167
       },
       {
         "img": "wt/NodeRoom/04.png",
-        "caption": "Lock a cell while you think. The AI works around it and waits its turn.",
+        "caption": "Lock a cell while you think. On screen it is called draft-around-lock: the AI works around you and waits its turn.",
         "cursor": null,
         "click": false,
-        "hold": 130
+        "hold": 199
       },
       {
         "img": "wt/NodeRoom/05.png",
