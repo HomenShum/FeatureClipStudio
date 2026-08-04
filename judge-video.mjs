@@ -11,9 +11,24 @@
 // Severity policy: P0 blocks publishing · P1 fix before posting · P2 log and ship — do NOT enter
 // a re-render polish loop for P2s the judge already passed.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { rubricPrompt, CRAFT, COMPREHENSION, MAX } from "./rubric.mjs";
 
-const video = process.argv[2];
-if (!video || !existsSync(video)) { console.error("usage: node judge-video.mjs <video.mp4|webm|mov>"); process.exit(1); }
+const argv = process.argv.slice(2);
+const flag = (name, dflt) => {
+  const i = argv.indexOf(`--${name}`);
+  return i >= 0 && argv[i + 1] ? argv[i + 1] : dflt;
+};
+// The audience the COMPREHENSION half is scored from. This is not cosmetic: the
+// same cut is a 2 on lay_sense for a domain expert and a 0 for someone who has
+// never heard the jargon, and the whole point of the second rubric is to make
+// that difference a number instead of an argument.
+const audience = flag("for", process.env.JUDGE_AUDIENCE || "a smart newcomer who has never seen this product and does not know the domain jargon");
+const gate = Number(flag("gate", process.env.JUDGE_GATE || "0"));   // exit 1 below this score
+const video = argv.find((a) => !a.startsWith("--") && argv[argv.indexOf(a) - 1] !== "--for" && argv[argv.indexOf(a) - 1] !== "--gate");
+if (!video || !existsSync(video)) {
+  console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--for \"<audience>\"] [--gate <n>]");
+  process.exit(1);
+}
 
 const key = () => {
   for (const k of ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"]) if (process.env[k]) return process.env[k];
@@ -83,52 +98,7 @@ So when you score, ask specifically:
     static screenshot?
 `;
 
-const RUBRIC = `You are judging a rendered product-walkthrough video (a feature demo with an
-animated cursor, click ripples, step captions, and a progress bar — possibly with narration).
-The quality bar is STORY-FIRST and ANTI-HERO-SHOT. The viewer should understand the premise,
-the question being tested, the comparison axis, the conflict/input, the evidence, the verdict,
-and the final decision. Camera moves should reveal evidence, not fake excellence.
-
-A viewer must always see the empty state, where the cursor
-clicked, any loading state, and the result — never just a polished final state.
-
-Score each dimension 0-2 (0=fails, 1=acceptable, 2=strong) WITH specific evidence + timestamps:
-1. storyboard_clarity - can a first-time viewer state what is being compared, why it matters, and what each scene proves?
-2. state_coverage - does each flow show empty state -> action -> (loading if async) -> result, or does it skip to outcomes (hero-shot smell)?
-3. cursor_truth - does the cursor visibly travel to and land ON the control being used before each state change?
-4. caption_sync - do step captions match what is actually happening on screen (and any narration heard)?
-5. pacing - can a first-time viewer read each caption and register each state? any dead air or rushed beats?
-6. legibility - is app text readable at the rendered size? are captions large and contrasty enough?
-7. proof_feel - does it read as evidence of a real working product (real states, real data motion) rather than staged marketing?
-8. safety - any visible secrets, API keys, tokens, real personal data, or internal URLs that should not ship?
-9. signature_moment - is there ONE moment the whole demo is built around, does it land early, and is everything before it earning it? (this is the dimension Linear/Stripe/Vercel all optimise; a demo that is uniformly pleasant and has no peak scores 0)
-10. loop_etiquette - if this loops as a GIF, is the total length and final-state hold reasonable (viewers lost on the second loop = too long)?
-
-ANTI-UNIFORMITY, and this is enforced. Two materially different cuts of the same
-demo (31.9s/11 steps and 47.4s/16 steps) both scored exactly 1/2 on all ten
-dimensions. That is not a judgement, it is a shrug, and a gate that returns the
-same verdict regardless of input is not a gate. So:
-
-  - You MUST NOT give every dimension the same score. If your first pass is
-    uniform, you have described the video instead of judging it -- go back and
-    force a ranking.
-  - Name the SINGLE WEAKEST dimension and the SINGLE STRONGEST, explicitly, in
-    fields "weakest" and "strongest". They must differ.
-  - A 2 means "as good as the Linear/Stripe/Vercel reference for that dimension".
-    A 1 means "works, but a reference cut would not ship it like this". A 0 means
-    the dimension is absent or actively misleading. Most dimensions in most demos
-    are NOT 2s -- if you are giving mostly 2s, re-read the references.
-  - Evidence must be CRITICAL, not descriptive. "Cursor lands on UI controls" is
-    a description and scores nothing. "Cursor arrives 4 frames before the click
-    with no deceleration, so the landing reads as a teleport" is evidence.
-
-Then list DEFECTS: each with timestamp, severity (P0 blocks publishing / P1 fix before posting /
-P2 polish, log and ship), what you observed, and a concrete fix.
-Finally an overall verdict: publish | fix-then-publish | rework.
-
-Return STRICT JSON: {"scores":{"storyboard_clarity":{"score":n,"evidence":"..."},"state_coverage":{"score":n,"evidence":"..."},...},
-"signature_moment_ts":"m:ss","weakest":"<dimension>","strongest":"<dimension>","defects":[{"ts":"m:ss","severity":"P0|P1|P2","observed":"...","fix":"..."}],
-"verdict":"...","summary":"2-3 sentences"}`;
+const RUBRIC = rubricPrompt(audience);
 
 const run = async () => {
   const bytes = readFileSync(video);
@@ -136,42 +106,101 @@ const run = async () => {
   console.log(`[judge] ${video} — ${(bytes.length / 1048576).toFixed(1)}MB → gemini`);
   const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
   const mime = video.endsWith(".webm") ? "video/webm" : video.endsWith(".mov") ? "video/quicktime" : "video/mp4";
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ parts: [
-        ...referenceParts,
-        { text: referenceParts.length ? "SUBJECT VIDEO — this is the one being judged:" : "" },
-        { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
-        { text: REFERENCES + RUBRIC },
-      ].filter((p) => p.text !== "") }],
-      generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
-    }),
-  });
-  if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const body = await res.json();
-  const judge = JSON.parse((body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join(""));
-
   const base = video.replace(/\.(mp4|webm|mov)$/i, "");
+
+  // One call shape, reused by the first judgement and by the anti-uniformity
+  // re-ask. `extra` is appended AFTER the rubric so a follow-up can quote the
+  // previous distribution back without restating the whole rubric.
+  const ask = async (extra = []) => {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [
+          ...referenceParts,
+          { text: referenceParts.length ? "SUBJECT VIDEO — this is the one being judged:" : "" },
+          { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
+          { text: REFERENCES + RUBRIC },
+          ...extra,
+        ].filter((p) => p.text !== "") }],
+        generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
+      }),
+    });
+    if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    const body = await res.json();
+    const raw = (body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+    let out = null;
+    try { out = JSON.parse(raw); } catch {}
+    if (!out || !out.scores) {
+      writeFileSync(`${base}.judge.raw.txt`, raw || JSON.stringify(body, null, 2));
+      throw new Error(`judge returned no usable scores (finishReason=${body.candidates?.[0]?.finishReason}); raw saved to ${base}.judge.raw.txt`);
+    }
+    return out;
+  };
+
+  let judge = await ask();
+
   writeFileSync(`${base}.judge.json`, JSON.stringify(judge, null, 2));
+  // ANTI-UNIFORMITY, ENFORCED IN CODE rather than asked for in the prompt.
+  // The prompt has carried an anti-uniformity clause for three revisions and the
+  // judge still returned 1/2 on 18 of 20 dimensions -- a description wearing a
+  // score's clothes. Asking a model not to shrug does not stop it shrugging, so
+  // the shrug is now detected and the judgement re-requested once with the
+  // offending distribution quoted back. A gate that returns the same verdict for
+  // every input is not a gate, and that includes the flat-1 verdict.
+  const spread = (j) => {
+    const v = Object.values(j.scores || {}).map((x) => x.score);
+    const mode = Math.max(...[0, 1, 2].map((n) => v.filter((x) => x === n).length));
+    return mode / v.length;
+  };
+  if (spread(judge) > 0.7) {
+    const pct = Math.round(spread(judge) * 100);
+    console.log(`[judge] ${pct}% of dimensions share one score — re-asking with the distribution quoted back`);
+    judge = await ask([
+      { text: `Your previous judgement gave the SAME score to ${pct}% of dimensions. That is the shrug the rubric forbids: you described the video instead of ranking it. Re-judge the same video and FORCE a spread — some dimensions genuinely are 0 and some genuinely are 2, and your job is to say which. Keep the same JSON shape.` },
+    ]) || judge;
+  }
+
   const scores = Object.entries(judge.scores);
   const total = scores.reduce((a, [, v]) => a + v.score, 0);
+  const sub = (list) => list.reduce((a, [k]) => a + (judge.scores[k]?.score ?? 0), 0);
+  const craft = sub(CRAFT), comp = sub(COMPREHENSION);
+  const row = ([k]) => `| ${k} | ${judge.scores[k]?.score ?? "-"}/2 | ${(judge.scores[k]?.evidence || "").replace(/\|/g, "\|")} |`;
+
   const md = [
     `# Video judge — ${video}`,
     ``,
-    `**Judge:** ${model} (video understanding) · **Verdict:** ${judge.verdict} · **Score:** ${total}/${scores.length * 2}`,
+    `**Judge:** ${model} · **Audience:** ${audience}`,
+    `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, comprehension ${comp}/${COMPREHENSION.length * 2}`,
     ``,
     `> ${judge.summary}`,
     ``,
-    `| Dimension | Score | Evidence |`,
-    `|---|---|---|`,
-    ...scores.map(([k, v]) => `| ${k} | ${v.score}/2 | ${v.evidence} |`),
+    // The split is printed even when it is flattering, because the gap between
+    // the two halves IS the finding. A cut that is 16/20 craft and 7/20
+    // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+    ``,
+    `## Comprehension — did anyone understand it (${comp}/${COMPREHENSION.length * 2})`,
+    `Judged as: *${audience}*`,
+    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...COMPREHENSION.map(row),
+    ``,
+    `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
     ``,
     `## Defects`,
     ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+    ``,
+    `## Next cut — the revision brief`,
+    ...(judge.next_cut?.length
+      ? judge.next_cut.map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`)
+      : ["(judge returned no next_cut — treat that as a judge defect, not a passing grade)"]),
   ].join("\n");
   writeFileSync(`${base}.judge.md`, md + "\n");
   console.log(md);
+
+  if (gate && total < gate) {
+    console.error(`\n[gate] ${total}/${MAX} < ${gate} — not shippable. Apply the next-cut brief above and re-run.`);
+    process.exit(1);
+  }
 };
 run().catch((e) => { console.error(e.message || e); process.exit(1); });

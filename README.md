@@ -42,7 +42,7 @@ and a progress bar.
 It's fully **scripted + reproducible** (the spec is a checked‑in "tape"), so the GIFs
 double as a regenerable integration smoke‑test of your UI.
 
-## How it works — a 4‑stage pipeline
+## How it works — a 5‑stage pipeline
 
 ```
 walkthrough.specs.mjs     1. SPEC    ordered cap/act ops per feature
@@ -60,6 +60,68 @@ npx remotion render        3. RENDER  Remotion overlays the animated cursor + ri
 ffmpeg (two‑pass palette)  4. GIF     stats_mode=diff + lanczos + bayer + diff_mode
    →  assets/feature-*.gif            =rectangle  →  clean, small, looping GIF
 ```
+
+## The gate — judge, revise, re-render (stage 5, and it is not optional)
+
+```
+node iterate.mjs           5. GATE    render → judge (two rubrics, 40 pts) → revision
+  --comp WTC-<id>                     brief → re-render. Exits non-zero below the
+  --out out/<id>.mp4                  gate, so "done" has to be earned.
+  --for "<audience>"
+```
+
+`npm run clip` is the default path. There is no shorter one that skips the judge,
+and that is on purpose: every video this repo produced before stage 5 existed was
+judged exactly once, at the end, by whoever remembered — which turns the findings
+into release notes instead of edits.
+
+**Two rubrics, because they fail independently.** `rubric.mjs` scores CRAFT (20)
+and COMPREHENSION (20) separately:
+
+| | asks | dimensions |
+|---|---|---|
+| **Craft** | is it well made? | storyboard clarity · state coverage · cursor truth · caption sync · pacing · legibility · proof feel · safety · signature moment · loop etiquette |
+| **Comprehension** | did anyone understand it? | persona · purpose · use case · feature legibility · full interaction · responsiveness · flow · result · lay sense · own-case transfer |
+
+Craft is what a demo's author notices missing. Comprehension is what everyone else
+notices missing, and it never shows up in a craft score. The TrialScope cut that
+motivated this scored **craft 11/20, comprehension 9/20** — well made, real states,
+a real peak at the network graph, and a viewer still could not say who it was for,
+what problem it solved, or how to point it at a question of their own.
+
+**Comprehension is scored from a named audience's seat** — that is what `--for` is:
+
+```bash
+npm run clip -- --comp WTC-TShero --out out/trialscope.mp4   --for "a non-technical person who has never heard of this domain"
+npm run judge -- out/trialscope.mp4 --for "a frontend engineer evaluating adoption" --gate 28
+```
+
+The same cut is a 2 on `lay_sense` for a domain expert and a 0 for someone who has
+never heard the jargon. `--for` makes that difference a number instead of an
+argument.
+
+Outputs: `<video>.judge.md` (scorecard split by axis), `.judge.json`,
+`.rounds.md` (the score history across rounds — "20 → 31 after adding a premise
+beat" is the only form of an improvement claim worth believing), and on failure
+`.next-cut.md`, the revision brief.
+
+### Two things the loop does deliberately
+
+**It does not auto-apply its own notes.** A loop that edits the storyboard from its
+own critic's brief converges on whatever the critic likes, which is not the same as
+a good demo, and leaves nobody holding the taste. The brief is written to disk and
+the process exits non-zero; a human or an agent applies it; round N+1 begins.
+
+**Anti-uniformity is enforced in code, not asked for in the prompt.** The rubric
+carried an anti-uniformity clause for three revisions and the judge still returned
+1/2 on 18 of 20 dimensions — a description wearing a score's clothes. Now if one
+score covers >70% of dimensions the judgement is re-requested once, with the
+offending distribution quoted back. A gate that returns the same verdict for every
+input is not a gate, and that includes the flat-1 verdict.
+
+The same three files are vendored into [NodeVideo](https://github.com/HomenShum/NodeVideo)
+and [NodeSlide](https://github.com/HomenShum/NodeSlide) under `tools/clip-gate/`,
+so `npm run clip` means the same thing in all three.
 
 ## Quick start
 

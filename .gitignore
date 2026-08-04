@@ -7,3 +7,8 @@ recordings/
 # committed here. Uncomment to keep your own captures out of version control:
 # public/wt/
 # src/walkthrough.data.js
+
+# secrets: the judge reads GEMINI_API_KEY from here, and this repo is pushed publicly
+.env
+.env.*
+!.env.example

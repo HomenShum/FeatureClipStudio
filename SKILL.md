@@ -40,7 +40,7 @@ embedded in the README. Made of N "steps", each a captured UI state with a capti
 - **ffmpeg** on PATH.
 - Real API keys if the feature calls live services (capture exercises the real app).
 
-## The four-stage pipeline
+## The five-stage pipeline
 1. **Spec** — for each feature, write an ordered list of ops (see format below):
    `cap` = capture this UI state (+ where the cursor points); `act` = perform an
    action to advance the UI.
@@ -166,16 +166,44 @@ Every reference note should be the first kind.
    GIF; this composition's pre-move-delay → glide → hold pattern is the right shape,
    keep it that way through refactors.
 
-## Stage 5 (recommended): self-judge the render
-The final cut should not be the one stage only human eyes check. `npm run judge out/example.mp4`
-sends the RENDERED video to Gemini video understanding (`judge-video.mjs`; key via
-`GEMINI_API_KEY`/`GOOGLE_GENERATIVE_AI_API_KEY`) and scores 8 dimensions against the
-anti-hero-shot bar — state coverage (empty → cursor → loading → result, per flow), cursor truth,
-caption sync, pacing, legibility, proof-feel, safety, loop etiquette — returning timestamped
-P0/P1/P2 defects + a publish verdict. Judge the MP4 (pre-palette render), not the GIF — GIF is
-not a supported Gemini video MIME. Severity policy: **P0 blocks publishing · P1 fix before
-posting · P2 log and ship** — never enter a re-render polish loop for P2s on a passed render.
-(First production run on a 54.8s NodeRoom episode: verdict publish, 15/16, one P2.)
+## Stage 5 (REQUIRED, and it loops): judge, revise, re-render
+
+`npm run clip -- --comp WTC-<id> --out out/<id>.mp4 --for "<audience>"` is the
+default path from storyboard to shippable. Do not hand a cut to a human before it
+has been through this, and do not report a video as done on the strength of having
+watched it yourself.
+
+**Two rubrics (`rubric.mjs`), 40 points, scored independently.** CRAFT (20) asks
+"is it well made" — storyboard clarity, state coverage, cursor truth, caption sync,
+pacing, legibility, proof feel, safety, signature moment, loop etiquette.
+COMPREHENSION (20) asks "did anyone understand it" — persona, purpose, use case,
+feature legibility, full interaction, responsiveness, flow, result, lay sense,
+own-case transfer.
+
+They come apart, and almost always in one direction. The TrialScope cut scored
+craft 11/20 next to comprehension 9/20: well made, real states, a real peak — and
+a viewer could not say who it was for or how to use it on their own question.
+**A high craft score is not evidence that the demo communicates.** If you report
+only a total, you have hidden the finding; always report the split.
+
+**`--for <audience>` is load-bearing, not cosmetic.** Comprehension is scored from
+that person's seat. Judge for the audience the video is actually for, and when the
+video is public-facing, judge it at least once for someone outside the domain —
+that run is where the real defects surface.
+
+**The loop does not auto-apply its own brief.** The judge writes `.next-cut.md`
+naming the storyboard changes that would lift the weakest comprehension
+dimensions, and exits non-zero. You apply them to the spec, then run again. Round
+history accumulates in `.rounds.md`; quote the delta ("20/40 → 31/40 after adding
+a premise beat and a your-turn closer"), never a bare final score.
+
+Judge the MP4 (pre-palette render), not the GIF — GIF is not a supported Gemini
+video MIME. Severity policy: **P0 blocks publishing · P1 fix before posting · P2
+log and ship** — never enter a re-render polish loop for P2s on a passed render.
+
+Anti-uniformity is enforced in code: if one score covers >70% of dimensions the
+judgement is re-requested with the distribution quoted back, because a gate that
+returns the same verdict for every input is not a gate.
 
 ## Stage 0 (optional, for audience-targeted walkthroughs): audience-world research
 A walkthrough proves the product works; for high-trust audiences (founders, family offices,

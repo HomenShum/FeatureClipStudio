@@ -116,7 +116,23 @@ const run = async () => {
   // (iterate one walkthrough without re-running the others). No filter = full run + wipe.
   const ONLY = process.env.COLLAB_ONLY ? process.env.COLLAB_ONLY.split(",").map((s) => s.trim()) : null;
   const specs = ONLY ? COLLAB_SPECS.filter((s) => ONLY.includes(s.id)) : COLLAB_SPECS;
-  if (!ONLY) rmSync(PUB, { recursive: true, force: true });
+  // The unfiltered run used to wipe EVERY capture in the repo with no prompt, so
+  // a mistyped invocation -- e.g. passing the spec id as an argv the script does
+  // not read, which is an easy mistake because COLLAB_ONLY is an env var --
+  // silently destroyed the frames for every other walkthrough too. They were
+  // recoverable only because public/ happens to be tracked. That is luck, not a
+  // design. The wipe is now opt-in.
+  if (!ONLY) {
+    if (!process.env.COLLAB_WIPE) {
+      console.error(
+        "refusing to wipe every capture in public/wt-collab.\n" +
+        "  re-capture ONE walkthrough:  COLLAB_ONLY=TShero node walkthrough.collab.mjs\n" +
+        "  full re-capture from empty:  COLLAB_WIPE=1 node walkthrough.collab.mjs\n" +
+        "(note COLLAB_ONLY is an ENV VAR, not an argv — a bare id is ignored.)");
+      process.exit(1);
+    }
+    rmSync(PUB, { recursive: true, force: true });
+  }
   // A per-RUN code substituted for `__RUNID__` in pane URLs — so a "create a fresh room" spec
   // gets a brand-new (empty) room each run instead of re-joining a stale, already-filled one.
   const RUNID = "S" + Date.now().toString(36).slice(-7).toUpperCase();
