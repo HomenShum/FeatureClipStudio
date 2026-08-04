@@ -224,6 +224,9 @@ export function buildTrack({ steps, outFile, bed = null, narration = null, fps =
 
 /** Mux a built track onto a silent render. */
 export function muxOnto(videoFile, audioFile, outFile) {
-  ff(["-i", path.resolve(videoFile), "-i", path.resolve(audioFile), "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", path.resolve(outFile)]);
+  // -map is not optional. The Remotion render carries its OWN audio stream — silent — and with two
+  // audio candidates ffmpeg's default picked the first input's, so every mux shipped the silence
+  // while the real mix sat unused in input 1. Measured: three delivered videos, all -91 dB.
+  ff(["-i", path.resolve(videoFile), "-i", path.resolve(audioFile), "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", path.resolve(outFile)]);
   return path.resolve(outFile);
 }
