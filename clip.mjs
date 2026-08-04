@@ -64,8 +64,13 @@ const heard = JSON.parse(stt.stdout.split("\n").filter(Boolean).pop() ?? "{}").h
 const norm = (t) => t.toLowerCase().replace(/—/g, " ").replace(/[^a-z0-9 ]/g, "").split(/\s+/).filter(Boolean);
 const tw = norm(lines.map((l) => l.text).join(" "));
 const hw = norm(heard);
-const overlap = tw.filter((w) => hw.includes(w)).length / Math.max(1, tw.length);
-console.log(`  ${Math.round(overlap * 100)}% of ${tw.length} caption words heard`);
+// UNIQUE-word coverage. Counting every occurrence let one word repeated 85 times pass the gate
+// with half the captions missing — Codex constructed it. Distinct vocabulary coverage cannot be
+// inflated by repetition.
+const tuniq = [...new Set(tw)];
+const hset = new Set(hw);
+const overlap = tuniq.filter((w) => hset.has(w)).length / Math.max(1, tuniq.length);
+console.log(`  ${Math.round(overlap * 100)}% of ${tuniq.length} distinct caption words heard`);
 if (overlap < 0.85) { console.error("[clip] SAID-VS-SHOWN FAIL — narration and captions have drifted"); process.exit(1); }
 
 step("gate 3 — two-axis judge (median of 3 at the boundary)");
@@ -74,6 +79,9 @@ step("gate 3 — two-axis judge (median of 3 at the boundary)");
 // anything near the boundary escalates to three — median for scores, majority for mom.
 const judgeOnce = () => {
   const run = spawnSync("node", ["judge-video.mjs", OUT, "--no-reference"], { encoding: "utf8", timeout: 540_000, maxBuffer: 32 * 1024 * 1024 });
+  // A crashed judge must not contribute a verdict: reading judge.json after a failed run feeds
+  // the PREVIOUS run's file into the median.
+  if (run.status !== 0) return { craft: 0, comp: 0, mom: false, blocked: true };
   const v = JSON.parse(readFileSync("out/clip.judge.json", "utf8"));
   const craftScore = Object.values(v.scores).reduce((a, x) => a + x.score, 0);
   const block = v.comprehension ?? {};
@@ -90,8 +98,15 @@ const craft = med(runs.map((x) => x.craft));
 const comp = med(runs.map((x) => x.comp));
 const mom = runs.filter((x) => x.mom).length > runs.length / 2;
 console.log(`  craft ${craft}/22 · comprehension ${comp}/20 · mom ${mom ? "passes" : "FAILS"} (${runs.length} run${runs.length > 1 ? "s" : ""})`);
-if (runs.every((x) => x.blocked) || (!mom && comp < 14)) {
-  console.error("[clip] JUDGE BLOCKED — read out/clip.judge.md, fix, run again. The loop is the product.");
+// The previous predicate was nearly decorative — Codex's truth table: craft was computed and
+// never consulted, mom-fail with comp exactly 14 shipped, and a judge crash in 1 of 3 runs was
+// silently ignored. Each clause below answers a constructed counterexample.
+if (runs.some((x) => x.blocked)) {
+  console.error("[clip] JUDGE RUN FAILED — a crashed judge is not a verdict");
+  process.exit(1);
+}
+if (!mom || comp < 14 || craft < 14) {
+  console.error(`[clip] JUDGE BLOCKED (mom ${mom}, comp ${comp}/20, craft ${craft}/22) — read out/clip.judge.md, fix, run again.`);
   process.exit(1);
 }
 console.log(`\n[clip] SHIPPABLE: ${OUT}`);

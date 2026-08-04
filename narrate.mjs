@@ -49,11 +49,15 @@ export function synthesiseBeats(lines, voiceModel) {
   // fresh processes, dying in ScatterND with a DIFFERENT garbage index each time. So the batch
   // records per-line failures instead of dying, and each failure retries in its own fresh process,
   // where the first synthesis is reliable.
-  const payload = JSON.stringify(lines.map((l, i) => ({ i, text: l.text })));
+  // The payload travels by FILE, never by string interpolation. A caption containing three single
+  // quotes closed the generated Python's raw string — a syntax error at best, injection at worst,
+  // since captions can be product UI text nobody vets as code.
+  const payloadFile = path.join(OUT_DIR, "lines.json").replace(/\\/g, "/");
+  writeFileSync(payloadFile, JSON.stringify(lines.map((l, i) => ({ i, text: l.text }))), "utf8");
   const batchCode = `
 import json, wave, time
 from piper import PiperVoice
-lines = json.loads(r'''${payload}''')
+lines = json.load(open(r"${payloadFile}", encoding="utf-8"))
 v = PiperVoice.load(r"${model}")
 out = []
 for item in lines:
@@ -83,7 +87,7 @@ from piper import PiperVoice
 v = PiperVoice.load(r"${model}")
 t = time.time()
 with wave.open(r"${OUT_DIR}/beat%02d.wav" % ${entry.i}, "wb") as w:
-    v.synthesize_wav(json.loads(r'''${payload}''')[${entry.i}]["text"], w)
+    v.synthesize_wav(json.load(open(r"${payloadFile}", encoding="utf-8"))[${entry.i}]["text"], w)
 with wave.open(r"${OUT_DIR}/beat%02d.wav" % ${entry.i}) as w:
     dur = w.getnframes() / w.getframerate()
 print(json.dumps({"seconds": dur, "synth": round(time.time()-t, 3)}))

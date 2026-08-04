@@ -81,6 +81,12 @@ export function evaluateComprehension(block) {
   if (scored.length === 0) {
     return { status: "not-run", scored: 0, total: 0, blocking: [], detail: "no dimension was scored" };
   }
+  // Nine unscored dimensions and a single 2 returned "passed". Partial scoring is most of the
+  // check not running, and not-run never reads as pass anywhere else in this system.
+  if (missing.length > 0) {
+    return { status: "not-run", scored: scored.length, total: 0, blocking: [], unscored: missing,
+      detail: `${missing.length} of ${COMPREHENSION_DIMENSIONS.length} dimensions were not scored (${missing.join(", ")})` };
+  }
   const total = scored.reduce((sum, d) => sum + block[d].score, 0);
   const zeros = scored.filter((d) => block[d].score === 0);
   // The three that cannot be traded away. A viewer who cannot place the audience, cannot follow

@@ -20,6 +20,7 @@
 // 45-second walkthrough from, so the default ceiling is both a cost control and a taste control.
 
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -47,7 +48,9 @@ function loadLedger() {
 }
 
 /** Identity of an observation: the video, under a specific prompt and model. */
-const observationKey = (url, model) => `${videoId(url)}::${OBSERVE_VERSION}::${model}`;
+// The prompt TEXT is part of the identity, hashed — a version string someone forgets to bump
+// would silently reuse observations made under a different prompt: a stale measurement.
+const observationKey = (url, model) => `${videoId(url)}::${OBSERVE_VERSION}::${createHash("sha256").update(OBSERVE).digest("hex").slice(0, 12)}::${model}`;
 
 function videoId(url) {
   const m = /(?:youtu\.be\/|[?&]v=|\/shorts\/)([\w-]{6,})/.exec(String(url));
@@ -155,6 +158,13 @@ const run = async () => {
     process.exit(2);
   }
 
+  // A direct --url is a deliberate override, but a PREVIOUSLY REJECTED url deserves a printed
+  // warning — otherwise the rejection ledger is enforcement for search and decoration for the
+  // path that costs the same tokens.
+  for (const url of urls) {
+    const prior = ledger.rejected[videoId(url)];
+    if (prior) console.log(`[override] ${url} was rejected ${prior.at.slice(0, 10)} (${prior.reason.slice(0, 60)}) — observing anyway; --url is explicit`);
+  }
   const candidates = [...urls.map((url) => ({ url, seconds: null, channel: "(direct)", title: url }))];
   for (const q of queries) {
     const found = search(q);

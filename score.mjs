@@ -141,7 +141,9 @@ export function buildScore({ steps, outFile, narration = null, fps = FPS, target
   const filters = [...bedFilters(steps, fps), ...cueF];
   const inputs = [];
 
-  filters.push(`[bedraw]afade=t=in:st=0:d=0.4,afade=t=out:st=${(seconds - 1.2).toFixed(2)}:d=1.2[bed]`);
+  // Guards Codex earned: a sub-2s score put the fade start at a negative time and ffmpeg refused.
+  const fadeOut = Math.max(0, seconds - 1.2);
+  filters.push(`[bedraw]afade=t=in:st=0:d=${Math.min(0.4, seconds / 4).toFixed(2)},afade=t=out:st=${fadeOut.toFixed(2)}:d=${Math.min(1.2, Math.max(0.1, seconds / 2)).toFixed(2)}[bed]`);
   filters.push(`[bed]${cueL.join("")}amix=inputs=${cueL.length + 1}:normalize=0:dropout_transition=0[music]`);
 
   let out = "[music]";
@@ -159,8 +161,12 @@ export function buildScore({ steps, outFile, narration = null, fps = FPS, target
   // Two-pass: measure the raw mix, then apply ONE linear gain. Dynamic (single-pass) loudnorm rides
   // the level and flattens the section contrast the arrangement exists to create.
   const pre = measure(raw);
-  ff(["-i", raw, "-af",
-    `loudnorm=I=${targetI}:TP=${targetTP}:LRA=20:linear=true:measured_I=${pre.I}:measured_LRA=${pre.LRA}:measured_TP=${pre.TP}:measured_thresh=${pre.thresh}`,
+  // TRULY linear: one computed gain plus a limiter. loudnorm linear=true silently FALLS BACK to
+  // dynamic mode when the gain would breach the true-peak target — measured: it reported
+  // normalization_type "dynamic" and section contrast shrank 1.6 dB to 0.5 dB. A flag that
+  // abandons its promise without an error is not a normaliser to build a claim on.
+  const gainDb = targetI - pre.I;
+  ff(["-i", raw, "-af", `volume=${gainDb.toFixed(2)}dB,alimiter=limit=${Math.pow(10, targetTP / 20).toFixed(4)}:level=false`,
     "-ar", "48000", "-ac", "2", path.resolve(outFile)]);
   const post = measure(path.resolve(outFile));
   return { file: path.resolve(outFile), seconds, pre, post };
