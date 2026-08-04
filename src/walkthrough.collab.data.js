@@ -1905,8 +1905,8 @@ export const COLLAB_WALKTHROUGHS = [
     ],
     "steps": [
       {
-        "caption": "This is the whole repo. Let us open it.",
-        "hold": 86,
+        "caption": "First, tell the editor this folder is ours to run.",
+        "hold": 116,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1919,13 +1919,27 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "The app folder. Each file does one job.",
-        "hold": 89,
+        "caption": "This is the whole repo. Let us open it.",
+        "hold": 82,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
             "img": "wt-collab/TSide/p0_01.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The app folder. Each file does one job.",
+        "hold": 91,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_02.png",
             "cursor": null,
             "click": false,
             "zoom": null
@@ -1939,20 +1953,6 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TSide/p0_02.png",
-            "cursor": null,
-            "click": false,
-            "zoom": null
-          }
-        ]
-      },
-      {
-        "caption": "Read down and you can see the cache, and the queue for one call at a time.",
-        "hold": 132,
-        "burst": false,
-        "zoomScale": null,
-        "panes": [
-          {
             "img": "wt-collab/TSide/p0_03.png",
             "cursor": null,
             "click": false,
@@ -1961,8 +1961,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "All of that exists to pay for one rule. Ask, never guess.",
-        "hold": 128,
+        "caption": "Read down and you can see the cache, and the queue for one call at a time.",
+        "hold": 126,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1975,8 +1975,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "This one turns a question into a list of asks.",
-        "hold": 96,
+        "caption": "All of that exists to pay for one rule. Ask, never guess.",
+        "hold": 132,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1989,8 +1989,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "One ask per bar. Six bars is six trips to the site.",
-        "hold": 112,
+        "caption": "This one turns a question into a list of asks.",
+        "hold": 87,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -2003,13 +2003,108 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "And this is the best file in the repo.",
-        "hold": 76,
+        "caption": "One ask per bar. Six bars is six trips to the site.",
+        "hold": 114,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
             "img": "wt-collab/TSide/p0_07.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Now run the tests. Not a picture of tests. The tests.",
+        "hold": 113,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_08.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Watch it work.",
+        "hold": 40,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TSide/p0_09_00.png",
+              "wt-collab/TSide/p0_09_01.png",
+              "wt-collab/TSide/p0_09_02.png",
+              "wt-collab/TSide/p0_09_03.png",
+              "wt-collab/TSide/p0_09_04.png",
+              "wt-collab/TSide/p0_09_05.png",
+              "wt-collab/TSide/p0_09_06.png",
+              "wt-collab/TSide/p0_09_07.png",
+              "wt-collab/TSide/p0_09_08.png",
+              "wt-collab/TSide/p0_09_09.png",
+              "wt-collab/TSide/p0_09_10.png",
+              "wt-collab/TSide/p0_09_11.png",
+              "wt-collab/TSide/p0_09_12.png",
+              "wt-collab/TSide/p0_09_13.png",
+              "wt-collab/TSide/p0_09_14.png",
+              "wt-collab/TSide/p0_09_15.png",
+              "wt-collab/TSide/p0_09_16.png",
+              "wt-collab/TSide/p0_09_17.png",
+              "wt-collab/TSide/p0_09_18.png",
+              "wt-collab/TSide/p0_09_19.png",
+              "wt-collab/TSide/p0_09_20.png",
+              "wt-collab/TSide/p0_09_21.png",
+              "wt-collab/TSide/p0_09_22.png",
+              "wt-collab/TSide/p0_09_23.png",
+              "wt-collab/TSide/p0_09_24.png",
+              "wt-collab/TSide/p0_09_25.png",
+              "wt-collab/TSide/p0_09_26.png",
+              "wt-collab/TSide/p0_09_27.png",
+              "wt-collab/TSide/p0_09_28.png",
+              "wt-collab/TSide/p0_09_29.png",
+              "wt-collab/TSide/p0_09_30.png",
+              "wt-collab/TSide/p0_09_31.png",
+              "wt-collab/TSide/p0_09_32.png",
+              "wt-collab/TSide/p0_09_33.png",
+              "wt-collab/TSide/p0_09_34.png",
+              "wt-collab/TSide/p0_09_35.png",
+              "wt-collab/TSide/p0_09_36.png",
+              "wt-collab/TSide/p0_09_37.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Green. The two hop question, checked end to end, just now.",
+        "hold": 131,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_10.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "And this is the best file in the repo.",
+        "hold": 80,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_11.png",
             "cursor": null,
             "click": false,
             "zoom": null
@@ -2023,7 +2118,7 @@ export const COLLAB_WALKTHROUGHS = [
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TSide/p0_08.png",
+            "img": "wt-collab/TSide/p0_12.png",
             "cursor": null,
             "click": false,
             "zoom": null
@@ -2032,12 +2127,12 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "With the test that proved it wrong, and what I changed.",
-        "hold": 100,
+        "hold": 101,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TSide/p0_09.png",
+            "img": "wt-collab/TSide/p0_13.png",
             "cursor": null,
             "click": false,
             "zoom": null
@@ -2046,12 +2141,12 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "That list is how you read this repo.",
-        "hold": 76,
+        "hold": 77,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TSide/p0_10.png",
+            "img": "wt-collab/TSide/p0_14.png",
             "cursor": null,
             "click": false,
             "zoom": null

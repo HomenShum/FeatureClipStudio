@@ -165,7 +165,14 @@ const run = async () => {
     const contexts = [];
     const pages = [];
     for (const pane of spec.panes) {
-      const ctx = await browser.newContext({ viewport: { width: spec.vw || VW, height: spec.vh || VH }, deviceScaleFactor: 2 });
+      // deviceScaleFactor is per-spec because it is not free: at dsf 2 in
+      // headless Chromium, xterm.js's canvas renderer paints NOTHING -- an IDE
+      // capture ran a real pytest whose output existed in the server-side buffer
+      // but every frame showed a blank terminal (decorations still drew, because
+      // those are DOM). Proven by a one-variable A/B: same page, same commands,
+      // dsf 2 blank / dsf 1 fully rendered. Specs that show a terminal need
+      // `dsf: 1` and trade away Retina sharpness for text that exists.
+      const ctx = await browser.newContext({ viewport: { width: spec.vw || VW, height: spec.vh || VH }, deviceScaleFactor: spec.dsf || 2 });
       const page = await ctx.newPage();
       page.setDefaultTimeout(60000);
       contexts.push(ctx);

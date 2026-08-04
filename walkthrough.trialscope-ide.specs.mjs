@@ -31,6 +31,10 @@ export const TRIALSCOPE_IDE_SPECS = [
     title: "TrialScope — the code",
     accent: "#38bdf8",
     frame: false,
+    // dsf 1, not the default 2: xterm's canvas renderer paints nothing at
+    // devicePixelRatio 2 in headless Chromium. A capture ran a real pytest whose
+    // output existed server-side while every frame showed an empty terminal.
+    dsf: 1,
     vw: 1600,
     vh: 1000,
     retries: 2,
@@ -42,6 +46,17 @@ export const TRIALSCOPE_IDE_SPECS = [
       // VS Code web is slow to hydrate; a short wait here captures a half-built
       // workbench and makes the whole cut look broken.
       { act: "sleep", pane: 0, ms: 26000 },
+
+      // The trust MODAL, not the banner. Workspace UI state lives server-side in
+      // serve-web, so once any session has opened a terminal, every later client
+      // restores that panel at startup -- and restoring a terminal in an
+      // untrusted folder throws a blocking "Do you trust the authors?" dialog
+      // over the whole workbench. Nothing is clickable until it is answered, so
+      // it is answered first, on camera: a real trust prompt is more evidence of
+      // a real IDE, not less.
+      { cap: "First, tell the editor this folder is ours to run.", hold: 56 },
+      { act: "click", pane: 0, sel: '.monaco-text-button:has-text("Trust Folder")' },
+      { act: "sleep", pane: 0, ms: 3500 },
 
       { cap: "This is the whole repo. Let us open it.", hold: 74 },
 
@@ -66,26 +81,43 @@ export const TRIALSCOPE_IDE_SPECS = [
       { act: "wheel", pane: 0, x: 950, y: 520, dy: 340, steps: 7, gap: 130 },
       { cap: "One ask per bar. Six bars is six trips to the site.", hold: 82 },
 
-      // NOT SHOWN, AND WHY: running pytest live in the integrated terminal.
-      //
-      // VS Code opens an untrusted folder in Restricted Mode, which disables the
-      // terminal. Three ways in were tried and all failed inside the capture:
-      // a server-side settings.json (VS Code WEB keeps user settings in browser
-      // storage, so it never applied), the banner's "Manage" link (present from
-      // load, but not reliably clickable once an editor has focus), and the
-      // command palette's Manage Workspace Trust (the resulting dialog's Trust
-      // control does not expose a button role).
-      //
-      // So this cut shows the code and not the test run. That is a real gap --
-      // "run things live" is one of the four things the long-form reference genre
-      // does that a deck cannot -- and it is recorded here rather than papered
-      // over with a screenshot of a passing test.
+      // ------------------------------------------- run the tests, for real
+      // Trust was granted at the startup modal, so the terminal is live.
+      { act: "key", pane: 0, value: "Control+`" },
+      { act: "sleep", pane: 0, ms: 4000 },
+      { cap: "Now run the tests. Not a picture of tests. The tests.", hold: 70 },
+      // serve-web keeps terminal PROCESSES alive server-side across clients, so
+      // the restored buffer carries every previous session's commands. Wipe it
+      // first or the video opens on someone else's history.
+      { act: "type", pane: 0, sel: ".xterm-helper-textarea",
+        value: "clear", delay: 30, commit: "Enter" },
+      { act: "sleep", pane: 0, ms: 900 },
+      { act: "type", pane: 0, sel: ".xterm-helper-textarea",
+        value: "uv run --no-sync pytest -q tests/test_peer_sponsors.py", delay: 34, commit: "Enter" },
+      // No waitText gate here, deliberately: terminal text lives in a canvas,
+      // not the DOM, so a waitText on pytest output can only match something
+      // ELSE on the page -- which is a check that passes for the wrong reason,
+      // the exact thing this repo's review process exists to catch. The gate is
+      // the burst duration (pytest measured 2.88s + uv startup, well inside
+      // 16s) plus a human check of the captured still.
+      { cap: "Watch it work.", burst: { ms: 16000, every: 420 }, hold: 70 },
+      { act: "sleep", pane: 0, ms: 2000 },
+      { cap: "Green. The two hop question, checked end to end, just now.", hold: 84 },
 
       // ------------------------------------------- the list of wrong beliefs
-      { act: "key", pane: 0, value: "Control+p" },
+      // Explorer click, not Ctrl+P: with the terminal focused, quick-open
+      // accepted the typed filename and then never switched the editor -- the
+      // capture completed green while every following still showed executor.py.
+      // Clicking the file in the tree is what a person does anyway, and it
+      // cannot half-work.
+      //
+      // But fold `app` back up first. The explorer list is VIRTUALIZED: with the
+      // folder expanded, MEASUREMENTS.md sits below the viewport and its row
+      // does not exist in the DOM at all, so the click has nothing to find.
+      // A person tidies the tree before reaching for the next file anyway.
+      { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='app']" },
       { act: "sleep", pane: 0, ms: 1200 },
-      { act: "type", pane: 0, sel: ".quick-input-box input",
-        value: "MEASUREMENTS.md", delay: 40, commit: "Enter" },
+      { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='MEASUREMENTS.md']" },
       { act: "sleep", pane: 0, ms: 2600 },
       { cap: "And this is the best file in the repo.", hold: 76 },
       { act: "wheel", pane: 0, x: 950, y: 520, dy: 300, steps: 6, gap: 140 },
