@@ -51,33 +51,33 @@ export const SPECS = [
     // run, not from reading the DOM. The drill outputs are quoted from what the
     // engine actually printed.
     steps: [
-      { cap: "NodeRoom, explained by running it", hold: 78 },
+      { cap: "If your team lives in a spreadsheet, this is for you: an AI helper that cannot wreck your numbers.", hold: 78 },
       { act: "scrollEl", sel: 'text=Edit the cell. Ask the agent' },
-      { cap: "Edit the cell. Ask the agent. The commit stays narrow.", hold: 88 },
+      { cap: "You change one number. The AI checks it. Only that one cell changes — nothing else moves.", hold: 88 },
 
       // Drill 1 — no-clobber. Same compare-and-swap path as the live room.
       { act: "scrollEl", sel: 'text=No stale write gets through' },
-      { cap: "Run the no-clobber test — the same engine call as a live room", cursor: 'text=Run the no-clobber test', click: true, hold: 72 },
-      { act: "click", sel: 'text=Run the no-clobber test' },
+      { cap: "Press the button: the AI tries to overwrite your edit — and gets told no.", cursor: 'text=Let the AI try to overwrite my edit', click: true, hold: 72 },
+      { act: "click", sel: 'text=Let the AI try to overwrite my edit' },
       { act: "sleep", ms: 3200 },
-      { cap: "Conflict comes back as data, not a clobber", hold: 96 },
+      { cap: "When you and the AI disagree, you see both versions side by side. Nothing is lost.", hold: 96 },
 
       // Drill 2 — lease + draft-around-lock.
       { act: "scrollEl", sel: 'text=Draft-around-lock, then smart-merge' },
-      { act: "click", sel: 'text=Run the lease + draft-around-lock drill' },
+      { act: "click", sel: 'text=Reserve a cell and let the AI work around me' },
       { act: "sleep", ms: 3400 },
-      { cap: "The agent drafts around a locked cell — the human never waits", hold: 96 },
+      { cap: "Reserve a cell while you think. The AI works around you and waits its turn.", hold: 96 },
 
       // Drill 3 — the trust surface. An agent write that lost the race becomes a
       // reviewable proposal instead of an overwrite.
-      { act: "scrollEl", sel: 'text=A stale agent write becomes reviewable judgment' },
-      { act: "click", sel: 'text=Run the stale-write' },
+      { act: "scrollEl", sel: 'text=Watch a late AI edit become a suggestion' },
+      { act: "click", sel: 'text=Watch a late AI edit become a suggestion' },
       { act: "sleep", ms: 3600 },
-      { cap: "A stale agent write becomes a review proposal — no silent merge", hold: 104 },
+      { cap: "A late AI edit becomes a suggestion you approve — never a surprise.", hold: 104 },
 
       // The decision itself: a human approves, and it re-applies at the CURRENT
       // version rather than the stale baseline.
-      { cap: "The human approves — it re-applies at the current version", cursor: 'text=Approve proposal', click: true, hold: 76 },
+      { cap: "You tap approve. The change lands on today's numbers, not yesterday's.", cursor: 'text=Approve proposal', click: true, hold: 76 },
       { act: "click", sel: 'text=Approve proposal' },
       { act: "sleep", ms: 2600 },
       // Re-centre on the RESULT before the closing frame. Without this the camera
@@ -85,7 +85,7 @@ export const SPECS = [
       // edge, so the confirmation rendered as "oved — re-applied at the current
       // version". An unreadable closing frame is not a closing frame.
       { act: "scrollEl", sel: "text=re-applied at the current version" },
-      { cap: "Reviewed, then applied — that is the whole product", hold: 100 },
+      { cap: "Nothing changes your sheet without being seen first. That is the whole promise.", hold: 100 },
     ],
   },
   {

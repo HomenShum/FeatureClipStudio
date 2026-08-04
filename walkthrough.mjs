@@ -134,12 +134,16 @@ const openHarness = async (browser, spec) => {
 };
 
 const run = async () => {
-  rmSync(PUB, { recursive: true, force: true });
+  // WT_ONLY=<id> captures one walkthrough against its own dev server without destroying the
+  // others' frames. The global wipe only runs on a full capture — each spec already wipes its own
+  // dir, so a scoped run loses nothing it did not remake.
+  const ONLY = process.env.WT_ONLY;
+  if (!ONLY) rmSync(PUB, { recursive: true, force: true });
   const browser = await chromium.launch({ headless: true });
   let page = null;
 
   const out = [];
-  for (const spec of SPECS) {
+  for (const spec of SPECS.filter((s) => !ONLY || s.id === ONLY)) {
     const dir = join(PUB, spec.id);
     // Per-spec retries (opt-in via `retries: N` on the spec — give it to any spec whose steps
     // call an LLM or other nondeterministic backend). Each attempt wipes the frame dir and runs

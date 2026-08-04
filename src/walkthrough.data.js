@@ -16,198 +16,62 @@ export const WALKTHROUGHS = [
         "caption": "If your team lives in a spreadsheet, this is for you: an AI helper that cannot wreck your numbers.",
         "cursor": null,
         "click": false,
-        "hold": 179
+        "hold": 168
       },
       {
         "img": "wt/NodeRoom/01.png",
         "caption": "You change one number. The AI checks it. Only that one cell changes — nothing else moves.",
         "cursor": null,
         "click": false,
-        "hold": 178
+        "hold": 157
       },
       {
         "img": "wt/NodeRoom/02.png",
-        "caption": "That button — the no-clobber test — just means: the AI tries to overwrite your edit, and gets told no. Your number stays yours.",
+        "caption": "Press the button: the AI tries to overwrite your edit — and gets told no.",
         "cursor": {
-          "x": 392,
+          "x": 422,
           "y": 428
         },
         "click": true,
-        "hold": 262
+        "hold": 136
       },
       {
         "img": "wt/NodeRoom/03.png",
         "caption": "When you and the AI disagree, you see both versions side by side. Nothing is lost.",
         "cursor": null,
         "click": false,
-        "hold": 167
+        "hold": 158
       },
       {
         "img": "wt/NodeRoom/04.png",
-        "caption": "Lock a cell while you think. On screen it is called draft-around-lock: the AI works around you and waits its turn.",
+        "caption": "Reserve a cell while you think. The AI works around you and waits its turn.",
         "cursor": null,
         "click": false,
-        "hold": 199
+        "hold": 130
       },
       {
         "img": "wt/NodeRoom/05.png",
-        "caption": "If the AI's copy is out of date, its change becomes a suggestion you approve — never a surprise.",
+        "caption": "A late AI edit becomes a suggestion you approve — never a surprise.",
         "cursor": null,
         "click": false,
-        "hold": 192
+        "hold": 125
       },
       {
         "img": "wt/NodeRoom/06.png",
         "caption": "You tap approve. The change lands on today's numbers, not yesterday's.",
         "cursor": {
           "x": 109,
-          "y": 748
+          "y": 644
         },
         "click": true,
-        "hold": 131
+        "hold": 120
       },
       {
         "img": "wt/NodeRoom/07.png",
         "caption": "Nothing changes your sheet without being seen first. That is the whole promise.",
         "cursor": null,
         "click": false,
-        "hold": 139
-      }
-    ]
-  },
-  {
-    "id": "NodeRoomFresh",
-    "title": "NodeRoom — from landing to a room",
-    "accent": "#E0653A",
-    "chromeUrl": "noderoom.app",
-    "scales": {
-      "action": 1,
-      "result": 1,
-      "open": 1
-    },
-    "steps": [
-      {
-        "img": "wt/NodeRoomFresh/00.png",
-        "caption": "A fresh visitor lands — a live agent room, source-backed, join by code",
-        "cursor": null,
-        "click": false,
-        "hold": 92
-      },
-      {
-        "img": "wt/NodeRoomFresh/01.png",
-        "caption": "Start a room",
-        "cursor": {
-          "x": 193,
-          "y": 570
-        },
-        "click": true,
-        "hold": 62
-      },
-      {
-        "img": "wt/NodeRoomFresh/02.png",
-        "caption": "One question before anything else: how should agent edits land?",
-        "cursor": null,
-        "click": false,
-        "hold": 106
-      },
-      {
-        "img": "wt/NodeRoomFresh/03.png",
-        "caption": "Or join with a code — a room shares a code, not a seat",
-        "cursor": null,
-        "click": false,
-        "hold": 88
-      },
-      {
-        "img": "wt/NodeRoomFresh/04.png",
-        "caption": "Try the sample",
-        "cursor": {
-          "x": 212,
-          "y": 560
-        },
-        "click": true,
-        "hold": 60
-      },
-      {
-        "img": "wt/NodeRoomFresh/05.png",
-        "caption": "The sample tells you it is synthetic — not live research",
-        "cursor": null,
-        "click": false,
-        "hold": 104
-      }
-    ]
-  },
-  {
-    "id": "NodeSlide",
-    "title": "NodeSlide — decks that stay editable",
-    "accent": "#3E6FF0",
-    "chromeUrl": "nodeslide.app",
-    "scales": {
-      "action": 1,
-      "result": 1,
-      "open": 1
-    },
-    "steps": [
-      {
-        "img": "wt/NodeSlide/00.png",
-        "caption": "Start from an idea, a spec, or evidence",
-        "cursor": {
-          "x": 640,
-          "y": 423
-        },
-        "click": false,
-        "hold": 74
-      },
-      {
-        "img": "wt/NodeSlide/01.png",
-        "caption": "A brief, not a template",
-        "cursor": null,
-        "click": false,
-        "hold": 78
-      },
-      {
-        "img": "wt/NodeSlide/02.png",
-        "caption": "Open the sample workspace",
-        "cursor": {
-          "x": 640,
-          "y": 694
-        },
-        "click": true,
-        "hold": 64
-      },
-      {
-        "img": "wt/NodeSlide/03.png",
-        "caption": "A real deck — outline rail, canvas, inspector",
-        "cursor": null,
-        "click": false,
-        "hold": 90
-      },
-      {
-        "img": "wt/NodeSlide/04.png",
-        "caption": "Every element is typed and addressable — not flattened to an image",
-        "cursor": null,
-        "click": false,
-        "hold": 92
-      },
-      {
-        "img": "wt/NodeSlide/05.png",
-        "caption": "Revisions you can compare and restore",
-        "cursor": null,
-        "click": false,
-        "hold": 88
-      },
-      {
-        "img": "wt/NodeSlide/06.png",
-        "caption": "Citations stay attached — and it states plainly it does not verify facts",
-        "cursor": null,
-        "click": false,
-        "hold": 96
-      },
-      {
-        "img": "wt/NodeSlide/07.png",
-        "caption": "One auditable run — and cost reads 'not recorded' rather than guessed",
-        "cursor": null,
-        "click": false,
-        "hold": 100
+        "hold": 127
       }
     ]
   }
