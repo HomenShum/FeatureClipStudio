@@ -61,25 +61,42 @@ export const TRIALSCOPE_IDE_SPECS = [
       { cap: "This is the whole repo. Let us open it.", hold: 74 },
 
       // ---------------------------------------------------------- the tree
+      // Sequence borrowed from Hello Interview, which spends 15 of 53 minutes on
+      // "Code Comprehension" BEFORE writing anything -- 28% of the video on
+      // understanding, as chapter three of six. That is the right shape for a
+      // repo an agent helped build, because comprehension is exactly what decays
+      // when code arrives faster than it can be read.
       { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='app']" },
       { act: "sleep", pane: 0, ms: 1400 },
       { cap: "The app folder. Each file does one job.", hold: 76 },
 
+      // Rule 3: start at the ENTRY POINT and follow imports down, rather than
+      // touring files alphabetically (Hello Interview 06:50).
+      { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='main.py']" },
+      { act: "sleep", pane: 0, ms: 2200 },
+      { cap: "Start where a request lands. Then follow it down.", hold: 74 },
+      { act: "find", pane: 0, value: "from .executor" },
+      { cap: "It hands the question to the executor.", hold: 70 },
+
       // -------------------------------------------------- the count client
       { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='ctgov.py']" },
-      { act: "sleep", pane: 0, ms: 2600 },
-      { cap: "This file asks the registry for counts. Nothing else.", hold: 80 },
-      { act: "wheel", pane: 0, x: 950, y: 520, dy: 320, steps: 6, gap: 130 },
-      { cap: "Read down and you can see the cache, and the queue for one call at a time.", hold: 92 },
-      { act: "wheel", pane: 0, x: 950, y: 520, dy: 320, steps: 6, gap: 130 },
-      { cap: "All of that exists to pay for one rule. Ask, never guess.", hold: 84 },
+      { act: "sleep", pane: 0, ms: 2400 },
+      { cap: "This file asks the registry for counts. Nothing else.", hold: 78 },
+      // Rule 1: selection AS POINTER. The highlight is Monaco's own find, so the
+      // viewer's eye lands on the line being talked about instead of hunting.
+      { act: "find", pane: 0, value: "countTotal" },
+      { cap: "There it is. Ask for the count, take no records back.", hold: 84 },
+      { act: "find", pane: 0, value: "_single_flight" },
+      { cap: "And here, the same question twice becomes one trip.", hold: 84 },
 
       // ------------------------------------------------------ the planner
       { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='executor.py']" },
-      { act: "sleep", pane: 0, ms: 2400 },
-      { cap: "This one turns a question into a list of asks.", hold: 78 },
-      { act: "wheel", pane: 0, x: 950, y: 520, dy: 340, steps: 7, gap: 130 },
-      { cap: "One ask per bar. Six bars is six trips to the site.", hold: 82 },
+      { act: "sleep", pane: 0, ms: 2200 },
+      { cap: "This one turns a question into a list of asks.", hold: 76 },
+      { act: "find", pane: 0, value: "PHASES = " },
+      { cap: "The groups are fixed. So the work has a ceiling.", hold: 80 },
+      { act: "wheel", pane: 0, x: 950, y: 520, dy: 340, steps: 5, gap: 130 },
+      { cap: "One ask per bar. Six bars is six trips to the site.", hold: 80 },
 
       // ------------------------------------------- run the tests, for real
       // Trust was granted at the startup modal, so the terminal is live.
@@ -117,6 +134,12 @@ export const TRIALSCOPE_IDE_SPECS = [
       // A person tidies the tree before reaching for the next file anyway.
       { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='app']" },
       { act: "sleep", pane: 0, ms: 1200 },
+      // ...and scroll the explorer back to the top. Opening four files walks the
+      // tree's own scroll position down, so even after collapsing the folder the
+      // root files can sit outside the rendered window — the same virtualization
+      // trap, arrived at a different way.
+      { act: "wheel", pane: 0, x: 200, y: 500, dy: -600, steps: 5, gap: 90 },
+      { act: "sleep", pane: 0, ms: 800 },
       { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='MEASUREMENTS.md']" },
       { act: "sleep", pane: 0, ms: 2600 },
       { cap: "And this is the best file in the repo.", hold: 76 },

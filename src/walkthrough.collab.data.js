@@ -1906,7 +1906,7 @@ export const COLLAB_WALKTHROUGHS = [
     "steps": [
       {
         "caption": "First, tell the editor this folder is ours to run.",
-        "hold": 116,
+        "hold": 56,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1920,7 +1920,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "This is the whole repo. Let us open it.",
-        "hold": 82,
+        "hold": 74,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1934,7 +1934,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The app folder. Each file does one job.",
-        "hold": 91,
+        "hold": 76,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1947,8 +1947,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "This file asks the registry for counts. Nothing else.",
-        "hold": 113,
+        "caption": "Start where a request lands. Then follow it down.",
+        "hold": 74,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1961,8 +1961,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Read down and you can see the cache, and the queue for one call at a time.",
-        "hold": 126,
+        "caption": "It hands the question to the executor.",
+        "hold": 70,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1975,8 +1975,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "All of that exists to pay for one rule. Ask, never guess.",
-        "hold": 132,
+        "caption": "This file asks the registry for counts. Nothing else.",
+        "hold": 78,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1989,8 +1989,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "This one turns a question into a list of asks.",
-        "hold": 87,
+        "caption": "There it is. Ask for the count, take no records back.",
+        "hold": 84,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -2003,8 +2003,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "One ask per bar. Six bars is six trips to the site.",
-        "hold": 114,
+        "caption": "And here, the same question twice becomes one trip.",
+        "hold": 84,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -2017,8 +2017,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Now run the tests. Not a picture of tests. The tests.",
-        "hold": 113,
+        "caption": "This one turns a question into a list of asks.",
+        "hold": 76,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -2031,52 +2031,13 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Watch it work.",
-        "hold": 40,
-        "burst": true,
+        "caption": "The groups are fixed. So the work has a ceiling.",
+        "hold": 80,
+        "burst": false,
         "zoomScale": null,
         "panes": [
           {
-            "imgs": [
-              "wt-collab/TSide/p0_09_00.png",
-              "wt-collab/TSide/p0_09_01.png",
-              "wt-collab/TSide/p0_09_02.png",
-              "wt-collab/TSide/p0_09_03.png",
-              "wt-collab/TSide/p0_09_04.png",
-              "wt-collab/TSide/p0_09_05.png",
-              "wt-collab/TSide/p0_09_06.png",
-              "wt-collab/TSide/p0_09_07.png",
-              "wt-collab/TSide/p0_09_08.png",
-              "wt-collab/TSide/p0_09_09.png",
-              "wt-collab/TSide/p0_09_10.png",
-              "wt-collab/TSide/p0_09_11.png",
-              "wt-collab/TSide/p0_09_12.png",
-              "wt-collab/TSide/p0_09_13.png",
-              "wt-collab/TSide/p0_09_14.png",
-              "wt-collab/TSide/p0_09_15.png",
-              "wt-collab/TSide/p0_09_16.png",
-              "wt-collab/TSide/p0_09_17.png",
-              "wt-collab/TSide/p0_09_18.png",
-              "wt-collab/TSide/p0_09_19.png",
-              "wt-collab/TSide/p0_09_20.png",
-              "wt-collab/TSide/p0_09_21.png",
-              "wt-collab/TSide/p0_09_22.png",
-              "wt-collab/TSide/p0_09_23.png",
-              "wt-collab/TSide/p0_09_24.png",
-              "wt-collab/TSide/p0_09_25.png",
-              "wt-collab/TSide/p0_09_26.png",
-              "wt-collab/TSide/p0_09_27.png",
-              "wt-collab/TSide/p0_09_28.png",
-              "wt-collab/TSide/p0_09_29.png",
-              "wt-collab/TSide/p0_09_30.png",
-              "wt-collab/TSide/p0_09_31.png",
-              "wt-collab/TSide/p0_09_32.png",
-              "wt-collab/TSide/p0_09_33.png",
-              "wt-collab/TSide/p0_09_34.png",
-              "wt-collab/TSide/p0_09_35.png",
-              "wt-collab/TSide/p0_09_36.png",
-              "wt-collab/TSide/p0_09_37.png"
-            ],
+            "img": "wt-collab/TSide/p0_09.png",
             "cursor": null,
             "click": false,
             "zoom": null
@@ -2084,8 +2045,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Green. The two hop question, checked end to end, just now.",
-        "hold": 131,
+        "caption": "One ask per bar. Six bars is six trips to the site.",
+        "hold": 80,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -2098,8 +2059,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "And this is the best file in the repo.",
-        "hold": 80,
+        "caption": "Now run the tests. Not a picture of tests. The tests.",
+        "hold": 70,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -2112,13 +2073,52 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Every thing I believed here that turned out to be wrong.",
-        "hold": 97,
-        "burst": false,
+        "caption": "Watch it work.",
+        "hold": 70,
+        "burst": true,
         "zoomScale": null,
         "panes": [
           {
-            "img": "wt-collab/TSide/p0_12.png",
+            "imgs": [
+              "wt-collab/TSide/p0_12_00.png",
+              "wt-collab/TSide/p0_12_01.png",
+              "wt-collab/TSide/p0_12_02.png",
+              "wt-collab/TSide/p0_12_03.png",
+              "wt-collab/TSide/p0_12_04.png",
+              "wt-collab/TSide/p0_12_05.png",
+              "wt-collab/TSide/p0_12_06.png",
+              "wt-collab/TSide/p0_12_07.png",
+              "wt-collab/TSide/p0_12_08.png",
+              "wt-collab/TSide/p0_12_09.png",
+              "wt-collab/TSide/p0_12_10.png",
+              "wt-collab/TSide/p0_12_11.png",
+              "wt-collab/TSide/p0_12_12.png",
+              "wt-collab/TSide/p0_12_13.png",
+              "wt-collab/TSide/p0_12_14.png",
+              "wt-collab/TSide/p0_12_15.png",
+              "wt-collab/TSide/p0_12_16.png",
+              "wt-collab/TSide/p0_12_17.png",
+              "wt-collab/TSide/p0_12_18.png",
+              "wt-collab/TSide/p0_12_19.png",
+              "wt-collab/TSide/p0_12_20.png",
+              "wt-collab/TSide/p0_12_21.png",
+              "wt-collab/TSide/p0_12_22.png",
+              "wt-collab/TSide/p0_12_23.png",
+              "wt-collab/TSide/p0_12_24.png",
+              "wt-collab/TSide/p0_12_25.png",
+              "wt-collab/TSide/p0_12_26.png",
+              "wt-collab/TSide/p0_12_27.png",
+              "wt-collab/TSide/p0_12_28.png",
+              "wt-collab/TSide/p0_12_29.png",
+              "wt-collab/TSide/p0_12_30.png",
+              "wt-collab/TSide/p0_12_31.png",
+              "wt-collab/TSide/p0_12_32.png",
+              "wt-collab/TSide/p0_12_33.png",
+              "wt-collab/TSide/p0_12_34.png",
+              "wt-collab/TSide/p0_12_35.png",
+              "wt-collab/TSide/p0_12_36.png",
+              "wt-collab/TSide/p0_12_37.png"
+            ],
             "cursor": null,
             "click": false,
             "zoom": null
@@ -2126,27 +2126,13 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "With the test that proved it wrong, and what I changed.",
-        "hold": 101,
+        "caption": "Green. The two hop question, checked end to end, just now.",
+        "hold": 84,
         "burst": false,
         "zoomScale": null,
         "panes": [
           {
             "img": "wt-collab/TSide/p0_13.png",
-            "cursor": null,
-            "click": false,
-            "zoom": null
-          }
-        ]
-      },
-      {
-        "caption": "That list is how you read this repo.",
-        "hold": 77,
-        "burst": false,
-        "zoomScale": null,
-        "panes": [
-          {
-            "img": "wt-collab/TSide/p0_14.png",
             "cursor": null,
             "click": false,
             "zoom": null

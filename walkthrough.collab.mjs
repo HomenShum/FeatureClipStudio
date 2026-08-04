@@ -98,6 +98,27 @@ const doAct = async (page, a) => {
     await sleep(page, a.ms);
   } else if (a.act === "waitText") {
     await waitText(page, a.value, a.timeout);
+  } else if (a.act === "find") {
+    // SELECTION AS A POINTER. Both long-form references do this constantly --
+    // "use text selection highlighting as a visual pointer to lead the viewer's
+    // eye while reading code aloud" (Hello Interview, 07:00). A caption saying
+    // "look at the cache" cannot point; a highlight on the line can. Uses the
+    // editor's own find, so the highlight is Monaco's, not something drawn over
+    // the top, and it scrolls the match into view for free.
+    // NOT Control+f: that is the BROWSER's find, which headless Chromium
+    // handles by tearing down the page ("Target page, context or browser has
+    // been closed" on the very next action). The editor's own find widget is
+    // reached through the command palette, which stays inside the app.
+    await page.keyboard.press("Control+Shift+P");
+    await sleep(page, 700);
+    await page.keyboard.type("Find", { delay: 20 });
+    await sleep(page, 600);
+    await page.keyboard.press("Enter");
+    await sleep(page, 700);
+    await page.keyboard.type(String(a.value), { delay: a.delay || 28 });
+    await sleep(page, 900);
+    await page.keyboard.press("Escape");
+    await sleep(page, 400);
   } else if (a.act === "wheel") {
     // A real wheel event at a real cursor position, because an IDE editor is not
     // the document: Monaco, terminals and file trees each own their own scroll
