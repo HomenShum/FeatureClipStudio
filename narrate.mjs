@@ -42,10 +42,16 @@ function python(code, { timeout = 540_000 } = {}) {
 /** One wav per beat, all from a single loaded voice — the load is 8s and the synthesis is not. */
 export function synthesiseBeats(lines, voiceModel) {
   mkdirSync(OUT_DIR, { recursive: true });
-  const payload = JSON.stringify(lines.map((l, i) => ({ i, text: l.text })));
   const model = path.join(VOICE_DIR, `${voiceModel}.onnx`).replace(/\\/g, "/");
-  const code = `
-import json, wave, time, sys
+
+  // Batch first — one process, one model load, fast. But Piper's ONNX session corrupts under
+  // repeated synthesis on this machine: a line that fails 4/4 in a warm session synthesises 3/3 in
+  // fresh processes, dying in ScatterND with a DIFFERENT garbage index each time. So the batch
+  // records per-line failures instead of dying, and each failure retries in its own fresh process,
+  // where the first synthesis is reliable.
+  const payload = JSON.stringify(lines.map((l, i) => ({ i, text: l.text })));
+  const batchCode = `
+import json, wave, time
 from piper import PiperVoice
 lines = json.loads(r'''${payload}''')
 v = PiperVoice.load(r"${model}")
@@ -53,17 +59,47 @@ out = []
 for item in lines:
     f = r"${OUT_DIR}/beat%02d.wav" % item["i"]
     t = time.time()
-    with wave.open(f, "wb") as w:
-        v.synthesize_wav(item["text"], w)
-    with wave.open(f) as w:
-        dur = w.getnframes() / w.getframerate()
-    out.append({"i": item["i"], "file": f, "seconds": dur, "synth": round(time.time()-t, 3)})
+    try:
+        with wave.open(f, "wb") as w:
+            v.synthesize_wav(item["text"], w)
+        with wave.open(f) as w:
+            dur = w.getnframes() / w.getframerate()
+        out.append({"i": item["i"], "file": f, "seconds": dur, "synth": round(time.time()-t, 3)})
+    except Exception as e:
+        out.append({"i": item["i"], "file": f, "failed": type(e).__name__})
 print(json.dumps(out))
 `;
-  const res = python(code);
-  if (!res.ok) throw new Error(`piper synthesis failed: ${res.err.split("\n").slice(-3).join(" ").slice(0, 200)}`);
-  const last = res.out.split("\n").filter(Boolean).pop();
-  return JSON.parse(last);
+  const batch = python(batchCode);
+  if (!batch.ok) throw new Error(`piper batch failed outright: ${batch.err.split(String.fromCharCode(10)).slice(-3).join(" ").slice(0, 200)}`);
+  const results = JSON.parse(batch.out.split(String.fromCharCode(10)).filter(Boolean).pop());
+
+  for (const entry of results) {
+    if (!entry.failed) continue;
+    let recovered = false;
+    for (let attempt = 0; attempt < 2 && !recovered; attempt += 1) {
+      const single = python(`
+import json, wave, time
+from piper import PiperVoice
+v = PiperVoice.load(r"${model}")
+t = time.time()
+with wave.open(r"${OUT_DIR}/beat%02d.wav" % ${entry.i}, "wb") as w:
+    v.synthesize_wav(json.loads(r'''${payload}''')[${entry.i}]["text"], w)
+with wave.open(r"${OUT_DIR}/beat%02d.wav" % ${entry.i}) as w:
+    dur = w.getnframes() / w.getframerate()
+print(json.dumps({"seconds": dur, "synth": round(time.time()-t, 3)}))
+`);
+      if (single.ok) {
+        const parsed = JSON.parse(single.out.split(String.fromCharCode(10)).filter(Boolean).pop());
+        entry.seconds = parsed.seconds;
+        entry.synth = parsed.synth;
+        delete entry.failed;
+        entry.freshProcessRetry = attempt + 1;
+        recovered = true;
+      }
+    }
+    if (!recovered) throw new Error(`beat ${entry.i + 1} failed in batch AND in 2 fresh processes — this is not the session bug`);
+  }
+  return results;
 }
 
 /** Caption per beat, with the beat's start time and how long the beat lasts. */

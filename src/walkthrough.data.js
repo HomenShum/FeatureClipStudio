@@ -13,65 +13,65 @@ export const WALKTHROUGHS = [
     "steps": [
       {
         "img": "wt/NodeRoom/00.png",
-        "caption": "NodeRoom, explained by running it",
+        "caption": "If your team lives in a spreadsheet, this is for you: an AI helper that cannot wreck your numbers.",
         "cursor": null,
         "click": false,
-        "hold": 78
+        "hold": 178
       },
       {
         "img": "wt/NodeRoom/01.png",
-        "caption": "Edit the cell. Ask the agent. The commit stays narrow.",
+        "caption": "You change one number. The AI checks it. Only that one cell changes — nothing else moves.",
         "cursor": null,
         "click": false,
-        "hold": 116
+        "hold": 169
       },
       {
         "img": "wt/NodeRoom/02.png",
-        "caption": "Run the no-clobber test — the same engine call as a live room",
+        "caption": "Watch the AI try to overwrite your edit — and fail. Your number stays yours.",
         "cursor": {
           "x": 392,
           "y": 428
         },
         "click": true,
-        "hold": 113
+        "hold": 147
       },
       {
         "img": "wt/NodeRoom/03.png",
-        "caption": "Conflict comes back as data, not a clobber",
+        "caption": "When you and the AI disagree, you see both versions side by side. Nothing is lost.",
         "cursor": null,
         "click": false,
-        "hold": 96
+        "hold": 158
       },
       {
         "img": "wt/NodeRoom/04.png",
-        "caption": "The agent drafts around a locked cell — the human never waits",
+        "caption": "Lock a cell while you think. The AI works around it and waits its turn.",
         "cursor": null,
         "click": false,
-        "hold": 108
+        "hold": 127
       },
       {
         "img": "wt/NodeRoom/05.png",
-        "caption": "A stale agent write becomes a review proposal — no silent merge",
+        "caption": "If the AI's copy is out of date, its change becomes a suggestion you approve — never a surprise.",
         "cursor": null,
         "click": false,
-        "hold": 136
+        "hold": 187
       },
       {
         "img": "wt/NodeRoom/06.png",
-        "caption": "The human approves — it re-applies at the current version",
+        "caption": "You tap approve. The change lands on today's numbers, not yesterday's.",
         "cursor": {
           "x": 109,
           "y": 748
         },
         "click": true,
-        "hold": 108
+        "hold": 131
       },
       {
         "img": "wt/NodeRoom/07.png",
-        "caption": "Reviewed, then applied — that is the whole product",
+        "caption": "Nothing changes your sheet without being seen first. That is the whole promise.",
         "cursor": null,
         "click": false,
-        "hold": 108
+        "hold": 139
       }
     ]
   },
