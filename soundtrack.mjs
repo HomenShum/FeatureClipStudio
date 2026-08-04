@@ -172,9 +172,13 @@ export function buildTrack({ steps, outFile, bed = null, narration = null, fps =
     const idx = bed && existsSync(bed) ? 1 : 0;
     // sidechaincompress: the bed ducks under the voice automatically, which is what makes narration
     // audible without mixing it by hand every recut.
-    filters.push(`[${idx}:a]apad=whole_dur=${seconds.toFixed(2)}[voice]`);
-    filters.push(`${mixTarget}[voice]sidechaincompress=threshold=0.08:ratio=8:attack=20:release=400[ducked]`);
-    filters.push(`[ducked][voice]amix=inputs=2:normalize=0[mixed]`);
+    // asplit because a filter output label is CONSUMED by the filter that reads it. The voice is
+    // needed twice — once as the sidechain KEY that ducks the bed, once as the audio actually
+    // heard — and reusing one label for both fails with "Invalid stream specifier", which reads
+    // like a typo rather than the graph rule it is.
+    filters.push(`[${idx}:a]apad=whole_dur=${seconds.toFixed(2)},asplit=2[vkey][vout]`);
+    filters.push(`${mixTarget}[vkey]sidechaincompress=threshold=0.08:ratio=8:attack=20:release=400[ducked]`);
+    filters.push(`[ducked][vout]amix=inputs=2:normalize=0[mixed]`);
     mixTarget = "[mixed]";
   }
 

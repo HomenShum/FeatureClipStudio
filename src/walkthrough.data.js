@@ -23,7 +23,7 @@ export const WALKTHROUGHS = [
         "caption": "Edit the cell. Ask the agent. The commit stays narrow.",
         "cursor": null,
         "click": false,
-        "hold": 88
+        "hold": 116
       },
       {
         "img": "wt/NodeRoom/02.png",
@@ -33,7 +33,7 @@ export const WALKTHROUGHS = [
           "y": 428
         },
         "click": true,
-        "hold": 72
+        "hold": 113
       },
       {
         "img": "wt/NodeRoom/03.png",
@@ -47,14 +47,14 @@ export const WALKTHROUGHS = [
         "caption": "The agent drafts around a locked cell — the human never waits",
         "cursor": null,
         "click": false,
-        "hold": 96
+        "hold": 108
       },
       {
         "img": "wt/NodeRoom/05.png",
         "caption": "A stale agent write becomes a review proposal — no silent merge",
         "cursor": null,
         "click": false,
-        "hold": 104
+        "hold": 136
       },
       {
         "img": "wt/NodeRoom/06.png",
@@ -64,14 +64,14 @@ export const WALKTHROUGHS = [
           "y": 748
         },
         "click": true,
-        "hold": 76
+        "hold": 108
       },
       {
         "img": "wt/NodeRoom/07.png",
         "caption": "Reviewed, then applied — that is the whole product",
         "cursor": null,
         "click": false,
-        "hold": 100
+        "hold": 108
       }
     ]
   },
