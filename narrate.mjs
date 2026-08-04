@@ -74,8 +74,31 @@ for item in lines:
 print(json.dumps(out))
 `;
   const batch = python(batchCode);
-  if (!batch.ok) throw new Error(`piper batch failed outright: ${batch.err.split(String.fromCharCode(10)).slice(-3).join(" ").slice(0, 200)}`);
-  const results = JSON.parse(batch.out.split(String.fromCharCode(10)).filter(Boolean).pop());
+  // The warm-session ONNX corruption usually raises per line (caught, retried below), but it can
+  // also ABORT the whole process natively — observed: 8/9 lines fine, line 9 killed the batch and
+  // no JSON ever printed. An aborted batch is the same bug wearing a worse face, so it gets the
+  // same cure: every line marked failed, each one synthesised in its own fresh process.
+  const results = batch.ok
+    ? JSON.parse(batch.out.split(String.fromCharCode(10)).filter(Boolean).pop())
+    : lines.map((l, i) => ({ i, file: `${OUT_DIR}/beat${String(i).padStart(2, "0")}.wav`, failed: "BatchAborted" }));
+  if (!batch.ok) console.warn(`[narrate] piper batch aborted (${batch.err.split(String.fromCharCode(10)).filter(Boolean).pop()?.slice(0, 120)}) — retrying all ${lines.length} lines in fresh processes`);
+
+  // The corruption does not always raise. Observed: a 10-word line synthesised to 176 SECONDS of
+  // garbage audio with exit 0, and the hold-fitter ratcheted the beat to 3 minutes. Length is the
+  // one property of a synth we can check without ears: a line cannot legitimately take more than
+  // ~1s/word (ryan measures ~0.35) or less than a syllable. Implausible length = failed = fresh retry.
+  const plausible = (entry) => {
+    if (entry.failed || typeof entry.seconds !== "number") return true; // already routed to retry
+    const words = lines[entry.i].text.split(/\s+/).filter(Boolean).length;
+    return entry.seconds >= 0.3 && entry.seconds <= words * 1.0 + 3;
+  };
+  for (const entry of results) {
+    if (!plausible(entry)) {
+      console.warn(`[narrate] beat ${entry.i + 1}: implausible duration ${entry.seconds.toFixed(1)}s for ${lines[entry.i].text.split(/\s+/).length} words — treating as failed`);
+      entry.failed = "ImplausibleDuration";
+      delete entry.seconds;
+    }
+  }
 
   for (const entry of results) {
     if (!entry.failed) continue;
@@ -94,6 +117,8 @@ print(json.dumps({"seconds": dur, "synth": round(time.time()-t, 3)}))
 `);
       if (single.ok) {
         const parsed = JSON.parse(single.out.split(String.fromCharCode(10)).filter(Boolean).pop());
+        const words = lines[entry.i].text.split(/\s+/).filter(Boolean).length;
+        if (!(parsed.seconds >= 0.3 && parsed.seconds <= words * 1.0 + 3)) continue; // fresh synth can lie too — same length check
         entry.seconds = parsed.seconds;
         entry.synth = parsed.synth;
         delete entry.failed;

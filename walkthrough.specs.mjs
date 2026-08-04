@@ -89,6 +89,56 @@ export const SPECS = [
     ],
   },
   {
+    // The end-to-end cut: landing -> sample room -> real usage. Sells OUTCOMES — a live
+    // collaborative sheet with an AI that researched three companies with sources — with the
+    // no-clobber guarantee as one beat, not the whole story. Every caption describes something
+    // visibly on screen in that beat; the agent's research card, the trace and the review stage
+    // are the product's own rendered claims, not ours.
+    id: "NodeRoomE2E",
+    title: "NodeRoom — a live room, end to end",
+    accent: "#E0653A",
+    url: "http://localhost:5260/",
+    chromeUrl: "noderoom.app",
+    ready: "Review every change",
+    retries: 2,
+    scales: { action: 1.0, result: 1.0, open: 1.0 },
+    // v2 — recut against the judge's blocked verdict on v1. Each change answers a finding:
+    //   P0 no persona        -> beat 1 names who this is for, in mom words.
+    //   mom lost at 0:14     -> "Q3 variance" and "Room trace" never spoken; receipts language instead.
+    //   P1 unverifiable      -> the AI's research is ASKED FOR on camera (chip + Enter) and the
+    //                           result gated on waitText "Needs review" — work shown, not asserted.
+    //   P1 review not shown  -> the review beat sits on the card's own "Needs review" state.
+    //   abrupt ending        -> a dedicated closing freeze beat, longest hold in the cut.
+    //   flat pacing          -> holds vary 70..116 instead of a wall of 88s.
+    steps: [
+      { act: "sleep", ms: 1800 },
+      { cap: "Meet NodeRoom. It is built for deal teams — the people who check a company's numbers before money moves.", cursor: "text=Try a sample room", hold: 104 },
+      { act: "click", sel: "text=Try a sample room" },
+      { act: "sleep", ms: 3800 },
+      { cap: "One click, and you are in. No signup, no setup.", cursor: "text=Try sample room", click: true, hold: 70 },
+      { act: "click", sel: "text=Try sample room" },
+      { act: "sleep", ms: 6500 },
+      { act: "waitText", value: "Q3 diligence" },
+      { cap: "You land in a real room: a spreadsheet, notes, and your teammates working live.", hold: 92 },
+      { act: "click", sel: "tr:has-text('Revenue') td:nth-child(5)" },
+      { act: "sleep", ms: 700 },
+      { act: "press", key: "+" }, { act: "press", key: "2" }, { act: "press", key: "4" }, { act: "press", key: "%" },
+      { act: "press", key: "Enter" },
+      { act: "sleep", ms: 1200 },
+      { cap: "You type a number. It lands instantly — everyone sees it the moment you do.", cursor: "tr:has-text('Revenue') td:nth-child(5)", hold: 84 },
+      { act: "click", sel: "text=@nodeagent diligence CardioNova" },
+      { act: "sleep", ms: 600 },
+      { act: "press", key: "Enter" },
+      { act: "waitText", value: "Needs review" },
+      { act: "sleep", ms: 800 },
+      { cap: "Now ask the room's AI to research a company. Seconds later — done, with its sources attached.", cursor: "text=structured fields", hold: 100 },
+      { cap: "But look: its work has not touched your sheet. It waits for your OK. That is the rule here.", cursor: "text=Needs review", hold: 100 },
+      { cap: "And every change — yours or the AI's — is written down, like a receipt you can check later.", cursor: "text=Room trace", hold: 88 },
+      { cap: "When you are done, you take the file with you.", cursor: "text=Export XLSX", hold: 74 },
+      { cap: "Your team, an AI that asks first, and a receipt for everything. That is NodeRoom.", hold: 116 },
+    ],
+  },
+  {
     // R2/R3 from JOURNEYS.md — the fresh-user flow, a SEPARATE clip from the
     // #story drills. This journey only exists after hydration: boot.ts defers
     // the app until first interaction, and the React landing that replaces the
