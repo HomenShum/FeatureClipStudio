@@ -177,6 +177,39 @@ export const SPECS = [
     ],
   },
   {
+    // NodeBook, offline mode (auth+persistence flagged off per its RUNBOOK.local.md; mock user
+    // "Tyler Durden"). The arc is the one interaction chain probes verified end to end: type a
+    // line -> the hashtag hint appears -> Ctrl+Enter mints the label -> the sidebar's My Hashtags
+    // gains "#launch" with a count. No caption claims saving — persistence is off and edits are
+    // in-memory, so the story is typing and self-organisation, not storage.
+    id: "NodeBook",
+    title: "NodeBook — notes that organize themselves",
+    accent: "#14B8A6",
+    url: "http://localhost:3457/g",
+    chromeUrl: "nodebook.app",
+    ready: "Tyler Durden",
+    retries: 2,
+    scales: { action: 1.0, result: 1.0, open: 1.0 },
+    steps: [
+      { act: "sleep", ms: 9000 },
+      { cap: "Meet NodeBook. It is for people whose notes live everywhere — one page where everything you write connects.", cursor: "text=Global Hub", hold: 104 },
+      { act: "click", sel: "[contenteditable=true] >> nth=-1" },
+      { act: "press", key: "End" },
+      { act: "press", key: "Enter" },
+      { act: "fill", sel: "[contenteditable=true] >> nth=-1", value: "Ship the release notes #launch" },
+      { act: "sleep", ms: 1500 },
+      { cap: "You just type. Each line is a note — no folders, no setup.", cursor: "text=Ship the release notes", hold: 84 },
+      { act: "waitText", value: "Create new hashtag" },
+      { cap: "See the hint? Put a hash on a word, and NodeBook offers to turn it into a label.", cursor: "text=Create new hashtag", hold: 92 },
+      { act: "press", key: "Control+Enter" },
+      { act: "sleep", ms: 1800 },
+      { act: "waitText", value: "#launch" },
+      { cap: "One keystroke and the label is real — it lands in your sidebar, already collecting.", cursor: "text=#launch", hold: 96 },
+      { cap: "Every note that mentions it gathers under the label. Your notes organize themselves.", cursor: "text=My Hashtags", hold: 88 },
+      { cap: "Type first, organize never. That is NodeBook.", hold: 112 },
+    ],
+  },
+  {
     // R2/R3 from JOURNEYS.md — the fresh-user flow, a SEPARATE clip from the
     // #story drills. This journey only exists after hydration: boot.ts defers
     // the app until first interaction, and the React landing that replaces the

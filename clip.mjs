@@ -36,7 +36,7 @@ const totalFrames = newHolds.reduce((a, b) => a + b, 0);
 console.log(`  ${steps.length} beats, ${(totalFrames / 30).toFixed(1)}s, voice ${VOICE}, overruns 0`);
 
 step("render");
-const r = spawnSync("npx", ["remotion", "render", "src/index.js", "WT-NodeRoom", "out/clip-video.mp4", "--concurrency=2"], { encoding: "utf8", timeout: 540_000, maxBuffer: 64 * 1024 * 1024, shell: true });
+const r = spawnSync("npx", ["remotion", "render", "src/index.js", `WT-${data[0].id}`, "out/clip-video.mp4", "--concurrency=2"], { encoding: "utf8", timeout: 540_000, maxBuffer: 64 * 1024 * 1024, shell: true });
 if (r.status !== 0) { console.error("[clip] render failed:", (r.stderr || "").slice(-200)); process.exit(1); }
 
 step("voice + score + mux");
@@ -68,6 +68,13 @@ for start in range(0, int(math.ceil(total)), 30):
     parts.append(out[0] if isinstance(out,(list,tuple)) else str(out))
 print(json.dumps({"heard": " ".join(parts)}))
 `], { encoding: "utf8", timeout: 540_000, env: { ...process.env, PYTHONUTF8: "1" }, maxBuffer: 32 * 1024 * 1024 });
+// A crashed transcriber is not a drift verdict. This scored a real cut "0% heard — drifted" when
+// the python subprocess died on a transient slice-file error; the same file transcribed 93% a
+// minute later. Same rule as the judge: the instrument failing must never read as the work failing.
+if (stt.status !== 0) {
+  console.error(`[clip] STT RUNNER FAILED (exit ${stt.status}) — not a drift verdict:\n${(stt.stderr || "").split("\n").slice(-4).join("\n")}`);
+  process.exit(1);
+}
 const heard = JSON.parse(stt.stdout.split("\n").filter(Boolean).pop() ?? "{}").heard ?? "";
 const norm = (t) => t.toLowerCase().replace(/—/g, " ").replace(/[^a-z0-9 ]/g, "").split(/\s+/).filter(Boolean);
 const tw = norm(lines.map((l) => l.text).join(" "));
