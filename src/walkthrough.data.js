@@ -23,7 +23,7 @@ export const WALKTHROUGHS = [
         "caption": "You change one number. The AI checks it. Only that one cell changes — nothing else moves.",
         "cursor": null,
         "click": false,
-        "hold": 157
+        "hold": 158
       },
       {
         "img": "wt/NodeRoom/02.png",
@@ -33,7 +33,7 @@ export const WALKTHROUGHS = [
           "y": 428
         },
         "click": true,
-        "hold": 136
+        "hold": 142
       },
       {
         "img": "wt/NodeRoom/03.png",
@@ -47,14 +47,14 @@ export const WALKTHROUGHS = [
         "caption": "Reserve a cell while you think. The AI works around you and waits its turn.",
         "cursor": null,
         "click": false,
-        "hold": 130
+        "hold": 139
       },
       {
         "img": "wt/NodeRoom/05.png",
         "caption": "A late AI edit becomes a suggestion you approve — never a surprise.",
         "cursor": null,
         "click": false,
-        "hold": 125
+        "hold": 128
       },
       {
         "img": "wt/NodeRoom/06.png",
@@ -64,7 +64,7 @@ export const WALKTHROUGHS = [
           "y": 644
         },
         "click": true,
-        "hold": 120
+        "hold": 122
       },
       {
         "img": "wt/NodeRoom/07.png",

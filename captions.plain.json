@@ -1,0 +1,23 @@
+[
+  "Say you want to know who runs the drug trials",
+  "Right now you read a huge list. One study at a time.",
+  "Ask it in one line instead",
+  "Which drug firms and which drugs show up side by side?",
+  "It picks the right questions. Then it asks each one.",
+  "37 asks later, here is who works on what",
+  "Big dot means more trials. Thick line means more shared trials.",
+  "But a computer could just make this up.",
+  "So it shows its work",
+  "Each row is one ask. And the count it got back.",
+  "Ask the site yourself. You get the same count.",
+  "New question. How far along are these trials?",
+  "Same trick. Pick the groups. Count each one.",
+  "It flags a catch. One trial can sit in two groups.",
+  "So it will not draw a pie. The slices would not add up.",
+  "Now a question one count cannot answer.",
+  "It walks from one firm to the next. Then it checks each hop.",
+  "The map picked these firms. The site checked each one.",
+  "Three asks. Three answers. And proof for each count.",
+  "Your turn. Name an illness. Say what you want to see.",
+  "Any illness. Any split. Same proof."
+]

@@ -42,7 +42,7 @@ and a progress bar.
 It's fully **scripted + reproducible** (the spec is a checked‑in "tape"), so the GIFs
 double as a regenerable integration smoke‑test of your UI.
 
-## How it works — a 4‑stage pipeline
+## How it works — a 5‑stage pipeline
 
 ```
 walkthrough.specs.mjs     1. SPEC    ordered cap/act ops per feature
@@ -60,6 +60,181 @@ npx remotion render        3. RENDER  Remotion overlays the animated cursor + ri
 ffmpeg (two‑pass palette)  4. GIF     stats_mode=diff + lanczos + bayer + diff_mode
    →  assets/feature-*.gif            =rectangle  →  clean, small, looping GIF
 ```
+
+
+## The instrument is noisy. Sample it.
+
+**Measured: the identical file scored 34/44 and then 22/44 on two runs.** That is
+27% of the scale, on the same bytes. Every "this cut improved" claim made from
+single readings was unsupported — including one this repo published and then
+retracted ("comprehension 9 → 16, the voiceover was the missing piece"), which
+was variance wearing the costume of a result.
+
+Two causes, separated by correlating the runs:
+
+1. Ordinary sampling variance at temperature 0.2.
+2. **The anti-uniformity re-ask itself.** Both 22s re-asked; the 34 did not. Told
+   *"you gave 91% of dimensions the same score, force a spread"*, the model
+   spreads **downward** — demoting to 0 and 1 without ever promoting to 2. The
+   device added to stop the judge shrugging was biasing the number it produced.
+   It is now opt-in behind `--reask` and off by default, because a debiasing
+   mechanism that biases is worse than the shrug it replaced.
+
+So `--samples 3` is the **default**: three independent judgements, per-dimension
+median, prose taken from the run nearest the median total so the report still
+reads as one judgement. Spread is now 22/23/25 and 44/45/44 where it was 34 vs 22.
+
+**Never quote a single run.** If you are claiming a delta, quote the sample
+totals on both sides of it.
+
+## Plain English is arithmetic, so it is not an API call
+
+```bash
+npm run readability -- --id TShero --min 80
+```
+
+Flesch Reading Ease per caption, **before** the render, naming the exact sentence
+and its hard words. The LLM judge can say a video is too technical; it cannot say
+which line, costs 40 seconds, and — given the variance above — could not resolve
+the change at all. Reading ease could.
+
+Measured on TrialScope: mean **80.5 → 109.3**, captions below gate 11 → 1. Two
+consequences: the judge's `lay_sense` evidence went from *"will struggle with API
+calls, dimension, co-occurrence, peer sponsors"* to *"uses simple analogies"*, and
+runtime fell 19%, because plain sentences are also shorter to say.
+
+Round-trip without re-capturing (captions are render-time data, so no pixel of
+the app changes):
+
+```bash
+npm run captions -- --id TShero --from captions.plain.json
+npm run voice -- --id TShero --out out/x.vo.wav      # writes x.vo.holds.json
+npm run retime -- --id TShero --holds out/x.vo.holds.json --shrink
+```
+
+**Narration owns pacing.** A storyboard is first timed for *reading*; speech is
+slower and unevenly so — nine of 21 lines overran their hold the first time a
+voice was added. The fix is not a faster reader: the picture under a caption is a
+still frame that costs nothing to hold longer.
+
+## Two video types, two rubrics
+
+| | `--mode demo` (44 pts) | `--mode interview` (50 pts) |
+|---|---|---|
+| answers | does it work, and did anyone understand it | why is it built this way, and can you defend it |
+| second axis | comprehension | defensibility |
+| unique dimensions | `own_case_transfer` | `alternatives_named` · `tradeoff_honesty` · `falsifiability` · `failure_modes_named` |
+
+The interview variant exists because an agent produces faster than its author can
+absorb, and the gap shows up first as a walkthrough full of WHAT and empty of WHY.
+`tradeoff_honesty` scores **0 if every tradeoff resolves in the author's favour**,
+and `failure_modes_named` needs a specific checkable failure rather than humility
+used as a rhetorical move.
+
+`decks/trialscope-decisions.html` is the worked example: eight decisions, four
+fixed zones each — chosen, rejected, cost, falsifier. Measured 45/50 (44/45/44).
+
+## Sound — generated from the storyboard, not laid over the top
+
+```bash
+npm run score -- --id TShero --video out/trialscope.mp4              # generated bed + sfx
+npm run score -- --id TShero --video out/x.mp4 --music licensed.mp3  # your track, sfx kept
+```
+
+The gate scored a **completely silent** video twice, across two different cuts,
+and never mentioned it — a rubric only sees what it names, so silence was not a
+low score, it was invisible. `soundtrack` and `audio_sync` now exist for that
+reason, and the reference films were measured rather than guessed:
+
+| reference | length | integrated | LRA |
+|---|---|---|---|
+| `Mi173xGb0ZA` (short launch film) | 38.5s | **-13.2 LUFS** | 13.5 LU |
+| `xPK3nBLbpxc` | 156.6s | -18.4 LUFS | 4.1 LU |
+| `JLpDL7x50hA` | 174.3s | -20.8 LUFS | 6.1 LU |
+
+Short launch films sit loud and dynamic; long explainers sit quiet and compressed
+under a voice. A silent cut is not the neutral choice — it is the one shape none
+of the references take.
+
+**Their tracks are not reusable.** This repo is public, and shipping someone
+else's copyrighted music in it is the problem itself, not a licensing detail. What
+transfers is the measurement. So `score.mjs` synthesises the bed sample by sample
+in plain JS — no dependencies, no rights to clear — and `--music` stays there for
+anyone with a licensed track, in which case the generated **sfx are kept** and only
+the bed is replaced.
+
+**Built from the storyboard, so sync is structural.** A track laid over a finished
+video is synced by luck and drifts the moment a hold changes by four frames. The
+storyboard already knows where every click, zoom and activity burst falls, so the
+arrangement is derived from those timestamps and re-derives itself on any re-cut.
+The arrangement follows the STORY: sparse under the premise, lifting at the graph
+reveal, and deliberately **thinnest during the proof section** — the trace has to be
+readable, and music arguing with it there would cost more than it adds. The only
+full major resolve is the result beat.
+
+Output is loudness-normalised to -14 LUFS (measured -13.0 on the TrialScope cut).
+
+## The gate — judge, revise, re-render (stage 5, and it is not optional)
+
+```
+node iterate.mjs           5. GATE    render → judge (two rubrics, 40 pts) → revision
+  --comp WTC-<id>                     brief → re-render. Exits non-zero below the
+  --out out/<id>.mp4                  gate, so "done" has to be earned.
+  --for "<audience>"
+```
+
+`npm run clip` is the default path. There is no shorter one that skips the judge,
+and that is on purpose: every video this repo produced before stage 5 existed was
+judged exactly once, at the end, by whoever remembered — which turns the findings
+into release notes instead of edits.
+
+**Two rubrics, because they fail independently.** `rubric.mjs` scores CRAFT (20)
+and COMPREHENSION (20) separately:
+
+| | asks | dimensions |
+|---|---|---|
+| **Craft** | is it well made? | storyboard clarity · state coverage · cursor truth · caption sync · pacing · legibility · proof feel · safety · signature moment · loop etiquette |
+| **Comprehension** | did anyone understand it? | persona · purpose · use case · feature legibility · full interaction · responsiveness · flow · result · lay sense · own-case transfer |
+
+Craft is what a demo's author notices missing. Comprehension is what everyone else
+notices missing, and it never shows up in a craft score. The TrialScope cut that
+motivated this scored **craft 11/20, comprehension 9/20** — well made, real states,
+a real peak at the network graph, and a viewer still could not say who it was for,
+what problem it solved, or how to point it at a question of their own.
+
+**Comprehension is scored from a named audience's seat** — that is what `--for` is:
+
+```bash
+npm run clip -- --comp WTC-TShero --out out/trialscope.mp4   --for "a non-technical person who has never heard of this domain"
+npm run judge -- out/trialscope.mp4 --for "a frontend engineer evaluating adoption" --gate 28
+```
+
+The same cut is a 2 on `lay_sense` for a domain expert and a 0 for someone who has
+never heard the jargon. `--for` makes that difference a number instead of an
+argument.
+
+Outputs: `<video>.judge.md` (scorecard split by axis), `.judge.json`,
+`.rounds.md` (the score history across rounds — "20 → 31 after adding a premise
+beat" is the only form of an improvement claim worth believing), and on failure
+`.next-cut.md`, the revision brief.
+
+### Two things the loop does deliberately
+
+**It does not auto-apply its own notes.** A loop that edits the storyboard from its
+own critic's brief converges on whatever the critic likes, which is not the same as
+a good demo, and leaves nobody holding the taste. The brief is written to disk and
+the process exits non-zero; a human or an agent applies it; round N+1 begins.
+
+**Anti-uniformity is enforced in code, not asked for in the prompt.** The rubric
+carried an anti-uniformity clause for three revisions and the judge still returned
+1/2 on 18 of 20 dimensions — a description wearing a score's clothes. Now if one
+score covers >70% of dimensions the judgement is re-requested once, with the
+offending distribution quoted back. A gate that returns the same verdict for every
+input is not a gate, and that includes the flat-1 verdict.
+
+The same three files are vendored into [NodeVideo](https://github.com/HomenShum/NodeVideo)
+and [NodeSlide](https://github.com/HomenShum/NodeSlide) under `tools/clip-gate/`,
+so `npm run clip` means the same thing in all three.
 
 ## Quick start
 

@@ -98,6 +98,38 @@ const doAct = async (page, a) => {
     await sleep(page, a.ms);
   } else if (a.act === "waitText") {
     await waitText(page, a.value, a.timeout);
+  } else if (a.act === "find") {
+    // SELECTION AS A POINTER. Both long-form references do this constantly --
+    // "use text selection highlighting as a visual pointer to lead the viewer's
+    // eye while reading code aloud" (Hello Interview, 07:00). A caption saying
+    // "look at the cache" cannot point; a highlight on the line can. Uses the
+    // editor's own find, so the highlight is Monaco's, not something drawn over
+    // the top, and it scrolls the match into view for free.
+    // NOT Control+f: that is the BROWSER's find, which headless Chromium
+    // handles by tearing down the page ("Target page, context or browser has
+    // been closed" on the very next action). The editor's own find widget is
+    // reached through the command palette, which stays inside the app.
+    await page.keyboard.press("Control+Shift+P");
+    await sleep(page, 700);
+    await page.keyboard.type("Find", { delay: 20 });
+    await sleep(page, 600);
+    await page.keyboard.press("Enter");
+    await sleep(page, 700);
+    await page.keyboard.type(String(a.value), { delay: a.delay || 28 });
+    await sleep(page, 900);
+    await page.keyboard.press("Escape");
+    await sleep(page, 400);
+  } else if (a.act === "wheel") {
+    // A real wheel event at a real cursor position, because an IDE editor is not
+    // the document: Monaco, terminals and file trees each own their own scroll
+    // container, and window.scrollTo moves none of them. Scrolling code the way
+    // a person scrolls code is the entire point of an IDE walkthrough.
+    const { x = 900, y = 520, dy = 400, steps = 1, gap = 90 } = a;
+    await page.mouse.move(x, y);
+    for (let n = 0; n < steps; n++) {
+      await page.mouse.wheel(0, dy);
+      await sleep(page, gap);
+    }
   } else if (a.act === "scrollTop") {
     await page.evaluate(() => window.scrollTo(0, 0));
     await sleep(page, 250);
@@ -116,7 +148,23 @@ const run = async () => {
   // (iterate one walkthrough without re-running the others). No filter = full run + wipe.
   const ONLY = process.env.COLLAB_ONLY ? process.env.COLLAB_ONLY.split(",").map((s) => s.trim()) : null;
   const specs = ONLY ? COLLAB_SPECS.filter((s) => ONLY.includes(s.id)) : COLLAB_SPECS;
-  if (!ONLY) rmSync(PUB, { recursive: true, force: true });
+  // The unfiltered run used to wipe EVERY capture in the repo with no prompt, so
+  // a mistyped invocation -- e.g. passing the spec id as an argv the script does
+  // not read, which is an easy mistake because COLLAB_ONLY is an env var --
+  // silently destroyed the frames for every other walkthrough too. They were
+  // recoverable only because public/ happens to be tracked. That is luck, not a
+  // design. The wipe is now opt-in.
+  if (!ONLY) {
+    if (!process.env.COLLAB_WIPE) {
+      console.error(
+        "refusing to wipe every capture in public/wt-collab.\n" +
+        "  re-capture ONE walkthrough:  COLLAB_ONLY=TShero node walkthrough.collab.mjs\n" +
+        "  full re-capture from empty:  COLLAB_WIPE=1 node walkthrough.collab.mjs\n" +
+        "(note COLLAB_ONLY is an ENV VAR, not an argv — a bare id is ignored.)");
+      process.exit(1);
+    }
+    rmSync(PUB, { recursive: true, force: true });
+  }
   // A per-RUN code substituted for `__RUNID__` in pane URLs — so a "create a fresh room" spec
   // gets a brand-new (empty) room each run instead of re-joining a stale, already-filled one.
   const RUNID = "S" + Date.now().toString(36).slice(-7).toUpperCase();
@@ -138,7 +186,14 @@ const run = async () => {
     const contexts = [];
     const pages = [];
     for (const pane of spec.panes) {
-      const ctx = await browser.newContext({ viewport: { width: spec.vw || VW, height: spec.vh || VH }, deviceScaleFactor: 2 });
+      // deviceScaleFactor is per-spec because it is not free: at dsf 2 in
+      // headless Chromium, xterm.js's canvas renderer paints NOTHING -- an IDE
+      // capture ran a real pytest whose output existed in the server-side buffer
+      // but every frame showed a blank terminal (decorations still drew, because
+      // those are DOM). Proven by a one-variable A/B: same page, same commands,
+      // dsf 2 blank / dsf 1 fully rendered. Specs that show a terminal need
+      // `dsf: 1` and trade away Retina sharpness for text that exists.
+      const ctx = await browser.newContext({ viewport: { width: spec.vw || VW, height: spec.vh || VH }, deviceScaleFactor: spec.dsf || 2 });
       const page = await ctx.newPage();
       page.setDefaultTimeout(60000);
       contexts.push(ctx);
@@ -238,6 +293,11 @@ const run = async () => {
       vw: spec.vw || VW,
       vh: spec.vh || VH,
       cropVH: spec.cropVH || null,
+      // This object is a WHITELIST, not a spread: a field the renderer needs but
+      // that is not copied here is silently dropped, and the symptom is a spec
+      // change that appears to do nothing after a re-render. `frame` was added
+      // for exactly that reason -- add new render-time spec fields HERE too.
+      frame: spec.frame !== false,
       paneLabels: spec.panes.map((p) => p.label),
       steps,
     });

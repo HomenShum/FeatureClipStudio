@@ -21,14 +21,20 @@
     "streamlit"
   ],
   "scripts": {
-    "check": "node --check walkthrough.mjs && node --check judge-video.mjs",
+    "check": "node --check walkthrough.mjs && node --check judge-video.mjs && node --check clip.mjs && node --check narrate.mjs && node --check score.mjs && node --check find-references.mjs && node --check iterate.mjs && node --check rubric.mjs && node --check score-cli.mjs && node --check judge-rubric.mjs && node --check voice.mjs && node --check readability.mjs && node --check retime.mjs && node --check apply-captions.mjs",
     "capture": "node walkthrough.mjs",
     "studio": "remotion studio src/index.js",
     "render": "remotion render src/index.js",
     "render:example": "remotion render src/index.js WT-NodeRoom out/example.mp4 --concurrency=2",
     "render:roomos": "remotion render src/roomos-index.js WTG-RoomOSV0123 out/room-os-v0-v1-v2-v3.mp4 --concurrency=2",
     "judge": "node judge-video.mjs",
-    "clip": "node clip.mjs"
+    "clip": "node clip.mjs",
+    "iterate": "node iterate.mjs",
+    "score": "node score-cli.mjs",
+    "voice": "node voice.mjs",
+    "readability": "node readability.mjs",
+    "retime": "node retime.mjs",
+    "captions": "node apply-captions.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.474",

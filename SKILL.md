@@ -40,7 +40,7 @@ embedded in the README. Made of N "steps", each a captured UI state with a capti
 - **ffmpeg** on PATH.
 - Real API keys if the feature calls live services (capture exercises the real app).
 
-## The four-stage pipeline
+## The five-stage pipeline
 1. **Spec** — for each feature, write an ordered list of ops (see format below):
    `cap` = capture this UI state (+ where the cursor points); `act` = perform an
    action to advance the UI.
@@ -82,6 +82,44 @@ Selector shorthand (resolved against the **active tab panel** — see lesson #1)
 `"textarea"`, `"input"`, `"file"`, `"drop"` (uploader dropzone), `"chat"` (chat input),
 `"btn:Run pipeline"` (button by accessible-name regex), `"aria:Net income"` /
 `"aria^:Revenue"` (input by aria-label exact / prefix), or any raw CSS selector.
+
+
+## Where to find reference videos
+
+Two kinds, and they are not interchangeable. Getting this wrong is why "look at
+good demos" produces nothing usable.
+
+**Flow references — what a real product actually does, step by step.**
+[Page Flows](https://pageflows.com) is the Mobbin of video: recorded user
+journeys rather than screenshots, 20,000+ apps indexed by task (sign up, upgrade,
+cancel), and it keeps the consent dialog, the field error, and the empty state
+that a marketing cut removes. Their own positioning is this skill's anti-hero-shot
+rule stated from the other side: *Mobbin shows you the destination, Page Flows
+shows you the trip.* ScreensDesign covers onboarding and paywall flows. Both are
+paid, and both are for studying what to CAPTURE.
+
+**Craft references — how a launch film is built.**
+Just use YouTube. Find them with `yt-dlp "ytsearch4:<query>"`, which returns
+duration and channel and so beats web search at this; the shortlist and the
+measured facts for each live in [`REFERENCES.md`](REFERENCES.md). `judge-video.mjs` reads a YouTube watch URL directly:
+
+    REFERENCE_VIDEOS="https://youtube.com/watch?v=...,https://youtube.com/watch?v=..."       node judge-video.mjs out/feature.mp4
+
+Verified, not assumed: Gemini returns `modality: VIDEO` and ~100k prompt tokens
+per reference, so it is watching the video, not reading the page. Nothing is
+downloaded, hosted, or re-encoded — no licence problem, no storage. Point at
+Linear's changelog reels, a Stripe launch film, the Vercel homepage demo.
+
+**Why a URL beats a paid library here.** A reference video is something the judge
+can WATCH and compare against. Prose anchors ("Linear ships 45-90s reels") are a
+claim it has to take on faith. Cost is the tradeoff: ~100k prompt tokens per
+reference, so `REFERENCE_VIDEOS` is empty by default.
+
+**The discipline that makes any of this work.** Mobbin is useful because each
+record is one atomic fact with a locator, not an impression. For video the
+locator is a TIMESTAMP. "At 0:12 the loading state holds 1.4s before the result
+lands" can become a rule and can score a cut. "Their pacing is good" cannot.
+Every reference note should be the first kind.
 
 ## Hard-won capture lessons (THIS is why naive captures fail)
 1. **Scope every locator to the ACTIVE tab panel.** Streamlit (and many tab UIs)
@@ -128,16 +166,64 @@ Selector shorthand (resolved against the **active tab panel** — see lesson #1)
    GIF; this composition's pre-move-delay → glide → hold pattern is the right shape,
    keep it that way through refactors.
 
-## Stage 5 (recommended): self-judge the render
-The final cut should not be the one stage only human eyes check. `npm run judge out/example.mp4`
-sends the RENDERED video to Gemini video understanding (`judge-video.mjs`; key via
-`GEMINI_API_KEY`/`GOOGLE_GENERATIVE_AI_API_KEY`) and scores 8 dimensions against the
-anti-hero-shot bar — state coverage (empty → cursor → loading → result, per flow), cursor truth,
-caption sync, pacing, legibility, proof-feel, safety, loop etiquette — returning timestamped
-P0/P1/P2 defects + a publish verdict. Judge the MP4 (pre-palette render), not the GIF — GIF is
-not a supported Gemini video MIME. Severity policy: **P0 blocks publishing · P1 fix before
-posting · P2 log and ship** — never enter a re-render polish loop for P2s on a passed render.
-(First production run on a 54.8s NodeRoom episode: verdict publish, 15/16, one P2.)
+## The judge is noisy — never quote one run
+
+Measured: the identical file scored 34/44 then 22/44. `--samples 3` is the default
+(per-dimension median). If you claim a cut improved, quote the sample totals on
+both sides. A single reading supports nothing.
+
+The `--reask` anti-uniformity device biases scores DOWNWARD and is off by default.
+
+## Score readability before you render
+
+`npm run readability -- --id <Id> --min 80` is arithmetic, runs in milliseconds,
+and names the exact caption. Do this before spending a render. Target mean 100.
+Plain sentences are also shorter to say, so this shortens the cut.
+
+## Pick the rubric that matches the video
+
+`--mode demo` for a product walkthrough; `--mode interview` for a codebase or
+decisions walkthrough, which swaps comprehension for defensibility
+(alternatives_named, tradeoff_honesty, falsifiability, failure_modes_named).
+
+## Stage 5 (REQUIRED, and it loops): judge, revise, re-render
+
+`npm run clip -- --comp WTC-<id> --out out/<id>.mp4 --for "<audience>"` is the
+default path from storyboard to shippable. Do not hand a cut to a human before it
+has been through this, and do not report a video as done on the strength of having
+watched it yourself.
+
+**Two rubrics (`rubric.mjs`), 40 points, scored independently.** CRAFT (20) asks
+"is it well made" — storyboard clarity, state coverage, cursor truth, caption sync,
+pacing, legibility, proof feel, safety, signature moment, loop etiquette.
+COMPREHENSION (20) asks "did anyone understand it" — persona, purpose, use case,
+feature legibility, full interaction, responsiveness, flow, result, lay sense,
+own-case transfer.
+
+They come apart, and almost always in one direction. The TrialScope cut scored
+craft 11/20 next to comprehension 9/20: well made, real states, a real peak — and
+a viewer could not say who it was for or how to use it on their own question.
+**A high craft score is not evidence that the demo communicates.** If you report
+only a total, you have hidden the finding; always report the split.
+
+**`--for <audience>` is load-bearing, not cosmetic.** Comprehension is scored from
+that person's seat. Judge for the audience the video is actually for, and when the
+video is public-facing, judge it at least once for someone outside the domain —
+that run is where the real defects surface.
+
+**The loop does not auto-apply its own brief.** The judge writes `.next-cut.md`
+naming the storyboard changes that would lift the weakest comprehension
+dimensions, and exits non-zero. You apply them to the spec, then run again. Round
+history accumulates in `.rounds.md`; quote the delta ("20/40 → 31/40 after adding
+a premise beat and a your-turn closer"), never a bare final score.
+
+Judge the MP4 (pre-palette render), not the GIF — GIF is not a supported Gemini
+video MIME. Severity policy: **P0 blocks publishing · P1 fix before posting · P2
+log and ship** — never enter a re-render polish loop for P2s on a passed render.
+
+Anti-uniformity is enforced in code: if one score covers >70% of dimensions the
+judgement is re-requested with the distribution quoted back, because a gate that
+returns the same verdict for every input is not a gate.
 
 ## Stage 0 (optional, for audience-targeted walkthroughs): audience-world research
 A walkthrough proves the product works; for high-trust audiences (founders, family offices,

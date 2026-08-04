@@ -1150,5 +1150,1065 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       }
     ]
+  },
+  {
+    "id": "TShero",
+    "title": "TrialScope — a graph you can audit, edge by edge",
+    "accent": "#0f766e",
+    "vw": 1440,
+    "vh": 900,
+    "cropVH": null,
+    "frame": false,
+    "paneLabels": [
+      "TrialScope — live on Vercel + Cloud Run"
+    ],
+    "steps": [
+      {
+        "caption": "Say you want to know who runs the drug trials",
+        "hold": 82,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_00.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Right now you read a huge list. One study at a time.",
+        "hold": 107,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_01.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Ask it in one line instead",
+        "hold": 61,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_02.png",
+            "cursor": {
+              "x": 847,
+              "y": 480
+            },
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Which drug firms and which drugs show up side by side?",
+        "hold": 107,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_03.png",
+            "cursor": {
+              "x": 1160,
+              "y": 522
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "It picks the right questions. Then it asks each one.",
+        "hold": 101,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TShero/p0_04_00.png",
+              "wt-collab/TShero/p0_04_01.png",
+              "wt-collab/TShero/p0_04_02.png",
+              "wt-collab/TShero/p0_04_03.png",
+              "wt-collab/TShero/p0_04_04.png",
+              "wt-collab/TShero/p0_04_05.png",
+              "wt-collab/TShero/p0_04_06.png",
+              "wt-collab/TShero/p0_04_07.png",
+              "wt-collab/TShero/p0_04_08.png",
+              "wt-collab/TShero/p0_04_09.png",
+              "wt-collab/TShero/p0_04_10.png",
+              "wt-collab/TShero/p0_04_11.png",
+              "wt-collab/TShero/p0_04_12.png",
+              "wt-collab/TShero/p0_04_13.png",
+              "wt-collab/TShero/p0_04_14.png",
+              "wt-collab/TShero/p0_04_15.png",
+              "wt-collab/TShero/p0_04_16.png",
+              "wt-collab/TShero/p0_04_17.png",
+              "wt-collab/TShero/p0_04_18.png",
+              "wt-collab/TShero/p0_04_19.png",
+              "wt-collab/TShero/p0_04_20.png",
+              "wt-collab/TShero/p0_04_21.png",
+              "wt-collab/TShero/p0_04_22.png",
+              "wt-collab/TShero/p0_04_23.png",
+              "wt-collab/TShero/p0_04_24.png",
+              "wt-collab/TShero/p0_04_25.png",
+              "wt-collab/TShero/p0_04_26.png",
+              "wt-collab/TShero/p0_04_27.png",
+              "wt-collab/TShero/p0_04_28.png",
+              "wt-collab/TShero/p0_04_29.png",
+              "wt-collab/TShero/p0_04_30.png",
+              "wt-collab/TShero/p0_04_31.png",
+              "wt-collab/TShero/p0_04_32.png",
+              "wt-collab/TShero/p0_04_33.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "37 asks later, here is who works on what",
+        "hold": 90,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_05.png",
+            "cursor": {
+              "x": 597,
+              "y": 188
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Big dot means more trials. Thick line means more shared trials.",
+        "hold": 126,
+        "burst": false,
+        "zoomScale": 1.3,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_06.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 440
+            }
+          }
+        ]
+      },
+      {
+        "caption": "But a computer could just make this up.",
+        "hold": 64,
+        "burst": false,
+        "zoomScale": 1.42,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_07.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 440
+            }
+          }
+        ]
+      },
+      {
+        "caption": "So it shows its work",
+        "hold": 46,
+        "burst": false,
+        "zoomScale": 1.4,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_08.png",
+            "cursor": {
+              "x": 847,
+              "y": 665
+            },
+            "click": true,
+            "zoom": {
+              "x": 847,
+              "y": 665
+            }
+          }
+        ]
+      },
+      {
+        "caption": "Each row is one ask. And the count it got back.",
+        "hold": 89,
+        "burst": false,
+        "zoomScale": 1.85,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_09.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 665
+            }
+          }
+        ]
+      },
+      {
+        "caption": "Ask the site yourself. You get the same count.",
+        "hold": 89,
+        "burst": false,
+        "zoomScale": 1.85,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_10.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 665
+            }
+          }
+        ]
+      },
+      {
+        "caption": "New question. How far along are these trials?",
+        "hold": 91,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_11.png",
+            "cursor": {
+              "x": 1160,
+              "y": 522
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Same trick. Pick the groups. Count each one.",
+        "hold": 80,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TShero/p0_12_00.png",
+              "wt-collab/TShero/p0_12_01.png",
+              "wt-collab/TShero/p0_12_02.png",
+              "wt-collab/TShero/p0_12_03.png",
+              "wt-collab/TShero/p0_12_04.png",
+              "wt-collab/TShero/p0_12_05.png",
+              "wt-collab/TShero/p0_12_06.png",
+              "wt-collab/TShero/p0_12_07.png",
+              "wt-collab/TShero/p0_12_08.png",
+              "wt-collab/TShero/p0_12_09.png",
+              "wt-collab/TShero/p0_12_10.png",
+              "wt-collab/TShero/p0_12_11.png",
+              "wt-collab/TShero/p0_12_12.png",
+              "wt-collab/TShero/p0_12_13.png",
+              "wt-collab/TShero/p0_12_14.png",
+              "wt-collab/TShero/p0_12_15.png",
+              "wt-collab/TShero/p0_12_16.png",
+              "wt-collab/TShero/p0_12_17.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "It flags a catch. One trial can sit in two groups.",
+        "hold": 100,
+        "burst": false,
+        "zoomScale": 1.4,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_13.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 562
+            }
+          }
+        ]
+      },
+      {
+        "caption": "So it will not draw a pie. The slices would not add up.",
+        "hold": 96,
+        "burst": false,
+        "zoomScale": 1.4,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_14.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 562
+            }
+          }
+        ]
+      },
+      {
+        "caption": "Now a question one count cannot answer.",
+        "hold": 75,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_15.png",
+            "cursor": {
+              "x": 1160,
+              "y": 522
+            },
+            "click": true,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "It walks from one firm to the next. Then it checks each hop.",
+        "hold": 104,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TShero/p0_16_00.png",
+              "wt-collab/TShero/p0_16_01.png",
+              "wt-collab/TShero/p0_16_02.png",
+              "wt-collab/TShero/p0_16_03.png",
+              "wt-collab/TShero/p0_16_04.png",
+              "wt-collab/TShero/p0_16_05.png",
+              "wt-collab/TShero/p0_16_06.png",
+              "wt-collab/TShero/p0_16_07.png",
+              "wt-collab/TShero/p0_16_08.png",
+              "wt-collab/TShero/p0_16_09.png",
+              "wt-collab/TShero/p0_16_10.png",
+              "wt-collab/TShero/p0_16_11.png",
+              "wt-collab/TShero/p0_16_12.png",
+              "wt-collab/TShero/p0_16_13.png",
+              "wt-collab/TShero/p0_16_14.png",
+              "wt-collab/TShero/p0_16_15.png",
+              "wt-collab/TShero/p0_16_16.png",
+              "wt-collab/TShero/p0_16_17.png",
+              "wt-collab/TShero/p0_16_18.png",
+              "wt-collab/TShero/p0_16_19.png",
+              "wt-collab/TShero/p0_16_20.png",
+              "wt-collab/TShero/p0_16_21.png",
+              "wt-collab/TShero/p0_16_22.png",
+              "wt-collab/TShero/p0_16_23.png",
+              "wt-collab/TShero/p0_16_24.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The map picked these firms. The site checked each one.",
+        "hold": 94,
+        "burst": false,
+        "zoomScale": 1.32,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_17.png",
+            "cursor": null,
+            "click": false,
+            "zoom": {
+              "x": 847,
+              "y": 309
+            }
+          }
+        ]
+      },
+      {
+        "caption": "Three asks. Three answers. And proof for each count.",
+        "hold": 104,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_18.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Your turn. Name an illness. Say what you want to see.",
+        "hold": 99,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_19.png",
+            "cursor": {
+              "x": 847,
+              "y": 480
+            },
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Any illness. Any split. Same proof.",
+        "hold": 86,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TShero/p0_20.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TScode",
+    "title": "TrialScope — decisions and tradeoffs",
+    "accent": "#2dd4bf",
+    "vw": 1440,
+    "vh": 900,
+    "cropVH": null,
+    "frame": false,
+    "paneLabels": [
+      "TrialScope — decisions"
+    ],
+    "steps": [
+      {
+        "caption": "The demo worked. Then it met real use.",
+        "hold": 79,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_00.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Six things I believed. Each one measured. Each one wrong.",
+        "hold": 105,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_01.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "One. A model that adds up is a model that makes things up.",
+        "hold": 110,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_02.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "So it never adds. It asks the site once per bar.",
+        "hold": 99,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_03.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "37 asks behind one graph. Each one you can send yourself.",
+        "hold": 123,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_04.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Two. The totals matched, and the groups still overlapped.",
+        "hold": 96,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_05.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Off by plus 290 one way. Off by minus 136 the other.",
+        "hold": 154,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_06.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The two errors cancel out. A match is luck, not proof.",
+        "hold": 109,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_07.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Three. Many users, one budget. Random waits felt right.",
+        "hold": 122,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_08.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Fairness went from 0.14 to 0.15. That is nothing.",
+        "hold": 144,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_09.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Taking turns in order took it to 0.99.",
+        "hold": 91,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_10.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Four. A shared cache leaks who asked what.",
+        "hold": 83,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_11.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "A cached answer came back thirty thousand times faster.",
+        "hold": 95,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_12.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "That gap is a signal. So each user got their own cache.",
+        "hold": 99,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_13.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Five. Eight of the same question should cost one answer.",
+        "hold": 101,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_14.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "And a fake test hides this. The calls merge on their own.",
+        "hold": 105,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_15.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "With the wrong key, the same cache gave two wild numbers.",
+        "hold": 108,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_16.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Six, and the worst. The code was right and never ran.",
+        "hold": 100,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_17.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Tests green. Written up. Nothing in the app called it.",
+        "hold": 98,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_18.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Now the rule is simple. No picture of it, no proof of it.",
+        "hold": 115,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_19.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "So done here means numbers, not adjectives.",
+        "hold": 88,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_20.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Ask any of it one thing. What would change your mind?",
+        "hold": 99,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_21.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TSide",
+    "title": "TrialScope — the code",
+    "accent": "#38bdf8",
+    "vw": 1600,
+    "vh": 1000,
+    "cropVH": null,
+    "frame": false,
+    "paneLabels": [
+      "VS Code — cheiron-ai-take-home"
+    ],
+    "steps": [
+      {
+        "caption": "First, tell the editor this folder is ours to run.",
+        "hold": 108,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_00.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "This is the whole repo. Let us open it.",
+        "hold": 86,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_01.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The app folder. Each file does one job.",
+        "hold": 92,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_02.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Start where a request lands. Then follow it down.",
+        "hold": 100,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_03.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "It hands the question to the executor.",
+        "hold": 76,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_04.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "This file asks the registry for counts. Nothing else.",
+        "hold": 105,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_05.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "There it is. Ask for the count, take no records back.",
+        "hold": 116,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_06.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "And here, the same question twice becomes one trip.",
+        "hold": 108,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_07.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "This one turns a question into a list of asks.",
+        "hold": 87,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_08.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The groups are fixed. So the work has a ceiling.",
+        "hold": 89,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_09.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "One ask per bar. Six bars is six trips to the site.",
+        "hold": 109,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_10.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Now run the tests. Not a picture of tests. The tests.",
+        "hold": 118,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_11.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Watch it work.",
+        "hold": 38,
+        "burst": true,
+        "zoomScale": null,
+        "panes": [
+          {
+            "imgs": [
+              "wt-collab/TSide/p0_12_00.png",
+              "wt-collab/TSide/p0_12_01.png",
+              "wt-collab/TSide/p0_12_02.png",
+              "wt-collab/TSide/p0_12_03.png",
+              "wt-collab/TSide/p0_12_04.png",
+              "wt-collab/TSide/p0_12_05.png",
+              "wt-collab/TSide/p0_12_06.png",
+              "wt-collab/TSide/p0_12_07.png",
+              "wt-collab/TSide/p0_12_08.png",
+              "wt-collab/TSide/p0_12_09.png",
+              "wt-collab/TSide/p0_12_10.png",
+              "wt-collab/TSide/p0_12_11.png",
+              "wt-collab/TSide/p0_12_12.png",
+              "wt-collab/TSide/p0_12_13.png",
+              "wt-collab/TSide/p0_12_14.png",
+              "wt-collab/TSide/p0_12_15.png",
+              "wt-collab/TSide/p0_12_16.png",
+              "wt-collab/TSide/p0_12_17.png",
+              "wt-collab/TSide/p0_12_18.png",
+              "wt-collab/TSide/p0_12_19.png",
+              "wt-collab/TSide/p0_12_20.png",
+              "wt-collab/TSide/p0_12_21.png",
+              "wt-collab/TSide/p0_12_22.png",
+              "wt-collab/TSide/p0_12_23.png",
+              "wt-collab/TSide/p0_12_24.png",
+              "wt-collab/TSide/p0_12_25.png",
+              "wt-collab/TSide/p0_12_26.png",
+              "wt-collab/TSide/p0_12_27.png",
+              "wt-collab/TSide/p0_12_28.png",
+              "wt-collab/TSide/p0_12_29.png",
+              "wt-collab/TSide/p0_12_30.png",
+              "wt-collab/TSide/p0_12_31.png",
+              "wt-collab/TSide/p0_12_32.png",
+              "wt-collab/TSide/p0_12_33.png",
+              "wt-collab/TSide/p0_12_34.png",
+              "wt-collab/TSide/p0_12_35.png",
+              "wt-collab/TSide/p0_12_36.png",
+              "wt-collab/TSide/p0_12_37.png"
+            ],
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Green. The two hop question, checked end to end, just now.",
+        "hold": 134,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_13.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "And this is the best file in the repo.",
+        "hold": 77,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_14.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Every thing I believed here that turned out to be wrong.",
+        "hold": 94,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_15.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "With the test that proved it wrong, and what I changed.",
+        "hold": 99,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_16.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "That list is how you read this repo.",
+        "hold": 79,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TSide/p0_17.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      }
+    ]
   }
 ];

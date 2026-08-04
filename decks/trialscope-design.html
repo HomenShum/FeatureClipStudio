@@ -1,0 +1,190 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TrialScope — design under production</title>
+<!--
+  Rebuilt to the 26Agent format, measured with analyze-reference.mjs.
+  Four rules taken from that analysis, each one the previous deck broke:
+
+    1. Every slide is TOY ASSUMPTION vs PRODUCTION REALITY. The contrast is the
+       structure, not a rhetorical flourish.
+    2. Design is justified by FAILURE MODE, never by feature. The left column is
+       always what went wrong.
+    3. One MEASURED NUMBER per slide, set large enough to read as the point.
+       The previous deck put a sentence where this puts a number.
+    4. Claims are backed by a diagram or a figure, not prose.
+
+  Every number here is from MEASUREMENTS.md — things believed, then measured,
+  then changed. None is illustrative.
+-->
+<style>
+  :root { --bg:#080d16; --ink:#eef4ff; --dim:#8ba0bb; --toy:#f59e0b; --prod:#2dd4bf; --bad:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); width:1440px; height:900px; overflow:hidden;
+         font-family:"Inter","Segoe UI",system-ui,sans-serif; }
+  .slide { display:none; padding:48px 64px 150px; height:900px; flex-direction:column; }
+  .slide.on { display:flex; }
+  .kicker { font-size:18px; letter-spacing:.18em; text-transform:uppercase; color:var(--prod); font-weight:800; }
+  h1 { font-size:52px; line-height:1.05; margin:12px 0 6px; font-weight:800; letter-spacing:-.02em; }
+  .sub { font-size:23px; color:var(--dim); margin-bottom:22px; max-width:1180px; line-height:1.35; }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:18px; }
+  .col { border-radius:14px; padding:20px 24px; border:1px solid; }
+  .toy  { background:rgba(245,158,11,.07); border-color:#7a5a18; }
+  .prod { background:rgba(45,212,191,.07); border-color:#1d5c55; }
+  .col h2 { font-size:15px; letter-spacing:.15em; text-transform:uppercase; margin:0 0 10px; font-weight:800; }
+  .toy h2  { color:var(--toy); }  .prod h2 { color:var(--prod); }
+  .col p { font-size:23px; line-height:1.38; margin:0 0 8px; }
+  .metric { display:flex; align-items:baseline; gap:20px; background:#0e1524; border:1px solid #1d2b45;
+            border-radius:14px; padding:18px 26px; }
+  .metric .n { font-size:60px; font-weight:800; color:var(--prod); line-height:1; letter-spacing:-.03em; white-space:nowrap; }
+  .metric .n.bad { color:var(--bad); }
+  .metric .lbl { font-size:21px; color:var(--dim); line-height:1.32; }
+  .flow { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:6px; }
+  .node { background:#111c30; border:1px solid #26374f; border-radius:10px; padding:11px 16px;
+          font-size:19px; font-weight:600; }
+  .node.hi { border-color:var(--prod); color:var(--prod); }
+  .node.no { border-color:var(--bad); color:var(--bad); text-decoration:line-through; opacity:.75; }
+  .arrow { color:var(--dim); font-size:22px; }
+  code { font-family:"JetBrains Mono",Consolas,monospace; font-size:20px; background:#0a1424;
+         padding:2px 7px; border-radius:6px; color:var(--prod); }
+  table { width:100%; border-collapse:collapse; font-size:22px; }
+  td, th { padding:9px 12px; border-bottom:1px solid #1b2740; text-align:left; }
+  th { color:var(--dim); font-size:15px; letter-spacing:.13em; text-transform:uppercase; }
+  td.num { font-family:"JetBrains Mono",Consolas,monospace; color:var(--prod); font-weight:700; }
+  td.num.bad { color:var(--bad); }
+  #next { position:fixed; right:30px; bottom:26px; background:var(--prod); color:#04231f; border:0;
+          border-radius:11px; padding:12px 22px; font-size:19px; font-weight:800; cursor:pointer; }
+</style>
+
+<div class="slide on" data-testid="d0">
+  <div class="kicker">TrialScope</div>
+  <h1>The demo worked. Then it met production.</h1>
+  <div class="sub">Six things I believed while building this. Each one was measured. Each one was wrong.</div>
+  <div class="split">
+    <div class="col toy"><h2>What a demo assumes</h2>
+      <p>One user. A warm cache. The API always answers. The numbers add up. The tests mean the code runs.</p></div>
+    <div class="col prod"><h2>What actually happened</h2>
+      <p>Many tenants on one budget. Cold starts. Bursts that collapse. Buckets that overlap. A module nothing ever called.</p></div>
+  </div>
+  <div class="metric"><span class="n">6</span>
+    <span class="lbl">beliefs, each killed by a number — every figure in this deck is from <code>MEASUREMENTS.md</code></span></div>
+</div>
+
+<div class="slide" data-testid="d1">
+  <div class="kicker">Failure 1 · the model does arithmetic</div>
+  <h1>A model that adds up is a model that makes things up.</h1>
+  <div class="split">
+    <div class="col toy"><h2>The easy way</h2>
+      <p>Pull a page of studies, group them in code, let the model summarise the totals.</p></div>
+    <div class="col prod"><h2>What it costs you</h2>
+      <p>Every number becomes unverifiable. Nobody can tell a real count from a plausible one.</p></div>
+  </div>
+  <div class="flow">
+    <span class="node">question</span><span class="arrow">→</span>
+    <span class="node hi">plan the buckets</span><span class="arrow">→</span>
+    <span class="node hi">one count probe each</span><span class="arrow">→</span>
+    <span class="node">chart</span>
+    <span class="arrow">·</span><span class="node no">sum client-side</span>
+  </div>
+  <div class="metric" style="margin-top:16px"><span class="n">37</span>
+    <span class="lbl">probes behind one network graph — each keeps its URL, and re-issuing it returns the same count</span></div>
+</div>
+
+<div class="slide" data-testid="d2">
+  <div class="kicker">Failure 2 · the buckets lie</div>
+  <h1>The totals matched. The buckets still overlapped.</h1>
+  <div class="sub">A trial can be Phase 2 and Phase 3. I checked the sum against the total and called that proof.</div>
+  <table>
+    <tr><th>query</th><th>matched</th><th>bucket sum</th><th>error</th></tr>
+    <tr><td>pembrolizumab</td><td class="num">2,915</td><td class="num">3,205</td><td class="num bad">+290 overlap</td></tr>
+    <tr><td>melanoma</td><td class="num">3,738</td><td class="num">3,602</td><td class="num bad">−136 absent</td></tr>
+  </table>
+  <div class="metric" style="margin-top:18px"><span class="n bad">±</span>
+    <span class="lbl">the error does not even keep a consistent sign — overlap inflates, missing values deflate, and on
+      constructible inputs they cancel <b>exactly</b>. Equality is a coincidence, not a partition.</span></div>
+</div>
+
+<div class="slide" data-testid="d3">
+  <div class="kicker">Failure 3 · one budget, many tenants</div>
+  <h1>Jitter felt like the fix. It measured like nothing.</h1>
+  <div class="sub">Fairness across tenants sharing one upstream budget. Jain index — 1.0 is perfectly fair.</div>
+  <div class="split">
+    <div class="col toy"><h2>Tried first — randomised backoff</h2>
+      <p style="font-size:44px;font-weight:800;color:var(--toy);margin:6px 0">0.139 → 0.150</p>
+      <p>Spreading collisions in time does not decide who goes next.</p></div>
+    <div class="col prod"><h2>What worked — FIFO arrival order</h2>
+      <p style="font-size:44px;font-weight:800;color:var(--prod);margin:6px 0">→ 0.986</p>
+      <p>Fairness is a queueing property, not a timing one.</p></div>
+  </div>
+  <div class="metric"><span class="n bad">0</span>
+    <span class="lbl">tenants a share cap can save on its own — <code>max_tenant_share</code> bounds work
+      <b>in flight</b>, and a tenant that grabs and releases instantly never touches it</span></div>
+</div>
+
+<div class="slide" data-testid="d4">
+  <div class="kicker">Failure 4 · the cache leaks</div>
+  <h1>A shared cache tells one tenant what another asked.</h1>
+  <div class="split">
+    <div class="col toy"><h2>The assumption</h2>
+      <p>A cache is a performance detail. Tenants share it, results are public data anyway.</p></div>
+    <div class="col prod"><h2>The measurement</h2>
+      <p>Hit and miss are distinguishable by clock. That difference is a channel.</p></div>
+  </div>
+  <div class="metric"><span class="n bad">31,377×</span>
+    <span class="lbl">timing gap between a cached and an uncached answer — closed by giving every tenant its own cache
+      over a shared, FIFO-ordered quota</span></div>
+</div>
+
+<div class="slide" data-testid="d5">
+  <div class="kicker">Failure 5 · the herd</div>
+  <h1>Eight identical questions should cost one answer.</h1>
+  <div class="flow">
+    <span class="node">8 concurrent asks</span><span class="arrow">→</span>
+    <span class="node hi">single-flight</span><span class="arrow">→</span>
+    <span class="node hi">1 upstream request</span>
+  </div>
+  <div class="metric" style="margin-top:18px"><span class="n">8 → 1</span>
+    <span class="lbl">and the trap: a <b>synchronous mock hides this entirely</b>. Under a fake transport the calls
+      collapse anyway and the bug reports itself as already fixed. The test needs a transport that really awaits.</span></div>
+  <div class="metric" style="margin-top:14px"><span class="n bad">596,902<span style="color:var(--dim);font-size:34px"> vs </span>2,917</span>
+    <span class="lbl">what the same cache returns when the key is wrong — "counts are identical" was in the README
+      before anyone measured it</span></div>
+</div>
+
+<div class="slide" data-testid="d6">
+  <div class="kicker">Failure 6 · the worst one</div>
+  <h1>Correct, tested, documented — and never called.</h1>
+  <div class="split">
+    <div class="col toy"><h2>Every signal was green</h2>
+      <p>Passing tests. A README section. A measured 31,377× channel it closed.</p></div>
+    <div class="col prod"><h2>Nothing constructed it</h2>
+      <p>The module was unreachable from the running service. Tests passing is not the same as code running.</p></div>
+  </div>
+  <div class="metric"><span class="n bad">0</span>
+    <span class="lbl">callers — the rule this forced: <b>a surface with no screenshot has not been checked</b>,
+      however green its tests are. Two user-visible defects were found only by asking for a capture that did not exist.</span></div>
+</div>
+
+<div class="slide" data-testid="d7">
+  <div class="kicker">What "done" means here</div>
+  <h1>Thresholds, not adjectives.</h1>
+  <table>
+    <tr><th>gate</th><th>threshold</th><th>how it is checked</th></tr>
+    <tr><td>Every number re-issuable</td><td class="num">100%</td><td>trace replay through a separate client</td></tr>
+    <tr><td>Tenant fairness (Jain)</td><td class="num">≥ 0.95</td><td>concurrency ramp, offline, every run</td></tr>
+    <tr><td>Part-of-whole marks on overlapping data</td><td class="num">0</td><td><code>buckets_are_exclusive</code> blocks the render</td></tr>
+    <tr><td>Peer claims confirmed by the registry</td><td class="num">100%</td><td>both sides probed, never one</td></tr>
+    <tr><td>Test suite</td><td class="num">17 in 1.8s</td><td>run on camera, not screenshotted</td></tr>
+  </table>
+  <div class="metric" style="margin-top:18px"><span class="n">1</span>
+    <span class="lbl">question to ask of any of it — <b>which measurement would change your mind?</b>
+      If there is no answer, it was never a decision.</span></div>
+</div>
+
+<button id="next" data-testid="deck-next">Next</button>
+<script>
+  let i = 0;
+  const s = [...document.querySelectorAll(".slide")];
+  document.getElementById("next").onclick = () => {
+    s[i].classList.remove("on"); i = (i + 1) % s.length; s[i].classList.add("on");
+  };
+</script>
