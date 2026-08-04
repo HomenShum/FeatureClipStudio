@@ -199,7 +199,7 @@ const run = async () => {
       console.log(`  fail-state: ${bodyText}`);
       if (attempt < maxAttempts) {
         await page.close().catch(() => {});
-        page = await openHarness(browser);
+        page = await openHarness(browser, spec); // retry must reopen the SPEC's url — bare openHarness went to BASE and failed every retry of a spec'd app
         console.log(`  retrying ${spec.id} in a fresh page`);
       }
     }

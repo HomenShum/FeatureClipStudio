@@ -139,6 +139,44 @@ export const SPECS = [
     ],
   },
   {
+    // nodebench-ai, end to end from the signed-out landing. Storyboard grounded in the repo's own
+    // demo-capture/DISCOVERY.md (verified 2026-08-03/04). Live ask is auth-gated — the chip sends
+    // and the app honestly replies "Live chat is not running", a dead end on camera — so the cut
+    // walks the REAL flow a first-time visitor can complete: hero -> receipts composer -> the
+    // reproducible example permalink (/r/42c0i81fzxr0, immutable, served by live Convex). Counts on
+    // the LANDING vary by day (3 vs 14 attached sources) so no caption speaks a landing number;
+    // the permalink's numbers (5 sources, 24s, <$0.01) are frozen and safe to say out loud.
+    id: "NodeBenchAI",
+    title: "NodeBench — answers with receipts",
+    accent: "#B5432A",
+    url: "http://localhost:5200/redesign/chat",
+    chromeUrl: "nodebench.ai",
+    ready: "What do you need to know?",
+    retries: 2,
+    scales: { action: 1.0, result: 1.0, open: 1.0 },
+    steps: [
+      { act: "sleep", ms: 2500 },
+      { cap: "Meet NodeBench. It is for people who research for a living — and have to defend every answer in a meeting.", cursor: "text=What do you need to know?", hold: 104 },
+      { cap: "Before you even ask, it has read today's news pile — sources attached, and nothing it writes skips review.", cursor: "text=no shared writes", hold: 96 },
+      { cap: "Here is a real answered question, saved so anyone can check it.", cursor: "text=See a real answered example", click: true, hold: 76 },
+      { act: "click", sel: "text=See a real answered example" },
+      { act: "sleep", ms: 5000 },
+      { act: "waitText", value: "View immutable receipt" },
+      { cap: "Every sentence carries a little number — that is where it learned it. No making things up.", hold: 96 },
+      { act: "scrollText", value: "5 evidence rows" }, // the expander's literal UI text — "SOURCES (5..." was the discovery doc's prose, not the button
+      { act: "sleep", ms: 800 },
+      { act: "click", sel: "text=5 evidence rows" },
+      { act: "sleep", ms: 1200 },
+      { cap: "Open the sources, and there are the actual articles. Footnotes you can check yourself.", cursor: "text=5 evidence rows", hold: 88 },
+      { cap: "It even shows the bill: five sources, twenty-four seconds, under a penny.", cursor: "text=Deep dive", hold: 84 },
+      { act: "scrollText", value: "Share reproducible link" },
+      { act: "sleep", ms: 800 },
+      { cap: "Send the link, and your boss sees exactly what you saw — same answer, same sources, frozen.", cursor: "text=Share reproducible link", hold: 96 },
+      { cap: "And when you trust it, one click turns the answer into a report.", cursor: "text=Promote claim", hold: 78 },
+      { cap: "Ask, check, share, and prove it. That is NodeBench.", hold: 112 },
+    ],
+  },
+  {
     // R2/R3 from JOURNEYS.md — the fresh-user flow, a SEPARATE clip from the
     // #story drills. This journey only exists after hydration: boot.ts defers
     // the app until first interaction, and the React landing that replaces the
