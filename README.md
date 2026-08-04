@@ -61,6 +61,79 @@ ffmpeg (two‑pass palette)  4. GIF     stats_mode=diff + lanczos + bayer + diff
    →  assets/feature-*.gif            =rectangle  →  clean, small, looping GIF
 ```
 
+
+## The instrument is noisy. Sample it.
+
+**Measured: the identical file scored 34/44 and then 22/44 on two runs.** That is
+27% of the scale, on the same bytes. Every "this cut improved" claim made from
+single readings was unsupported — including one this repo published and then
+retracted ("comprehension 9 → 16, the voiceover was the missing piece"), which
+was variance wearing the costume of a result.
+
+Two causes, separated by correlating the runs:
+
+1. Ordinary sampling variance at temperature 0.2.
+2. **The anti-uniformity re-ask itself.** Both 22s re-asked; the 34 did not. Told
+   *"you gave 91% of dimensions the same score, force a spread"*, the model
+   spreads **downward** — demoting to 0 and 1 without ever promoting to 2. The
+   device added to stop the judge shrugging was biasing the number it produced.
+   It is now opt-in behind `--reask` and off by default, because a debiasing
+   mechanism that biases is worse than the shrug it replaced.
+
+So `--samples 3` is the **default**: three independent judgements, per-dimension
+median, prose taken from the run nearest the median total so the report still
+reads as one judgement. Spread is now 22/23/25 and 44/45/44 where it was 34 vs 22.
+
+**Never quote a single run.** If you are claiming a delta, quote the sample
+totals on both sides of it.
+
+## Plain English is arithmetic, so it is not an API call
+
+```bash
+npm run readability -- --id TShero --min 80
+```
+
+Flesch Reading Ease per caption, **before** the render, naming the exact sentence
+and its hard words. The LLM judge can say a video is too technical; it cannot say
+which line, costs 40 seconds, and — given the variance above — could not resolve
+the change at all. Reading ease could.
+
+Measured on TrialScope: mean **80.5 → 109.3**, captions below gate 11 → 1. Two
+consequences: the judge's `lay_sense` evidence went from *"will struggle with API
+calls, dimension, co-occurrence, peer sponsors"* to *"uses simple analogies"*, and
+runtime fell 19%, because plain sentences are also shorter to say.
+
+Round-trip without re-capturing (captions are render-time data, so no pixel of
+the app changes):
+
+```bash
+npm run captions -- --id TShero --from captions.plain.json
+npm run voice -- --id TShero --out out/x.vo.wav      # writes x.vo.holds.json
+npm run retime -- --id TShero --holds out/x.vo.holds.json --shrink
+```
+
+**Narration owns pacing.** A storyboard is first timed for *reading*; speech is
+slower and unevenly so — nine of 21 lines overran their hold the first time a
+voice was added. The fix is not a faster reader: the picture under a caption is a
+still frame that costs nothing to hold longer.
+
+## Two video types, two rubrics
+
+| | `--mode demo` (44 pts) | `--mode interview` (50 pts) |
+|---|---|---|
+| answers | does it work, and did anyone understand it | why is it built this way, and can you defend it |
+| second axis | comprehension | defensibility |
+| unique dimensions | `own_case_transfer` | `alternatives_named` · `tradeoff_honesty` · `falsifiability` · `failure_modes_named` |
+
+The interview variant exists because an agent produces faster than its author can
+absorb, and the gap shows up first as a walkthrough full of WHAT and empty of WHY.
+`tradeoff_honesty` scores **0 if every tradeoff resolves in the author's favour**,
+and `failure_modes_named` needs a specific checkable failure rather than humility
+used as a rhetorical move.
+
+`decks/trialscope-decisions.html` is the worked example: eight decisions, four
+fixed zones each — chosen, rejected, cost, falsifier. Measured 45/50 (44/45/44).
+
 ## Sound — generated from the storyboard, not laid over the top
 
 ```bash

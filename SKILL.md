@@ -166,6 +166,26 @@ Every reference note should be the first kind.
    GIF; this composition's pre-move-delay → glide → hold pattern is the right shape,
    keep it that way through refactors.
 
+## The judge is noisy — never quote one run
+
+Measured: the identical file scored 34/44 then 22/44. `--samples 3` is the default
+(per-dimension median). If you claim a cut improved, quote the sample totals on
+both sides. A single reading supports nothing.
+
+The `--reask` anti-uniformity device biases scores DOWNWARD and is off by default.
+
+## Score readability before you render
+
+`npm run readability -- --id <Id> --min 80` is arithmetic, runs in milliseconds,
+and names the exact caption. Do this before spending a render. Target mean 100.
+Plain sentences are also shorter to say, so this shortens the cut.
+
+## Pick the rubric that matches the video
+
+`--mode demo` for a product walkthrough; `--mode interview` for a codebase or
+decisions walkthrough, which swaps comprehension for defensibility
+(alternatives_named, tradeoff_honesty, falsifiability, failure_modes_named).
+
 ## Stage 5 (REQUIRED, and it loops): judge, revise, re-render
 
 `npm run clip -- --comp WTC-<id> --out out/<id>.mp4 --for "<audience>"` is the

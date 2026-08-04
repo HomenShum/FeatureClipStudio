@@ -21,7 +21,7 @@
     "streamlit"
   ],
   "scripts": {
-    "check": "node --check walkthrough.mjs && node --check judge-video.mjs && node --check iterate.mjs && node --check rubric.mjs && node --check score.mjs && node --check voice.mjs",
+    "check": "node --check walkthrough.mjs && node --check judge-video.mjs && node --check iterate.mjs && node --check rubric.mjs && node --check score.mjs && node --check voice.mjs && node --check readability.mjs && node --check retime.mjs && node --check apply-captions.mjs",
     "capture": "node walkthrough.mjs",
     "studio": "remotion studio src/index.js",
     "render": "remotion render src/index.js",
@@ -30,7 +30,10 @@
     "judge": "node judge-video.mjs",
     "clip": "node iterate.mjs",
     "score": "node score.mjs",
-    "voice": "node voice.mjs"
+    "voice": "node voice.mjs",
+    "readability": "node readability.mjs",
+    "retime": "node retime.mjs",
+    "captions": "node apply-captions.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.474",
