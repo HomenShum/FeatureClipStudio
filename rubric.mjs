@@ -57,12 +57,30 @@ export const COMPREHENSION = [
   ["own_case_transfer", "could a viewer now use this on THEIR OWN input? Is the entry point shown (where you type, what a good question looks like, what varies vs what is fixed)? A demo that only ever proves one hardcoded example scores 0."],
 ];
 
+// ------------------------------------------------------- INTERVIEW variant
+// For a CODEBASE walkthrough rather than a product demo. The audience is not
+// trying to understand what the thing does -- they are deciding whether the
+// author understands it. So `own_case_transfer` (can YOU use this) is replaced
+// by dimensions that only a defensible engineering account can score on.
+//
+// This exists because an agent produces faster than its author can absorb, and
+// the gap shows up first as a walkthrough full of WHAT and empty of WHY.
+export const INTERVIEW = [
+  ...COMPREHENSION.filter(([k]) => k !== "own_case_transfer"),
+  ["alternatives_named", "for each decision, is the REJECTED option stated concretely enough that a listener could have argued for it? A walkthrough that presents every choice as the only choice is describing an artefact, not defending it."],
+  ["tradeoff_honesty", "is what each decision COSTS said out loud, in the author's own voice, without being softened into a benefit? 0 if every tradeoff resolves in the author's favour."],
+  ["falsifiability", "for each claim, could a listener state the measurement that would prove it wrong? THE dimension of this rubric: a decision with no statable falsifier is a preference nobody has examined."],
+  ["failure_modes_named", "does the author name something that went WRONG here — a belief that was measured and killed, a bug that passed its tests — rather than only what works? Scoring 2 requires a specific, checkable failure, not humility as a rhetorical move."],
+];
+
 export const ALL = [...CRAFT, ...COMPREHENSION];
 export const MAX = ALL.length * 2;
 
 const fmt = (list) => list.map(([k, q], i) => `${i + 1}. ${k} - ${q}`).join("\n");
 
-export const rubricPrompt = (audience) => `You are judging a rendered product-walkthrough video
+export const setFor = (mode) => (mode === "interview" ? INTERVIEW : COMPREHENSION);
+
+export const rubricPrompt = (audience, mode = "demo") => `You are judging a rendered product-walkthrough video
 (a feature demo with an animated cursor, click ripples, step captions, and a progress bar —
 possibly with narration).
 
@@ -81,7 +99,7 @@ Score each dimension 0-2 (0=fails, 1=acceptable, 2=strong) WITH specific evidenc
 ${fmt(CRAFT)}
 
 === COMPREHENSION (did anyone understand it) — judged as ${audience} ===
-${fmt(COMPREHENSION)}
+${fmt(setFor(mode))}
 
 These two blocks fail INDEPENDENTLY and you must let them. A cut can be beautifully made and
 still leave the audience unable to say who it is for — that is a high CRAFT score next to a low
@@ -117,7 +135,7 @@ Finally an overall verdict: publish | fix-then-publish | rework.
 
 Return STRICT JSON:
 {"audience":"${audience}",
- "scores":{"<dimension>":{"score":n,"evidence":"..."}, ...all ${ALL.length} dimensions...},
+ "scores":{"<dimension>":{"score":n,"evidence":"..."}, ...all ${CRAFT.length + setFor(mode).length} dimensions...},
  "signature_moment_ts":"m:ss","weakest":"<dimension>","strongest":"<dimension>",
  "weakest_comprehension":"<dimension>",
  "defects":[{"ts":"m:ss","severity":"P0|P1|P2","observed":"...","fix":"..."}],

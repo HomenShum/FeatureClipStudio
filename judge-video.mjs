@@ -11,7 +11,7 @@
 // Severity policy: P0 blocks publishing · P1 fix before posting · P2 log and ship — do NOT enter
 // a re-render polish loop for P2s the judge already passed.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { rubricPrompt, CRAFT, COMPREHENSION, MAX } from "./rubric.mjs";
+import { rubricPrompt, CRAFT, COMPREHENSION, INTERVIEW, setFor } from "./rubric.mjs";
 
 const argv = process.argv.slice(2);
 const flag = (name, dflt) => {
@@ -26,6 +26,10 @@ const audience = flag("for", process.env.JUDGE_AUDIENCE || "a smart newcomer who
 const gate = Number(flag("gate", process.env.JUDGE_GATE || "0"));   // exit 1 below this score
 const samples = Number(flag("samples", process.env.JUDGE_SAMPLES || "3"));
 const reask = argv.includes("--reask");
+// --mode interview swaps the comprehension half for the defensibility half.
+const mode = flag("mode", "demo");
+const SECOND = setFor(mode);
+const MAX = (CRAFT.length + SECOND.length) * 2;
 const video = argv.find((a) => !a.startsWith("--") && argv[argv.indexOf(a) - 1] !== "--for" && argv[argv.indexOf(a) - 1] !== "--gate");
 if (!video || !existsSync(video)) {
   console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--for \"<audience>\"] [--gate <n>]");
@@ -100,7 +104,7 @@ So when you score, ask specifically:
     static screenshot?
 `;
 
-const RUBRIC = rubricPrompt(audience);
+const RUBRIC = rubricPrompt(audience, mode);
 
 const run = async () => {
   const bytes = readFileSync(video);
@@ -197,14 +201,14 @@ const run = async () => {
   const scores = Object.entries(judge.scores);
   const total = scores.reduce((a, [, v]) => a + v.score, 0);
   const sub = (list) => list.reduce((a, [k]) => a + (judge.scores[k]?.score ?? 0), 0);
-  const craft = sub(CRAFT), comp = sub(COMPREHENSION);
+  const craft = sub(CRAFT), comp = sub(SECOND);
   const row = ([k]) => `| ${k} | ${judge.scores[k]?.score ?? "-"}/2 | ${(judge.scores[k]?.evidence || "").replace(/\|/g, "\|")} |`;
 
   const md = [
     `# Video judge — ${video}`,
     ``,
     `**Judge:** ${model} · **Audience:** ${audience}`,
-    `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, comprehension ${comp}/${COMPREHENSION.length * 2}`,
+    `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === "interview" ? "defensibility" : "comprehension"} ${comp}/${SECOND.length * 2}`,
     ``,
     `> ${judge.summary}`,
     ``,
@@ -214,9 +218,9 @@ const run = async () => {
     `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
     ``,
-    `## Comprehension — did anyone understand it (${comp}/${COMPREHENSION.length * 2})`,
+    `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
     `Judged as: *${audience}*`,
-    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...COMPREHENSION.map(row),
+    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
     ``,
     `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
     ``,

@@ -1,0 +1,189 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TrialScope — decisions and tradeoffs</title>
+<!--
+  A deck built to be CAPTURED, not presented live.
+
+  Every slide is one decision in the same four zones: what was chosen, what was
+  rejected, what it costs, and what would prove it wrong. The last zone is the
+  one that makes this an engineering walkthrough rather than a tour -- a decision
+  you cannot state a falsifier for is a preference you have not noticed yet.
+
+  The content is not a summary of the code. It is the set of things that were
+  BELIEVED and then measured, which is the part an author forgets first and an
+  interviewer asks about first.
+-->
+<style>
+  :root { --bg:#0b1220; --ink:#eaf2ff; --dim:#93a7bf; --accent:#2dd4bf; --warn:#fbbf24; --bad:#f87171; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); width:1440px; height:900px; overflow:hidden;
+         font-family:"Inter","Segoe UI",system-ui,sans-serif; }
+  /* 150px of bottom padding is not taste: the renderer draws its caption band
+     over the lower ~14% of frame, and without this the last row of every slide
+     is covered by the sentence describing it. */
+  .slide { display:none; padding:56px 72px 150px; height:900px; flex-direction:column; }
+  .slide.on { display:flex; }
+  .kicker { font-size:19px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:700; }
+  h1 { font-size:58px; line-height:1.06; margin:14px 0 8px; font-weight:800; letter-spacing:-.02em; }
+  .sub { font-size:25px; color:var(--dim); margin-bottom:30px; max-width:1180px; line-height:1.35; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1; }
+  .box { background:#111c30; border:1px solid #1f2f4a; border-radius:16px; padding:24px 28px; }
+  .box h2 { font-size:17px; letter-spacing:.13em; text-transform:uppercase; margin:0 0 14px; color:var(--dim); font-weight:700; }
+  .box p, .box li { font-size:25px; line-height:1.42; margin:0 0 10px; }
+  .box ul { margin:0; padding-left:24px; }
+  .chose { border-color:#1d5c55; } .chose h2 { color:var(--accent); }
+  .cost  { border-color:#6b5320; } .cost h2  { color:var(--warn); }
+  .falsi { border-color:#5e2a2a; } .falsi h2 { color:var(--bad); }
+  code { font-family:"JetBrains Mono",Consolas,monospace; font-size:22px; background:#0a1424; padding:2px 8px;
+         border-radius:6px; color:var(--accent); }
+  .num { font-size:44px; font-weight:800; color:var(--accent); display:block; line-height:1.1; }
+  .foot { margin-top:20px; font-size:20px; color:var(--dim); }
+  #next { position:fixed; right:34px; bottom:30px; background:var(--accent); color:#06231f; border:0;
+          border-radius:12px; padding:14px 26px; font-size:20px; font-weight:800; cursor:pointer; }
+</style>
+
+<div class="slide on" data-testid="slide-0">
+  <div class="kicker">TrialScope</div>
+  <h1>Every number on screen came from the registry.</h1>
+  <div class="sub">Not one was added up, guessed at, or written by a model. This is how that was
+    held, what it cost, and where it nearly broke.</div>
+  <div class="grid">
+    <div class="box chose"><h2>The rule</h2>
+      <p>The model picks <b>which</b> questions to ask.<br>It never answers one.</p>
+      <p class="foot">Each answer is a <code>totalCount</code> the site returned.</p></div>
+    <div class="box falsi"><h2>How you check it</h2>
+      <p>Every step keeps the web address it used.</p>
+      <p>Send that address yourself. Same number, or the rule is broken.</p></div>
+  </div>
+</div>
+
+<div class="slide" data-testid="slide-1">
+  <div class="kicker">Decision 1 · the invariant</div>
+  <h1>Probe for counts. Never compute them.</h1>
+  <div class="sub">A chart with six bars is six separate questions to ClinicalTrials.gov, not one
+    question and five sums.</div>
+  <div class="grid">
+    <div class="box chose"><h2>Chosen</h2>
+      <p>One count probe per bucket.<br><code>countTotal=true&amp;pageSize=1</code></p></div>
+    <div class="box"><h2>Rejected</h2>
+      <p>Fetch a page of studies and group them locally. Faster, one request.</p></div>
+    <div class="box cost"><h2>What it costs</h2>
+      <p>N requests where one would do. Pacing, caching and single-flight exist only to pay for this.</p></div>
+    <div class="box falsi"><h2>What would refute it</h2>
+      <p>Replay any trace row and get a different number.</p>
+      <p class="foot">The evals re-probe through a <b>separate client</b>, so the system cannot confirm its own arithmetic.</p></div>
+  </div>
+</div>
+
+<div class="slide" data-testid="slide-2">
+  <div class="kicker">Decision 2 · storage</div>
+  <h1>No database. On purpose.</h1>
+  <div class="sub">The registry is the source of truth, and a copy of it is a promise to be wrong later.</div>
+  <div class="grid">
+    <div class="box chose"><h2>Chosen</h2>
+      <p>Ask live. Cache in memory, per tenant, for minutes.</p></div>
+    <div class="box"><h2>Rejected</h2>
+      <p>Mirror the registry into Postgres and query that.</p></div>
+    <div class="box cost"><h2>What it costs</h2>
+      <p>Latency on a cold cache, and a hard ceiling on question shapes: if the API cannot express it, neither can we.</p></div>
+    <div class="box falsi"><h2>What would refute it</h2>
+      <p>A question users actually ask that the count API cannot answer at all.</p>
+      <p class="foot">One appeared: two-hop peer questions. It forced an entity index — and that index proposes, it never answers.</p></div>
+  </div>
+</div>
+
+<div class="slide" data-testid="slide-3">
+  <div class="kicker">Decision 3 · the graph</div>
+  <h1>Neo4j was the right answer to the wrong question.</h1>
+  <div class="sub">It matched the stack on paper. It could not be deployed the way this service deploys.</div>
+  <div class="grid">
+    <div class="box cost"><h2>The blocker, measured</h2>
+      <p>Bolt is raw TCP on <code>7687</code>. Cloud Run ingress serves HTTP/1, HTTP/2, gRPC and WebSockets — and nothing else.</p></div>
+    <div class="box chose"><h2>Chosen</h2>
+      <p>An in-process index is the default. Neo4j stays supported, for anyone who runs one.</p></div>
+    <div class="box"><h2>The trap avoided</h2>
+      <p>Two backends invite two behaviours that quietly disagree.</p></div>
+    <div class="box falsi"><h2>What would refute it</h2>
+      <p>Rankings that differ between them.</p>
+      <p class="foot">So the test runs <b>both</b> and diffs the output — never asserts a paraphrase of the Cypher.</p></div>
+  </div>
+</div>
+
+<div class="slide" data-testid="slide-4">
+  <div class="kicker">Decision 4 · the honest chart</div>
+  <h1>The buckets do not add up, and it says so.</h1>
+  <div class="sub">A trial can be Phase 2 and Phase 3. Sum the bars and you get a number that means nothing.</div>
+  <div class="grid">
+    <div class="box"><h2>The belief that was wrong</h2>
+      <p>"If the buckets sum to the total, they must be exclusive."</p></div>
+    <div class="box cost"><h2>The measurement that killed it</h2>
+      <p>Overlap and missing values <b>cancel exactly</b>. The sum matches while the buckets overlap.</p></div>
+    <div class="box chose"><h2>Chosen</h2>
+      <p>Exclusivity is a property of the <b>dimension</b>, asserted from the API's field semantics — never inferred from arithmetic.</p></div>
+    <div class="box falsi"><h2>The consequence</h2>
+      <p><code>buckets_are_exclusive = false</code> blocks pie and 100% stacked marks at render time.</p></div>
+  </div>
+</div>
+
+<div class="slide" data-testid="slide-5">
+  <div class="kicker">Decision 5 · many tenants, one quota</div>
+  <h1>Jitter felt like the fix. It measured like nothing.</h1>
+  <div class="sub">Fairness across tenants sharing one upstream budget, by Jain index — 1.0 is perfectly fair.</div>
+  <div class="grid">
+    <div class="box"><h2>Tried first</h2>
+      <p>Randomised backoff, so tenants stop colliding.</p>
+      <p><span class="num">0.139 → 0.150</span>essentially unchanged</p></div>
+    <div class="box chose"><h2>What worked</h2>
+      <p>Order arrivals fairly — FIFO across tenants.</p>
+      <p><span class="num">→ 0.986</span>near perfect</p></div>
+    <div class="box cost"><h2>The other wrong belief</h2>
+      <p><code>max_tenant_share</code> caps work <b>in flight</b>. A tenant that grabs and releases instantly never hits the cap, and still starves everyone.</p></div>
+    <div class="box falsi"><h2>How it is checked</h2>
+      <p>A concurrency ramp, offline, every run.</p>
+      <p class="foot">A synchronous mock <b>hides</b> the race: 8 calls collapse to 1 and the bug reports itself as fixed.</p></div>
+  </div>
+</div>
+
+<div class="slide" data-testid="slide-6">
+  <div class="kicker">The failure worth naming</div>
+  <h1>Correct, tested, documented — and never called.</h1>
+  <div class="sub">The per-tenant cache closed a timing side-channel measured at 31,377x. It had passing
+    tests. It had a README section. Nothing in the running service constructed it.</div>
+  <div class="grid">
+    <div class="box cost"><h2>Why it survived review</h2>
+      <p>Every signal a reviewer normally trusts was green. Tests passing is not the same as code running.</p></div>
+    <div class="box chose"><h2>What changed because of it</h2>
+      <p>A surface with no screenshot has not been checked, however green its tests are.</p></div>
+    <div class="box"><h2>What it caught next</h2>
+      <p>Two user-visible defects found only because someone asked for a screenshot that did not exist.</p></div>
+    <div class="box falsi"><h2>The standing rule</h2>
+      <p>Adversarial review before anything is called done — hunting weakened checks, unwired mechanisms, and numbers measured before the change they justify.</p></div>
+  </div>
+</div>
+
+<div class="slide" data-testid="slide-7">
+  <div class="kicker">How to read this repo</div>
+  <h1>The list of things that turned out to be wrong.</h1>
+  <div class="sub">Twenty-seven beliefs, each with the measurement that killed it and the change it
+    forced. It is more useful than the current values, because it shows which intuitions do not survive here.</div>
+  <div class="grid">
+    <div class="box chose"><h2>Where to start</h2>
+      <ul><li><code>MEASUREMENTS.md</code> — what was wrong</li>
+          <li><code>EVIDENCE.md</code> — every surface, with its screenshot</li>
+          <li><code>evals/</code> — the independent re-probe</li></ul></div>
+    <div class="box falsi"><h2>The question to ask of any of it</h2>
+      <p>"Which measurement would change your mind?"</p>
+      <p class="foot">If there is no answer, it was never a decision.</p></div>
+  </div>
+</div>
+
+<button id="next" data-testid="deck-next">Next</button>
+<script>
+  let i = 0;
+  const slides = [...document.querySelectorAll(".slide")];
+  document.getElementById("next").onclick = () => {
+    slides[i].classList.remove("on");
+    i = (i + 1) % slides.length;
+    slides[i].classList.add("on");
+  };
+</script>

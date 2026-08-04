@@ -17,6 +17,7 @@
 // client off the ?user= query param. Adjust testids/URLs to match your app.
 import { NODEROOM_SPECS } from "./walkthrough.noderoom.specs.mjs";
 import { TRIALSCOPE_SPECS } from "./walkthrough.trialscope.specs.mjs";
+import { TRIALSCOPE_CODE_SPECS } from "./walkthrough.trialscope-code.specs.mjs";
 
 export const COLLAB_SPECS = [
   {
@@ -100,4 +101,5 @@ export const COLLAB_SPECS = [
   // Real-world example: the LIVE deployed NodeRoom (a Convex + React live-collab app).
   ...NODEROOM_SPECS,
   ...TRIALSCOPE_SPECS,
+  ...TRIALSCOPE_CODE_SPECS,
 ];

@@ -1583,5 +1583,313 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       }
     ]
+  },
+  {
+    "id": "TScode",
+    "title": "TrialScope — decisions and tradeoffs",
+    "accent": "#2dd4bf",
+    "vw": 1440,
+    "vh": 900,
+    "cropVH": null,
+    "frame": false,
+    "paneLabels": [
+      "TrialScope — decisions"
+    ],
+    "steps": [
+      {
+        "caption": "Every number in this app came from the registry. None were made up.",
+        "hold": 70,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_00.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Rule one. The model picks which questions to ask. It never answers one.",
+        "hold": 80,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_01.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "A chart with six bars is six real questions, not one question and five sums.",
+        "hold": 80,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_02.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The cost is real. Six requests where one would do.",
+        "hold": 70,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_03.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "There is no database. A copy of the registry is a promise to be wrong later.",
+        "hold": 84,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_04.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "That sets a hard limit. If the API cannot ask it, neither can we.",
+        "hold": 76,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_05.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Neo4j fit the job on paper. It could not ship here.",
+        "hold": 74,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_06.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Its wire protocol needs a raw port. This host only serves web traffic.",
+        "hold": 80,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_07.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "So both back ends run in the test, and the results are diffed.",
+        "hold": 76,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_08.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "One trial can sit in two groups. So the bars do not add up.",
+        "hold": 78,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_09.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "I believed a matching sum proved the groups were clean. It does not.",
+        "hold": 80,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_10.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Overlap and blanks cancel out. The sum matches while the groups still overlap.",
+        "hold": 84,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_11.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Many users share one budget. Random waits felt like the fix.",
+        "hold": 76,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_12.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "They did almost nothing. Fairness went from 0.14 to 0.15.",
+        "hold": 76,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_13.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Taking turns in order did work. It went to 0.99.",
+        "hold": 74,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_14.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The worst bug here passed every test it had.",
+        "hold": 72,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_15.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "The code was right, tested, and written up. Nothing ever called it.",
+        "hold": 80,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_16.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "So now: if there is no screenshot of it, it has not been checked.",
+        "hold": 78,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_17.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Twenty seven things I believed here turned out to be wrong.",
+        "hold": 78,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_18.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "That list is the best way in. It shows which hunches do not hold up.",
+        "hold": 82,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_19.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      },
+      {
+        "caption": "Ask any of it one question. Which measurement would change your mind?",
+        "hold": 92,
+        "burst": false,
+        "zoomScale": null,
+        "panes": [
+          {
+            "img": "wt-collab/TScode/p0_20.png",
+            "cursor": null,
+            "click": false,
+            "zoom": null
+          }
+        ]
+      }
+    ]
   }
 ];
