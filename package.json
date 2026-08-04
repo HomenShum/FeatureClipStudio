@@ -21,7 +21,7 @@
     "streamlit"
   ],
   "scripts": {
-    "check": "node --check walkthrough.mjs && node --check judge-video.mjs && node --check iterate.mjs && node --check rubric.mjs && node --check score.mjs",
+    "check": "node --check walkthrough.mjs && node --check judge-video.mjs && node --check iterate.mjs && node --check rubric.mjs && node --check score.mjs && node --check voice.mjs",
     "capture": "node walkthrough.mjs",
     "studio": "remotion studio src/index.js",
     "render": "remotion render src/index.js",
@@ -29,7 +29,8 @@
     "render:roomos": "remotion render src/roomos-index.js WTG-RoomOSV0123 out/room-os-v0-v1-v2-v3.mp4 --concurrency=2",
     "judge": "node judge-video.mjs",
     "clip": "node iterate.mjs",
-    "score": "node score.mjs"
+    "score": "node score.mjs",
+    "voice": "node voice.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.474",

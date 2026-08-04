@@ -1165,7 +1165,7 @@ export const COLLAB_WALKTHROUGHS = [
     "steps": [
       {
         "caption": "Someone researching a disease wants to know who is running the trials",
-        "hold": 62,
+        "hold": 108,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1179,7 +1179,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Today that means reading a government registry, study by study",
-        "hold": 58,
+        "hold": 110,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1193,7 +1193,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Ask it in a sentence instead",
-        "hold": 40,
+        "hold": 60,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1210,7 +1210,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Which companies and which drugs show up together, across melanoma trials?",
-        "hold": 40,
+        "hold": 136,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1227,7 +1227,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "It works out which questions to ask, then asks them one at a time",
-        "hold": 68,
+        "hold": 118,
         "burst": true,
         "zoomScale": null,
         "panes": [
@@ -1276,7 +1276,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "37 questions later, a map of who works on what",
-        "hold": 44,
+        "hold": 104,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1293,7 +1293,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Bigger circle = more trials. Thicker line = more trials they share.",
-        "hold": 92,
+        "hold": 136,
         "burst": false,
         "zoomScale": 1.3,
         "panes": [
@@ -1310,7 +1310,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Which is exactly the kind of picture a computer could just make up.",
-        "hold": 76,
+        "hold": 108,
         "burst": false,
         "zoomScale": 1.42,
         "panes": [
@@ -1327,7 +1327,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "So it shows its work",
-        "hold": 34,
+        "hold": 46,
         "burst": false,
         "zoomScale": 1.4,
         "panes": [
@@ -1364,7 +1364,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Ask the registry yourself and you get the same number. Nothing here was invented.",
-        "hold": 132,
+        "hold": 133,
         "burst": false,
         "zoomScale": 1.85,
         "panes": [
@@ -1381,7 +1381,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "A different question -- how far along are these trials?",
-        "hold": 34,
+        "hold": 100,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1398,7 +1398,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Same habit: decide the groups, then count each one separately",
-        "hold": 54,
+        "hold": 115,
         "burst": true,
         "zoomScale": null,
         "panes": [
@@ -1431,7 +1431,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "And it volunteers the catch: a trial can sit in two groups at once",
-        "hold": 96,
+        "hold": 121,
         "burst": false,
         "zoomScale": 1.4,
         "panes": [
@@ -1448,7 +1448,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "So it refuses to draw a pie chart, because the slices would not add up",
-        "hold": 88,
+        "hold": 131,
         "burst": false,
         "zoomScale": 1.4,
         "panes": [
@@ -1465,7 +1465,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "And one you cannot answer by counting anything once",
-        "hold": 36,
+        "hold": 81,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1482,7 +1482,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "It follows the drug from one sponsor to the next -- then checks every hop it just made",
-        "hold": 78,
+        "hold": 142,
         "burst": true,
         "zoomScale": null,
         "panes": [
@@ -1522,7 +1522,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "The map suggested these peers. The registry confirmed each one.",
-        "hold": 96,
+        "hold": 121,
         "burst": false,
         "zoomScale": 1.32,
         "panes": [
@@ -1539,7 +1539,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Three questions, three answers, and a receipt for every number in them",
-        "hold": 92,
+        "hold": 120,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1553,7 +1553,7 @@ export const COLLAB_WALKTHROUGHS = [
       },
       {
         "caption": "Your turn: name a condition, and what you want to see",
-        "hold": 44,
+        "hold": 102,
         "burst": false,
         "zoomScale": null,
         "panes": [

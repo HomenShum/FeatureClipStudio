@@ -12,3 +12,9 @@ recordings/
 .env
 .env.*
 !.env.example
+
+# piper TTS voices: 63MB binaries, fetched on demand
+#   python -m piper.download_voices en_US-lessac-medium
+*.onnx
+*.onnx.json
+out/.vo/
