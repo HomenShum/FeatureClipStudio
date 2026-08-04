@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "featureclip.judge-calibration/v1",
+  "calibratedAt": "2026-08-04",
+  "instrument": "judge-video.mjs @ 2026-08-04.two-stage-blind-scorer-v1, gemini-3.6-flash",
+  "probes": {
+    "knownBadStaticHeroShot": { "craft": 3, "comprehension": 1, "note": "30s static frame; correctly demolished" },
+    "currentWalkthrough": { "craft": 19, "comprehension": 14 },
+    "raycastLaunchFilm": {
+      "craft": 10,
+      "note": "CATEGORY ERROR as a calibration point, kept as the record of it: the rubric scores WALKTHROUGHS (cursor truth, step captions, state coverage) and a cinematic launch film has none of those by design. It remains a reference for parameters (pacing, loudness, hook), not a scoreable calibration probe. Also judged from a 360p download."
+    }
+  },
+  "gate": "good-walkthrough minus bad-walkthrough spread >= 8. Measured: 16. PASS.",
+  "history": [
+    { "instrument": "monolithic single-call", "result": "CONSTANT FUNCTION — all three probes scored identically 11/22, 10/20. Every delta measured with it is invalid, including the 'narration moved nothing' finding." },
+    { "instrument": "observation-first single-call", "result": "still constant; own timeline said 'no cursor' and cursor_truth still scored 1 — the model rationalizes while watching." },
+    { "instrument": "two-stage blind scorer", "result": "watcher sees pixels and may not judge; scorer judges the written record and never sees pixels. Discriminates." }
+  ],
+  "rule": "deltas under 2 points do not count; re-calibrate after any rubric change"
+}

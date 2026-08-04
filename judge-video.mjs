@@ -48,16 +48,45 @@ const key = () => {
   throw new Error("set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY");
 };
 
+// STAGE A — the only call that sees pixels, and it is forbidden to judge them. The monolithic
+// judge was calibrated against a world-class film, a 30-second static JPEG, and our cut: all three
+// scored identically, 11/22. Its own timeline said "no visual change or cursor" and it still gave
+// cursor_truth a 1, evidence "though no visible cursor" — it rationalizes while watching. An
+// isolated describe-then-score probe returned the correct 0. So watching and judging are now
+// different calls: this one extracts a literal timeline, and the scorer never sees the video.
+const OBSERVE_PROMPT = `Describe this video literally. You are a court reporter, not a critic — no
+opinions, no quality words, only what is observable.
+
+Return STRICT JSON:
+{"timeline":[{"ts":"m:ss","what":"exactly what is on screen and what changed since the last entry"}],
+ "cursorEvents":[{"ts":"m:ss","what":"cursor appeared/moved/clicked and on what"}],
+ "stateChanges":[{"ts":"m:ss","from":"...","to":"..."}],
+ "textShown":[{"ts":"m:ss","text":"captions or prominent UI text, verbatim"}],
+ "audio":{"present":true|false,"music":"describe or none","voice":"describe or none","cues":[{"ts":"m:ss","what":"..."}]},
+ "waits":[{"ts":"m:ss","seconds":n,"shown":"spinner/progress/nothing"}],
+ "static":true|false}
+One timeline entry per 2-3 seconds. If nothing changes for a stretch, say so explicitly. Empty
+arrays are valid and meaningful.`;
+
 const RUBRIC = `You are judging a rendered product-walkthrough video (a feature demo with an
 animated cursor, click ripples, step captions, and a progress bar — possibly with narration).
-The quality bar is STORY-FIRST and ANTI-HERO-SHOT. The viewer should understand the premise,
-the question being tested, the comparison axis, the conflict/input, the evidence, the verdict,
-and the final decision. Camera moves should reveal evidence, not fake excellence.
+The quality bar is STORY-FIRST and ANTI-HERO-SHOT.
 
-A viewer must always see the empty state, where the cursor
-clicked, any loading state, and the result — never just a polished final state.
+STAGE 1 — OBSERVE, before any judgement. Build a literal timeline of the video: one entry roughly
+every 2-3 seconds, each {"ts":"m:ss","what":"exactly what is on screen and what changed"}. Record
+motion, cursor position, state changes, text appearing, waits, audio events. If nothing changes,
+say nothing changed. Do not evaluate anything in this stage.
 
-Score each dimension 0-2 (0=fails, 1=acceptable, 2=strong) WITH specific evidence + timestamps:
+STAGE 2 — SCORE, from the timeline only. Every score MUST cite the ts of one or more Stage 1
+observations as its evidence. A score with no supporting observation is invalid — write 0 and say
+"no observation supports more". Calibration anchors, and these are not negotiable:
+  - a video where the timeline shows no state changes scores 0 on state_coverage, responsiveness
+    and full_interaction, and 0 on cursor_truth if no cursor appears
+  - a score of 1 means you can cite an observation where the thing HAPPENS but weakly; it is not a
+    default for "probably fine"
+  - use the full 0-2 range; if all your scores are identical, you have stopped observing
+
+Score each dimension 0-2 (0=fails, 1=acceptable, 2=strong), each citing timeline entries:
 1. storyboard_clarity - can a first-time viewer state what is being compared, why it matters, and what each scene proves?
 2. state_coverage - does each flow show empty state -> action -> (loading if async) -> result, or does it skip to outcomes (hero-shot smell)?
 3. cursor_truth - does the cursor visibly travel to and land ON the control being used before each state change?
@@ -98,7 +127,8 @@ Then list DEFECTS: each with timestamp, severity (P0 blocks publishing / P1 fix 
 P2 polish, log and ship), what you observed, and a concrete fix.
 Finally an overall verdict: publish | fix-then-publish | rework.
 
-Return STRICT JSON: {"scores":{"storyboard_clarity":{"score":n,"evidence":"..."},"state_coverage":{"score":n,"evidence":"..."},...},
+Return STRICT JSON: {"timeline":[{"ts":"m:ss","what":"..."}],
+"scores":{"storyboard_clarity":{"score":n,"evidence":"cites ts"},"state_coverage":{"score":n,"evidence":"cites ts"},...},
 "defects":[{"ts":"m:ss","severity":"P0|P1|P2","observed":"...","fix":"..."}],
 "singleMoment":"the one moment this video is built around, or null if it has none",
 "verdict":"...","summary":"2-3 sentences"}`;
@@ -136,7 +166,7 @@ Add to the JSON: "reference":{"watched":["<uri>"],"unwatched":["<uri>"],"singleM
 "statePacing":"...","motionPurpose":"...","whatToSteal":"...","whatNotToSteal":"..."}`;
 
 /** Bumped whenever the rubric changes, so an old verdict is not read as a current one. */
-const RUBRIC_VERSION = "2026-08-03.youtube-reference-comparison";
+const RUBRIC_VERSION = "2026-08-04.two-stage-blind-scorer-v1";
 
 const run = async () => {
   const bytes = readFileSync(video);
@@ -152,26 +182,44 @@ const run = async () => {
   // absence from an index.
   const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
   const mime = video.endsWith(".webm") ? "video/webm" : video.endsWith(".mov") ? "video/quicktime" : "video/mp4";
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      contents: [{
-        parts: [
-          { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
-          // References follow the candidate so "the first video" is unambiguous.
-          ...references.map((uri) => ({ file_data: { file_uri: uri } })),
-          { text: references.length ? `${FULL_RUBRIC}
+  const call = async (parts) => {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts }], generationConfig: { temperature: 0.2, response_mime_type: "application/json" } }),
+    });
+    if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    const body = await res.json();
+    return JSON.parse((body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join(""));
+  };
 
-${COMPARE(references)}` : FULL_RUBRIC },
-        ],
-      }],
-      generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
-    }),
-  });
-  if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const body = await res.json();
-  const judge = JSON.parse((body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join(""));
+  // Stage A: watch. The only call with the video in it.
+  const observed = await call([
+    { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
+    ...references.map((uri) => ({ file_data: { file_uri: uri } })),
+    { text: references.length
+      ? `${OBSERVE_PROMPT}
+
+Also observe the reference videos the same way, under "references":[{"url":"...","timeline":[...],"singleMomentTs":"m:ss","hookSeconds":n}]. Reference order: ${references.join(", ")}`
+      : OBSERVE_PROMPT },
+  ]);
+
+  // Stage B: score. Text only — the scorer cannot be seduced by pixels it never sees, and a score
+  // must trace to a written observation or fall to 0.
+  const judge = await call([
+    { text: `${references.length ? `${FULL_RUBRIC}
+
+${COMPARE(references)}` : FULL_RUBRIC}
+
+You are scoring FROM THE OBSERVATION RECORD BELOW. You have not seen the video. If the record does
+not contain evidence that a thing happened, it did not happen — score 0 and say which observation is
+missing. Do not infer generosity from a product looking professional; you cannot see it.
+
+OBSERVATION RECORD:
+${JSON.stringify(observed, null, 1)}` },
+  ]);
+  judge.timeline = observed.timeline;
+  judge.observed = observed;
 
   const comprehension = evaluateComprehension(judge.comprehension);
   const base = video.replace(/\.(mp4|webm|mov)$/i, "");

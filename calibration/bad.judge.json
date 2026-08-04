@@ -1,0 +1,221 @@
+{
+  "timeline": [
+    {
+      "ts": "00:00",
+      "what": "Static view of the NodeRoom interface titled 'A stale agent write becomes reviewable judgment'."
+    },
+    {
+      "ts": "00:15",
+      "what": "Screen remains completely static with no movement or changes."
+    },
+    {
+      "ts": "00:29",
+      "what": "Screen remains unchanged until the end of the video."
+    }
+  ],
+  "scores": {
+    "storyboard_clarity": {
+      "score": 0,
+      "evidence": "00:00-00:29 shows a completely static frame with no narrative arc, comparison, or thesis presented."
+    },
+    "state_coverage": {
+      "score": 0,
+      "evidence": "00:00-00:29 shows zero state changes or workflow progression."
+    },
+    "cursor_truth": {
+      "score": 0,
+      "evidence": "00:00-00:29 has no cursor present on screen."
+    },
+    "caption_sync": {
+      "score": 0,
+      "evidence": "00:00-00:29 shows no step captions or audio narration."
+    },
+    "pacing": {
+      "score": 0,
+      "evidence": "00:00-00:29 consists entirely of static dead air for 29 seconds."
+    },
+    "legibility": {
+      "score": 1,
+      "evidence": "00:00 contains readable interface text and title, but no dynamic captions are presented."
+    },
+    "proof_feel": {
+      "score": 0,
+      "evidence": "00:00-00:29 displays a static image with no live product execution or data motion."
+    },
+    "safety": {
+      "score": 2,
+      "evidence": "00:00 displays public header text; no visible API keys, tokens, or personal data."
+    },
+    "loop_etiquette": {
+      "score": 0,
+      "evidence": "00:00-00:29 holds a static image for 29 seconds, making continuous looping monotonous and pointless."
+    },
+    "motion_craft": {
+      "score": 0,
+      "evidence": "00:00-00:29 contains no camera movement, zooms, or visual focus cues."
+    },
+    "visual_hierarchy": {
+      "score": 0,
+      "evidence": "00:00-00:29 lacks dynamic framing or visual emphasis to direct viewer attention."
+    }
+  },
+  "defects": [
+    {
+      "ts": "00:00",
+      "severity": "P0",
+      "observed": "Video is entirely static across 00:00-00:29 without motion, cursor actions, or feature walkthrough.",
+      "fix": "Record an actual walkthrough showing cursor navigation, interactions, loading states, and output updates."
+    },
+    {
+      "ts": "00:00",
+      "severity": "P0",
+      "observed": "No single aha moment, user persona, or clear product result is established.",
+      "fix": "Structure the video around a specific user flow demonstrating how a stale agent write is reviewed in action."
+    },
+    {
+      "ts": "00:00",
+      "severity": "P1",
+      "observed": "unverifiable-from-video: The claim 'A stale agent write becomes reviewable judgment' is displayed on static text without showing runtime validation.",
+      "fix": "Show the agent write event triggering in real-time and appearing in the review queue."
+    }
+  ],
+  "singleMoment": null,
+  "verdict": "rework",
+  "summary": "The video is entirely static for 29 seconds, presenting only a single still frame without cursor movement, interaction, or narration. It fails to demonstrate any product features, flows, or outcomes. A complete rework is required to show a live working interaction.",
+  "comprehension": {
+    "persona": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No user persona or role is identified during 00:00-00:29."
+    },
+    "purpose": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "Header text at 00:00 hints at converting stale agent writes to reviewable judgment, but no problem-solving context is shown."
+    },
+    "use_case": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No concrete user task or operational scenario is depicted."
+    },
+    "feature_clarity": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No product feature functionality is demonstrated on screen."
+    },
+    "full_interaction": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "Zero interactions, clicks, or state transitions occur."
+    },
+    "responsiveness": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No system updates, progress indicators, or visual feedback exist."
+    },
+    "flow": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "There is no sequence of steps or workflow structure."
+    },
+    "result": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No tangible outcome or artifact is produced or highlighted."
+    },
+    "non_expert_sense": {
+      "score": 0,
+      "ts": "00:00",
+      "evidence": "Unexplained technical terms 'stale agent write' and 'reviewable judgment' appear at 00:00 without context."
+    },
+    "transfer": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No usable steps are shown for a viewer to replicate with their own product setup."
+    },
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:00",
+      "what": "Domain jargon 'stale agent write' presented on a non-interactive static screen."
+    },
+    "missingEntirely": [
+      "persona",
+      "use_case",
+      "feature_clarity",
+      "full_interaction",
+      "responsiveness",
+      "flow",
+      "result",
+      "non_expert_sense",
+      "transfer"
+    ]
+  },
+  "observed": {
+    "timeline": [
+      {
+        "ts": "00:00",
+        "what": "Static view of the NodeRoom interface titled 'A stale agent write becomes reviewable judgment'."
+      },
+      {
+        "ts": "00:15",
+        "what": "Screen remains completely static with no movement or changes."
+      },
+      {
+        "ts": "00:29",
+        "what": "Screen remains unchanged until the end of the video."
+      }
+    ],
+    "cursorEvents": [],
+    "stateChanges": [],
+    "textShown": [
+      {
+        "ts": "00:00",
+        "text": "NodeRoom | Open live room | TRY IT LIVE - LAYER 8: A stale agent write becomes reviewable judgment."
+      }
+    ],
+    "audio": {
+      "present": false,
+      "music": "none",
+      "voice": "none",
+      "cues": []
+    },
+    "waits": [],
+    "static": true
+  },
+  "judgedBy": "gemini-3.6-flash",
+  "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
+  "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
+  "comprehensionVerdict": {
+    "status": "blocked",
+    "momFails": true,
+    "uniform": false,
+    "scored": 10,
+    "total": 1,
+    "max": 20,
+    "zeros": [
+      "persona",
+      "use_case",
+      "feature_clarity",
+      "full_interaction",
+      "responsiveness",
+      "flow",
+      "result",
+      "non_expert_sense",
+      "transfer"
+    ],
+    "blocking": [
+      "persona",
+      "result",
+      "non_expert_sense"
+    ],
+    "unscored": [],
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:00",
+      "what": "Domain jargon 'stale agent write' presented on a non-interactive static screen."
+    }
+  },
+  "videoBytes": 290829,
+  "referencesCited": [],
+  "judgedAt": "2026-08-04T00:57:34.634Z"
+}

@@ -1,0 +1,412 @@
+{
+  "timeline": [
+    {
+      "ts": "00:00",
+      "what": "Dark textured background on screen."
+    },
+    {
+      "ts": "00:01",
+      "what": "Raycast search overlay appears in dark interface."
+    },
+    {
+      "ts": "00:03",
+      "what": "Text 'clipboard' is typed into search field, revealing Clipboard History result."
+    },
+    {
+      "ts": "00:06",
+      "what": "Context menu opens and user sets Hotkey shortcut."
+    },
+    {
+      "ts": "00:08",
+      "what": "Clipboard History panel displays saved images and hex color codes."
+    },
+    {
+      "ts": "00:11",
+      "what": "Emoji picker grid opens and navigates through icons."
+    },
+    {
+      "ts": "00:17",
+      "what": "Voice input waveform widget activates and records input."
+    },
+    {
+      "ts": "00:20",
+      "what": "Prompt submitted to AI panel to start focus session."
+    },
+    {
+      "ts": "00:23",
+      "what": "Progress panel shows execution of Linear, GitHub, and note actions."
+    },
+    {
+      "ts": "00:26",
+      "what": "Pill notification displays 'Checking for updates...'."
+    },
+    {
+      "ts": "00:28",
+      "what": "Black screen displays sequential feature announcement text."
+    },
+    {
+      "ts": "00:34",
+      "what": "Text changes to 'NEW RAYCAST COMING 2026'."
+    },
+    {
+      "ts": "00:37",
+      "what": "Raycast diamond logo appears on black screen."
+    }
+  ],
+  "scores": {
+    "storyboard_clarity": {
+      "score": 1,
+      "evidence": "0:01-0:26 showcases a rapid montage of disconnected launcher tools before switching to text announcement cards at 0:28."
+    },
+    "state_coverage": {
+      "score": 1,
+      "evidence": "0:20-0:23 shows input -> execution progress -> action execution, but 0:08 and 0:11 jump between tool panels without showing empty or trigger states."
+    },
+    "cursor_truth": {
+      "score": 0,
+      "evidence": "Cursor event is recorded only at 0:06; state transitions at 0:01, 0:08, 0:11, 0:17, and 0:20 occur without visible cursor travel."
+    },
+    "caption_sync": {
+      "score": 0,
+      "evidence": "No step captions or narration exist during the feature walkthrough; text appears only as full-screen title cards at 0:28-0:34."
+    },
+    "pacing": {
+      "score": 1,
+      "evidence": "Rapid state changes every 2-3 seconds (0:01 through 0:26) pack six distinct features into 26 seconds."
+    },
+    "legibility": {
+      "score": 1,
+      "evidence": "UI text at 0:08 and 0:20 is readable in overlay containers, and announcement text at 0:28-0:34 is large and high-contrast."
+    },
+    "proof_feel": {
+      "score": 1,
+      "evidence": "0:23 displays real task execution steps (Linear/GitHub/Notes), but framing leads into a distant teaser ('COMING 2026' at 0:34)."
+    },
+    "safety": {
+      "score": 2,
+      "evidence": "0:08 shows generic wallpaper filenames and public hex color codes; no API keys, tokens, or private data visible."
+    },
+    "loop_etiquette": {
+      "score": 1,
+      "evidence": "0:37 ends on a static logo card, providing a natural hold point though no explicit fade-to-loop sequence is shown."
+    },
+    "motion_craft": {
+      "score": 1,
+      "evidence": "UI overlays transition in center screen (0:01, 0:08, 0:11, 0:20) without erratic camera pan or drift."
+    },
+    "visual_hierarchy": {
+      "score": 1,
+      "evidence": "0:01 and 0:20 center the active search bar and prompt modal against a dark background, keeping attention on the active widget."
+    }
+  },
+  "comprehension": {
+    "persona": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No specific target persona or user role is stated or depicted throughout the video."
+    },
+    "purpose": {
+      "score": 1,
+      "ts": "0:20",
+      "evidence": "Automating developer workflows via prompt is demonstrated ('Get my active issues...'), but the underlying problem is not explicitly framed."
+    },
+    "use_case": {
+      "score": 2,
+      "ts": "0:20",
+      "evidence": "Concrete workflow shown: fetching Linear/GitHub issues and creating a summary note to initiate a focus session (0:20-0:24)."
+    },
+    "feature_clarity": {
+      "score": 2,
+      "ts": "0:01",
+      "evidence": "Clear demonstration of a keyboard launcher that handles clipboard history, emoji search, voice input, and AI task execution."
+    },
+    "full_interaction": {
+      "score": 1,
+      "ts": "0:20",
+      "evidence": "Prompt submission to multi-app execution is shown at 0:20-0:23, but clipboard and emoji interactions at 0:08 and 0:11 lack full context."
+    },
+    "responsiveness": {
+      "score": 2,
+      "ts": "0:23",
+      "evidence": "0:23 progress panel details sequential action steps and 0:26 shows a 2-second update checking spinner."
+    },
+    "flow": {
+      "score": 1,
+      "ts": "0:01",
+      "evidence": "Presents a sequence of independent feature clips (0:01-0:26) culminating in an announcement text sequence (0:28-0:34)."
+    },
+    "result": {
+      "score": 1,
+      "ts": "0:24",
+      "evidence": "Progress panel indicates summary note creation at 0:24, but the actual created note content is not displayed on screen."
+    },
+    "non_expert_sense": {
+      "score": 0,
+      "ts": "0:08",
+      "evidence": "Relies heavily on unexplained tech concepts such as hex color strings (0:08), Linear/GitHub issues, and GPT-5 focus sessions (0:20-0:24)."
+    },
+    "transfer": {
+      "score": 1,
+      "ts": "0:34",
+      "evidence": "Framed as a teaser for an unreleased product ('COMING 2026' at 0:34), preventing immediate user onboarding."
+    },
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "0:08",
+      "what": "Clipboard panel displaying raw hex codes (#FF6363) and developer file paths without explanatory context."
+    },
+    "missingEntirely": [
+      "persona",
+      "non_expert_sense"
+    ]
+  },
+  "defects": [
+    {
+      "ts": "0:00",
+      "severity": "P0",
+      "observed": "No clear target persona is defined or depicted throughout the demo.",
+      "fix": "Add an opening caption or framing device clarifying who this tool is built for (e.g., software engineers/power users)."
+    },
+    {
+      "ts": "0:08",
+      "severity": "P0",
+      "observed": "Unexplained domain jargon (hex color strings, GitHub/Linear issue integrations) creates immediate confusion for non-expert viewers.",
+      "fix": "Include explanatory step captions framing feature benefits in plain language."
+    },
+    {
+      "ts": "0:01",
+      "severity": "P1",
+      "observed": "Cursor movement is absent for almost all state transitions (0:01, 0:08, 0:11, 0:17, 0:20).",
+      "fix": "Animate visible cursor paths landing on input controls before state changes trigger."
+    },
+    {
+      "ts": "0:24",
+      "severity": "P1",
+      "observed": "unverifiable-from-video: progress panel states 'Creating note with summary', but the resulting note document is never shown on screen.",
+      "fix": "Extend the clip by 1-2 seconds to briefly render the generated note output before transitioning."
+    }
+  ],
+  "singleMoment": "Submitting a natural language prompt at 0:20 to trigger automated fetching of Linear/GitHub issues and create a focus session note.",
+  "verdict": "rework",
+  "summary": "The video functions well as a fast-paced feature teaser, highlighting key capabilities like AI focus sessions and tool execution. However, it lacks explanatory captions, target persona framing, and consistent cursor paths. Adding visible cursor interactions, explicit step captions, and clear output artifacts will turn this preview into an effective product walkthrough.",
+  "observed": {
+    "timeline": [
+      {
+        "ts": "00:00",
+        "what": "Dark textured background on screen."
+      },
+      {
+        "ts": "00:01",
+        "what": "Raycast search overlay appears in dark interface."
+      },
+      {
+        "ts": "00:03",
+        "what": "Text 'clipboard' is typed into search field, revealing Clipboard History result."
+      },
+      {
+        "ts": "00:06",
+        "what": "Context menu opens and user sets Hotkey shortcut."
+      },
+      {
+        "ts": "00:08",
+        "what": "Clipboard History panel displays saved images and hex color codes."
+      },
+      {
+        "ts": "00:11",
+        "what": "Emoji picker grid opens and navigates through icons."
+      },
+      {
+        "ts": "00:17",
+        "what": "Voice input waveform widget activates and records input."
+      },
+      {
+        "ts": "00:20",
+        "what": "Prompt submitted to AI panel to start focus session."
+      },
+      {
+        "ts": "00:23",
+        "what": "Progress panel shows execution of Linear, GitHub, and note actions."
+      },
+      {
+        "ts": "00:26",
+        "what": "Pill notification displays 'Checking for updates...'."
+      },
+      {
+        "ts": "00:28",
+        "what": "Black screen displays sequential feature announcement text."
+      },
+      {
+        "ts": "00:34",
+        "what": "Text changes to 'NEW RAYCAST COMING 2026'."
+      },
+      {
+        "ts": "00:37",
+        "what": "Raycast diamond logo appears on black screen."
+      }
+    ],
+    "cursorEvents": [
+      {
+        "ts": "00:06",
+        "what": "Cursor clicks 'Set Hotkey...' in context menu."
+      },
+      {
+        "ts": "00:14",
+        "what": "Focus highlight navigates across emoji grid."
+      }
+    ],
+    "stateChanges": [
+      {
+        "ts": "00:01",
+        "from": "Blank dark background",
+        "to": "Search bar overlay"
+      },
+      {
+        "ts": "00:06",
+        "from": "Search result view",
+        "to": "Hotkey config modal"
+      },
+      {
+        "ts": "00:08",
+        "from": "Hotkey config modal",
+        "to": "Clipboard history panel"
+      },
+      {
+        "ts": "00:11",
+        "from": "Clipboard history panel",
+        "to": "Emoji picker grid"
+      },
+      {
+        "ts": "00:17",
+        "from": "Emoji picker grid",
+        "to": "Voice waveform UI"
+      },
+      {
+        "ts": "00:22",
+        "from": "Voice waveform UI",
+        "to": "AI Focus Session view"
+      },
+      {
+        "ts": "00:28",
+        "from": "UI feature showcase",
+        "to": "Text announcement sequence"
+      }
+    ],
+    "textShown": [
+      {
+        "ts": "00:01",
+        "text": "Search"
+      },
+      {
+        "ts": "00:04",
+        "text": "clipboard Clipboard History Raycast"
+      },
+      {
+        "ts": "00:06",
+        "text": "Set Hotkey..."
+      },
+      {
+        "ts": "00:08",
+        "text": "Raycast-Wallpaper@2x.png #FF6363 #56C2FF"
+      },
+      {
+        "ts": "00:12",
+        "text": "Search Emoji & Symbols"
+      },
+      {
+        "ts": "00:20",
+        "text": "Get my active issues and start a focus session"
+      },
+      {
+        "ts": "00:22",
+        "text": "Focus Session > GPT-5"
+      },
+      {
+        "ts": "00:24",
+        "text": "Getting active Linear Issues Getting active GitHub Issues Creating note with summary"
+      },
+      {
+        "ts": "00:26",
+        "text": "Checking for updates..."
+      },
+      {
+        "ts": "00:28",
+        "text": "NEW LAUNCHER DESIGN"
+      },
+      {
+        "ts": "00:29",
+        "text": "NEW HOTKEY RECORDER"
+      },
+      {
+        "ts": "00:30",
+        "text": "NEW VOICE FEATURES"
+      },
+      {
+        "ts": "00:31",
+        "text": "NEW CLOUD SYNC ENGINE"
+      },
+      {
+        "ts": "00:32",
+        "text": "NEW RAYCAST"
+      },
+      {
+        "ts": "00:34",
+        "text": "NEW RAYCAST COMING 2026"
+      }
+    ],
+    "audio": {
+      "present": true,
+      "music": "Ambient electronic synth music playing throughout.",
+      "voice": "none",
+      "cues": [
+        {
+          "ts": "00:03",
+          "what": "Typing keypress sound effects."
+        },
+        {
+          "ts": "00:07",
+          "what": "Hotkey confirmation chime."
+        },
+        {
+          "ts": "00:13",
+          "what": "UI navigation click sounds."
+        }
+      ]
+    },
+    "waits": [
+      {
+        "ts": "00:26",
+        "seconds": 2,
+        "shown": "Checking for updates... spinner animation"
+      }
+    ],
+    "static": false
+  },
+  "judgedBy": "gemini-3.6-flash",
+  "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
+  "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
+  "comprehensionVerdict": {
+    "status": "blocked",
+    "momFails": true,
+    "uniform": false,
+    "scored": 10,
+    "total": 11,
+    "max": 20,
+    "zeros": [
+      "persona",
+      "non_expert_sense"
+    ],
+    "blocking": [
+      "persona",
+      "non_expert_sense"
+    ],
+    "unscored": [],
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "0:08",
+      "what": "Clipboard panel displaying raw hex codes (#FF6363) and developer file paths without explanatory context."
+    }
+  },
+  "videoBytes": 1275001,
+  "referencesCited": [],
+  "judgedAt": "2026-08-04T00:57:10.295Z"
+}
