@@ -53,12 +53,20 @@ console.log(`  ${mean} dB`);
 
 step("gate 2 — said matches shown (Moonshine)");
 spawnSync("ffmpeg", ["-y", "-v", "error", "-i", OUT, "-vn", "-ar", "16000", "-ac", "1", "out/clip-stt.wav"], { encoding: "utf8", timeout: 300_000 });
+// CHUNKED, 30s slices. Moonshine silently degrades past ~60 seconds: a 63s file with a clear male
+// voiceover returned two characters, while the same audio in 30s slices transcribed perfectly. No
+// error either way — the gate would have called any long cut "drifted" with a straight face.
 const stt = spawnSync("python", ["-c", `
-import re, json
+import re, json, wave, math, subprocess
 import moonshine_onnx as m
-heard = m.transcribe('out/clip-stt.wav','moonshine/tiny')
-heard = heard[0] if isinstance(heard,(list,tuple)) else str(heard)
-print(json.dumps({"heard": heard}))
+with wave.open('out/clip-stt.wav') as w:
+    total = w.getnframes() / w.getframerate()
+parts = []
+for start in range(0, int(math.ceil(total)), 30):
+    subprocess.run(['ffmpeg','-y','-v','error','-ss',str(start),'-t','30','-i','out/clip-stt.wav','out/clip-stt-slice.wav'], check=True)
+    out = m.transcribe('out/clip-stt-slice.wav','moonshine/tiny')
+    parts.append(out[0] if isinstance(out,(list,tuple)) else str(out))
+print(json.dumps({"heard": " ".join(parts)}))
 `], { encoding: "utf8", timeout: 540_000, env: { ...process.env, PYTHONUTF8: "1" }, maxBuffer: 32 * 1024 * 1024 });
 const heard = JSON.parse(stt.stdout.split("\n").filter(Boolean).pop() ?? "{}").heard ?? "";
 const norm = (t) => t.toLowerCase().replace(/—/g, " ").replace(/[^a-z0-9 ]/g, "").split(/\s+/).filter(Boolean);
