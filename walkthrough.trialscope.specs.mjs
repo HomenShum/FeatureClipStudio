@@ -56,38 +56,38 @@ export const TRIALSCOPE_SPECS = [
       // ------------------------------------------------------------- PREMISE
       // The beats the previous cut did not have. A viewer who does not know who
       // is asking cannot tell whether the answer is any good.
-      { cap: "Someone researching a disease wants to know who is running the trials",
+      { cap: "Say you want to know who runs the drug trials",
         hold: 62 },
-      { cap: "Today that means reading a government registry, study by study",
+      { cap: "Right now you read a huge list. One study at a time.",
         hold: 58 },
-      { cap: "Ask it in a sentence instead",
+      { cap: "Ask it in one line instead",
         cursor: "textarea[name=\"input\"]", cursorPane: 0, hold: 40 },
 
       // ---------------------------------------------------------------- HOOK
       { act: "type", pane: 0, sel: "textarea[name=\"input\"]",
         value: "Show a network of sponsors and drugs for melanoma trials.", delay: 26 },
-      { cap: "Which companies and which drugs show up together, across melanoma trials?",
+      { cap: "Which drug firms and which drugs show up side by side?",
         cursor: "btn:Send message", cursorPane: 0, click: true, hold: 40 },
       { act: "click", pane: 0, sel: "btn:Send message" },
       { act: "sleep", pane: 0, ms: 700 },
 
       // RESPONSIVENESS: the wait is the product working, so it is captioned as
       // work rather than trimmed as dead air.
-      { cap: "It works out which questions to ask, then asks them one at a time",
+      { cap: "It picks the right questions. Then it asks each one.",
         burst: { ms: 11000, every: 320 }, hold: 68 },
       { act: "waitText", pane: 0, value: "co-occurring" },
       { act: "sleep", pane: 0, ms: 700 },
 
-      { cap: "37 questions later, a map of who works on what",
+      { cap: "37 asks later, here is who works on what",
         cursor: "btn:interactive map", cursorPane: 0, click: true, hold: 44 },
       { act: "click", pane: 0, sel: "btn:interactive map" },
       { act: "sleep", pane: 0, ms: 5000 },
       // FEATURE_LEGIBILITY: name what the picture encodes, in plain words.
-      { cap: "Bigger circle = more trials. Thicker line = more trials they share.",
+      { cap: "Big dot means more trials. Thick line means more shared trials.",
         zoom: "testid:neuromap-frame", zoomScale: 1.3, hold: 92 },
 
       // --------------------------------------------------------------- DOUBT
-      { cap: "Which is exactly the kind of picture a computer could just make up.",
+      { cap: "But a computer could just make this up.",
         zoom: "testid:neuromap-frame", zoomScale: 1.42, hold: 76 },
 
       // --------------------------------------------------------------- PROOF
@@ -97,9 +97,9 @@ export const TRIALSCOPE_SPECS = [
         zoom: "testid:trace-disclosure", zoomScale: 1.4, hold: 34 },
       { act: "click", pane: 0, sel: "testid:trace-disclosure" },
       { act: "sleep", pane: 0, ms: 1100 },
-      { cap: "Every line is one question it asked the registry, and the answer it got back",
+      { cap: "Each row is one ask. And the count it got back.",
         zoom: "testid:trace-disclosure", zoomScale: 1.85, hold: 150 },
-      { cap: "Ask the registry yourself and you get the same number. Nothing here was invented.",
+      { cap: "Ask the site yourself. You get the same count.",
         zoom: "testid:trace-disclosure", zoomScale: 1.85, hold: 132 },
 
       // -------------------------------------------------------------- SPREAD
@@ -107,17 +107,17 @@ export const TRIALSCOPE_SPECS = [
       { act: "sleep", pane: 0, ms: 1100 },
       { act: "type", pane: 0, sel: "textarea[name=\"input\"]",
         value: "How are melanoma trials distributed across phases?", delay: 24 },
-      { cap: "A different question -- how far along are these trials?",
+      { cap: "New question. How far along are these trials?",
         cursor: "btn:Send message", cursorPane: 0, click: true, hold: 34 },
       { act: "click", pane: 0, sel: "btn:Send message" },
       { act: "sleep", pane: 0, ms: 600 },
-      { cap: "Same habit: decide the groups, then count each one separately",
+      { cap: "Same trick. Pick the groups. Count each one.",
         burst: { ms: 5400, every: 300 }, hold: 54 },
       { act: "waitText", pane: 0, value: "Reconciliation" },
       { act: "scrollEl", pane: 0, sel: "testid:panel-reconciliation" },
-      { cap: "And it volunteers the catch: a trial can sit in two groups at once",
+      { cap: "It flags a catch. One trial can sit in two groups.",
         zoom: "testid:panel-reconciliation", zoomScale: 1.4, hold: 96 },
-      { cap: "So it refuses to draw a pie chart, because the slices would not add up",
+      { cap: "So it will not draw a pie. The slices would not add up.",
         zoom: "testid:panel-reconciliation", zoomScale: 1.4, hold: 88 },
 
       // The hardest question, and the reason the index exists at all.
@@ -125,28 +125,28 @@ export const TRIALSCOPE_SPECS = [
       { act: "sleep", pane: 0, ms: 1100 },
       { act: "type", pane: 0, sel: "textarea[name=\"input\"]",
         value: "Which sponsors also work on what the National Cancer Institute (NCI) works on?", delay: 22 },
-      { cap: "And one you cannot answer by counting anything once",
+      { cap: "Now a question one count cannot answer.",
         cursor: "btn:Send message", cursorPane: 0, click: true, hold: 36 },
       { act: "click", pane: 0, sel: "btn:Send message" },
       { act: "sleep", pane: 0, ms: 700 },
-      { cap: "It follows the drug from one sponsor to the next -- then checks every hop it just made",
+      { cap: "It walks from one firm to the next. Then it checks each hop.",
         burst: { ms: 8000, every: 320 }, hold: 78 },
       { act: "sleep", pane: 0, ms: 900 },
-      { cap: "The map suggested these peers. The registry confirmed each one.",
+      { cap: "The map picked these firms. The site checked each one.",
         zoom: "testid:panel-distribution", zoomScale: 1.32, hold: 96 },
 
       // -------------------------------------------------------------- RESULT
-      { cap: "Three questions, three answers, and a receipt for every number in them",
+      { cap: "Three asks. Three answers. And proof for each count.",
         hold: 92 },
 
       // ------------------------------------------------------------ YOUR TURN
       { act: "click", pane: 0, sel: "btn:New Thread" },
       { act: "sleep", pane: 0, ms: 1200 },
-      { cap: "Your turn: name a condition, and what you want to see",
+      { cap: "Your turn. Name an illness. Say what you want to see.",
         cursor: "textarea[name=\"input\"]", cursorPane: 0, hold: 44 },
       { act: "type", pane: 0, sel: "textarea[name=\"input\"]",
         value: "Where are Parkinson's trials running, by country?", delay: 24 },
-      { cap: "Any condition. Any breakdown. Same receipts.",
+      { cap: "Any illness. Any split. Same proof.",
         hold: 96 },
     ],
   },

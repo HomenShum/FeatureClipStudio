@@ -1164,8 +1164,8 @@ export const COLLAB_WALKTHROUGHS = [
     ],
     "steps": [
       {
-        "caption": "Someone researching a disease wants to know who is running the trials",
-        "hold": 108,
+        "caption": "Say you want to know who runs the drug trials",
+        "hold": 82,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1178,8 +1178,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Today that means reading a government registry, study by study",
-        "hold": 110,
+        "caption": "Right now you read a huge list. One study at a time.",
+        "hold": 107,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1192,8 +1192,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Ask it in a sentence instead",
-        "hold": 60,
+        "caption": "Ask it in one line instead",
+        "hold": 61,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1209,8 +1209,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Which companies and which drugs show up together, across melanoma trials?",
-        "hold": 136,
+        "caption": "Which drug firms and which drugs show up side by side?",
+        "hold": 107,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1226,8 +1226,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "It works out which questions to ask, then asks them one at a time",
-        "hold": 118,
+        "caption": "It picks the right questions. Then it asks each one.",
+        "hold": 101,
         "burst": true,
         "zoomScale": null,
         "panes": [
@@ -1275,8 +1275,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "37 questions later, a map of who works on what",
-        "hold": 104,
+        "caption": "37 asks later, here is who works on what",
+        "hold": 90,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1292,8 +1292,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Bigger circle = more trials. Thicker line = more trials they share.",
-        "hold": 136,
+        "caption": "Big dot means more trials. Thick line means more shared trials.",
+        "hold": 126,
         "burst": false,
         "zoomScale": 1.3,
         "panes": [
@@ -1309,8 +1309,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Which is exactly the kind of picture a computer could just make up.",
-        "hold": 108,
+        "caption": "But a computer could just make this up.",
+        "hold": 64,
         "burst": false,
         "zoomScale": 1.42,
         "panes": [
@@ -1346,8 +1346,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Every line is one question it asked the registry, and the answer it got back",
-        "hold": 150,
+        "caption": "Each row is one ask. And the count it got back.",
+        "hold": 89,
         "burst": false,
         "zoomScale": 1.85,
         "panes": [
@@ -1363,8 +1363,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Ask the registry yourself and you get the same number. Nothing here was invented.",
-        "hold": 133,
+        "caption": "Ask the site yourself. You get the same count.",
+        "hold": 89,
         "burst": false,
         "zoomScale": 1.85,
         "panes": [
@@ -1380,8 +1380,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "A different question -- how far along are these trials?",
-        "hold": 100,
+        "caption": "New question. How far along are these trials?",
+        "hold": 91,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1397,8 +1397,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Same habit: decide the groups, then count each one separately",
-        "hold": 115,
+        "caption": "Same trick. Pick the groups. Count each one.",
+        "hold": 80,
         "burst": true,
         "zoomScale": null,
         "panes": [
@@ -1430,8 +1430,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "And it volunteers the catch: a trial can sit in two groups at once",
-        "hold": 121,
+        "caption": "It flags a catch. One trial can sit in two groups.",
+        "hold": 100,
         "burst": false,
         "zoomScale": 1.4,
         "panes": [
@@ -1447,8 +1447,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "So it refuses to draw a pie chart, because the slices would not add up",
-        "hold": 131,
+        "caption": "So it will not draw a pie. The slices would not add up.",
+        "hold": 96,
         "burst": false,
         "zoomScale": 1.4,
         "panes": [
@@ -1464,8 +1464,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "And one you cannot answer by counting anything once",
-        "hold": 81,
+        "caption": "Now a question one count cannot answer.",
+        "hold": 75,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1481,8 +1481,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "It follows the drug from one sponsor to the next -- then checks every hop it just made",
-        "hold": 142,
+        "caption": "It walks from one firm to the next. Then it checks each hop.",
+        "hold": 104,
         "burst": true,
         "zoomScale": null,
         "panes": [
@@ -1521,8 +1521,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "The map suggested these peers. The registry confirmed each one.",
-        "hold": 121,
+        "caption": "The map picked these firms. The site checked each one.",
+        "hold": 94,
         "burst": false,
         "zoomScale": 1.32,
         "panes": [
@@ -1538,8 +1538,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Three questions, three answers, and a receipt for every number in them",
-        "hold": 120,
+        "caption": "Three asks. Three answers. And proof for each count.",
+        "hold": 104,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1552,8 +1552,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Your turn: name a condition, and what you want to see",
-        "hold": 102,
+        "caption": "Your turn. Name an illness. Say what you want to see.",
+        "hold": 99,
         "burst": false,
         "zoomScale": null,
         "panes": [
@@ -1569,8 +1569,8 @@ export const COLLAB_WALKTHROUGHS = [
         ]
       },
       {
-        "caption": "Any condition. Any breakdown. Same receipts.",
-        "hold": 96,
+        "caption": "Any illness. Any split. Same proof.",
+        "hold": 86,
         "burst": false,
         "zoomScale": null,
         "panes": [

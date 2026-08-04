@@ -24,6 +24,8 @@ const flag = (name, dflt) => {
 // that difference a number instead of an argument.
 const audience = flag("for", process.env.JUDGE_AUDIENCE || "a smart newcomer who has never seen this product and does not know the domain jargon");
 const gate = Number(flag("gate", process.env.JUDGE_GATE || "0"));   // exit 1 below this score
+const samples = Number(flag("samples", process.env.JUDGE_SAMPLES || "3"));
+const reask = argv.includes("--reask");
 const video = argv.find((a) => !a.startsWith("--") && argv[argv.indexOf(a) - 1] !== "--for" && argv[argv.indexOf(a) - 1] !== "--gate");
 if (!video || !existsSync(video)) {
   console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--for \"<audience>\"] [--gate <n>]");
@@ -141,24 +143,55 @@ const run = async () => {
   let judge = await ask();
 
   writeFileSync(`${base}.judge.json`, JSON.stringify(judge, null, 2));
-  // ANTI-UNIFORMITY, ENFORCED IN CODE rather than asked for in the prompt.
-  // The prompt has carried an anti-uniformity clause for three revisions and the
-  // judge still returned 1/2 on 18 of 20 dimensions -- a description wearing a
-  // score's clothes. Asking a model not to shrug does not stop it shrugging, so
-  // the shrug is now detected and the judgement re-requested once with the
-  // offending distribution quoted back. A gate that returns the same verdict for
-  // every input is not a gate, and that includes the flat-1 verdict.
-  const spread = (j) => {
-    const v = Object.values(j.scores || {}).map((x) => x.score);
-    const mode = Math.max(...[0, 1, 2].map((n) => v.filter((x) => x === n).length));
-    return mode / v.length;
-  };
-  if (spread(judge) > 0.7) {
-    const pct = Math.round(spread(judge) * 100);
-    console.log(`[judge] ${pct}% of dimensions share one score — re-asking with the distribution quoted back`);
-    judge = await ask([
-      { text: `Your previous judgement gave the SAME score to ${pct}% of dimensions. That is the shrug the rubric forbids: you described the video instead of ranking it. Re-judge the same video and FORCE a spread — some dimensions genuinely are 0 and some genuinely are 2, and your job is to say which. Keep the same JSON shape.` },
-    ]) || judge;
+  // MEASURED: THIS GATE IS NOT REPEATABLE ON ONE SAMPLE.
+  //
+  // The identical file scored 34/44 and then 22/44 on two runs. That is not a
+  // small wobble, it is 27% of the scale, and every claim of the form "the cut
+  // improved" made from single readings of it was unsupported -- including one
+  // this repo shipped ("comprehension 9 -> 16, the voiceover was the missing
+  // piece"), which was judge variance wearing the costume of a result.
+  //
+  // Two causes, separated by correlating the runs:
+  //
+  // 1. Ordinary sampling variance at temperature 0.2.
+  // 2. THE ANTI-UNIFORMITY RE-ASK ITSELF. Both 22s re-asked; the 34 did not.
+  //    Told "you gave 91% of dimensions the same score, force a spread", the
+  //    model spreads DOWNWARD -- it drops dimensions to 0 and 1 rather than
+  //    also promoting any to 2. So the mechanism added to stop the judge
+  //    shrugging was quietly biasing the number it produced. It is now opt-in
+  //    behind --reask, and off by default, because a debiasing device that
+  //    biases is worse than the shrug it was fixing.
+  //
+  // The fix for (1) is sampling: N independent judgements, per-dimension MEDIAN.
+  // Evidence and prose are taken from the run closest to the median total, so the
+  // report still reads as one coherent judgement rather than a stitched average.
+  const runs = [judge];
+  for (let n = 1; n < samples; n++) runs.push(await ask());
+  if (reask) {
+    const spread = (j2) => {
+      const v = Object.values(j2.scores || {}).map((x) => x.score);
+      return Math.max(...[0, 1, 2].map((q) => v.filter((x) => x === q).length)) / v.length;
+    };
+    if (spread(judge) > 0.7) {
+      console.log(`[judge] --reask: ${Math.round(spread(judge) * 100)}% share one score — re-asking (known to bias low)`);
+      runs.push(await ask([{ text: `Your previous judgement gave the SAME score to most dimensions. Re-judge and FORCE a spread: some dimensions are genuinely 0 and some are genuinely 2. Do NOT simply lower scores -- promote what deserves 2 as readily as you demote. Keep the same JSON shape.` }]));
+    }
+  }
+
+  const med = (xs) => { const a = [...xs].sort((x, y) => x - y); return a[Math.floor(a.length / 2)]; };
+  const totalOf = (j2) => Object.values(j2.scores).reduce((a, v) => a + v.score, 0);
+  if (runs.length > 1) {
+    const keys = new Set(runs.flatMap((r) => Object.keys(r.scores)));
+    const totals = runs.map(totalOf);
+    // Prose comes from the most typical run, so evidence matches the numbers.
+    const centre = runs[totals.indexOf(med(totals))] || runs[0];
+    const merged = {};
+    keys.forEach((k) => {
+      const vals = runs.map((r) => r.scores[k]?.score).filter((v) => v != null);
+      merged[k] = { score: med(vals), evidence: (centre.scores[k] || runs[0].scores[k] || {}).evidence || "" };
+    });
+    console.log(`[judge] ${runs.length} samples: totals ${totals.join(", ")} — median per dimension`);
+    judge = { ...centre, scores: merged, samples: runs.length, sample_totals: totals };
   }
 
   const scores = Object.entries(judge.scores);
