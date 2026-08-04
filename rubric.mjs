@@ -15,7 +15,10 @@
 // notices missing, and it never shows up in a craft score, so it has to be its
 // own axis with its own numbers or it gets optimised away.
 //
-// Scores are 0-2 per dimension: 20 craft + 20 comprehension = 40.
+// Scores are 0-2 per dimension: 24 craft + 20 comprehension = 44.
+// (Was 40 before `soundtrack` and `audio_sync` were added; rounds logged
+// against the 40-point version are not directly comparable, and the round
+// history records which version produced each number.)
 
 // --------------------------------------------------------------------- CRAFT
 export const CRAFT = [
@@ -29,6 +32,13 @@ export const CRAFT = [
   ["safety", "any visible secrets, API keys, tokens, real personal data, or internal URLs that should not ship?"],
   ["signature_moment", "is there ONE moment the whole demo is built around, does it land early, and is everything before it earning it? (a demo that is uniformly pleasant and has no peak scores 0)"],
   ["loop_etiquette", "if this loops as a GIF, is the total length and final-state hold reasonable (viewers lost on the second loop = too long)?"],
+  // Added after the gate scored a SILENT video twice, across two different cuts,
+  // and never once mentioned that it had no audio track at all. A rubric only
+  // sees what it names: silence was not a low score on any dimension, it was
+  // invisible. Reference films are music-forward and measured loud (-13.2 LUFS
+  // on the closest analogue by length), so a silent cut is not a neutral choice.
+  ["soundtrack", "is there audio at all, and does it have SHAPE that follows the story (lifting at the reveal, thinning where something must be read) rather than a flat loop? Silence scores 0. Music that fights the content, or sits so loud the demo feels like an advert, scores 1."],
+  ["audio_sync", "do clicks, transitions and reveals get an audible acknowledgement landing ON the frame, not near it? A demo where nothing is heard when the pointer acts feels like a mockup even when the product is real."],
 ];
 
 // ------------------------------------------------------------- COMPREHENSION

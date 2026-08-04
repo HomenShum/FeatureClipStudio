@@ -61,6 +61,46 @@ ffmpeg (two‑pass palette)  4. GIF     stats_mode=diff + lanczos + bayer + diff
    →  assets/feature-*.gif            =rectangle  →  clean, small, looping GIF
 ```
 
+## Sound — generated from the storyboard, not laid over the top
+
+```bash
+npm run score -- --id TShero --video out/trialscope.mp4              # generated bed + sfx
+npm run score -- --id TShero --video out/x.mp4 --music licensed.mp3  # your track, sfx kept
+```
+
+The gate scored a **completely silent** video twice, across two different cuts,
+and never mentioned it — a rubric only sees what it names, so silence was not a
+low score, it was invisible. `soundtrack` and `audio_sync` now exist for that
+reason, and the reference films were measured rather than guessed:
+
+| reference | length | integrated | LRA |
+|---|---|---|---|
+| `Mi173xGb0ZA` (short launch film) | 38.5s | **-13.2 LUFS** | 13.5 LU |
+| `xPK3nBLbpxc` | 156.6s | -18.4 LUFS | 4.1 LU |
+| `JLpDL7x50hA` | 174.3s | -20.8 LUFS | 6.1 LU |
+
+Short launch films sit loud and dynamic; long explainers sit quiet and compressed
+under a voice. A silent cut is not the neutral choice — it is the one shape none
+of the references take.
+
+**Their tracks are not reusable.** This repo is public, and shipping someone
+else's copyrighted music in it is the problem itself, not a licensing detail. What
+transfers is the measurement. So `score.mjs` synthesises the bed sample by sample
+in plain JS — no dependencies, no rights to clear — and `--music` stays there for
+anyone with a licensed track, in which case the generated **sfx are kept** and only
+the bed is replaced.
+
+**Built from the storyboard, so sync is structural.** A track laid over a finished
+video is synced by luck and drifts the moment a hold changes by four frames. The
+storyboard already knows where every click, zoom and activity burst falls, so the
+arrangement is derived from those timestamps and re-derives itself on any re-cut.
+The arrangement follows the STORY: sparse under the premise, lifting at the graph
+reveal, and deliberately **thinnest during the proof section** — the trace has to be
+readable, and music arguing with it there would cost more than it adds. The only
+full major resolve is the result beat.
+
+Output is loudness-normalised to -14 LUFS (measured -13.0 on the TrialScope cut).
+
 ## The gate — judge, revise, re-render (stage 5, and it is not optional)
 
 ```
