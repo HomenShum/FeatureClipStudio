@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "zelios-animated-video-production-best-saas-product-launch-ad",
+  "source": {
+    "url": "https://youtu.be/SgmuplXU2iY",
+    "channel": "Zelios - Animated Video Production",
+    "title": "Best SaaS Product Launch Ad Video | LangEase",
+    "declaredSeconds": 34
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-04T01:18:28.496Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 3348,
+  "watched": true,
+  "runtimeSeconds": 33,
+  "hookSeconds": 5,
+  "singleMoment": {
+    "ts": "00:18",
+    "what": "a single video item card fans out into multiple identical cards to visually explain multi-language generation"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "00:00",
+      "kind": "structure",
+      "subject": "intro title sequence",
+      "property": "visual background",
+      "value": "solid white background with animated blue and black text transitions"
+    },
+    {
+      "id": "f2",
+      "ts": "00:05",
+      "kind": "state",
+      "subject": "product container UI",
+      "property": "entry motion",
+      "value": "zooms out from a drag-and-drop folder icon into a clean web application canvas"
+    },
+    {
+      "id": "f3",
+      "ts": "00:07",
+      "kind": "motion",
+      "subject": "mobile mockup frames",
+      "property": "composition",
+      "value": "4 tilted mobile device viewports framing central feature callouts"
+    },
+    {
+      "id": "f4",
+      "ts": "00:11",
+      "kind": "state",
+      "subject": "progress bar UI",
+      "property": "loading display",
+      "value": "horizontal gradient bar advancing numerical counter from 81/100 to 99/100"
+    },
+    {
+      "id": "f5",
+      "ts": "00:13",
+      "kind": "state",
+      "subject": "task completion state",
+      "property": "reward feedback",
+      "value": "blue checkmark icon accompanied by a burst of blue and pink confetti"
+    },
+    {
+      "id": "f6",
+      "ts": "00:15",
+      "kind": "structure",
+      "subject": "library view UI",
+      "property": "grid layout",
+      "value": "card grid showing thumbnail, title, language flag icon, and date metadata"
+    },
+    {
+      "id": "f7",
+      "ts": "00:18",
+      "kind": "motion",
+      "subject": "card selection transition",
+      "property": "feature illustration",
+      "value": "3D fan-out animation duplicating one video card into four versions"
+    },
+    {
+      "id": "f8",
+      "ts": "00:23",
+      "kind": "caption",
+      "subject": "action button UI",
+      "property": "interaction text",
+      "value": "pill button labeled 'Distribute To Youtube' triggered by animated hand cursor"
+    },
+    {
+      "id": "f9",
+      "ts": "00:29",
+      "kind": "structure",
+      "subject": "end slate",
+      "property": "brand presentation",
+      "value": "centered LangEase logo mark, company name, and domain URL (langease.ai)"
+    }
+  ],
+  "statesShown": [
+    "loading",
+    "result"
+  ],
+  "motionPurpose": "at 00:18, a 3D card fan-out animation is used to show multi-language audio/video generation without showing menu options",
+  "whatToSteal": {
+    "ts": "00:18",
+    "technique": "animating a single library card fanning out into stacked duplicates to convey language duplication visually"
+  },
+  "whatNotToSteal": {
+    "ts": "00:11",
+    "why": "showing a fake accelerated percentage bar that implies near-instant heavy AI video rendering"
+  },
+  "notRun": []
+}

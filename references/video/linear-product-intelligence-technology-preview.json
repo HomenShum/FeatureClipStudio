@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "linear-product-intelligence-technology-preview",
+  "source": {
+    "url": "https://youtu.be/rGvQ_rnCmyc",
+    "channel": "Linear",
+    "title": "Product Intelligence (Technology Preview)",
+    "declaredSeconds": 35
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-04T01:17:56.973Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 3314,
+  "watched": true,
+  "runtimeSeconds": 35,
+  "hookSeconds": 0,
+  "singleMoment": {
+    "ts": "0:23",
+    "what": "Product Intelligence automatically generates metadata suggestions and explains why each was recommended"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "0:00",
+      "kind": "structure",
+      "subject": "product intro",
+      "property": "hook timing",
+      "value": "Shows real issue text UI immediately at 0:00 without pre-roll logo cards"
+    },
+    {
+      "id": "f2",
+      "ts": "0:04",
+      "kind": "motion",
+      "subject": "transition sequence",
+      "property": "duration",
+      "value": "3D metallic icon burst transition takes 4 seconds from zoom-in to graph reveal (0:03 to 0:07)"
+    },
+    {
+      "id": "f3",
+      "ts": "0:08",
+      "kind": "pacing",
+      "subject": "issue network graph animation",
+      "property": "screen time",
+      "value": "7 seconds of animated 3D connected node cards establishing AI data relationship scanning"
+    },
+    {
+      "id": "f4",
+      "ts": "0:29",
+      "kind": "caption",
+      "subject": "value proposition text card",
+      "property": "text content and display time",
+      "value": "'AI-assisted product operations. Now in Technology Preview.' displayed for 2 seconds (0:29 to 0:31)"
+    },
+    {
+      "id": "f5",
+      "ts": "0:00",
+      "kind": "audio",
+      "subject": "background score",
+      "property": "sound design style",
+      "value": "Low atmospheric synth pad audio driving steady rhythm through the feature demonstration"
+    }
+  ],
+  "statesShown": [
+    "loading",
+    "result"
+  ],
+  "motionPurpose": "0:03 camera push-in and depth-of-field blur on 3D icon creates cinematic transition between user issue input and AI backend analysis",
+  "whatToSteal": {
+    "ts": "0:25",
+    "technique": "Provide an explicit 'Why this assignee was suggested' context card to build trust in AI recommendations"
+  },
+  "whatNotToSteal": {
+    "ts": "0:08",
+    "why": "Abstract 3D node camera fly-throughs look high production but don't match the actual 2D product UI"
+  },
+  "notRun": [
+    "exact font name used in UI cards",
+    "frame rate of the 3D rendered sequences"
+  ]
+}

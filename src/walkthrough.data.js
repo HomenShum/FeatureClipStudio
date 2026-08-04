@@ -16,14 +16,14 @@ export const WALKTHROUGHS = [
         "caption": "If your team lives in a spreadsheet, this is for you: an AI helper that cannot wreck your numbers.",
         "cursor": null,
         "click": false,
-        "hold": 178
+        "hold": 179
       },
       {
         "img": "wt/NodeRoom/01.png",
         "caption": "You change one number. The AI checks it. Only that one cell changes — nothing else moves.",
         "cursor": null,
         "click": false,
-        "hold": 169
+        "hold": 178
       },
       {
         "img": "wt/NodeRoom/02.png",
@@ -40,21 +40,21 @@ export const WALKTHROUGHS = [
         "caption": "When you and the AI disagree, you see both versions side by side. Nothing is lost.",
         "cursor": null,
         "click": false,
-        "hold": 158
+        "hold": 161
       },
       {
         "img": "wt/NodeRoom/04.png",
         "caption": "Lock a cell while you think. The AI works around it and waits its turn.",
         "cursor": null,
         "click": false,
-        "hold": 127
+        "hold": 130
       },
       {
         "img": "wt/NodeRoom/05.png",
         "caption": "If the AI's copy is out of date, its change becomes a suggestion you approve — never a surprise.",
         "cursor": null,
         "click": false,
-        "hold": 187
+        "hold": 192
       },
       {
         "img": "wt/NodeRoom/06.png",

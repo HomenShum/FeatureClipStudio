@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "airtable-introducing-a-new-generation-of-airtable-built-for-",
+  "source": {
+    "url": "https://youtu.be/UcZfSIegPNw",
+    "channel": "Airtable",
+    "title": "Introducing a new generation of Airtable - built for the AI era",
+    "declaredSeconds": 59
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-04T01:18:40.791Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 5635,
+  "watched": true,
+  "runtimeSeconds": 58,
+  "hookSeconds": 0,
+  "singleMoment": {
+    "ts": "0:13",
+    "what": "Prompting Omni AI in natural language to instantly generate complete tables, dashboards, and automated web research workflows"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "0:02",
+      "kind": "motion",
+      "subject": "UI Interaction",
+      "property": "prompt transition speed",
+      "value": "Zooms into the table UI and transitions to a map layout within 2 seconds of entering the prompt"
+    },
+    {
+      "id": "f2",
+      "ts": "0:10",
+      "kind": "structure",
+      "subject": "Brand introduction",
+      "property": "logo reveal timestamp",
+      "value": "Introduces Omni animated dot mark at 0:10 with centered title text"
+    },
+    {
+      "id": "f3",
+      "ts": "0:15",
+      "kind": "state",
+      "subject": "App builder",
+      "property": "loading state UI",
+      "value": "Displays 'Building table...' loading spinner before rendering interface cards and charts at 0:19"
+    },
+    {
+      "id": "f4",
+      "ts": "0:30",
+      "kind": "pacing",
+      "subject": "Data ingestion",
+      "property": "file drop interaction duration",
+      "value": "Shows CSV file drop into prompt field at 0:30, transitioning to auto-populated records by 0:36"
+    },
+    {
+      "id": "f5",
+      "ts": "0:40",
+      "kind": "state",
+      "subject": "Competitor Analysis table",
+      "property": "cell status state",
+      "value": "Shows animated 'Searching the web...' badge inside individual table cells during background agent execution"
+    },
+    {
+      "id": "f6",
+      "ts": "0:48",
+      "kind": "structure",
+      "subject": "Template montage",
+      "property": "shot duration",
+      "value": "Cuts through 7 distinct product interface screens in 6 seconds (approx 0.8s per screen)"
+    }
+  ],
+  "statesShown": [
+    "loading",
+    "result"
+  ],
+  "motionPurpose": "Push-in zooms at 0:04 and 0:43 focus viewer attention directly onto AI generation results within table cells.",
+  "whatToSteal": {
+    "ts": "0:40",
+    "technique": "Inline status badges ('Searching the web...') placed directly in table cells to communicate background AI processing."
+  },
+  "whatNotToSteal": {
+    "ts": "0:48",
+    "why": "Rapidly cycling through 7 dense application dashboards in under 6 seconds, which prevents viewers from absorbing key product details."
+  },
+  "notRun": []
+}

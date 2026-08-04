@@ -1,7 +1,7 @@
 {
   "name": "feature-clip-studio",
   "version": "0.1.0",
-  "description": "Turn live product flows into storyboarded proof assets: MP4/GIF walkthroughs, screenshots, readable state captures, and README-ready evidence. Playwright capture → Remotion render → ffmpeg/exported artifacts.",
+  "description": "Turn live product flows into storyboarded proof assets: MP4/GIF walkthroughs, screenshots, readable state captures, and README-ready evidence. Playwright capture \u00e2\u2020\u2019 Remotion render \u00e2\u2020\u2019 ffmpeg/exported artifacts.",
   "type": "module",
   "license": "MIT",
   "author": "Homen Shum",
@@ -27,7 +27,8 @@
     "render": "remotion render src/index.js",
     "render:example": "remotion render src/index.js WT-NodeRoom out/example.mp4 --concurrency=2",
     "render:roomos": "remotion render src/roomos-index.js WTG-RoomOSV0123 out/room-os-v0-v1-v2-v3.mp4 --concurrency=2",
-    "judge": "node judge-video.mjs"
+    "judge": "node judge-video.mjs",
+    "clip": "node clip.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.474",

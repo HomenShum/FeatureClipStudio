@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "linear-introducing-linear-agent",
+  "source": {
+    "url": "https://youtu.be/mRql2VJ99gM",
+    "channel": "Linear",
+    "title": "Introducing Linear Agent",
+    "declaredSeconds": 55
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-04T01:18:11.433Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 5016,
+  "watched": true,
+  "runtimeSeconds": 53,
+  "hookSeconds": 0,
+  "singleMoment": {
+    "ts": "0:23",
+    "what": "Auto-generating a detailed project spec PRD directly from searched issues using Ask Linear AI command"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "0:00",
+      "kind": "structure",
+      "subject": "product intro",
+      "property": "opening screen",
+      "value": "starts directly on Linear interface at 0:00 angled in 3D dark perspective"
+    },
+    {
+      "id": "f2",
+      "ts": "0:07",
+      "kind": "motion",
+      "subject": "prompt input",
+      "property": "typing duration",
+      "value": "takes 4 seconds to type 'Find issues with loading performance'"
+    },
+    {
+      "id": "f3",
+      "ts": "0:12",
+      "kind": "state",
+      "subject": "search results",
+      "property": "list response",
+      "value": "returns 13 bug issues with ENG tags in a dark floating side panel"
+    },
+    {
+      "id": "f4",
+      "ts": "0:18",
+      "kind": "motion",
+      "subject": "follow-up command",
+      "property": "typing duration",
+      "value": "takes 3 seconds to type 'Make a plan to refactor data loading to be optimistic'"
+    },
+    {
+      "id": "f5",
+      "ts": "0:23",
+      "kind": "structure",
+      "subject": "PRD output",
+      "property": "document layout",
+      "value": "opens generated 'Optimistic loading refactor' project spec with tables, diagrams, and data models"
+    },
+    {
+      "id": "f6",
+      "ts": "0:47",
+      "kind": "structure",
+      "subject": "outro card",
+      "property": "tagline text",
+      "value": "shows text 'Linear. At your command.' at 0:47 followed by logo icon"
+    }
+  ],
+  "statesShown": [
+    "loading",
+    "result"
+  ],
+  "motionPurpose": "0:25 macro pan across generated document sections to demonstrate document depth and structure",
+  "whatToSteal": {
+    "ts": "0:18",
+    "technique": "Seamlessly context-passing query results into a follow-up action prompt to build comprehensive assets"
+  },
+  "whatNotToSteal": {
+    "ts": "0:23",
+    "why": "Showing instant generation of multi-section spec documents with complex sequence diagrams can misrepresent actual AI generation latency"
+  },
+  "notRun": []
+}

@@ -20,6 +20,66 @@
       "observeVersion": "2026-08-03.atomic-facts-v1",
       "model": "gemini-3.6-flash",
       "at": "2026-08-03T23:01:23.265Z"
+    },
+    "rGvQ_rnCmyc::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\linear-product-intelligence-technology-preview.json",
+      "url": "https://youtu.be/rGvQ_rnCmyc",
+      "referenceId": "linear-product-intelligence-technology-preview",
+      "factCount": 5,
+      "promptTokens": 3314,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-04T01:17:56.973Z"
+    },
+    "mRql2VJ99gM::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\linear-introducing-linear-agent.json",
+      "url": "https://youtu.be/mRql2VJ99gM",
+      "referenceId": "linear-introducing-linear-agent",
+      "factCount": 6,
+      "promptTokens": 5016,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-04T01:18:11.433Z"
+    },
+    "SgmuplXU2iY::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\zelios-animated-video-production-best-saas-product-launch-ad.json",
+      "url": "https://youtu.be/SgmuplXU2iY",
+      "referenceId": "zelios-animated-video-production-best-saas-product-launch-ad",
+      "factCount": 9,
+      "promptTokens": 3348,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-04T01:18:28.496Z"
+    },
+    "UcZfSIegPNw::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\airtable-introducing-a-new-generation-of-airtable-built-for-.json",
+      "url": "https://youtu.be/UcZfSIegPNw",
+      "referenceId": "airtable-introducing-a-new-generation-of-airtable-built-for-",
+      "factCount": 6,
+      "promptTokens": 5635,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-04T01:18:40.791Z"
+    },
+    "S_Dxwo5F_cE::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\pitch-introduction-to-pitch-create-beautiful-presentations-w.json",
+      "url": "https://youtu.be/S_Dxwo5F_cE",
+      "referenceId": "pitch-introduction-to-pitch-create-beautiful-presentations-w",
+      "factCount": 12,
+      "promptTokens": 10912,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-04T01:19:16.813Z"
+    },
+    "fdgsJDDKFI4::2026-08-03.atomic-facts-v1::gemini-3.6-flash": {
+      "file": "references\\video\\tome-what-is-tome-ai-powered-communication.json",
+      "url": "https://youtu.be/fdgsJDDKFI4",
+      "referenceId": "tome-what-is-tome-ai-powered-communication",
+      "factCount": 10,
+      "promptTokens": 8977,
+      "observeVersion": "2026-08-03.atomic-facts-v1",
+      "model": "gemini-3.6-flash",
+      "at": "2026-08-04T01:19:34.964Z"
     }
   },
   "rejected": {
@@ -64,6 +124,76 @@
       "seconds": 1242,
       "reason": "1242s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
       "at": "2026-08-03T23:01:12.092Z"
+    },
+    "9Q5BoiIFBiY": {
+      "url": "https://youtu.be/9Q5BoiIFBiY",
+      "title": "Intro to Linear",
+      "seconds": 241,
+      "reason": "241s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:32.220Z"
+    },
+    "pRUB4nnUp9o": {
+      "url": "https://youtu.be/pRUB4nnUp9o",
+      "title": "How to Use Airtable & Getting Started Tutorial",
+      "seconds": 236,
+      "reason": "236s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:34.673Z"
+    },
+    "BX61XKNYvIY": {
+      "url": "https://youtu.be/BX61XKNYvIY",
+      "title": "What is Airtable? And Is It For Me?",
+      "seconds": 473,
+      "reason": "473s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:34.673Z"
+    },
+    "p1-0QVWa5ZU": {
+      "url": "https://youtu.be/p1-0QVWa5ZU",
+      "title": "Airtable Demo",
+      "seconds": 238,
+      "reason": "238s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:34.673Z"
+    },
+    "EZbIx94dMeU": {
+      "url": "https://youtu.be/EZbIx94dMeU",
+      "title": "How to Present a MIND-BLOWING Software Demo That Closes Sales",
+      "seconds": 649,
+      "reason": "649s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:37.518Z"
+    },
+    "7u0cKqRPYhY": {
+      "url": "https://youtu.be/7u0cKqRPYhY",
+      "title": "Demo day pitch: make your 5 minutes memorable",
+      "seconds": 525,
+      "reason": "525s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:37.518Z"
+    },
+    "AxqylyNNDA8": {
+      "url": "https://youtu.be/AxqylyNNDA8",
+      "title": "Great Pitch Deck Presentation Example � Fibrtex",
+      "seconds": 207,
+      "reason": "207s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:37.518Z"
+    },
+    "sh1MemfmpjA": {
+      "url": "https://youtu.be/sh1MemfmpjA",
+      "title": "Tome AI Presentation App - Overview & Review",
+      "seconds": 337,
+      "reason": "337s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:42.124Z"
+    },
+    "--NLfT5dqUw": {
+      "url": "https://youtu.be/--NLfT5dqUw",
+      "title": "How To Use Tome AI Tool To Create Stunning Presentations For FREE! - AI Presentation Creator - AI",
+      "seconds": 513,
+      "reason": "513s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:42.124Z"
+    },
+    "mi2vCsP1oKY": {
+      "url": "https://youtu.be/mi2vCsP1oKY",
+      "title": "Why 90% of AI Presentations Fail (do this instead)",
+      "seconds": 797,
+      "reason": "797s exceeds the 180s ceiling — wrong shape and wrong cost for a short walkthrough",
+      "at": "2026-08-04T01:17:42.124Z"
     }
   }
 }

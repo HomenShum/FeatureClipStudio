@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "pitch-introduction-to-pitch-create-beautiful-presentations-w",
+  "source": {
+    "url": "https://youtu.be/S_Dxwo5F_cE",
+    "channel": "Pitch",
+    "title": "Introduction to Pitch  | Create beautiful presentations with your team",
+    "declaredSeconds": 117
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-04T01:19:16.813Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 10912,
+  "watched": true,
+  "runtimeSeconds": 157,
+  "hookSeconds": 7,
+  "singleMoment": {
+    "ts": "01:19",
+    "what": "A 3D paper plane transition flying from the share modal directly into a real-time multi-user live editing canvas"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "00:00",
+      "kind": "structure",
+      "subject": "Intro Sequence",
+      "property": "duration",
+      "value": "7 seconds of 3D branded graphics before displaying product UI"
+    },
+    {
+      "id": "f2",
+      "ts": "00:07",
+      "kind": "motion",
+      "subject": "UI Entry",
+      "property": "zoom level",
+      "value": "Close-up cursor click on '+ New presentation' button expanding to full gallery view"
+    },
+    {
+      "id": "f3",
+      "ts": "00:10",
+      "kind": "pacing",
+      "subject": "Template Gallery",
+      "property": "scroll speed",
+      "value": "Fast vertical scroll demonstrating hundreds of templates in 8 seconds"
+    },
+    {
+      "id": "f4",
+      "ts": "00:32",
+      "kind": "motion",
+      "subject": "Text Editing",
+      "property": "zoom effect",
+      "value": "Magnifying glass graphic inset zooming into the title input box"
+    },
+    {
+      "id": "f5",
+      "ts": "00:41",
+      "kind": "state",
+      "subject": "Slide Style Builder",
+      "property": "interface overlay",
+      "value": "Full-screen slide style builder showing font, color, and background gradient controls"
+    },
+    {
+      "id": "f6",
+      "ts": "00:58",
+      "kind": "structure",
+      "subject": "Embed Modal",
+      "property": "interaction",
+      "value": "Pasting a YouTube URL to embed live video content onto a presentation slide"
+    },
+    {
+      "id": "f7",
+      "ts": "01:08",
+      "kind": "motion",
+      "subject": "Tidy Layout",
+      "property": "visual alignment",
+      "value": "Blue outline boxes showing automatic element re-alignment upon clicking 'Tidy'"
+    },
+    {
+      "id": "f8",
+      "ts": "01:19",
+      "kind": "structure",
+      "subject": "Scene Transition",
+      "property": "animation style",
+      "value": "3D paper plane model transition leading into collaborative multi-cursor workflow"
+    },
+    {
+      "id": "f9",
+      "ts": "01:27",
+      "kind": "structure",
+      "subject": "Workflow Assignment",
+      "property": "sidebar menu",
+      "value": "Assigning slide to collaborator 'Rita Horn' with status set to 'To do'"
+    },
+    {
+      "id": "f10",
+      "ts": "01:39",
+      "kind": "state",
+      "subject": "Real-time Collaboration",
+      "property": "live data update",
+      "value": "Slide statistic number updating live from 52% to 6% to 64% as collaborator works"
+    },
+    {
+      "id": "f11",
+      "ts": "01:48",
+      "kind": "pacing",
+      "subject": "Template Creation",
+      "property": "dropdown action",
+      "value": "'Save as template' dialog prompt completing the creation workflow in 5 seconds"
+    },
+    {
+      "id": "f12",
+      "ts": "01:53",
+      "kind": "structure",
+      "subject": "Outro Card",
+      "property": "brand screen",
+      "value": "4 second branded outro with animated 3D shapes and pitch.com URL"
+    }
+  ],
+  "statesShown": [
+    "empty",
+    "result"
+  ],
+  "motionPurpose": "At 00:32, a magnifying glass overlay graphic is used to zoom in on small text fields without losing the macro context of the editor UI",
+  "whatToSteal": {
+    "ts": "01:08",
+    "technique": "Show alignment bounding boxes along with a single-click button ('Tidy') to visually demonstrate auto-layout capabilities"
+  },
+  "whatNotToSteal": {
+    "ts": "00:32",
+    "why": "Skeuomorphic graphics like the magnifying glass zoom inset can look dated and distract from real interface fidelity"
+  },
+  "notRun": [
+    "Exact decibel levels or audio track stems used in the background music"
+  ]
+}

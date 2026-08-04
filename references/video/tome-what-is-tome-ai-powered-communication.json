@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "featureclip.video-reference/v1",
+  "referenceId": "tome-what-is-tome-ai-powered-communication",
+  "source": {
+    "url": "https://youtu.be/fdgsJDDKFI4",
+    "channel": "Tome",
+    "title": "What is Tome | AI-powered Communication",
+    "declaredSeconds": 95
+  },
+  "licence": "observed-and-attributed: cited by URL and timestamp, never re-hosted",
+  "observedAt": "2026-08-04T01:19:34.964Z",
+  "observedBy": "gemini-3.6-flash",
+  "promptTokens": 8977,
+  "watched": true,
+  "runtimeSeconds": 96,
+  "hookSeconds": 2,
+  "singleMoment": {
+    "ts": "0:19",
+    "what": "A 3D stack of presentation slides expanding horizontally to visualize multi-slide document generation."
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "ts": "0:01",
+      "kind": "motion",
+      "subject": "Create button",
+      "property": "click action",
+      "value": "Mouse cursor clicks 'Create' button at 0:01 to reveal the prompt modal 1s later"
+    },
+    {
+      "id": "f2",
+      "ts": "0:16",
+      "kind": "motion",
+      "subject": "Text input",
+      "property": "typing animation",
+      "value": "Types 'Contemporary Expressionism' character-by-character with a vertical purple cursor bar"
+    },
+    {
+      "id": "f3",
+      "ts": "0:23",
+      "kind": "state",
+      "subject": "Text context menu",
+      "property": "options listed",
+      "value": "Displays 'AI edit' dropdown containing 'Rewrite', 'Adjust tone', 'Reduce', and 'Extend'"
+    },
+    {
+      "id": "f4",
+      "ts": "0:26",
+      "kind": "state",
+      "subject": "Image generator prompt sidebar",
+      "property": "input text",
+      "value": "Prompt text 'Brutalist, concrete architectural structure in an Icelandic countryside' with a 'Generate' button"
+    },
+    {
+      "id": "f5",
+      "ts": "0:38",
+      "kind": "motion",
+      "subject": "Viewport aspect ratio",
+      "property": "responsive transition",
+      "value": "Transitions full screen layout into a narrow mobile portrait frame in 1 second"
+    },
+    {
+      "id": "f6",
+      "ts": "0:45",
+      "kind": "state",
+      "subject": "Image adjustment modal",
+      "property": "controls available",
+      "value": "Includes Fit, Fill, Custom buttons, zoom slider from 120% to 140%, and background color swatches"
+    },
+    {
+      "id": "f7",
+      "ts": "0:55",
+      "kind": "state",
+      "subject": "Color picker UI",
+      "property": "hex input display",
+      "value": "Shows hex code field changing value from #000000 to #673632"
+    },
+    {
+      "id": "f8",
+      "ts": "1:10",
+      "kind": "state",
+      "subject": "Page generator loading state",
+      "property": "skeleton screen",
+      "value": "Displays 4 placeholder cards with animated loading spinners before rendering slide thumbnails"
+    },
+    {
+      "id": "f9",
+      "ts": "1:14",
+      "kind": "motion",
+      "subject": "Card drag-and-drop",
+      "property": "multi-item badge",
+      "value": "Hand cursor drags a batch of 3 cards simultaneously indicated by a circular '3' badge"
+    },
+    {
+      "id": "f10",
+      "ts": "1:31",
+      "kind": "structure",
+      "subject": "End slate",
+      "property": "duration and visual",
+      "value": "Purple diamond logo centers on a black screen for the final 5 seconds (1:31 to 1:36)"
+    }
+  ],
+  "statesShown": [
+    "empty",
+    "loading",
+    "result"
+  ],
+  "motionPurpose": "At 0:38, the canvas smoothly resizes into a mobile phone mockup to demonstrate responsive layout adaptation across screen sizes.",
+  "whatToSteal": {
+    "ts": "0:23",
+    "technique": "Inline AI context popover floating directly over highlighted body text to perform quick actions like Rewrite, Reduce, or Extend without shifting focus."
+  },
+  "whatNotToSteal": {
+    "ts": "0:59",
+    "why": "Zooming out to an infinite black canvas with dozens of scattered documents can look chaotic and obscure the core linear editing workflow for target users."
+  },
+  "notRun": [
+    "Exact audio decibel levels for voiceover and background track",
+    "Precise screen frame rate during render transitions"
+  ]
+}
