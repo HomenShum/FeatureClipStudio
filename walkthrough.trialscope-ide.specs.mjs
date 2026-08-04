@@ -132,15 +132,18 @@ export const TRIALSCOPE_IDE_SPECS = [
       // folder expanded, MEASUREMENTS.md sits below the viewport and its row
       // does not exist in the DOM at all, so the click has nothing to find.
       // A person tidies the tree before reaching for the next file anyway.
-      { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='app']" },
+      // Quick-open, but focus the EDITOR first. Ctrl+P failed earlier only
+      // because the terminal held focus and swallowed it; the tree route failed
+      // for a different reason (the explorer list is virtualized, so a row
+      // scrolled out of view does not exist in the DOM to be clicked, whether
+      // `app` is collapsed or not). Clicking the editor surface costs one action
+      // and makes the palette route deterministic.
+      { act: "click", pane: 0, sel: ".monaco-editor" },
+      { act: "sleep", pane: 0, ms: 700 },
+      { act: "key", pane: 0, value: "Control+p" },
       { act: "sleep", pane: 0, ms: 1200 },
-      // ...and scroll the explorer back to the top. Opening four files walks the
-      // tree's own scroll position down, so even after collapsing the folder the
-      // root files can sit outside the rendered window — the same virtualization
-      // trap, arrived at a different way.
-      { act: "wheel", pane: 0, x: 200, y: 500, dy: -600, steps: 5, gap: 90 },
-      { act: "sleep", pane: 0, ms: 800 },
-      { act: "click", pane: 0, sel: ".monaco-list-row[aria-label='MEASUREMENTS.md']" },
+      { act: "type", pane: 0, sel: ".quick-input-box input",
+        value: "MEASUREMENTS.md", delay: 38, commit: "Enter" },
       { act: "sleep", pane: 0, ms: 2600 },
       { cap: "And this is the best file in the repo.", hold: 76 },
       { act: "wheel", pane: 0, x: 950, y: 520, dy: 300, steps: 6, gap: 140 },
