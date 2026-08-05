@@ -1,0 +1,58 @@
+[
+  {
+    "window": "full",
+    "what_it_builds": "Cheiron - Biopharma Intelligence You Can Trust (0:00)",
+    "named_features": [
+      {
+        "name": "Agents Selection Grid",
+        "at": "0:01",
+        "what_it_does": "Allows users to select specialized biopharma workflow agents."
+      },
+      {
+        "name": "Agent Instructions Input Form",
+        "at": "0:04",
+        "what_it_does": "Provides a structured parameter schema for study design inputs."
+      },
+      {
+        "name": "References & Viewer Sidepanel",
+        "at": "0:24",
+        "what_it_does": "Displays cited literature and FDA guidance with inline text highlighting."
+      }
+    ],
+    "sources_on_screen": [
+      "PubMed",
+      "FDA",
+      "clinicaltrials.gov",
+      "Nat Med",
+      "Oncology Center of Excellence"
+    ],
+    "artifacts_produced": [
+      "Clinical Study Design Framework Document"
+    ],
+    "provenance_chain": "Numbered inline citations link directly to source documents in the References sidepanel, opening PDF source pages with precise sentence highlighting.",
+    "agent_selection": "User selects 'Clinical Study Design' agent at 0:03. Visible agents: Drug Overview, Evidence Synthesis, Market Intelligence, Target Product Profile (TPP), Clinical Study Design, Regulatory Meeting Position, Drug Safety Profile, RWE Study Design, Product Claim Scope.",
+    "input_schemas": "Structured fields: Study Objective, Asset Name, Intended Indication, Target Jurisdiction(s), Target Patient Population, Mechanism of Action, Development Phase, and optional file upload buttons.",
+    "multi_turn_context": "Prompt response incorporates previously configured Agent Instructions parameters into the query context.",
+    "write_actions": "none observed",
+    "approval_or_review_ui": "none observed",
+    "competency_evidence": [
+      {
+        "competency": "multi-agent specialisation",
+        "verdict": "justified",
+        "evidence": "At 0:01-0:03, user picks 'Clinical Study Design' from a grid of specialized agents (Drug Overview, Evidence Synthesis, Market Intelligence, TPP, Regulatory Meeting Position, Drug Safety Profile, RWE Study Design, Product Claim Scope)."
+      },
+      {
+        "competency": "context compression",
+        "verdict": "refused",
+        "evidence": "No explicit context compression, context window metrics, or prompt condensation displays are shown on screen.",
+        "trigger": "UI display showing context window compression metrics or token reduction summaries."
+      },
+      {
+        "competency": "human-in-the-loop approval",
+        "verdict": "refused",
+        "evidence": "The agent generates the full response directly without human approval gates or intervention steps (0:18-0:25).",
+        "trigger": "An explicit human confirmation step required before agent output generation or tool execution."
+      }
+    ]
+  }
+]

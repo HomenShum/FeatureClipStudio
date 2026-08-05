@@ -1,0 +1,70 @@
+[
+  {
+    "window": "full",
+    "what_it_builds": "Cheiron Biopharma Intelligence You Can Trust. (00:00)",
+    "named_features": [
+      {
+        "name": "Choose sources for verified results",
+        "at": "0:03",
+        "what_it_does": "Allows selecting specific source repositories like FDA, PubMed, ClinicalTrials.gov, and ICH before querying."
+      },
+      {
+        "name": "Document Viewer",
+        "at": "0:17",
+        "what_it_does": "Opens source PDFs side-by-side with synchronized text highlighting linked to answer citations."
+      },
+      {
+        "name": "Ask Document",
+        "at": "0:28",
+        "what_it_does": "Provides a dedicated chat and summarization interface for a selected reference document."
+      },
+      {
+        "name": "Follow-ups",
+        "at": "0:19",
+        "what_it_does": "Generates suggested follow-up prompts to clarify or narrow research results."
+      }
+    ],
+    "sources_on_screen": [
+      "FDA",
+      "MFDS",
+      "PubMed",
+      "ClinicalTrials.gov",
+      "ICH",
+      "Web",
+      "Product Label",
+      "Guidance"
+    ],
+    "artifacts_produced": [
+      "Overview summary",
+      "Summary table",
+      "Follow-up question prompts",
+      "Document summary key concepts"
+    ],
+    "provenance_chain": "Numbered inline citations link directly to references drawer, opening full documents in side-by-side viewer with matching yellow highlights (0:11-0:18, 0:31-0:33, 0:45-0:50, 0:54-0:57).",
+    "agent_selection": "Domain tabs shown at 0:00 (R&D, Regulatory Affairs, Clinical, Manufacturing & Quality, Biz Dev, Medical Affairs), but no explicit agent selection step required.",
+    "input_schemas": "none observed",
+    "multi_turn_context": "Follow-up query prompts offered at 0:19, and persistent Ask Document chat sessions on selected papers at 0:28 and 0:51.",
+    "write_actions": "none observed",
+    "approval_or_review_ui": "none observed",
+    "competency_evidence": [
+      {
+        "competency": "multi-agent specialisation",
+        "verdict": "refused",
+        "evidence": "Domain categories exist at 0:00, but execution displays a single unified query pipeline without visible multi-agent interaction.",
+        "trigger": "Explicit UI showing distinct specialized agents coordinating or handing off tasks."
+      },
+      {
+        "competency": "context compression",
+        "verdict": "refused",
+        "evidence": "Documents are summarized at 0:28 and 0:51, but no explicit context window compression or token pruning mechanism is shown.",
+        "trigger": "UI indicators demonstrating context truncation or sliding window memory management."
+      },
+      {
+        "competency": "human-in-the-loop approval",
+        "verdict": "refused",
+        "evidence": "User selects sources at 0:03, but query execution and output generation proceed autonomously without approval gates.",
+        "trigger": "Human confirmation step required prior to query execution or output generation."
+      }
+    ]
+  }
+]
