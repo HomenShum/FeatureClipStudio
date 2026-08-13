@@ -6,84 +6,98 @@
     {
       "file": "package.json",
       "line": 24,
+      "pattern": "\"check\": \"node check",
       "title": "1 — The entry point is a command, not a route",
       "description": "There is no server anywhere in this repository. Every entry point is an npm script, and this list is the whole API. `capture` drives your app; `studio` previews the result in a browser; `render:example` renders a walkthrough that is already captured and committed, so it works on a fresh clone with nothing running."
     },
     {
       "file": "walkthrough.specs.mjs",
       "line": 31,
+      "pattern": "export const SPECS",
       "title": "2 — A spec is the written-down script of the demo",
       "description": "Plain data, checked in. An ordered list of 'do this, then photograph that, and caption it like so'. Because it is a file rather than a hand-performed recording, re-running it after the app changes produces a new video from the new app — and the video breaks the moment the app does."
     },
     {
       "file": "walkthrough.specs.mjs",
       "line": 53,
+      "pattern": "^    steps: \\[",
       "title": "3 — Two op shapes, and one product invariant",
       "description": "`{ cap: ... }` photographs the current screen with a caption; `{ act: ... }` performs an action to advance the app. The invariant written at the top of this file has no automated enforcement and is the most important rule here: A CAPTION MAY ONLY DESCRIBE WHAT ITS FRAME SHOWS. The first cut shipped 'the brief drives the deck' over a picture of an empty composer."
     },
     {
       "file": "walkthrough.mjs",
       "line": 136,
+      "pattern": "const run = async",
       "title": "4 — run(): the only code that touches a live application",
       "description": "Opens a real Chrome through Playwright, walks each spec, and photographs at every `cap`. Everything downstream works on the photographs, never on your app — which is why rendering needs no app, no network and no credentials."
     },
     {
       "file": "walkthrough.mjs",
       "line": 124,
+      "pattern": "spec\\?\\.ready",
       "title": "5 — Presence before capture",
       "description": "A spec's `ready` string must be visible before anything is photographed. A proof selector, not a sleep: if the app never rendered, fail here rather than emit a run full of frames of a blank page."
     },
     {
       "file": "walkthrough.mjs",
       "line": 39,
+      "pattern": "const loc = ",
       "title": "6 — loc(): where a string becomes a real element",
       "description": "The selector grammar, in full. `btn:Approve` becomes a role-based button lookup, `link:` an anchor, anything else is raw CSS. This is the closest thing this repository has to schema validation — there is no type checker and no Zod."
     },
     {
       "file": "walkthrough.mjs",
       "line": 108,
+      "pattern": "throw new Error\\($",
       "title": "7 — The throw that had to be added",
       "description": "An unrecognised act used to fall through this chain doing nothing at all. A spec written with `scroll` instead of `scrollY` produced four captioned steps over one frozen viewport — a clip that looked exactly like a walkthrough that worked. Read the comment above: a capture tool that silently does nothing is worse than one that crashes, because it emits something that passes for evidence."
     },
     {
       "file": "walkthrough.mjs",
       "line": 183,
+      "pattern": "path: join\\(dir, name\\)",
       "title": "8 — The photograph, and the pointer coordinate with it",
-      "description": "One PNG per `cap` op, plus where the pointer was aiming (`cursorOf`, line 56) in the capture viewport's 1280x800 CSS pixels. That coordinate pair is what lets the renderer draw a cursor that lands on the right control."
+      "description": "One PNG per `cap` op, plus where the pointer was aiming — `walkthrough.mjs:56` (`const cursorOf`) — in the capture viewport's 1280x800 CSS pixels. That coordinate pair is what lets the renderer draw a cursor that lands on the right control."
     },
     {
       "file": "walkthrough.mjs",
       "line": 215,
+      "pattern": "\"src\", \"walkthrough.data.js\"",
       "title": "9 — THE SEAM: one generated file joins the two halves",
       "description": "Capture and render are separate programs that never share memory. This write is the entire contract between them. It is committed, which is what makes `npm run render:example` work on a clone. Never edit it by hand — a capture run overwrites it whole."
     },
     {
       "file": "src/index.js",
       "line": 4,
+      "pattern": "^registerRoot\\(RemotionRoot\\)",
       "title": "10 — The render half starts here",
       "description": "Remotion's entry point. `registerRoot` hands it the component that declares which videos exist. A second entry, src/roomos-index.js, does the same for the four-up grid."
     },
     {
       "file": "src/Root.jsx",
       "line": 12,
+      "pattern": "export const RemotionRoot",
       "title": "11 — The registry: a video exists only if declared here",
       "description": "Remotion has no file-based routing. This reads the generated data and declares one <Composition> per captured walkthrough, so `remotion render src/index.js WT-NodeRoom` can find WT-NodeRoom. If a name is missing from the studio's left rail, this is the only file that can be at fault. Ids may not contain an underscore."
     },
     {
       "file": "src/Walkthrough.jsx",
       "line": 94,
+      "pattern": "export const Walkthrough = ",
       "title": "12 — One frame at a time, as a pure function",
       "description": "Remotion calls this once per frame number. Which step is active, how far the camera has eased, where the pointer has glided, how full the progress bar is — all computed from the frame number alone. No state, no effects, no fetching. That purity is what makes a render reproducible and lets the opening-frame probe compare frame 0 with frame 4."
     },
     {
       "file": "src/Walkthrough.jsx",
       "line": 172,
+      "pattern": "opacity: prevImg \\? fadeIn : 1",
       "title": "13 — The one guard not to simplify away",
       "description": "`opacity: prevImg ? fadeIn : 1`. The fade is a CROSS-fade and only means anything with the previous step's still underneath. Step 0 has no previous step, so an unguarded ramp faded the first frame up from this container's white — every clip opened on a 0.37 second flash and a looping README GIF re-flashed every loop. That is defect D2. `npm run probe:opening` exists to keep it fixed."
     },
     {
       "file": "src/Walkthrough.jsx",
       "line": 188,
+      "pattern": "width: WT_W \\* progress",
       "title": "14 — And out the other side",
       "description": "Caption lower-third above, progress bar here, and the frame is done. `remotion render` collects these into an MP4; the README's ffmpeg palette command turns that into the GIF you paste into a README. You have now followed the whole path."
     }

@@ -8,18 +8,33 @@ three gates, and each one proves strictly less than the next reader will assume.
 
 ```
 $ npm run check
-[check] parsed 37/37 JavaScript files — all valid
+[check] parsed 36/36 JavaScript files; 36/36 tour steps and 34/34 prose citations name a line that matches
 $ echo $?
 0
 ```
 
-**File:** `check.mjs`. Walks the repository (skipping `node_modules`, generated
-directories, and the two nested projects `examples/` and `argo-demos/`) and runs
-`node --check` on every `.mjs`/`.js` file.
+**File:** `check.mjs`. Two halves. The first walks the repository (skipping
+`node_modules`, generated directories, and the two nested projects `examples/` and
+`argo-demos/`) and runs `node --check` on every `.mjs`/`.js` file. The second reads
+every citation in the guided-reading docs — each `.tours/*.tour` step, and every
+`file:line` written in a tour description or in `docs/START_HERE.md` — opens the file
+it names, and asserts that line contains the text the citation says it contains.
 
-**Proves:** every JavaScript file this package ships parses.
-**Does not prove:** anything else. `--check` does not import, execute, or resolve a
-single dependency. A file that throws on its first line still passes.
+**Proves:** every JavaScript file this package ships parses, and no citation in the
+docs a newcomer is told to follow points at the wrong line.
+**Does not prove:** that any of it runs. `--check` does not import, execute, or resolve
+a single dependency. A file that throws on its first line still passes.
+
+**Why the second half reads the line instead of counting lines.** Until 2026-08-13 it
+asserted `1 <= step.line <= lineCount` and nothing more. That proves an anchor is in
+range, never that it is correct: insert twenty lines at the top of `walkthrough.mjs`
+and all 36 tour steps still pass while every one of them points at the wrong symbol.
+So a tour step now carries `pattern` — CodeTour's own field for associating a step
+with line content rather than an ordinal — and prose carries its expectation inline as
+``` `file:line` (`text on that line`) ```. Prose that cites a line without carrying
+its expectation is reported as a problem rather than skipped: a citation the gate
+cannot read is exactly how the unchecked citation came back. Repoint any step at a
+neighbouring line to watch it fail; it names the line the pattern is actually on.
 
 **Why it prints a count.** Until 2026-08-13 this gate was fifteen `node --check` calls
 chained in `package.json`. The list was maintained by hand and had drifted to covering

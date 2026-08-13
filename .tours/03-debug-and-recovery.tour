@@ -6,72 +6,84 @@
     {
       "file": "walkthrough.mjs",
       "line": 192,
+      "pattern": "catch \\(e\\)",
       "title": "1 — Photograph the wreck before doing anything else",
       "description": "Any throw from a step lands here. The exact broken UI state is screenshotted to zz-fail.png and the first 200 characters of the page's text are logged, because 'which state was the page actually in' is where debugging normally stalls."
     },
     {
       "file": "walkthrough.mjs",
       "line": 196,
+      "pattern": "screenshot\\(\\{ path: join\\(dir, \"zz-fail\\.png\"\\)",
       "title": "2 — Why the filename starts with zz",
       "description": "It sorts last in the frame directory and no generated data file ever references it, so a forensic screenshot can never leak into a rendered video."
     },
     {
       "file": "walkthrough.mjs",
       "line": 200,
+      "pattern": "attempt < maxAttempts",
       "title": "3 — A retry must open a brand-new page",
       "description": "Steps that call a language model flake roughly half the time, and a half-driven UI poisons every frame captured after the failure. Reusing the page would just re-capture the poisoned state. Note the comment: an earlier version reopened the default URL instead of the spec's own, which failed every retry of a spec that targets its own app."
     },
     {
       "file": "walkthrough.mjs",
-      "line": 138,
+      "line": 137,
+      "pattern": "WT_ONLY=<id> captures one walkthrough",
       "title": "4 — Recovery is re-running one stage, scoped",
       "description": "WT_ONLY=<id> re-captures a single walkthrough without wiping the others' frames. Every stage of this pipeline writes to disk, so there is no session to lose: recovery is always 'run the failed stage again'."
     },
     {
       "file": "check.mjs",
       "line": 1,
+      "pattern": "#!/usr/bin/env node",
       "title": "5 — Gate 1: does every file parse?",
       "description": "Walks the repository and runs `node --check` on every JavaScript file it ships. Green means every file is syntactically valid and NOTHING more — `--check` parses, it does not import, execute, or resolve a dependency."
     },
     {
       "file": "check.mjs",
-      "line": 66,
+      "line": 97,
+      "pattern": "if \\(hits\\(lines\\[line - 1\\]\\)\\) return true;",
       "title": "6 — It also validates these tours",
-      "description": "Every step of every .tours/*.tour file is checked to point at a line that exists. A tour pointing at a line that has moved is worse than no tour: it teaches the reader something false and nothing fails. Break one deliberately and `npm run check` exits 1."
+      "description": "Every step carries a `pattern` — CodeTour's own field for associating a step with line content rather than an ordinal — and this reads the line the step names and asserts the pattern matches it. Checking only that the line NUMBER is in range, which is what this did until 2026-08-13, proves an anchor is stable and never that it is correct: insert twenty lines at the top of a file and every step still passes while pointing at the wrong symbol. Repoint any step at a neighbouring line and `npm run check` exits 1 and tells you which line the pattern is actually on."
     },
     {
       "file": "check.mjs",
-      "line": 81,
+      "line": 145,
+      "pattern": "console\\.log\\(`\\[check\\] parsed",
       "title": "7 — Why it prints counts",
       "description": "This gate used to be fifteen `node --check` calls chained in package.json. The hand-kept list drifted to covering 15 of 45 files, including neither of two capture drivers, while still exiting 0. A gate that reports only 'ok' cannot be caught shrinking."
     },
     {
       "file": "probe-opening-frame.mjs",
       "line": 13,
+      "pattern": "THE ASSERTION",
       "title": "8 — Gate 2: the assertion, argued rather than assumed",
       "description": "Read this comment in full. Within one step, frames 0 and 4 differ ONLY by the opening fade — every camera ease starts at frame 5 or later and every caption ease at frame 4, so they clamp to their start values. Therefore frame 0 and frame 4 of a composition must be the same picture. They are not, if the opening cross-fade is unguarded."
     },
     {
       "file": "probe-opening-frame.mjs",
       "line": 34,
+      "pattern": "const TARGETS",
       "title": "9 — One composition per renderer, not one per video",
       "description": "The defect lives in the cross-fade shared by all three renderers, so covering each renderer once covers every composition it draws. That is also why one bug hit twelve compositions at the same time."
     },
     {
       "file": "probe-opening-frame.mjs",
       "line": 54,
+      "pattern": "raw RGB24",
       "title": "10 — The reuse ladder, applied out loud",
       "description": "It needs to compare two PNGs. Instead of adding an image-decoding dependency it pipes each PNG through ffmpeg to raw RGB — 'ffmpeg is already a hard requirement of this repo, and one pipe is smaller than a dependency'. Copy this habit before you copy anything else here."
     },
     {
       "file": "probe-opening-frame.mjs",
       "line": 106,
+      "pattern": "const receipt",
       "title": "11 — A receipt, not just an exit code",
       "description": "Writes promotion/evidence/opening-frame.json with the assertion, the producer command, the platform, and the per-composition numbers. The before-fix receipt is committed alongside it, so the gate is on record failing before the fix rather than only passing after."
     },
     {
       "file": ".github/workflows/ci.yml",
       "line": 29,
+      "pattern": "Smoke render",
       "title": "12 — Gate 3: CI actually renders",
       "description": "npm ci, npm run check, then a real Remotion render of frames 0-30 asserted to produce a non-empty MP4. This is the only automated check that executes application code. It deliberately excludes the Playwright capture step, which needs a live app CI does not have."
     }

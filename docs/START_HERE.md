@@ -51,9 +51,21 @@ npm run render:example        # renders a bundled capture — needs no app of yo
 ```
 
 That produces `out/example.mp4`. The frames it uses are committed under `public/wt/`,
-so this works on a fresh clone with nothing else running. Known caveat: this command
-has failed once on Windows with a Chrome-launch error that has never been reproduced —
-see `docs/codebase/CONCERNS.md`, defect D1.
+so this works on a fresh clone with nothing else running.
+
+**On Windows, clone to a short path (e.g. `C:\src\fcs`) — a deep checkout exceeds
+MAX_PATH and Remotion's browser launch fails with a misleading `ENOENT`.** Remotion
+installs its browser under your checkout, and that adds 105 characters to whatever
+path you cloned into:
+
+```
+<your checkout>\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe
+```
+
+Cross 259 characters and `spawn` refuses the file with `ENOENT` — "no such file" —
+about a 203 MB executable that is right there and runs fine when you invoke it
+yourself. The error names the file, so it reads as a broken download; it is not.
+Measured boundary and repro are in `docs/codebase/CONCERNS.md`, defect D1.
 
 ---
 
@@ -92,9 +104,9 @@ understand rendering.
 ## Step 2 — The primary user action: drive the app and photograph it
 
 **File:** `walkthrough.mjs`
-**Symbol:** `run` (line 136)
+**Symbol:** `run` — `walkthrough.mjs:136` (`const run = async`)
 **Called by:** `npm run capture`
-**Calls next:** `openHarness` (line 118) → `doAct` (line 71) → `page.screenshot` (line 183)
+**Calls next:** `walkthrough.mjs:118` (`const openHarness`) → `walkthrough.mjs:71` (`const doAct`) → `walkthrough.mjs:183` (`await page.screenshot`)
 
 **Why this exists**
 This is the only place in the repository that touches a live application. It opens a
@@ -117,7 +129,7 @@ for (const spec of SPECS.filter((s) => !ONLY || s.id === ONLY)) {
 (default `DEMO_URL`, else `http://127.0.0.1:8502`).
 **Output** — `public/wt/<spec.id>/NN.png`, one PNG per `cap` op, plus an in-memory
 step list that becomes Step 6's generated file.
-**Failure behavior** — a thrown step is caught at line 193; the page is photographed
+**Failure behavior** — a thrown step is caught at `walkthrough.mjs:192` (`} catch (e) {`); the page is photographed
 to `zz-fail.png` before anything else, the first 200 characters of the page's text are
 logged, and the spec is retried in a brand-new page if `retries` was set. See Step 8.
 **Next** — the op vocabulary those specs are written in, Step 3.
@@ -127,7 +139,7 @@ logged, and the spec is retried in a brand-new page if `retries` was set. See St
 ## Step 3 — Where a string becomes a trusted instruction
 
 **File:** `walkthrough.mjs`
-**Symbol:** `loc` (line 39) and `doAct` (line 71)
+**Symbol:** `loc` — `walkthrough.mjs:39` (`const loc = (p, sel)`) — and `doAct` — `walkthrough.mjs:71` (`const doAct = async (p, a)`)
 **Called by:** `run`
 **Calls next:** Playwright's own locator API
 
@@ -159,7 +171,7 @@ written with `scroll` instead of `scrollY` produced four captioned steps over on
 frozen viewport — a clip that looked exactly like a walkthrough that worked. **A
 capture tool that silently does nothing is worse than one that crashes, because it
 emits something that passes for evidence.** The same reasoning added the
-`scrollEl: no element matches` throw at line 95.
+`scrollEl: no element matches` throw at `walkthrough.mjs:95` (`scrollEl: no element matches`).
 
 **Input** — one op object from a spec.
 **Output** — a performed browser action, or a thrown error naming the valid vocabulary.
@@ -171,35 +183,53 @@ emits something that passes for evidence.** The same reasoning added the
 ## Step 4 — Agent orchestration: not on this path, and here is where it is
 
 **File:** `iterate.mjs`
-**Symbol:** the top-level round loop, `for (let r = 1; r <= rounds; r++)` (line 62)
-**Called by:** `npm run iterate` and `npm run clip`
-**Calls next:** `judge-video.mjs` → Google Gemini
+**Symbol:** the top-level round loop — `iterate.mjs:62` (`for (let r = 1; r <= rounds`)
+**Called by:** `npm run iterate` — `package.json:41` (`"iterate": "node iterate.mjs"`) — and
+nothing else. No script and no other file in this repository spawns it.
+**Calls next:** `iterate.mjs:72` (`judge-rubric.mjs`) → Google Gemini
 
 **Why this exists — and why the capture/render path has no agent at all**
 The stage the HUMAN-READY template calls "agent orchestration" **does not exist in
 the capture or render path.** No model is called; nothing is inferred. Say that
 plainly rather than inventing a boundary. The only model call in the repository is
-the *critic*: after a video is rendered, `judge-video.mjs` sends the MP4 to Gemini and
-gets two scorecards back — craft (is it well made) and comprehension (would a
-newcomer understand it). `iterate.mjs` wraps that in a render → judge → revise loop.
+the *critic*: after a video is rendered, a judge sends the MP4 to Gemini and gets two
+scorecards back — craft (is it well made) and comprehension (would a newcomer
+understand it). `iterate.mjs` wraps that in a render → judge → revise loop.
 
-**Core code**
+**There are two judges, and which one runs tells you which path you are on.**
+`iterate.mjs` spawns `judge-rubric.mjs`, which takes `--gate` and exits non-zero
+below it, so the loop can read pass/fail from the exit code. `npm run clip` does
+**not** go through `iterate.mjs` at all: it spawns the other judge itself at
+`clip.mjs:96` (`judge-video.mjs`) and applies its own thresholds. The two judges are
+near-copies that write the same `.judge.json` / `.judge.md` pair; if you are reading
+a scorecard and cannot tell which produced it, that is why.
+
+**Core code** — the round's verdict, `iterate.mjs:92` (`if (passed) {`) onward:
 ```js
-if (total >= Number(gate)) { console.log(`[iterate] PASS ${total}/40`); process.exit(0); }
-writeFileSync(`${base}.next-cut.md`, brief);          // the critic's revision brief
-console.error(`[iterate] revision brief written to ${base}.next-cut.md — apply it and re-run.`);
-process.exit(1);
+  if (passed) {
+    console.log(`\n[iterate] round ${r}: ${total}/40 >= ${gate} — shippable. History in ${LOG}`);
+    process.exit(0);
+  }
+```
+and, on the last round, the brief it refuses to apply:
+```js
+    writeFileSync(`${base}.next-cut.md`, [
+      …
+    ].join("\n") + "\n");
+    console.error(`[iterate] revision brief written to ${base}.next-cut.md — apply it and re-run.`);
+    process.exit(1);
 ```
 
 **Input** — a rendered MP4, an audience description (`--for`), a pass mark
 (`--gate`, default 28/40), and `GEMINI_API_KEY` in the environment.
-**Output** — `<video>.judge.json`, `<video>.judge.md`, and on failure
-`<video>.next-cut.md`.
-**Failure behavior** — no key: `judge-video.mjs:48` throws
-`set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY`. Below the gate: writes the
-brief and exits 1. **It deliberately does not edit your storyboard** — a loop that
-applies its own critic's notes converges on what the critic likes. The human is the
-steering mechanism, on purpose.
+**Output** — `<video>.judge.json`, `<video>.judge.md`, a per-round history appended to
+`<video>.rounds.md`, and on the final failing round `<video>.next-cut.md` —
+`iterate.mjs:99` (`next-cut.md`).
+**Failure behavior** — no key: `judge-rubric.mjs:46` (`set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY`)
+throws. Below the gate: writes the brief and exits 1 — `iterate.mjs:111` (`revision brief written to`).
+**It deliberately does not edit your storyboard** — a loop that applies its own
+critic's notes converges on what the critic likes. The human is the steering
+mechanism, on purpose.
 **Next** — Step 5.
 
 ---
@@ -207,8 +237,8 @@ steering mechanism, on purpose.
 ## Step 5 — Tool registration: every composition is registered by name
 
 **File:** `src/Root.jsx`
-**Symbol:** `RemotionRoot` (line 12)
-**Called by:** `src/index.js` line 4, `registerRoot(RemotionRoot)`
+**Symbol:** `RemotionRoot` — `src/Root.jsx:12` (`export const RemotionRoot`)
+**Called by:** `src/index.js:4` (`registerRoot(RemotionRoot);`)
 **Calls next:** `src/Walkthrough.jsx` `Walkthrough`, `src/Walkthrough2up.jsx` `Walkthrough2up`
 
 **Why this exists**
@@ -235,7 +265,7 @@ contain `_`.
 **Output** — a composition registry the Remotion CLI and studio read.
 **Failure behavior** — a composition whose steps array is empty still registers, with
 `durationInFrames` clamped to 1 by the `Math.max(1, …)`; the renderer paints a blank
-frame rather than crashing (`src/Walkthrough.jsx:97`).
+frame rather than crashing — `src/Walkthrough.jsx:97` (`if (!steps.length) return`).
 **Next** — Step 6, the file this registry reads.
 
 ---
@@ -243,7 +273,7 @@ frame rather than crashing (`src/Walkthrough.jsx:97`).
 ## Step 6 — Artifact mutation: one generated file is the seam
 
 **File:** `walkthrough.mjs`
-**Symbol:** the tail of `run` (lines 213–216)
+**Symbol:** the tail of `run` — `walkthrough.mjs:215` (`"src", "walkthrough.data.js"`)
 **Called by:** `run`, once, after every spec has been walked
 **Calls next:** nothing — the process ends here
 
@@ -266,7 +296,7 @@ follow the same rule: `src/walkthrough.collab.data.js` (from `walkthrough.collab
 **Failure behavior** — the file is written even if some specs failed all their
 retries; a failed spec contributes an empty `steps` array rather than aborting the
 others. Check the console for `attempt N/M err:` lines before trusting a render.
-**One more writer, and it is worth knowing about:** `clip.mjs:30` **rewrites this same
+**One more writer, and it is worth knowing about:** `clip.mjs:30` (`writeFileSync("src/walkthrough.data.js"`) **rewrites this same
 file in place**, changing each step's `hold` so the picture lasts exactly as long as
 its spoken narration. That is the only other thing that edits generated data.
 **Next** — Step 7, the reader.
@@ -276,9 +306,9 @@ its spoken narration. That is the only other thing that edits generated data.
 ## Step 7 — Rendering: one function turns a step list into every frame
 
 **File:** `src/Walkthrough.jsx`
-**Symbol:** `Walkthrough` (line 94)
+**Symbol:** `Walkthrough` — `src/Walkthrough.jsx:94` (`export const Walkthrough`)
 **Called by:** Remotion, once per frame, via the `Composition` in Step 5
-**Calls next:** `burstFrame` (line 49), `camTarget` (line 34), `Pointer`, `Ripple`
+**Calls next:** `src/Walkthrough.jsx:49` (`const burstFrame`), `src/Walkthrough.jsx:34` (`const camTarget`), plus `Pointer` and `Ripple`
 
 **Why this exists**
 This is the whole visual language of the product in one component: which captured
@@ -301,9 +331,9 @@ export const Walkthrough = ({ wt }) => {
 
 **Input** — one walkthrough object as the `wt` prop.
 **Output** — the JSX for exactly one frame.
-**Failure behavior** — an empty step list returns a plain dark frame (line 97) instead
+**Failure behavior** — an empty step list returns a plain dark frame — `src/Walkthrough.jsx:97` (`if (!steps.length) return`) — instead
 of throwing. A missing PNG surfaces as a Remotion asset error naming the file.
-**The one bug fixed here that you must not undo** (line 172): the still is drawn with
+**The one bug fixed here that you must not undo** — `src/Walkthrough.jsx:172` (`opacity: prevImg ? fadeIn : 1`): the still is drawn with
 `opacity: prevImg ? fadeIn : 1`. The fade is a *cross*-fade and only means anything
 with the previous step underneath. On step 0 there is no previous step, so an
 unguarded ramp faded the first frame up from the container's white — every clip opened
@@ -316,7 +346,7 @@ is defect D2. `npm run probe:opening` exists solely to keep it fixed (Step 9).
 ## Step 8 — Failure and recovery: photograph the wreck, then retry in a fresh page
 
 **File:** `walkthrough.mjs`
-**Symbol:** the `catch` block of `run` (lines 192–205)
+**Symbol:** the `catch` block of `run` — `walkthrough.mjs:192` (`} catch (e) {`)
 **Called by:** any throw from `doAct`, `openHarness`, or a Playwright timeout
 **Calls next:** `openHarness` again, for the next attempt
 
@@ -352,12 +382,26 @@ There is no unit-test suite and no `npm test`. Saying otherwise would be the eas
 lie in this document. There are three real gates, in ascending order of what they
 prove:
 
-**1. `npm run check` → `check.mjs`** — walks the repository and runs `node --check` on
-every `.mjs`/`.js` file it ships. Green means every file is syntactically valid
-JavaScript, and **nothing more**: `--check` parses, it does not import, execute, or
-resolve a dependency. It prints the count it parsed (37 at the time of writing) so it
-cannot silently shrink — the fifteen-file hand-kept list it replaced had drifted to
-covering a third of the repository.
+**1. `npm run check` → `check.mjs`** — two halves, and it prints how much of each it
+did, so it cannot silently shrink (the fifteen-file hand-kept list it replaced had
+drifted to covering a third of the repository). On 2026-08-13 it said:
+
+```
+[check] parsed 36/36 JavaScript files; 36/36 tour steps and 34/34 prose citations name a line that matches
+```
+
+The first half runs `node --check` on every `.mjs`/`.js` file the package ships. Green
+means every file is syntactically valid JavaScript and **nothing more**: `--check`
+parses, it does not import, execute, or resolve a dependency.
+
+The second half is the reason you can trust the numbers in this document. Every
+`file:line` written here or in a `.tours/*.tour` step has to carry the text it expects
+to find, and the gate opens the file and compares. Until 2026-08-13 it asserted only
+that the number was within the file's length, which proves an anchor is *stable* and
+never that it is *correct* — insert twenty lines at the top of `walkthrough.mjs` and
+all 36 tour steps still passed while every one of them pointed at the wrong symbol.
+A citation written in a form the gate cannot read is reported as a problem rather
+than skipped, because a citation that looks checked and is not is how this came back.
 
 **2. `npm run probe:opening` → `probe-opening-frame.mjs`** — the only committed gate
 that *runs the renderers and fails on a property of the rendered output*. It renders
@@ -392,7 +436,7 @@ frames. That path is exercised by hand. See `docs/codebase/TESTING.md` and
 
 **"I want to film my own app."** Copy `walkthrough.specs.mjs` to a new file, export a
 `SPECS` array with your app's `url`, a `ready` string that only appears once your app
-has actually rendered, and your ops. Point `walkthrough.mjs:15` at it (or add a script
+has actually rendered, and your ops. Point `walkthrough.mjs:15` (`import { SPECS }`) at it (or add a script
 next to `capture:collab`). Run `npm run capture`, then `npm run studio` to scrub the
 result before spending minutes on a render.
 
@@ -401,7 +445,8 @@ register it in `src/Root.jsx` with a new id prefix. Do not modify `Walkthrough.j
 one clip's sake — three previous cuts are locked to its current behaviour, and
 `probe:opening` guards its opening frame.
 
-**"I want a new op in the spec vocabulary."** Add a branch in `doAct`
-(`walkthrough.mjs:71`) **and** add its name to the error message at line 109. The
+**"I want a new op in the spec vocabulary."** Add a branch in `doAct`, at
+`walkthrough.mjs:71` (`const doAct = async (p, a)`) **and** add its name to the
+error message at `walkthrough.mjs:109` (`unknown act`). The
 error message is the vocabulary's only documentation; letting it drift re-opens the
 silent-no-op defect that made the throw necessary.

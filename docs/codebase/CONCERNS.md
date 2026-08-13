@@ -5,23 +5,52 @@ the file or the measurement it comes from.
 
 ## P0 — open defects
 
-### D1 · `npm run render:example` has failed on Windows, unexplained
+### D1 · `npm run render:example` fails on Windows when the checkout path is too long
 
-The quickstart command — the first thing a new person runs — failed once on Windows
-11 / Node 22 with:
+The quickstart command — the first thing a new person runs — fails on Windows with:
 
 ```
 Failed to launch the browser process! Error: spawn
   …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell.exe ENOENT
 ```
 
-Reproduced in both Git Bash and PowerShell at the time. The named executable existed
-and ran standalone (`--version` → exit 0). On 2026-08-13, on the same OS and Node, the
-same command exited 0 twice and produced a 5.8 MB MP4. **Nothing changed that explains
-either result**, so this is recorded as unreproducible, not repaired.
-Source: `promotion/PRODUCT_JOURNEYS.md` J1, `promotion/PRODUCT_GOAL.md` condition 2.
+`ENOENT` is "no such file", and the named executable is there: 202,939,392 bytes, and
+running it yourself gives `Google Chrome for Testing 149.0.7790.0`, exit 0. That
+contradiction is the whole defect, and it is not Remotion's: it is **Windows MAX_PATH**.
+A path of 260 characters or more cannot be opened through the ANSI path APIs `spawn`
+uses, so the launch fails with the error code for a missing file about a file that is
+present. Remotion installs its browser inside the checkout, which adds 105 characters:
 
-**If it hits you:** `npx remotion browser ensure` (what CI runs) before the render.
+```
+<your checkout>\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe
+```
+
+so any clone directory longer than about 154 characters puts the executable over the
+line. It looked unreproducible because the two people who hit it had cloned into
+different directories, and the failure depends on nothing except how long that
+directory's name is.
+
+**Measured 2026-08-13**, Windows 11 / Node 22, one 202,939,392-byte
+`chrome-headless-shell.exe` hard-linked to five paths of different lengths and spawned
+from Node with `--version`:
+
+| path length | `existsSync` | `spawnSync` |
+|---|---|---|
+| 255 | true | exit 0 |
+| 258 | true | exit 0 |
+| 259 | true | exit 0 |
+| 260 | true | **ENOENT** |
+| 261 | true | **ENOENT** |
+| 270 | true | **ENOENT** |
+
+The boundary is exactly 260, `existsSync` is true on both sides of it — Node's `stat`
+path and its `spawn` path do not agree — and the same file is reached in every row.
+From a 153-character checkout the full quickstart then ran end to end: exit 0, a
+5,777,972-byte `out/example.mp4`.
+
+**Fix:** clone to a short path, e.g. `C:\src\fcs`. `docs/START_HERE.md` says so in the
+quickstart. `npx remotion browser ensure` (what CI runs) does **not** help — it puts
+the browser at the same long path.
 
 ### D2 · opening white flash — **FIXED**, and guarded
 

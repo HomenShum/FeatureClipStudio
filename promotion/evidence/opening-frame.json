@@ -3,7 +3,7 @@
   "defect": "D2 - clip opens on the container backdrop because the step cross-fade has nothing to fade from at step 0",
   "assertion": "frames 0 and 4 of a step differ only by the opening fade, so they must match within 5% of pixels",
   "producer": "node probe-opening-frame.mjs (npm run probe:opening)",
-  "measuredAt": "2026-08-13T19:05:37.247Z",
+  "measuredAt": "2026-08-13T20:56:49.898Z",
   "node": "v22.22.2",
   "platform": "win32",
   "sample": {

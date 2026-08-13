@@ -13,7 +13,7 @@
 //
 // A gate that runs once, after the work, is a grade. A gate that runs every
 // round, before the work is called done, is a process. This file is the second
-// thing. `npm run clip` goes through it; there is no shorter path that skips it.
+// thing. It runs judge-rubric.mjs; `npm run clip` gates itself with judge-video.mjs.
 //
 // WHAT IT DOES NOT DO, deliberately: it does not edit your storyboard for you.
 // The judge's next_cut brief is written to disk as a revision brief and the
