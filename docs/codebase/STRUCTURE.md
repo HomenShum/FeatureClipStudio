@@ -37,7 +37,7 @@ target application. Reading one is the fastest way to understand the op vocabula
     src/walkthrough.roomos.data.js   GENERATED
     src/walkthrough.visual.data.js   GENERATED
 
-Those four generated files hold 3,774 of the repository's ~10,100 source lines. They
+Those four generated files hold 3,774 of the repository's ~10,200 source lines. They
 are committed on purpose: it is what makes `npm run render:example` work on a clone
 with no app running. Do not read them for understanding and do not hand-edit them —
 the capture script overwrites them whole.

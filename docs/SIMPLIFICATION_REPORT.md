@@ -13,10 +13,10 @@ contaminate it.
 
 | Measure | Before | After | Change | Evidence command |
 |---|---:|---:|---:|---|
-| Production files (JS/JSX shipped by this package) | 56 | 40 | **−16** | `git ls-files '*.mjs' '*.js' '*.jsx' \| grep -v -E '^(examples\|argo-demos)/' \| wc -l` |
-| Production source lines | 11,172 | 10,122 | **−1,050** | same list piped to `xargs wc -l \| tail -1` |
+| Production files (JS/JSX shipped by this package) | 56 | 41 | **−15** | `git ls-files '*.mjs' '*.js' '*.jsx' \| grep -v -E '^(examples\|argo-demos)/' \| wc -l` |
+| Production source lines | 11,172 | 10,207 | **−965** (−1,050 deleted, +85 added by `check.mjs`) | same list piped to `xargs wc -l \| tail -1` |
 | Direct dependencies (deps + devDeps) | 6 | 5 | **−1** | `node -p "const p=require('./package.json');Object.keys(p.dependencies).length+Object.keys(p.devDependencies).length"` |
-| Tracked files, whole repo | 862 | 858 | −4 | `git ls-files \| wc -l` |
+| Tracked files, whole repo | 862 | 859 | −3 | `git ls-files \| wc -l` |
 | Unused files | 47 | 16 | **−31** | `npx knip@5 --no-progress` |
 | Unused dependencies | 1 | 0 | **−1** | `npx knip@5 --no-progress` |
 | Unused exports | 4 | 6 | +2 | `npx knip@5 --no-progress` |
@@ -25,7 +25,7 @@ contaminate it.
 | Duplicate blocks (JavaScript only) | 26 | 25 | −1 | same, `statistics.formats.javascript` |
 | Duplicate percentage (JavaScript only) | 3.29% | 3.50% | **+0.21** | same — see note 1 |
 | Circular dependencies | 0 | 0 | 0 | `npx dependency-cruiser@16 --no-config --output-type json --exclude node_modules src *.mjs > d.json` then `node -e "const r=require('./d.json');console.log(r.modules.flatMap(m=>m.dependencies.filter(d=>d.circular)).length)"` — see note 2 |
-| Modules in the dependency graph | 61 | 47 | −14 | same command, `summary.totalCruised` |
+| Modules in the dependency graph | 61 | 46 | −15 | same command, `summary.totalCruised` — both measured with `node_modules` installed; a clone without them reports 49 because unresolved externals are counted as modules |
 | Canonical workflow tests | none (`npm test` absent) | none (`npm test` still absent) | 0 | `node -p "require('./package.json').scripts.test ?? 'absent'"` |
 | No-key gate coverage | 15 of 45 JS files | **36 of 36** JS files + 36 tour steps | +21 files | `npm run check` |
 | Render gate (`probe:opening`) | PASS, exit 0 | PASS, exit 0 | unchanged | `npm run probe:opening` — see note 3 |
@@ -34,6 +34,17 @@ contaminate it.
 | Production bundle size | not applicable — no bundler and no build step; Remotion compiles at render time | | | |
 | Additions/deletions | — | — | 34 files changed, +1,715 / −1,059 | `git diff --cached --shortstat` |
 | — of which **source** (excluding `docs/`, `.tours/`, lockfile, evidence) | — | — | 20 files changed, +115 / −1,053 | `git diff --cached --shortstat -- '*.mjs' '*.js' '*.jsx' package.json README.md JOURNEYS.md` |
+
+### Note 0 — three numbers in this table were corrected after the first push
+
+The adversarial pass caught them, which is the pass doing its job. Commit
+`994a630` published production files as 40, production lines as 10,122, tracked
+files as 858 and graph modules as 47. All four were **stale**: the first three
+were counted with `git ls-files` while `check.mjs` and this report were still
+untracked, and the fourth was measured before `soundtrack.mjs` was deleted. The
+corrected numbers above were re-measured against a fresh `git clone` of the
+pushed commit. The direction of every change is unaffected; the magnitudes are
+now right.
 
 ### Note 1 — duplication percentage went up while duplication went down
 
