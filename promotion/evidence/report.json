@@ -1,0 +1,270 @@
+[
+  {
+    "surface": "collab-demo",
+    "viewport": "desktop",
+    "width": 1280,
+    "loadMs": 45016,
+    "shot": "C:/Users/hshum/AppData/Local/Temp/claude/D--VSCode-Projects-cheiron-ai-take-home/440ef9e9-83bb-4fe6-8676-4fdaaf332f3e/scratchpad/promotion/FeatureClipStudio/promotion/evidence/collab-demo-desktop.png",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": 0,
+    "imgsNoAlt": 0,
+    "imgsTotal": 0,
+    "btnsNoName": 0,
+    "btnsTotal": 2,
+    "hasLang": true,
+    "hasH1": 1,
+    "hasViewportMeta": true,
+    "title": "Collab · Ana",
+    "consoleErrors": [],
+    "failedRequests": [
+      "goto: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8930/?user=A\", waiting until \"net"
+    ],
+    "tabReached": 6,
+    "tabFocusRing": 6,
+    "tabbed": [
+      {
+        "tag": "input",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Add",
+        "outline": true,
+        "shadow": false
+      },
+      {
+        "tag": "input",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Add",
+        "outline": true,
+        "shadow": false
+      },
+      {
+        "tag": "input",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Add",
+        "outline": true,
+        "shadow": false
+      }
+    ]
+  },
+  {
+    "surface": "collab-demo",
+    "viewport": "mobile",
+    "width": 390,
+    "loadMs": 45007,
+    "shot": "C:/Users/hshum/AppData/Local/Temp/claude/D--VSCode-Projects-cheiron-ai-take-home/440ef9e9-83bb-4fe6-8676-4fdaaf332f3e/scratchpad/promotion/FeatureClipStudio/promotion/evidence/collab-demo-mobile.png",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": 0,
+    "imgsNoAlt": 0,
+    "imgsTotal": 0,
+    "btnsNoName": 0,
+    "btnsTotal": 2,
+    "hasLang": true,
+    "hasH1": 1,
+    "hasViewportMeta": true,
+    "title": "Collab · Ana",
+    "consoleErrors": [],
+    "failedRequests": [
+      "goto: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8930/?user=A\", waiting until \"net"
+    ],
+    "tabReached": 6,
+    "tabFocusRing": 6,
+    "tabbed": [
+      {
+        "tag": "input",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Add",
+        "outline": true,
+        "shadow": false
+      },
+      {
+        "tag": "button",
+        "name": "🤖 Run agent",
+        "outline": true,
+        "shadow": false
+      },
+      {
+        "tag": "input",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Add",
+        "outline": true,
+        "shadow": false
+      },
+      {
+        "tag": "button",
+        "name": "🤖 Run agent",
+        "outline": true,
+        "shadow": false
+      }
+    ]
+  },
+  {
+    "surface": "remotion-studio",
+    "viewport": "desktop",
+    "width": 1280,
+    "loadMs": 1033,
+    "shot": "C:/Users/hshum/AppData/Local/Temp/claude/D--VSCode-Projects-cheiron-ai-take-home/440ef9e9-83bb-4fe6-8676-4fdaaf332f3e/scratchpad/promotion/FeatureClipStudio/promotion/evidence/remotion-studio-desktop.png",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": 0,
+    "imgsNoAlt": 1,
+    "imgsTotal": 1,
+    "btnsNoName": 8,
+    "btnsTotal": 29,
+    "hasLang": true,
+    "hasH1": 0,
+    "hasViewportMeta": true,
+    "title": "WT-NodeRoom / FeatureClipStudio - Remotion Studio",
+    "consoleErrors": [],
+    "failedRequests": [],
+    "tabReached": 8,
+    "tabFocusRing": 8,
+    "tabbed": [
+      {
+        "tag": "button",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "File",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "View",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Composition",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Tools",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Help",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      }
+    ]
+  },
+  {
+    "surface": "remotion-studio",
+    "viewport": "mobile",
+    "width": 390,
+    "loadMs": 927,
+    "shot": "C:/Users/hshum/AppData/Local/Temp/claude/D--VSCode-Projects-cheiron-ai-take-home/440ef9e9-83bb-4fe6-8676-4fdaaf332f3e/scratchpad/promotion/FeatureClipStudio/promotion/evidence/remotion-studio-mobile.png",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": 0,
+    "imgsNoAlt": 1,
+    "imgsTotal": 1,
+    "btnsNoName": 6,
+    "btnsTotal": 21,
+    "hasLang": true,
+    "hasH1": 0,
+    "hasViewportMeta": true,
+    "title": "WT-NodeRoom / FeatureClipStudio - Remotion Studio",
+    "consoleErrors": [],
+    "failedRequests": [],
+    "tabReached": 8,
+    "tabFocusRing": 8,
+    "tabbed": [
+      {
+        "tag": "button",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Play",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Step forward one frame",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Loop video",
+        "outline": false,
+        "shadow": true
+      },
+      {
+        "tag": "button",
+        "name": "Mute video",
+        "outline": false,
+        "shadow": true
+      }
+    ]
+  }
+]
