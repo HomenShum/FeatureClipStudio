@@ -4,6 +4,16 @@ Written 2026-07-28 from measured surveys (`survey-journeys.mjs`, `survey-deck.mj
 `probe-room-routes.mjs`, `journey-coverage.mjs`), not from memory of the apps.
 Every surface below was loaded and counted; every "gated" was observed, not assumed.
 
+> **Those four survey scripts are no longer in this repo.** They were deleted on
+> 2026-08-13 (commit `341fd20`'s successor) because they could not run from a
+> clone: each one imported `../noderoom/scripts/playwright-peer.mjs`, a path in a
+> sibling checkout that a person cloning FeatureClipStudio does not have, and each
+> one hard-coded NodeRoom's and NodeSlide's URLs and DOM selectors. They are the
+> *provenance* of the numbers below, not tools you can re-run — read them at
+> `git show 341fd20:survey-journeys.mjs` if you need to know exactly how a count
+> was taken. The measurements themselves stand as recorded on 2026-07-28.
+> See `docs/SIMPLIFICATION_REPORT.md`.
+
 **The unit of coverage is a persona journey — trigger → workflow → outcome — not a
 control count.** A clip per journey. A journey that cannot complete without auth
 ends honestly at its gate and says so.

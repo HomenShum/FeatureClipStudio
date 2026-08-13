@@ -1,7 +1,7 @@
 {
   "name": "feature-clip-studio",
   "version": "0.1.0",
-  "description": "Turn live product flows into storyboarded proof assets: MP4/GIF walkthroughs, screenshots, readable state captures, and README-ready evidence. Playwright capture \u00e2\u2020\u2019 Remotion render \u00e2\u2020\u2019 ffmpeg/exported artifacts.",
+  "description": "Turn live product flows into storyboarded proof assets: MP4/GIF walkthroughs, screenshots, readable state captures, and README-ready evidence. Playwright capture -> Remotion render -> ffmpeg/exported artifacts.",
   "type": "module",
   "license": "MIT",
   "author": "Homen Shum",
@@ -21,14 +21,22 @@
     "streamlit"
   ],
   "scripts": {
-    "check": "node --check walkthrough.mjs && node --check judge-video.mjs && node --check clip.mjs && node --check narrate.mjs && node --check score.mjs && node --check find-references.mjs && node --check iterate.mjs && node --check rubric.mjs && node --check score-cli.mjs && node --check judge-rubric.mjs && node --check voice.mjs && node --check readability.mjs && node --check retime.mjs && node --check apply-captions.mjs && node --check probe-opening-frame.mjs",
+    "check": "node check.mjs",
     "probe:opening": "node probe-opening-frame.mjs",
     "capture": "node walkthrough.mjs",
+    "capture:collab": "node walkthrough.collab.mjs",
+    "capture:roomos": "node walkthrough.roomos.mjs",
+    "capture:visual": "node walkthrough.visual.mjs",
+    "capture:solo": "node walkthrough.solo-founder.mjs",
     "studio": "remotion studio src/index.js",
+    "studio:roomos": "remotion studio src/roomos-index.js",
     "render": "remotion render src/index.js",
     "render:example": "remotion render src/index.js WT-NodeRoom out/example.mp4 --concurrency=2",
     "render:roomos": "remotion render src/roomos-index.js WTG-RoomOSV0123 out/room-os-v0-v1-v2-v3.mp4 --concurrency=2",
     "judge": "node judge-video.mjs",
+    "judge:rubric": "node judge-rubric.mjs",
+    "references:find": "node find-references.mjs",
+    "references:analyze": "node analyze-reference.mjs",
     "clip": "node clip.mjs",
     "iterate": "node iterate.mjs",
     "score": "node score-cli.mjs",
@@ -39,7 +47,6 @@
   },
   "dependencies": {
     "@remotion/cli": "^4.0.474",
-    "feature-clip-studio": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remotion": "^4.0.474"

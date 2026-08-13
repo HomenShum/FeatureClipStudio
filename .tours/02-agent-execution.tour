@@ -1,0 +1,67 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "02 — The only model call: judging the finished video",
+  "description": "The capture and render path calls no model and infers nothing. The single AI in this repository is a critic that scores a rendered video and refuses to edit your storyboard. Mirrors docs/START_HERE.md step 4.",
+  "steps": [
+    {
+      "file": "clip.mjs",
+      "line": 1,
+      "title": "1 — The whole loop, one command",
+      "description": "`npm run clip` runs every stage in order: fit the step timings to the narration, render, synthesise voice, mix, mux, then judge. Read the header comment — every stage exists because its absence shipped a real defect: unfitted holds cut narration mid-sentence, an unmapped mux shipped three silent videos, an uncalibrated judge scored a static JPEG the same as a launch film."
+    },
+    {
+      "file": "clip.mjs",
+      "line": 30,
+      "title": "2 — The second writer of the generated data",
+      "description": "This rewrites src/walkthrough.data.js in place, changing each step's `hold` so the picture lasts exactly as long as its spoken sentence. Apart from the capture scripts themselves, this is the only thing that edits generated data — worth knowing before you wonder why your holds changed."
+    },
+    {
+      "file": "clip.mjs",
+      "line": 48,
+      "title": "3 — Gate 1: is there actually any audio?",
+      "description": "ffmpeg volumedetect on the muxed file. Below -60 dB the process exits 1 with 'the mux shipped the wrong stream'. This gate exists because three silent videos shipped before it did."
+    },
+    {
+      "file": "clip.mjs",
+      "line": 54,
+      "title": "4 — Gate 2: does the narration say what the screen shows?",
+      "description": "Speech-to-text over the finished video, compared against the storyboard captions. Chunked into 30-second slices because Moonshine silently degrades past about 60 seconds — a 63-second file returned two characters, while the same audio in slices transcribed perfectly. A measurement instrument that fails quietly is the recurring enemy in this codebase."
+    },
+    {
+      "file": "judge-video.mjs",
+      "line": 41,
+      "title": "5 — Credentials, and the only network call in the repository",
+      "description": "GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY from the environment, else the same names out of .env.local or .env, else a throw naming both. No key is committed and none is needed for anything except judging. Nothing in the capture or render path ever reaches this."
+    },
+    {
+      "file": "judge-video.mjs",
+      "line": 57,
+      "title": "6 — Two passes, and why the first one is blind",
+      "description": "Pass one asks the model to describe the video literally — 'you are a court reporter, not a critic'. Only then is it shown the rubric. Asking for a score first invites the model to justify a number it has already picked; describing first makes the score answer to something observed."
+    },
+    {
+      "file": "judge-video.mjs",
+      "line": 186,
+      "title": "7 — The call itself: plain fetch, no SDK",
+      "description": "The MP4 is base64-inlined into the request. There is a hard 19 MB refusal upstream of this (judge-rubric.mjs:111) because the inline request limit, not the model, is the constraint."
+    },
+    {
+      "file": "judge-video.mjs",
+      "line": 229,
+      "title": "8 — Two scorecards on disk",
+      "description": "`<video>.judge.json` and `<video>.judge.md`, scored on two independent axes: craft (is it well made) and comprehension (would a newcomer understand it). They are separate because a cut that shipped at 20/40 had a craft score of 11 and a comprehension score of 9 — and nobody had ever asked the comprehension question."
+    },
+    {
+      "file": "iterate.mjs",
+      "line": 62,
+      "title": "9 — The loop: render, judge, revise",
+      "description": "One round per iteration against a pass mark, default 28/40. Read the header comment above: a gate that runs once, after the work, is a grade. A gate that runs every round, before the work is called done, is a process."
+    },
+    {
+      "file": "iterate.mjs",
+      "line": 99,
+      "title": "10 — It writes a brief and refuses to apply it",
+      "description": "Below the gate, the critic's revision brief is written to `<video>.next-cut.md` and the process exits 1. It deliberately does not edit your storyboard: a loop that applies its own critic's notes converges on what the critic likes. The human is the steering mechanism, on purpose."
+    }
+  ]
+}

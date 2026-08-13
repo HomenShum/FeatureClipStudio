@@ -20,6 +20,16 @@ Not a single final‑state "hero shot" — the viewer follows the *whole flow*.
 
 ---
 
+> **New here, and reading code rather than shopping for a tool?**
+> This README is the product pitch and the full option surface — 1,300 lines of it.
+> Start instead with **[`docs/START_HERE.md`](docs/START_HERE.md)**, which walks the
+> one command a first-time user runs (`npm run render:example`) through the code in
+> the order it actually executes, then **[`docs/codebase/`](docs/codebase/)** for the
+> stack, structure and known concerns. [`docs/SIMPLIFICATION_REPORT.md`](docs/SIMPLIFICATION_REPORT.md)
+> records what was deleted and what is still unresolved.
+
+---
+
 ## Storyboard first
 
 The default quality bar is not "nice zooms." A walkthrough should have a clear
