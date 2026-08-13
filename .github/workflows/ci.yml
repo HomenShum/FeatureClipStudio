@@ -24,9 +24,16 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
+      # Asserts the MAX_PATH explanation is still wired to every command that
+      # starts Remotion (defect D1). The 260-character boundary itself is a
+      # Windows fact and is skipped here; the wiring is not.
+      - run: npm run probe:maxpath
       - name: Ensure Remotion headless browser
         run: npx remotion browser ensure
+      # Through run-remotion.mjs, like every other Remotion command here — which
+      # also keeps CI proving the wrapper is transparent on a platform where the
+      # defect it guards cannot happen.
       - name: Smoke render (frames 0-30 of a bundled walkthrough)
-        run: npx remotion render src/index.js WT-NodeRoom /tmp/wt-smoke.mp4 --frames=0-30 --concurrency=2
+        run: node run-remotion.mjs render src/index.js WT-NodeRoom /tmp/wt-smoke.mp4 --frames=0-30 --concurrency=2
       - name: Verify artifact exists and is non-trivial
         run: test -s /tmp/wt-smoke.mp4 && stat -c '%s bytes' /tmp/wt-smoke.mp4

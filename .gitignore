@@ -3,6 +3,10 @@ out/
 recordings/
 .remotion/
 *.log
+# …except under promotion/evidence/, where a captured terminal session IS the
+# artifact. Iteration 2's before/after proof for defect D1 is two of these, and
+# `*.log` silently swallowed them on the first commit attempt.
+!promotion/evidence/**/*.log
 # The capturer regenerates these; the repo ships a worked example, so they ARE
 # committed here. Uncomment to keep your own captures out of version control:
 # public/wt/

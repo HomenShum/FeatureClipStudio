@@ -97,7 +97,7 @@ reproduction; a hunch is not a defect.
 
 | # | Severity | Journey | Reproduction | Status |
 |---|----------|---------|--------------|--------|
-| D1 | Critical | J1 | On Windows 11 / Node v22.22.2, from a fresh clone: `npm ci` → `npx playwright install chromium` → `npx remotion browser ensure` (all exit 0, the last printing `Has browser at …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe`) → `npm run render:example` exits 1 with `Failed to launch the browser process! Error: spawn <that same path> ENOENT`. The file is present (202,939,392 bytes, mode `-rwxr-xr-x`) and runs standalone: `--version` prints `Google Chrome for Testing 149.0.7790.0`, exit 0. Reproduced in Git Bash and PowerShell. Scope: Windows only — `.github/workflows/ci.yml` runs the same render on `ubuntu-latest` and is green (run 30963804165). Impact: the README's "renders immediately — no app needed" quickstart, the first thing a stranger types, is a dead end on Windows, and the failure message points only at an upstream Remotion troubleshooting URL. | **OPEN — NOT REPRODUCED in Wave 2.** Same OS build (Windows 11 10.0.26200), same Node (v22.22.2), same npm (10.9.7), fresh `git clone --depth 20` at `5486bb8` into a different directory: `npm ci` → `npx remotion browser ensure` → `npm run render:example` **exit 0**, `out/example.mp4` written at 5,985,657 bytes. Re-ran after the Iteration 1 fix: **exit 0** again, 5.8 MB. One clean pair of runs does not disprove an intermittent or path-dependent failure, and nothing in this repo changed that would explain it, so the defect is NOT closed — it is recorded as unreproducible on demand, which is the honest state. Anyone who reproduces it again should note the clone path length: the two runs differ in little else. |
+| D1 | ~~Critical~~ → Major | J1 | On Windows 11 / Node v22.22.2, from a fresh clone: `npm ci` → `npx playwright install chromium` → `npx remotion browser ensure` (all exit 0, the last printing `Has browser at …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe`) → `npm run render:example` exits 1 with `Failed to launch the browser process! Error: spawn <that same path> ENOENT`. The file is present (202,939,392 bytes, mode `-rwxr-xr-x`) and runs standalone: `--version` prints `Google Chrome for Testing 149.0.7790.0`, exit 0. Reproduced in Git Bash and PowerShell. Scope: Windows only — `.github/workflows/ci.yml` runs the same render on `ubuntu-latest` and is green (run 30963804165). Impact: the README's "renders immediately — no app needed" quickstart, the first thing a stranger types, is a dead end on Windows, and the failure message points only at an upstream Remotion troubleshooting URL. | **OPEN — NOT REPRODUCED in Wave 2.** Same OS build (Windows 11 10.0.26200), same Node (v22.22.2), same npm (10.9.7), fresh `git clone --depth 20` at `5486bb8` into a different directory: `npm ci` → `npx remotion browser ensure` → `npm run render:example` **exit 0**, `out/example.mp4` written at 5,985,657 bytes. Re-ran after the Iteration 1 fix: **exit 0** again, 5.8 MB. One clean pair of runs does not disprove an intermittent or path-dependent failure, and nothing in this repo changed that would explain it, so the defect is NOT closed — it is recorded as unreproducible on demand, which is the honest state. Anyone who reproduces it again should note the clone path length: the two runs differ in little else. **REPRODUCED ON DEMAND, and downgraded to Major, in Iteration 2 (2026-08-13).** The clone path length was the variable, exactly as the line above guessed: the same clone renamed from a 149-character directory (exit 0, 5,777,972 bytes) to a 172-character one fails (exit 1, ENOENT) and back again. The 260-character Windows limit is not this repository's to lift, so the render still cannot run from a deep checkout — but the error no longer names the wrong cause: `run-remotion.mjs` now prints a message saying MAX_PATH, with both lengths and the fix, from every command that starts Remotion. `grep -c MAX_PATH` over the quickstart's output at a 172-character checkout: **0 before, 1 after**. Still OPEN because the command still fails; no longer Critical because it is no longer a dead end. Guarded by `npm run probe:maxpath`. |
 | D2 | Major | J2 | **FIXED in Iteration 1 — see below.** Original reproduction: Open `npm run studio` at `WT-NodeRoom`, frame 0, 1280×900. The player canvas paints **solid white** while the source frame `public/wt/NodeRoom/00.png` is a dark page. Not a load race: after a 15s wait the image reports `complete: true, naturalWidth: 2560`, the caption text is in the DOM, and there are zero console errors — the canvas is still white (`evidence/remotion-studio-desktop.png`). Scrubbing to 00:13.12 renders correctly (`evidence/remotion-studio-seek12s.png`), so only the opening is affected. Root cause, in code this repo owns: `src/Walkthrough.jsx:164` gives the frame container `background: "#fff"`, `:168` renders the current frame at `opacity: fadeIn`, and `:137` sets `fadeIn = interpolate(lf, [0, 11], [0, 1])` — so for the first 11 frames of step 0, where `prevImg` is `null` (`:136`, `prev` is undefined at step 0), the white container background is the only thing painted. Impact: every clip this tool produces opens on a ~0.37s white flash, and a looping README GIF re-flashes it on every loop — against the repo's own `loop_etiquette` rubric dimension. | **FIXED** (Iteration 1) |
 | D3 | Minor | J2 | Remotion Studio at 1280×900: 8 of 29 `<button>` elements have no accessible name (no text, no `aria-label`); at 390×844, 6 of 21. Measured in `evidence/report.json` (`btnsNoName`). Keyboard navigation was sampled, not exhausted: 8 Tab presses each landed on a control and each focused element carried an `outline` or a `box-shadow` — a check that cannot tell a focus-only ring from a shadow the element always has, so read it as "no dead tab stop observed", not as proof of 8 distinct ringed controls. Scope: this is Remotion's own studio chrome, not code in this repo, so it is logged rather than owned. Note the probe that measured `btnsNoName` was not committed (see the harness notes above). | OPEN (third-party) |
 | D4 | Minor | J2 | Remotion Studio at 390×844: the transport bar clips at the right edge — the zoom control is cut mid-word (`evidence/remotion-studio-mobile.png`), and the player canvas is blank at frame 0 for the same reason as D2. The document itself does not overflow (`scrollWidth === clientWidth === 390`), so condition 4 still holds. Scope: third-party studio chrome. | OPEN (third-party) |
@@ -250,3 +250,119 @@ committed producer under this repo — an `npm run audit:ui`-shaped script writi
 `promotion/evidence/report.json` — re-runnable from a clone. That is Wave 2
 work, deliberately not done here, because rescuing a PASS with a fresh throwaway
 probe is the exact failure this correction exists to undo.
+
+### Iteration 2 — 2026-08-13
+
+- **Journey exercised:** J1 "Show me it makes a video before I wire it to my app"
+  — the quickstart, the first command a stranger types.
+
+- **Observed, reproduced first.** Defect **D1**, which Wave 2 recorded as
+  "OPEN — NOT REPRODUCED" because the two runs differed only in clone path
+  length. That guess was right, and this iteration reproduced it on demand by
+  making the path the variable. Same machine, same clone, same command; the
+  checkout was renamed to move it deeper:
+
+  | checkout directory | browser path | `npm run render:example` | `out/example.mp4` |
+  |---|---|---|---|
+  | 149 characters | 254 characters | **exit 0** | 5,777,972 bytes |
+  | 172 characters | 277 characters | **exit 1**, `spawn …chrome-headless-shell.exe ENOENT` | none |
+
+  The named executable is present in both rows — 202,939,392 bytes — and at the
+  long path `spawnSync` on it directly returns `ENOENT` while `existsSync`
+  returns `true`. Terminal output:
+  [`evidence/max-path/render-example.before.log`](evidence/max-path/render-example.before.log).
+
+- **Root cause, and why the symptom was so misleading.** Windows will not start a
+  program whose full path is 260 characters or longer, and reports that refusal
+  with the error code for a missing file. Remotion installs its browser *inside*
+  the checkout, which costs 105 characters, so the length of the directory you
+  cloned into decides whether the render can start — and nothing in the message
+  says so. The reader is told a file is missing, goes and re-downloads it, and
+  the new copy lands at the same too-long path. That is the whole failure loop.
+
+- **Fixed — the message, not the limit.** The 260-character boundary belongs to
+  Windows and this repository cannot lift it. What it could stop doing is naming
+  the wrong cause. New file `run-remotion.mjs`: on a failed Remotion run it
+  checks the one thing Remotion's error does not — whether the browser it named
+  is **present** *and* **past the limit** — and if so prints a message that says
+  MAX_PATH, gives the checkout's length and the length it must be, and names the
+  fix. It returns `null` for a short path and for a browser that is genuinely
+  absent, because then ENOENT is the truth and replacing it would be the same
+  mistake pointed the other way.
+
+  Wired at the seam rather than at the path the ledger named. D1 named
+  `render:example`; five npm scripts and two `.mjs` drivers and the CI smoke
+  render start Remotion, and a guard in one of them leaves the other seven
+  failing exactly as before. All eight now route through the one handler:
+  `package.json` (`studio`, `studio:roomos`, `render`, `render:example`,
+  `render:roomos`), `clip.mjs`, `probe-opening-frame.mjs`,
+  `.github/workflows/ci.yml`.
+
+- **Re-proved by re-running the identical probe, not by reading the code.** Same
+  172-character checkout, same command:
+
+  | `npm run render:example` from a 172-character checkout | exit | `grep -c MAX_PATH` |
+  |---|---|---|
+  | before | 1 | **0** |
+  | after | 1 | **1** |
+
+  [`evidence/max-path/render-example.after.log`](evidence/max-path/render-example.after.log)
+  holds the message the reader now gets. **The exit code is deliberately
+  unchanged.** The render still cannot run from there; a command that failed must
+  keep saying it failed. What changed is that the reason is now correct.
+
+  And the wrapper is transparent where the defect does not apply: moved back to
+  the 149-character path, `npm run render:example` **exit 0**, `out/example.mp4`
+  **5,777,972 bytes** — byte-for-byte the same size as the pre-fix run in the
+  table above — and zero occurrences of MAX_PATH in the output.
+
+- **Regression check, and whether it was confirmed failing first.**
+  `npm run probe:maxpath` (`probe-max-path.mjs`, committed). It asserts two
+  things and **measures** the first rather than quoting the table in
+  `docs/codebase/CONCERNS.md`: one real executable hard-linked to a 61-character
+  path and to a 261-character path runs from the short one (exit 0) and returns
+  ENOENT from the long one, with `existsSync` true for both; and every command
+  here that starts Remotion still reaches the explanation.
+
+  **Confirmed failing on the pre-fix tree: yes, twice, and the second run is the
+  one that matters.** With `run-remotion.mjs` moved aside and the three source
+  edits stashed, it exits 1 with `run-remotion.mjs is missing — nothing in this
+  repository turns the browser-launch ENOENT into a MAX_PATH explanation`. Then,
+  with the handler restored but the callers left stashed — the shape this fix
+  would actually rot into — it exits 1 naming every bypass:
+  `studio, studio:roomos, render, render:example, render:roomos bypass
+  run-remotion.mjs` and `clip.mjs, probe-opening-frame.mjs`. That second half is
+  deliberate: this repository has shipped a correct, tested, documented and
+  completely unreachable module before, and a fix nothing calls is not a fix.
+
+- **Tests:** `npm run check` **exit 0** — 38/38 JavaScript files parsed, 36/36
+  tour steps and 34/34 prose citations naming a line that matches. The citation
+  gate earned its place here: the edits shifted ten cited lines in `clip.mjs`,
+  `probe-opening-frame.mjs`, `ci.yml` and `package.json`, it failed with all ten
+  and the line each had moved to, and they were repaired before this entry was
+  written. `npm run probe:maxpath` **exit 0** (receipt:
+  [`evidence/max-path.json`](evidence/max-path.json); the copy taken from the
+  172-character checkout is
+  [`evidence/max-path/probe-receipt.long-checkout.json`](evidence/max-path/probe-receipt.long-checkout.json)).
+  `npm run render:example` **exit 0** from a short checkout, 5.8 MB.
+  `npm run probe:opening` **exit 0**, 0.0% on all three renderers — re-run after
+  this change because `probe-opening-frame.mjs` is one of the files it edits, and
+  a fix that quietly breaks the previous iteration's gate is not a fix. Its
+  receipt and stills are left at Iteration 1's committed values rather than
+  overwritten with an identical-verdict re-run, so that record stays Iteration 1's.
+
+- **Conditions newly PASS: none.** Stated plainly rather than dressed up:
+  - **2** stays FAIL. D1 is *reduced*, not closed. The quickstart still fails
+    from a deep checkout on Windows; only the explanation improved. Closing it
+    means the render working from any directory, which would mean putting the
+    browser outside the checkout — a change to where a third-party tool installs
+    its dependency, not to a message, and not attempted here.
+  - **11** stays FAIL. There is now a second committed gate that executes rather
+    than parses, and it runs in CI. Two probes are still not a test suite and
+    `package.json` still has no `test` script.
+  - **1** stays FAIL. J1 now succeeds from a short checkout and explains itself
+    from a long one, but J5 has still never been run.
+  - **12** was already PASS and this iteration is more of the same evidence
+    shape, so it is not re-claimed as new.
+
+  Scorecard unchanged at **1/12 PASS**.

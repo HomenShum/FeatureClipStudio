@@ -1,0 +1,76 @@
+{
+  "probe": "max-path",
+  "defect": "D1 - on Windows, a checkout deep enough to push Remotion's browser past MAX_PATH fails with ENOENT about a file that is present",
+  "assertion": "the 260-character boundary is real on this machine, and this repository turns hitting it into a message that says MAX_PATH from every command that starts Remotion",
+  "producer": "node probe-max-path.mjs (npm run probe:maxpath)",
+  "measuredAt": "2026-08-13T22:37:17.139Z",
+  "node": "v22.22.2",
+  "platform": "win32",
+  "maxPath": 260,
+  "checkoutBudget": 154,
+  "checkoutLength": 149,
+  "measurement": {
+    "skipped": false,
+    "executable": "node.exe",
+    "short": {
+      "length": 61,
+      "exists": true,
+      "status": 0,
+      "error": null
+    },
+    "long": {
+      "length": 261,
+      "exists": true,
+      "status": null,
+      "error": "ENOENT"
+    }
+  },
+  "checks": [
+    {
+      "name": "boundary: a path under the limit runs",
+      "pass": true,
+      "detail": "61 chars -> status 0, error none"
+    },
+    {
+      "name": "boundary: a path at or over the limit returns ENOENT",
+      "pass": true,
+      "detail": "261 chars -> status null, error ENOENT"
+    },
+    {
+      "name": "boundary: the long path exists anyway",
+      "pass": true,
+      "detail": "existsSync said true — if this is false the two halves of the contradiction no longer disagree"
+    },
+    {
+      "name": "handler: names MAX_PATH for a present file over the limit",
+      "pass": true,
+      "detail": "24 lines, names the path: true"
+    },
+    {
+      "name": "handler: silent for a path under the limit",
+      "pass": true,
+      "detail": "a short path is not this defect and must keep Remotion's own message"
+    },
+    {
+      "name": "handler: silent for a long path that really is absent",
+      "pass": true,
+      "detail": "a genuinely missing browser must keep saying ENOENT, which is then the truth"
+    },
+    {
+      "name": "handler: budget is derived, not written down",
+      "pass": true,
+      "detail": "CHECKOUT_BUDGET is 154; 260 - 1 - 105 = 154"
+    },
+    {
+      "name": "wiring: no npm script starts Remotion directly",
+      "pass": true,
+      "detail": "24 scripts checked"
+    },
+    {
+      "name": "wiring: every other file that starts Remotion reaches the handler",
+      "pass": true,
+      "detail": "clip.mjs, probe-opening-frame.mjs, .github/workflows/ci.yml"
+    }
+  ],
+  "verdict": "PASS"
+}

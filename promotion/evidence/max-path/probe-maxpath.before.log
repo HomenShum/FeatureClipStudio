@@ -1,0 +1,4 @@
+# pre-fix tree: run-remotion.mjs absent, package.json/clip.mjs/probe-opening-frame.mjs/ci.yml at their pre-fix state
+$ node probe-max-path.mjs
+FAIL  run-remotion.mjs is missing — nothing in this repository turns the browser-launch ENOENT into a MAX_PATH explanation (defect D1).
+exit=1

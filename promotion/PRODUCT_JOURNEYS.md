@@ -52,6 +52,19 @@ Each journey states, in this order:
   `Failed to launch the browser process! Error: spawn …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe ENOENT`.
   Reproduced in Git Bash and PowerShell. The named exe exists and runs standalone
   (`--version` → `Google Chrome for Testing 149.0.7790.0`, exit 0). Defect D1.
+  **Iteration 2 (2026-08-13) settled the disagreement between those two waves.**
+  Both were right; the variable was the length of the directory each had cloned
+  into. The same clone, renamed: 149 characters → exit 0, `out/example.mp4`
+  5,777,972 bytes; 172 characters → exit 1, the ENOENT above; renamed back →
+  exit 0 again. The 260-character Windows limit is not this repository's to lift,
+  so from a deep checkout the journey still ends without an MP4 — but it now ends
+  with a message that says MAX_PATH, gives the checkout's length and the length
+  it must be, and names the fix, instead of pointing at a browser download.
+  `grep -c MAX_PATH` over the quickstart's output at 172 characters: **0 before,
+  1 after** — `evidence/max-path/render-example.before.log` and
+  `evidence/max-path/render-example.after.log`. Re-provable from a clone with
+  `npm run probe:maxpath`. **Still NOT BANKED:** a journey whose artifact is an
+  MP4 is not done when the MP4 does not exist, however good the error is.
 
 ## J2 — "Preview the bundled walkthrough in a browser"
 

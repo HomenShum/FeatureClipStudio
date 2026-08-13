@@ -12,21 +12,21 @@
     },
     {
       "file": "clip.mjs",
-      "line": 30,
+      "line": 31,
       "pattern": "writeFileSync\\(\"src/walkthrough\\.data\\.js\"",
       "title": "2 — The second writer of the generated data",
       "description": "This rewrites src/walkthrough.data.js in place, changing each step's `hold` so the picture lasts exactly as long as its spoken sentence. Apart from the capture scripts themselves, this is the only thing that edits generated data — worth knowing before you wonder why your holds changed."
     },
     {
       "file": "clip.mjs",
-      "line": 48,
+      "line": 55,
       "pattern": "gate 1",
       "title": "3 — Gate 1: is there actually any audio?",
       "description": "ffmpeg volumedetect on the muxed file. Below -60 dB the process exits 1 with 'the mux shipped the wrong stream'. This gate exists because three silent videos shipped before it did."
     },
     {
       "file": "clip.mjs",
-      "line": 54,
+      "line": 61,
       "pattern": "gate 2",
       "title": "4 — Gate 2: does the narration say what the screen shows?",
       "description": "Speech-to-text over the finished video, compared against the storyboard captions. Chunked into 30-second slices because Moonshine silently degrades past about 60 seconds — a 63-second file returned two characters, while the same audio in slices transcribed perfectly. A measurement instrument that fails quietly is the recurring enemy in this codebase."

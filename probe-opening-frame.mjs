@@ -28,6 +28,7 @@
 import { spawnSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { maxPathHint } from "./run-remotion.mjs";
 
 // One composition per renderer -- the defect lives in the shared cross-fade, so
 // covering the renderer covers every composition it draws.
@@ -47,7 +48,11 @@ const still = (entry, id, frame, out) => {
   const run = spawnSync("npx", ["remotion", "still", entry, id, out, `--frame=${frame}`], {
     encoding: "utf8", timeout: 600_000, shell: process.platform === "win32",
   });
-  if (run.status !== 0) throw new Error(`remotion still ${id}@${frame} failed: ${(run.stderr || run.stdout || "").slice(-500)}`);
+  // maxPathHint is empty unless this checkout is deep enough that Windows cannot
+  // start the browser Remotion downloaded into it — the ENOENT-about-a-file-that-
+  // exists in defect D1. Appended here so this probe explains it too, not only
+  // the npm scripts that go through run-remotion.mjs.
+  if (run.status !== 0) throw new Error(`remotion still ${id}@${frame} failed: ${(run.stderr || run.stdout || "").slice(-500)}${maxPathHint() ?? ""}`);
   return out;
 };
 

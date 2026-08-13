@@ -1,0 +1,7 @@
+EXIT=0
+MAXPATH_HITS=0
+-rw-r--r-- 1 hshum 197609 5777972 Aug 13 15:31 out/example.mp4
+Encoded 847/1142
+Encoded 914/1142
+Encoded 1142/1142
+[34m+                    out/example.mp4[39m [90m5.8 MB[39m

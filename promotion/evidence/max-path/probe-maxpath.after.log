@@ -1,0 +1,15 @@
+
+> feature-clip-studio@0.1.0 probe:maxpath
+> node probe-max-path.mjs
+
+PASS  boundary: a path under the limit runs — 61 chars -> status 0, error none
+PASS  boundary: a path at or over the limit returns ENOENT — 261 chars -> status null, error ENOENT
+PASS  boundary: the long path exists anyway — existsSync said true — if this is false the two halves of the contradiction no longer disagree
+PASS  handler: names MAX_PATH for a present file over the limit — 24 lines, names the path: true
+PASS  handler: silent for a path under the limit — a short path is not this defect and must keep Remotion's own message
+PASS  handler: silent for a long path that really is absent — a genuinely missing browser must keep saying ENOENT, which is then the truth
+PASS  handler: budget is derived, not written down — CHECKOUT_BUDGET is 154; 260 - 1 - 105 = 154
+PASS  wiring: no npm script starts Remotion directly — 24 scripts checked
+PASS  wiring: every other file that starts Remotion reaches the handler — clip.mjs, probe-opening-frame.mjs, .github/workflows/ci.yml
+
+PASS: wrote promotion/evidence/max-path.json

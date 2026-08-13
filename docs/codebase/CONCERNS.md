@@ -5,7 +5,7 @@ the file or the measurement it comes from.
 
 ## P0 — open defects
 
-### D1 · `npm run render:example` fails on Windows when the checkout path is too long
+### D1 · `npm run render:example` fails on Windows when the checkout path is too long — **the misleading error is FIXED; the path limit is not ours to remove**
 
 The quickstart command — the first thing a new person runs — fails on Windows with:
 
@@ -51,6 +51,27 @@ From a 153-character checkout the full quickstart then ran end to end: exit 0, a
 **Fix:** clone to a short path, e.g. `C:\src\fcs`. `docs/START_HERE.md` says so in the
 quickstart. `npx remotion browser ensure` (what CI runs) does **not** help — it puts
 the browser at the same long path.
+
+**What changed on 2026-08-13 (Iteration 2).** The 260-character limit belongs to
+Windows and this repository cannot lift it. What it *could* stop doing is naming the
+wrong cause. Every Remotion command here now runs through `run-remotion.mjs`, which on
+a failed run checks the one thing Remotion's message does not — whether the browser it
+named is present *and* past the limit — and if so prints a message that says MAX_PATH,
+gives both numbers, and names the fix. Measured on a 172-character checkout, same
+machine, same command:
+
+| `npm run render:example` | exit | occurrences of "MAX_PATH" in the output |
+|---|---|---|
+| before | 1 | **0** |
+| after | 1 | **1** |
+
+The exit code is deliberately unchanged: the render still cannot run from there, and a
+command that failed must keep saying so. What changed is that the reader is now told
+why, instead of being sent to re-download a browser they already have. Before/after
+terminal output: `promotion/evidence/max-path/render-example.before.log` and
+`…after.log`. Regression check: `npm run probe:maxpath`, which re-measures the boundary
+on your machine rather than trusting the table above, and asserts that every command
+that starts Remotion still reaches the explanation.
 
 ### D2 · opening white flash — **FIXED**, and guarded
 

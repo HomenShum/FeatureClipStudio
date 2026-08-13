@@ -61,28 +61,28 @@
     },
     {
       "file": "probe-opening-frame.mjs",
-      "line": 34,
+      "line": 35,
       "pattern": "const TARGETS",
       "title": "9 — One composition per renderer, not one per video",
       "description": "The defect lives in the cross-fade shared by all three renderers, so covering each renderer once covers every composition it draws. That is also why one bug hit twelve compositions at the same time."
     },
     {
       "file": "probe-opening-frame.mjs",
-      "line": 54,
+      "line": 59,
       "pattern": "raw RGB24",
       "title": "10 — The reuse ladder, applied out loud",
       "description": "It needs to compare two PNGs. Instead of adding an image-decoding dependency it pipes each PNG through ffmpeg to raw RGB — 'ffmpeg is already a hard requirement of this repo, and one pipe is smaller than a dependency'. Copy this habit before you copy anything else here."
     },
     {
       "file": "probe-opening-frame.mjs",
-      "line": 106,
+      "line": 111,
       "pattern": "const receipt",
       "title": "11 — A receipt, not just an exit code",
       "description": "Writes promotion/evidence/opening-frame.json with the assertion, the producer command, the platform, and the per-composition numbers. The before-fix receipt is committed alongside it, so the gate is on record failing before the fix rather than only passing after."
     },
     {
       "file": ".github/workflows/ci.yml",
-      "line": 29,
+      "line": 36,
       "pattern": "Smoke render",
       "title": "12 — Gate 3: CI actually renders",
       "description": "npm ci, npm run check, then a real Remotion render of frames 0-30 asserted to produce a non-empty MP4. This is the only automated check that executes application code. It deliberately excludes the Playwright capture step, which needs a live app CI does not have."

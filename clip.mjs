@@ -9,6 +9,7 @@
 // launch film. The gates are the product.
 import { readFileSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { maxPathHint } from "./run-remotion.mjs";
 import { linesFromStoryboard, synthesiseBeats, assemble, overruns } from "./narrate.mjs";
 import { buildScore, muxOnto } from "./score.mjs";
 
@@ -37,7 +38,13 @@ console.log(`  ${steps.length} beats, ${(totalFrames / 30).toFixed(1)}s, voice $
 
 step("render");
 const r = spawnSync("npx", ["remotion", "render", "src/index.js", `WT-${data[0].id}`, "out/clip-video.mp4", "--concurrency=2"], { encoding: "utf8", timeout: 540_000, maxBuffer: 64 * 1024 * 1024, shell: true });
-if (r.status !== 0) { console.error("[clip] render failed:", (r.stderr || "").slice(-200)); process.exit(1); }
+if (r.status !== 0) {
+  console.error("[clip] render failed:", (r.stderr || "").slice(-200));
+  // The 200 characters above are Remotion's `spawn …chrome-headless-shell.exe
+  // ENOENT`, which on a deep Windows checkout names a file that is present. D1.
+  console.error(maxPathHint() ?? "");
+  process.exit(1);
+}
 
 step("voice + score + mux");
 assemble(lines, clips, totalFrames / 30, "out/clip-narration.wav");

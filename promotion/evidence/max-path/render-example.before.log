@@ -1,0 +1,23 @@
+
+> feature-clip-studio@0.1.0 render:example
+> remotion render src/index.js WT-NodeRoom out/example.mp4 --concurrency=2
+
+🧹 Webpack config change detected. Clearing cache... 
+C:\Users\hshum\AppData\Local\Temp\claude\D--VSCode-Projects-cheiron-ai-take-home\440ef9e9-83bb-4fe6-8676-4fdaaf332f3e\scratchpad\p0\deep-checkout-max-path\FeatureClipStudio\node_modules\@remotion\renderer\dist\browser\BrowserRunner.js:269
+            reject(new Error([
+                   ^
+
+Error: Failed to launch the browser process!
+Error: spawn C:\Users\hshum\AppData\Local\Temp\claude\D--VSCode-Projects-cheiron-ai-take-home\440ef9e9-83bb-4fe6-8676-4fdaaf332f3e\scratchpad\p0\deep-checkout-max-path\FeatureClipStudio\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+Troubleshooting: https://remotion.dev/docs/troubleshooting/browser-launch
+    at onClose (C:\Users\hshum\AppData\Local\Temp\claude\D--VSCode-Projects-cheiron-ai-take-home\440ef9e9-83bb-4fe6-8676-4fdaaf332f3e\scratchpad\p0\deep-checkout-max-path\FeatureClipStudio\node_modules\@remotion\renderer\dist\browser\BrowserRunner.js:269:20)
+    at ChildProcess.<anonymous> (C:\Users\hshum\AppData\Local\Temp\claude\D--VSCode-Projects-cheiron-ai-take-home\440ef9e9-83bb-4fe6-8676-4fdaaf332f3e\scratchpad\p0\deep-checkout-max-path\FeatureClipStudio\node_modules\@remotion\renderer\dist\browser\BrowserRunner.js:263:24)
+    at ChildProcess.emit (node:events:519:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:291:12)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+
+Node.js v22.22.2

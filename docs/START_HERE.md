@@ -67,6 +67,15 @@ about a 203 MB executable that is right there and runs fine when you invoke it
 yourself. The error names the file, so it reads as a broken download; it is not.
 Measured boundary and repro are in `docs/codebase/CONCERNS.md`, defect D1.
 
+**If you hit it anyway, the tool now tells you so itself.** Every Remotion command
+here runs through `run-remotion.mjs`; when one fails it checks whether the browser
+Remotion named is present *and* past the limit, and if it is, prints a message that
+says MAX_PATH, gives your checkout's length and the length it has to be, and repeats
+the fix. Windows still refuses to start the file — that part is not ours to change —
+but the message stops blaming a download you do not need to repeat. `npm run
+probe:maxpath` is the regression check; it re-measures the boundary on your own
+machine and asserts every command that starts Remotion still reaches that message.
+
 ---
 
 ## Step 1 — The entry point is an npm script, not a server
@@ -74,7 +83,7 @@ Measured boundary and repro are in `docs/codebase/CONCERNS.md`, defect D1.
 **File:** `package.json`
 **Symbol:** `scripts`
 **Called by:** a person's terminal
-**Calls next:** `remotion render src/index.js` → `src/index.js`
+**Calls next:** `run-remotion.mjs` → `remotion render src/index.js` → `src/index.js`
 
 **Why this exists**
 There is no web server and no HTTP route in this repository — a stage the HUMAN-READY
@@ -85,12 +94,18 @@ command. `npm run` is the discovery surface: the list below *is* the API.
 ```json
 "capture":        "node walkthrough.mjs",
 "capture:collab": "node walkthrough.collab.mjs",
-"studio":         "remotion studio src/index.js",
-"render:example": "remotion render src/index.js WT-NodeRoom out/example.mp4 --concurrency=2",
+"studio":         "node run-remotion.mjs studio src/index.js",
+"render:example": "node run-remotion.mjs render src/index.js WT-NodeRoom out/example.mp4 --concurrency=2",
 "clip":           "node clip.mjs",
 "check":          "node check.mjs",
-"probe:opening":  "node probe-opening-frame.mjs"
+"probe:opening":  "node probe-opening-frame.mjs",
+"probe:maxpath":  "node probe-max-path.mjs"
 ```
+
+Remotion is never invoked directly. `run-remotion.mjs` passes its arguments straight
+through and returns the same exit code, and exists only so that a browser launch that
+fails on Windows can be explained instead of misattributed — see the MAX_PATH note in
+the quickstart above.
 
 **Input** — command-line arguments only. No request, no session, no user.
 **Output** — a file on disk, always. Every stage of this pipeline is resumable
@@ -184,7 +199,7 @@ emits something that passes for evidence.** The same reasoning added the
 
 **File:** `iterate.mjs`
 **Symbol:** the top-level round loop — `iterate.mjs:62` (`for (let r = 1; r <= rounds`)
-**Called by:** `npm run iterate` — `package.json:41` (`"iterate": "node iterate.mjs"`) — and
+**Called by:** `npm run iterate` — `package.json:42` (`"iterate": "node iterate.mjs"`) — and
 nothing else. No script and no other file in this repository spawns it.
 **Calls next:** `iterate.mjs:72` (`judge-rubric.mjs`) → Google Gemini
 
@@ -200,7 +215,7 @@ understand it). `iterate.mjs` wraps that in a render → judge → revise loop.
 `iterate.mjs` spawns `judge-rubric.mjs`, which takes `--gate` and exits non-zero
 below it, so the loop can read pass/fail from the exit code. `npm run clip` does
 **not** go through `iterate.mjs` at all: it spawns the other judge itself at
-`clip.mjs:96` (`judge-video.mjs`) and applies its own thresholds. The two judges are
+`clip.mjs:103` (`judge-video.mjs`) and applies its own thresholds. The two judges are
 near-copies that write the same `.judge.json` / `.judge.md` pair; if you are reading
 a scorecard and cannot tell which produced it, that is why.
 
@@ -296,7 +311,7 @@ follow the same rule: `src/walkthrough.collab.data.js` (from `walkthrough.collab
 **Failure behavior** — the file is written even if some specs failed all their
 retries; a failed spec contributes an empty `steps` array rather than aborting the
 others. Check the console for `attempt N/M err:` lines before trusting a render.
-**One more writer, and it is worth knowing about:** `clip.mjs:30` (`writeFileSync("src/walkthrough.data.js"`) **rewrites this same
+**One more writer, and it is worth knowing about:** `clip.mjs:31` (`writeFileSync("src/walkthrough.data.js"`) **rewrites this same
 file in place**, changing each step's `hold` so the picture lasts exactly as long as
 its spoken narration. That is the only other thing that edits generated data.
 **Next** — Step 7, the reader.

@@ -251,6 +251,13 @@ so `npm run clip` means the same thing in all three.
 **Prerequisites:** Node 18+, `ffmpeg` on PATH, and your app running locally in a clean
 (no‑auth / demo) state.
 
+**Windows: clone somewhere short, e.g. `C:\src\fcs`.** Remotion installs its browser
+inside the checkout, which adds 105 characters, and Windows will not start a program
+whose full path reaches 260 — it reports that as `ENOENT`, "no such file", about a
+203 MB file that is present and runs fine. If you hit it the tool now says so and
+names MAX_PATH rather than blaming the download; `docs/codebase/CONCERNS.md` (defect
+D1) has the measured boundary.
+
 ```bash
 git clone https://github.com/HomenShum/FeatureClipStudio
 cd FeatureClipStudio
@@ -291,7 +298,7 @@ page → internal proof report with gates) — the captured frames +
    - `act` = **advance** the UI: `fill | click | upload | sleep | waitText | notRunning | scrollEl | scrollText | scrollLastChat | scrollTop | scrollY`.
    - Selector shorthand: `textarea` · `input` · `file` · `drop` · `chat` · `btn:<name regex>` · `aria:<label>` · `aria^:<prefix>` · `df`/`iframe`/`metric` (for `scrollEl`) · any CSS.
 2. **Capture + render:** start your app's clean harness, then
-   `node walkthrough.mjs` → `npx remotion render src/index.js WT-<id> out/<id>.mp4` → ffmpeg.
+   `node walkthrough.mjs` → `node run-remotion.mjs render src/index.js WT-<id> out/<id>.mp4` → ffmpeg.
 3. **Embed** the GIF under each feature's README heading.
 
 > Built and battle‑tested against **Streamlit** (see the capture lessons in
@@ -1227,7 +1234,7 @@ Reproduce the clip:
 
 ```bash
 VISUAL_URL=http://127.0.0.1:3000 node walkthrough.visual.mjs
-npx remotion render src/index.js WT-VisualLabsFlow out/visual-labs-full-flow.mp4 --concurrency=2
+node run-remotion.mjs render src/index.js WT-VisualLabsFlow out/visual-labs-full-flow.mp4 --concurrency=2
 ```
 
 Ships with a **worked example** (the live-collab counterpart to the single-pane one):
@@ -1245,7 +1252,7 @@ Reproduce it:
 ```bash
 node examples/collab-demo/server.mjs        # local demo on :8930 (no install, no login)
 node walkthrough.collab.mjs                 # multi-pane capture: Client A + Client B
-npx remotion render src/index.js WTC-LiveSync out/collab.mp4
+node run-remotion.mjs render src/index.js WTC-LiveSync out/collab.mp4
 # then the same two-pass ffmpeg palette → assets/feature-collab.gif
 ```
 Panes + steps live in `walkthrough.collab.specs.mjs`; the 2-up renderer is
@@ -1349,7 +1356,7 @@ against a real, deployed app (not just a demo harness).
 </details>
 
 Specs: `walkthrough.noderoom.specs.mjs`. Capture: `node walkthrough.collab.mjs` (the NodeRoom
-specs are imported into the collab specs). Render: `npx remotion render src/index.js WTC-NRsolo`
+specs are imported into the collab specs). Render: `node run-remotion.mjs render src/index.js WTC-NRsolo`
 / `WTC-NRsync` / `WTC-NRfresh` / `WTC-NRdeepDive`.
 
 ## Designing for specific stacks
