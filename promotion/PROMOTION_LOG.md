@@ -316,6 +316,16 @@ probe is the exact failure this correction exists to undo.
   **5,777,972 bytes** — byte-for-byte the same size as the pre-fix run in the
   table above — and zero occurrences of MAX_PATH in the output.
 
+  Then from the pushed commit rather than from a working tree, because a fix that
+  only exists locally is not shipped: `git clone` into a **178-character**
+  directory → `npm ci` → `npm run render:example`. Exit 1, one MAX_PATH message,
+  naming a 283-character browser path, a 178-character checkout and a 154-character
+  budget. That is the cold reader's own path, end to end, from origin:
+  [`evidence/max-path/render-example.fresh-clone-178.log`](evidence/max-path/render-example.fresh-clone-178.log).
+  CI on `ubuntu-latest` for the same commit is green (run 31750865447) with
+  `npm run probe:maxpath` passing its wiring assertions and skipping the boundary,
+  and the smoke render — now routed through the wrapper — producing 286,290 bytes.
+
 - **Regression check, and whether it was confirmed failing first.**
   `npm run probe:maxpath` (`probe-max-path.mjs`, committed). It asserts two
   things and **measures** the first rather than quoting the table in

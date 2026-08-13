@@ -3,7 +3,7 @@
   "defect": "D1 - on Windows, a checkout deep enough to push Remotion's browser past MAX_PATH fails with ENOENT about a file that is present",
   "assertion": "the 260-character boundary is real on this machine, and this repository turns hitting it into a message that says MAX_PATH from every command that starts Remotion",
   "producer": "node probe-max-path.mjs (npm run probe:maxpath)",
-  "measuredAt": "2026-08-13T22:37:17.139Z",
+  "measuredAt": "2026-08-13T22:43:39.344Z",
   "node": "v22.22.2",
   "platform": "win32",
   "maxPath": 260,

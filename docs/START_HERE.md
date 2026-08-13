@@ -67,11 +67,13 @@ about a 203 MB executable that is right there and runs fine when you invoke it
 yourself. The error names the file, so it reads as a broken download; it is not.
 Measured boundary and repro are in `docs/codebase/CONCERNS.md`, defect D1.
 
-**If you hit it anyway, the tool now tells you so itself.** Every Remotion command
-here runs through `run-remotion.mjs`; when one fails it checks whether the browser
-Remotion named is present *and* past the limit, and if it is, prints a message that
-says MAX_PATH, gives your checkout's length and the length it has to be, and repeats
-the fix. Windows still refuses to start the file — that part is not ours to change —
+**If you hit it anyway, the tool now tells you so itself.** Every npm script that
+starts Remotion runs it through `run-remotion.mjs`; when the run fails, that checks
+whether the browser Remotion named is present *and* past the limit, and if it is,
+prints a message that says MAX_PATH, gives your checkout's length and the length it
+has to be, and repeats the fix. (`probe-opening-frame.mjs` still spawns Remotion
+itself, and imports the same explanation rather than routing through the wrapper —
+it needs the child's stderr, which the wrapper hands straight to your terminal.) Windows still refuses to start the file — that part is not ours to change —
 but the message stops blaming a download you do not need to repeat. `npm run
 probe:maxpath` is the regression check; it re-measures the boundary on your own
 machine and asserts every command that starts Remotion still reaches that message.
@@ -102,10 +104,11 @@ command. `npm run` is the discovery surface: the list below *is* the API.
 "probe:maxpath":  "node probe-max-path.mjs"
 ```
 
-Remotion is never invoked directly. `run-remotion.mjs` passes its arguments straight
-through and returns the same exit code, and exists only so that a browser launch that
-fails on Windows can be explained instead of misattributed — see the MAX_PATH note in
-the quickstart above.
+No npm script invokes Remotion directly. `run-remotion.mjs` passes its arguments
+straight through and returns the same exit code, and exists only so that a browser
+launch that fails on Windows can be explained instead of misattributed — see the
+MAX_PATH note in the quickstart above. `npm run probe:maxpath` fails if any script
+here goes back to calling `remotion` itself.
 
 **Input** — command-line arguments only. No request, no session, no user.
 **Output** — a file on disk, always. Every stage of this pipeline is resumable

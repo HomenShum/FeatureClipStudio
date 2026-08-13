@@ -21,6 +21,7 @@ re-runnable from a clone. No file here was written by hand.
 | `probe-maxpath.before-unwired.log` | `node probe-max-path.mjs` with the handler present but every caller reverted | exit 1, naming all eight bypasses — the shape this fix would rot into, caught |
 | `probe-maxpath.after.log` | `npm run probe:maxpath` | exit 0, all nine assertions |
 | `probe-receipt.long-checkout.json` | `npm run probe:maxpath` from the 172-character checkout | the receipt as written from the failing side; `checkoutLength: 172` |
+| `render-example.fresh-clone-178.log` | `git clone` of the pushed commit into a 178-character directory → `npm ci` → `npm run render:example` | the cold reader's own path, from what is actually on origin rather than from a working tree: exit 1, one MAX_PATH message, browser path 283 characters, checkout 178, budget 154 |
 
 The live receipt is one directory up at `promotion/evidence/max-path.json` and is
 rewritten every time the probe runs.

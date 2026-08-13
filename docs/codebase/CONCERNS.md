@@ -54,10 +54,13 @@ the browser at the same long path.
 
 **What changed on 2026-08-13 (Iteration 2).** The 260-character limit belongs to
 Windows and this repository cannot lift it. What it *could* stop doing is naming the
-wrong cause. Every Remotion command here now runs through `run-remotion.mjs`, which on
-a failed run checks the one thing Remotion's message does not — whether the browser it
-named is present *and* past the limit — and if so prints a message that says MAX_PATH,
-gives both numbers, and names the fix. Measured on a 172-character checkout, same
+wrong cause. Every npm script that starts Remotion now runs it through
+`run-remotion.mjs`, which on a failed run checks the one thing Remotion's message does
+not — whether the browser it named is present *and* past the limit — and if so prints a
+message that says MAX_PATH, gives both numbers, and names the fix. `clip.mjs` and
+`probe-opening-frame.mjs` still spawn Remotion themselves, because they parse the
+child's stderr and the wrapper gives it to the terminal instead; they import the same
+explanation and print it on failure. Measured on a 172-character checkout, same
 machine, same command:
 
 | `npm run render:example` | exit | occurrences of "MAX_PATH" in the output |
