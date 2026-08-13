@@ -35,7 +35,7 @@ contaminate it.
 | Additions/deletions | — | — | 34 files changed, +1,715 / −1,059 | `git diff --cached --shortstat` |
 | — of which **source** (excluding `docs/`, `.tours/`, lockfile, evidence) | — | — | 20 files changed, +115 / −1,053 | `git diff --cached --shortstat -- '*.mjs' '*.js' '*.jsx' package.json README.md JOURNEYS.md` |
 
-### Note 0 — three numbers in this table were corrected after the first push
+### Note 0 — four numbers in this table were corrected after the first push
 
 The adversarial pass caught them, which is the pass doing its job. Commit
 `994a630` published production files as 40, production lines as 10,122, tracked
