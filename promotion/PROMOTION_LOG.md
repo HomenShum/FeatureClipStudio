@@ -97,14 +97,121 @@ reproduction; a hunch is not a defect.
 
 | # | Severity | Journey | Reproduction | Status |
 |---|----------|---------|--------------|--------|
-| D1 | Critical | J1 | On Windows 11 / Node v22.22.2, from a fresh clone: `npm ci` → `npx playwright install chromium` → `npx remotion browser ensure` (all exit 0, the last printing `Has browser at …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe`) → `npm run render:example` exits 1 with `Failed to launch the browser process! Error: spawn <that same path> ENOENT`. The file is present (202,939,392 bytes, mode `-rwxr-xr-x`) and runs standalone: `--version` prints `Google Chrome for Testing 149.0.7790.0`, exit 0. Reproduced in Git Bash and PowerShell. Scope: Windows only — `.github/workflows/ci.yml` runs the same render on `ubuntu-latest` and is green (run 30963804165). Impact: the README's "renders immediately — no app needed" quickstart, the first thing a stranger types, is a dead end on Windows, and the failure message points only at an upstream Remotion troubleshooting URL. | OPEN |
-| D2 | Major | J2 | Open `npm run studio` at `WT-NodeRoom`, frame 0, 1280×900. The player canvas paints **solid white** while the source frame `public/wt/NodeRoom/00.png` is a dark page. Not a load race: after a 15s wait the image reports `complete: true, naturalWidth: 2560`, the caption text is in the DOM, and there are zero console errors — the canvas is still white (`evidence/remotion-studio-desktop.png`). Scrubbing to 00:13.12 renders correctly (`evidence/remotion-studio-seek12s.png`), so only the opening is affected. Root cause, in code this repo owns: `src/Walkthrough.jsx:164` gives the frame container `background: "#fff"`, `:168` renders the current frame at `opacity: fadeIn`, and `:137` sets `fadeIn = interpolate(lf, [0, 11], [0, 1])` — so for the first 11 frames of step 0, where `prevImg` is `null` (`:136`, `prev` is undefined at step 0), the white container background is the only thing painted. Impact: every clip this tool produces opens on a ~0.37s white flash, and a looping README GIF re-flashes it on every loop — against the repo's own `loop_etiquette` rubric dimension. | OPEN |
+| D1 | Critical | J1 | On Windows 11 / Node v22.22.2, from a fresh clone: `npm ci` → `npx playwright install chromium` → `npx remotion browser ensure` (all exit 0, the last printing `Has browser at …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe`) → `npm run render:example` exits 1 with `Failed to launch the browser process! Error: spawn <that same path> ENOENT`. The file is present (202,939,392 bytes, mode `-rwxr-xr-x`) and runs standalone: `--version` prints `Google Chrome for Testing 149.0.7790.0`, exit 0. Reproduced in Git Bash and PowerShell. Scope: Windows only — `.github/workflows/ci.yml` runs the same render on `ubuntu-latest` and is green (run 30963804165). Impact: the README's "renders immediately — no app needed" quickstart, the first thing a stranger types, is a dead end on Windows, and the failure message points only at an upstream Remotion troubleshooting URL. | **OPEN — NOT REPRODUCED in Wave 2.** Same OS build (Windows 11 10.0.26200), same Node (v22.22.2), same npm (10.9.7), fresh `git clone --depth 20` at `5486bb8` into a different directory: `npm ci` → `npx remotion browser ensure` → `npm run render:example` **exit 0**, `out/example.mp4` written at 5,985,657 bytes. Re-ran after the Iteration 1 fix: **exit 0** again, 5.8 MB. One clean pair of runs does not disprove an intermittent or path-dependent failure, and nothing in this repo changed that would explain it, so the defect is NOT closed — it is recorded as unreproducible on demand, which is the honest state. Anyone who reproduces it again should note the clone path length: the two runs differ in little else. |
+| D2 | Major | J2 | **FIXED in Iteration 1 — see below.** Original reproduction: Open `npm run studio` at `WT-NodeRoom`, frame 0, 1280×900. The player canvas paints **solid white** while the source frame `public/wt/NodeRoom/00.png` is a dark page. Not a load race: after a 15s wait the image reports `complete: true, naturalWidth: 2560`, the caption text is in the DOM, and there are zero console errors — the canvas is still white (`evidence/remotion-studio-desktop.png`). Scrubbing to 00:13.12 renders correctly (`evidence/remotion-studio-seek12s.png`), so only the opening is affected. Root cause, in code this repo owns: `src/Walkthrough.jsx:164` gives the frame container `background: "#fff"`, `:168` renders the current frame at `opacity: fadeIn`, and `:137` sets `fadeIn = interpolate(lf, [0, 11], [0, 1])` — so for the first 11 frames of step 0, where `prevImg` is `null` (`:136`, `prev` is undefined at step 0), the white container background is the only thing painted. Impact: every clip this tool produces opens on a ~0.37s white flash, and a looping README GIF re-flashes it on every loop — against the repo's own `loop_etiquette` rubric dimension. | **FIXED** (Iteration 1) |
 | D3 | Minor | J2 | Remotion Studio at 1280×900: 8 of 29 `<button>` elements have no accessible name (no text, no `aria-label`); at 390×844, 6 of 21. Measured in `evidence/report.json` (`btnsNoName`). Keyboard navigation was sampled, not exhausted: 8 Tab presses each landed on a control and each focused element carried an `outline` or a `box-shadow` — a check that cannot tell a focus-only ring from a shadow the element always has, so read it as "no dead tab stop observed", not as proof of 8 distinct ringed controls. Scope: this is Remotion's own studio chrome, not code in this repo, so it is logged rather than owned. Note the probe that measured `btnsNoName` was not committed (see the harness notes above). | OPEN (third-party) |
 | D4 | Minor | J2 | Remotion Studio at 390×844: the transport bar clips at the right edge — the zoom control is cut mid-word (`evidence/remotion-studio-mobile.png`), and the player canvas is blank at frame 0 for the same reason as D2. The document itself does not overflow (`scrollWidth === clientWidth === 390`), so condition 4 still holds. Scope: third-party studio chrome. | OPEN (third-party) |
 
 ## Iterations
 
-_none yet — Wave 1 is baseline only._
+### Iteration 1 — 2026-08-13
+
+- **Journey exercised:** J2 "Preview the bundled walkthrough in a browser" — and,
+  because the defect lives in the renderer rather than in the preview, every clip
+  the tool emits, including J1's `out/example.mp4`.
+
+- **Observed.** Defect **D2**, reproduced first and measured before anything was
+  edited. Fresh clone at `5486bb8`, `npm ci`, `npx remotion browser ensure`.
+  `node probe-opening-frame.mjs` (the producer added by this iteration, run
+  against the untouched tree) **exit 1**:
+
+  | composition | renderer | frame 0 mean | frame 4 mean | pixels differing |
+  |---|---|---|---|---|
+  | `WT-NodeRoom` | `src/Walkthrough.jsx` | `#e7e7e9` | `#9a9b9d` | **90.4%** |
+  | `WTC-LiveSync` | `src/Walkthrough2up.jsx` | `#424a56` | `#2f3743` | **22.8%** |
+  | `WTG-RoomOSV0123` | `src/WalkthroughGrid.jsx` | `#0f1320` | `#111421` | 2.2% |
+
+  Receipt: [`evidence/opening-frame.before.json`](evidence/opening-frame.before.json).
+  Picture: [`evidence/opening-frame/before/WT-NodeRoom-frame000.png`](evidence/opening-frame/before/WT-NodeRoom-frame000.png)
+  is a solid white rectangle where the NodeRoom landing page should be.
+
+  And in the artifact a stranger actually holds, not just in the studio: frame 0
+  of the `npm run render:example` MP4 rendered from the pre-fix tree has mean
+  colour **RGB(247,244,247)** —
+  [`evidence/opening-frame/before/example-mp4-frame000.png`](evidence/opening-frame/before/example-mp4-frame000.png).
+
+  **The ledger understated the blast radius.** D2 named `src/Walkthrough.jsx`.
+  Grepping every site that draws a captured frame found the identical pattern in
+  all three renderers, and `Walkthrough2up.jsx` draws **12 of the 14**
+  compositions in `src/index.js`. Fixing only the composition the ledger named
+  would have left the majority of the product's output still flashing.
+
+- **Root cause** — `src/Walkthrough.jsx:168`, `src/Walkthrough2up.jsx:86`,
+  `src/WalkthroughGrid.jsx:484`. The opening ramp is not a fade-in, it is a
+  **cross**-fade: the previous step's still is painted underneath at full opacity
+  and the new step's still ramps `0 → 1` on top of it. That is correct for every
+  step that has a predecessor. The code never separated that case from *first
+  appearance*, so the same ramp runs when the layer underneath is not a frame at
+  all but the container's letterbox background — `#fff` on the single-pane and
+  2-up renderers (`Walkthrough.jsx:164`, `Walkthrough2up.jsx:82`), `#070b14` on
+  the grid. At step 0 `prev` is `undefined`, so `prevImg` is `null`, and for 11
+  frames the backdrop is the only thing painted. The bug existed because "fade
+  the new frame in" and "cross-fade the new frame over the old one" were written
+  as one expression, and they are only the same instruction when an old one
+  exists.
+
+- **Fixed.** One guard per renderer, at the point where opacity is decided, so
+  the fade runs only when there is something to fade *from*:
+  `opacity: prevImg ? fadeIn : 1`.
+  - `src/Walkthrough.jsx:168`
+  - `src/Walkthrough2up.jsx:86` (also covers a pane that joins after step 0)
+  - `src/WalkthroughGrid.jsx:484` (measured at 2.2%, under the probe's threshold,
+    because this pane's `#070b14` happens to sit close to the captures it shows —
+    luck, not a design, and now not relied on)
+
+  No new dependency, no new abstraction, no component redesign. 15 insertions,
+  4 deletions across 4 files including `package.json`.
+
+- **Re-proved in the rendered output, not inferred.** `node probe-opening-frame.mjs`
+  **exit 0**, all three renderers at **0.0%** differing pixels, frame 0 mean now
+  `#15161a` / `#0d1722` / `#151824` — the app, not the backdrop. Receipt:
+  [`evidence/opening-frame.json`](evidence/opening-frame.json); stills under
+  [`evidence/opening-frame/`](evidence/opening-frame/).
+  Then the real deliverable: `npm run render:example` re-rendered, **exit 0**,
+  5.8 MB, and frame 0 of that MP4 now has mean colour **RGB(24,23,26)** and shows
+  the NodeRoom hero —
+  [`evidence/opening-frame/example-mp4-frame000.png`](evidence/opening-frame/example-mp4-frame000.png).
+
+- **Regression check, and whether it was confirmed failing first.** The check is
+  `npm run probe:opening` (`probe-opening-frame.mjs`, committed). It asserts that
+  frames 0 and 4 of a composition are the same picture — within one step those
+  two frames differ *only* by this fade, because every camera ease starts at
+  frame ≥ 5 and every caption ease at frame 4, so all of them clamp to their start
+  value across 0..4. That makes the assertion true whatever the captured app looks
+  like, which is why it is stated in those terms rather than as "frame 0 is not
+  white". **Confirmed failing before the fix: yes** — it was written first and run
+  against the untouched tree, where it exited 1 on two of three renderers
+  (table above). It is not a stash-and-rerun reconstruction; that *was* the
+  pre-fix tree.
+
+- **Blast-radius check on the fix itself, observed rather than reasoned.** The
+  guard is the identity when `prevImg` is truthy, so mid-clip cross-fades must be
+  untouched. Verified by rendering `WT-NodeRoom` frame **173** (step 1, local
+  frame 5 — inside a cross-fade) with the change, then `git stash`-ing the three
+  source edits, rendering again, and restoring: both PNGs hash to
+  `81abca0b63c88e953ff7de8466f8b9b4514cf0f439a5fdbb053f7c6155023c08`. Byte
+  identical. (Scratch comparison, not committed — the committed probe covers the
+  opening, which is what changed.)
+
+- **Tests:** `npm run check` **exit 0** (now fifteen chained `node --check`,
+  including the new probe — read it as honestly as Wave 1 did: it parses and
+  executes nothing). `npm run probe:opening` **exit 0** — the first committed gate
+  in this repo that actually *runs* the renderers and fails on a rendered-output
+  property. `npm run render:example` **exit 0**, `out/example.mp4` 5.8 MB.
+
+- **Conditions newly PASS: 12.** And only 12. Explicitly *not* claimed:
+  - **2** stays FAIL. D2 is fixed, but D1 is not *closed* — it merely did not
+    reproduce here (see its ledger row), and "I could not make it fail today" is
+    not "it is fixed".
+  - **11** stays FAIL. `render:example` exited 0 on this machine and there is now
+    one executable gate, but one probe is not a test suite and `package.json`
+    still has no `test` script.
+  - **1** stays FAIL. J5 is still unrun — it needs a `GEMINI_API_KEY`, and this
+    wave creates no secrets.
+  - **3, 5, 7, 8, 9, 10** untouched: this iteration ran no audit, and rescuing a
+    row with a throwaway probe is the exact failure the Wave 1 correction exists
+    to undo. Condition **4** and **6** likewise still need the committed
+    `audit:ui`-shaped script Wave 1 named; `probe-opening-frame.mjs` is not it.
 
 ## Correction — 2026-08-13
 

@@ -1,0 +1,53 @@
+{
+  "probe": "opening-frame",
+  "defect": "D2 - clip opens on the container backdrop because the step cross-fade has nothing to fade from at step 0",
+  "assertion": "frames 0 and 4 of a step differ only by the opening fade, so they must match within 5% of pixels",
+  "producer": "node probe-opening-frame.mjs (npm run probe:opening)",
+  "measuredAt": "2026-08-13T11:48:56.951Z",
+  "node": "v22.22.2",
+  "platform": "win32",
+  "sample": {
+    "width": 192,
+    "height": 108,
+    "channelDelta": 12
+  },
+  "results": [
+    {
+      "id": "WT-NodeRoom",
+      "renderer": "src/Walkthrough.jsx",
+      "backdrop": "#fff",
+      "frame0": "promotion/evidence/opening-frame/WT-NodeRoom-frame000.png",
+      "frame4": "promotion/evidence/opening-frame/WT-NodeRoom-frame004.png",
+      "frame0Mean": "#e7e7e9",
+      "frame4Mean": "#9a9b9d",
+      "diffShare": 0.9036,
+      "maxDiffShare": 0.05,
+      "verdict": "FAIL"
+    },
+    {
+      "id": "WTC-LiveSync",
+      "renderer": "src/Walkthrough2up.jsx",
+      "backdrop": "#fff",
+      "frame0": "promotion/evidence/opening-frame/WTC-LiveSync-frame000.png",
+      "frame4": "promotion/evidence/opening-frame/WTC-LiveSync-frame004.png",
+      "frame0Mean": "#424a56",
+      "frame4Mean": "#2f3743",
+      "diffShare": 0.2281,
+      "maxDiffShare": 0.05,
+      "verdict": "FAIL"
+    },
+    {
+      "id": "WTG-RoomOSV0123",
+      "renderer": "src/WalkthroughGrid.jsx",
+      "backdrop": "#070b14",
+      "frame0": "promotion/evidence/opening-frame/WTG-RoomOSV0123-frame000.png",
+      "frame4": "promotion/evidence/opening-frame/WTG-RoomOSV0123-frame004.png",
+      "frame0Mean": "#0f1320",
+      "frame4Mean": "#111421",
+      "diffShare": 0.0217,
+      "maxDiffShare": 0.05,
+      "verdict": "PASS"
+    }
+  ],
+  "verdict": "FAIL"
+}

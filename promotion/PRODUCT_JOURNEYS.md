@@ -39,7 +39,16 @@ Each journey states, in this order:
   4. `npm run render:example` — README line 252.
   5. Run the README's ffmpeg palette command over `out/example.mp4`.
 - **Done when:** `out/example.mp4` exists, is non-trivial in size, and plays.
-- **Evidence:** **FAILS.** `npm run render:example` exits 1 —
+- **Evidence:** **NOT BANKED — succeeded in Iteration 1, but D1 is unexplained.**
+  2026-08-13, fresh clone at `5486bb8` on the same OS (Windows 11 10.0.26200) and
+  Node (v22.22.2): steps 1-4 ran clean, `npm run render:example` **exit 0**,
+  `out/example.mp4` 5,985,657 bytes; re-run after the D2 fix, exit 0, 5.8 MB.
+  Frame 0 of that MP4 is committed at
+  `evidence/opening-frame/example-mp4-frame000.png`. Step 5 (the ffmpeg palette
+  command) was not run. The journey is not marked done because Wave 1's failure
+  below was never explained, only unreproduced — and `out/` is gitignored, so the
+  MP4 itself is not an artifact anyone else can inspect.
+  **Wave 1 observed the opposite:** `npm run render:example` exits 1 —
   `Failed to launch the browser process! Error: spawn …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe ENOENT`.
   Reproduced in Git Bash and PowerShell. The named exe exists and runs standalone
   (`--version` → `Google Chrome for Testing 149.0.7790.0`, exit 0). Defect D1.
@@ -64,7 +73,12 @@ Each journey states, in this order:
   my edit", caption "Press the button: the AI tries to overwrite your edit — and
   gets told no." Desktop and mobile loads: `evidence/remotion-studio-desktop.png`,
   `evidence/remotion-studio-mobile.png`.
-  **Caveat, and it is Defect D2:** at frame 0 the same canvas paints solid white.
+  **Wave 1 caveat, Defect D2 — FIXED in Iteration 1 (2026-08-13):** at frame 0
+  the same canvas painted solid white. It now paints the captured app frame.
+  Re-provable from a clone with `npm run probe:opening`; before/after receipts at
+  `evidence/opening-frame.before.json` and `evidence/opening-frame.json`, stills
+  at `evidence/opening-frame/before/WT-NodeRoom-frame000.png` (white) and
+  `evidence/opening-frame/WT-NodeRoom-frame000.png` (the app).
 
 ## J3 — "Run the worked example so the collab GIF reproduces on my machine"
 

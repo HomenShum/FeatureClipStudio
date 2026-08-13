@@ -83,7 +83,10 @@ const PaneWindow = ({ left, top, paneW, paneH, accent, label, acting, img, prevI
       {/* camera container: img + cursor zoom/pan together so the cursor stays glued to the image */}
       <div style={{ position: "absolute", top: 0, left: 0, width: paneW, height: imgH || paneH, transformOrigin: "0 0", transform: cam || "none" }}>
         {prevImg && <Img src={staticFile(prevImg)} style={{ position: "absolute", top: 0, left: 0, width: paneW }} />}
-        {img && <Img src={staticFile(img)} style={{ position: "absolute", top: 0, left: 0, width: paneW, opacity: fadeIn }} />}
+        {/* Cross-fade only when there is something to cross-fade FROM. Without the guard a pane
+            whose predecessor has no frame -- step 0, or a pane that joins late -- ramps up from
+            the `#fff` behind it instead. Same defect as src/Walkthrough.jsx. */}
+        {img && <Img src={staticFile(img)} style={{ position: "absolute", top: 0, left: 0, width: paneW, opacity: prevImg ? fadeIn : 1 }} />}
         {cursor && <Ripple x={cursor.x} y={cursor.y} lf={click ? lf : -999} accent={accent} />}
         {cursor && <Pointer x={cursor.x} y={cursor.y} opacity={cursorOp} />}
       </div>

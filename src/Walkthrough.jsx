@@ -165,7 +165,11 @@ export const Walkthrough = ({ wt }) => {
           {/* Camera: zoom + pan toward the active region */}
           <div style={{ position: "absolute", top: 0, left: 0, width: IMG_W, height: IMG_H, transformOrigin: "0 0", transform: `translate(${tx}px, ${ty}px) scale(${s})` }}>
             {prevImg && <Img src={staticFile(prevImg)} style={{ position: "absolute", top: 0, left: 0, width: IMG_W }} />}
-            <Img src={staticFile(curImg)} style={{ position: "absolute", top: 0, left: 0, width: IMG_W, opacity: fadeIn }} />
+            {/* `fadeIn` is a CROSS-fade: it only means anything with the previous step's still
+                underneath. Step 0 has no previous step, so an unguarded ramp faded the first
+                frame up from this container's `#fff` letterbox -- every clip opened on a 0.37s
+                white flash, and a looping README GIF re-flashed on every loop. */}
+            <Img src={staticFile(curImg)} style={{ position: "absolute", top: 0, left: 0, width: IMG_W, opacity: prevImg ? fadeIn : 1 }} />
             {cursor && <Ripple x={cursor.x} y={cursor.y} lf={cur.click ? lf : -999} accent={wt.accent} />}
             {cursor && <Pointer x={cursor.x} y={cursor.y} opacity={cursorOp} />}
           </div>

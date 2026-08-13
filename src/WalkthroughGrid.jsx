@@ -481,7 +481,10 @@ const Pane = ({
           }}
         >
           {prevImg && <Img src={staticFile(prevImg)} style={{ position: "absolute", inset: 0, width: w }} />}
-          {img && <Img src={staticFile(img)} style={{ position: "absolute", inset: 0, width: w, opacity: fade }} />}
+          {/* Cross-fade only when there is something to cross-fade FROM. Same defect as
+              src/Walkthrough.jsx; it read as a flash here only because this pane's `#070b14`
+              happens to sit close to the captures it shows, which is luck, not a design. */}
+          {img && <Img src={staticFile(img)} style={{ position: "absolute", inset: 0, width: w, opacity: prevImg ? fade : 1 }} />}
           {cursor && pane?.click && <ClickRing x={cursor.x} y={cursor.y} localFrame={localFrame} accent={accent} />}
           {cursor && <Pointer x={cursor.x} y={cursor.y} opacity={cursorOpacity} />}
         </div>
