@@ -433,11 +433,17 @@ that was checked by a list rather than by a measurement.
   | mutation | probe verdict |
   |---|---|
   | none (as committed) | PASS — 45 runnable files scanned, 0 invocations outside the handler |
-  | `iterate.mjs` reverted | FAIL — `iterate.mjs:65` |
+  | `iterate.mjs` reverted | FAIL — `iterate.mjs:66` |
   | CI smoke render reverted to `npx` | FAIL — `.github/workflows/ci.yml:37` |
   | `render:example` reverted to `remotion render` | FAIL — `package.json (script "render:example")` |
   | `clip.mjs` reverted | FAIL — `clip.mjs:40` |
   | quoting removed from the handler | FAIL — both argument rows |
+
+  The table above was first written from a sweep run before a later edit shifted
+  `iterate.mjs` by one line, and said `iterate.mjs:65`. Re-run against the
+  committed tree, it is `iterate.mjs:66`. Corrected rather than quietly fixed,
+  because a number measured against a tree that no longer exists is the third
+  thing the refutation caught, and it caught it in a report exactly like this one.
 
   **Confirmed failing on the pre-fix tree**: with the five source files stashed
   back to Iteration 2 and only the new probe kept, it exits 1 and names every
