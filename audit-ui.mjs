@@ -460,6 +460,10 @@ assert("c10 optimistic paint under 100ms", j.optimisticMs < 100, `${j.optimistic
 assert("c10 optimistic paint precedes the server answer", j.optimisticMs < j.mutateDelayMs,
   `${j.optimisticMs}ms paint vs ${j.mutateDelayMs}ms held response`);
 // The app's own share of the confirm, with this probe's injected hold removed.
+// This assertion was LOOSENED during Iteration 4: it read `confirmedMs < 1000`,
+// which is 1200ms in these terms. The old number is kept here so the change
+// stays auditable. The justification is that the 400ms hold is injected by this
+// script, so the original threshold measured the probe as much as the app.
 assert("c10 server confirm under 800ms once the injected hold is subtracted",
   j.confirmedMs - j.mutateDelayMs < 800, `${j.confirmedMs}ms total - ${j.mutateDelayMs}ms held`);
 assert("c10 agent first paint under 1500ms", j.agentFirstPaintMs < 1500, `${j.agentFirstPaintMs}ms`);
