@@ -51,7 +51,7 @@ Remotion can animate them; frames stay clean.
 **Render.** Remotion (`src/Walkthrough.jsx` single-pane, `src/Walkthrough2up.jsx`
 multi-pane) overlays the animated cursor + click ripple + caption + progress bar and
 runs an Arcade-style zoom/pan camera (zoom ~1.36× to the click, pull back ~1.14× on the
-result). `npx remotion render src/index.js WT-<id> out/WT-<id>.mp4`, then a two-pass
+result). `node run-remotion.mjs render src/index.js WT-<id> out/WT-<id>.mp4`, then a two-pass
 ffmpeg palette (`stats_mode=diff` + `lanczos` + `bayer` + `diff_mode=rectangle`) →
 `assets/feature-*.gif`.
 

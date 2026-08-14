@@ -63,7 +63,7 @@ node walkthrough.mjs       2. CAPTURE Playwright drives your app, screenshots a 
    →  public/wt/<id>/*.png            + writes src/walkthrough.data.js
         │
         ▼
-npx remotion render        3. RENDER  Remotion overlays the animated cursor + ripple +
+node run-remotion.mjs      3. RENDER  Remotion overlays the animated cursor + ripple +
    src/index.js WT-<id>               zoom/pan camera + caption + progress  →  mp4
         │
         ▼

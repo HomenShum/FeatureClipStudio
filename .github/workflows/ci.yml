@@ -29,7 +29,7 @@ jobs:
       # Windows fact and is skipped here; the wiring is not.
       - run: npm run probe:maxpath
       - name: Ensure Remotion headless browser
-        run: npx remotion browser ensure
+        run: node run-remotion.mjs browser ensure
       # Through run-remotion.mjs, like every other Remotion command here — which
       # also keeps CI proving the wrapper is transparent on a platform where the
       # defect it guards cannot happen.

@@ -28,10 +28,13 @@ green run with empty frames; that is the whole point of the `ready` field.
 
 ## 2. Remotion, as a child process
 
-**Where:** `probe-opening-frame.mjs:47` (`npx remotion still`) and `clip.mjs:39`
-(`npx remotion render`), both through `spawnSync`. On Windows these pass
-`shell: true` / `shell: process.platform === "win32"`, because `npx` is `npx.cmd` and
-Node ≥ 20.12 refuses to exec a `.cmd` without a shell.
+**Where:** one place, `run-remotion.mjs`; `clip.mjs`, `probe-opening-frame.mjs`,
+`iterate.mjs`, the npm scripts and CI all go through it. On Windows it passes
+`shell: process.platform === "win32"`, because `npx` is `npx.cmd` and Node ≥ 20.12
+refuses to exec a `.cmd` without a shell — and it quotes each argument first, because
+a shell re-splits them on whitespace and an output path containing a space would
+otherwise render, exit 0, to the wrong filename. `npm run probe:maxpath` scans for
+any other file that starts Remotion and fails if it finds one.
 
 **Failure mode:** Remotion downloads and manages its own headless Chrome under
 `node_modules/.remotion/`. A failure to launch it is defect D1 — see CONCERNS.md.

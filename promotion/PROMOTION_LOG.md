@@ -97,7 +97,7 @@ reproduction; a hunch is not a defect.
 
 | # | Severity | Journey | Reproduction | Status |
 |---|----------|---------|--------------|--------|
-| D1 | ~~Critical~~ → Major | J1 | On Windows 11 / Node v22.22.2, from a fresh clone: `npm ci` → `npx playwright install chromium` → `npx remotion browser ensure` (all exit 0, the last printing `Has browser at …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe`) → `npm run render:example` exits 1 with `Failed to launch the browser process! Error: spawn <that same path> ENOENT`. The file is present (202,939,392 bytes, mode `-rwxr-xr-x`) and runs standalone: `--version` prints `Google Chrome for Testing 149.0.7790.0`, exit 0. Reproduced in Git Bash and PowerShell. Scope: Windows only — `.github/workflows/ci.yml` runs the same render on `ubuntu-latest` and is green (run 30963804165). Impact: the README's "renders immediately — no app needed" quickstart, the first thing a stranger types, is a dead end on Windows, and the failure message points only at an upstream Remotion troubleshooting URL. | **OPEN — NOT REPRODUCED in Wave 2.** Same OS build (Windows 11 10.0.26200), same Node (v22.22.2), same npm (10.9.7), fresh `git clone --depth 20` at `5486bb8` into a different directory: `npm ci` → `npx remotion browser ensure` → `npm run render:example` **exit 0**, `out/example.mp4` written at 5,985,657 bytes. Re-ran after the Iteration 1 fix: **exit 0** again, 5.8 MB. One clean pair of runs does not disprove an intermittent or path-dependent failure, and nothing in this repo changed that would explain it, so the defect is NOT closed — it is recorded as unreproducible on demand, which is the honest state. Anyone who reproduces it again should note the clone path length: the two runs differ in little else. **REPRODUCED ON DEMAND, and downgraded to Major, in Iteration 2 (2026-08-13).** The clone path length was the variable, exactly as the line above guessed: the same clone renamed from a 149-character directory (exit 0, 5,777,972 bytes) to a 172-character one fails (exit 1, ENOENT) and back again. The 260-character Windows limit is not this repository's to lift, so the render still cannot run from a deep checkout — but the error no longer names the wrong cause: `run-remotion.mjs` now prints a message saying MAX_PATH, with both lengths and the fix, from every command that starts Remotion. `grep -c MAX_PATH` over the quickstart's output at a 172-character checkout: **0 before, 1 after**. Still OPEN because the command still fails; no longer Critical because it is no longer a dead end. Guarded by `npm run probe:maxpath`. |
+| D1 | ~~Critical~~ → Major | J1 | On Windows 11 / Node v22.22.2, from a fresh clone: `npm ci` → `npx playwright install chromium` → `npx remotion browser ensure` (all exit 0, the last printing `Has browser at …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe`) → `npm run render:example` exits 1 with `Failed to launch the browser process! Error: spawn <that same path> ENOENT`. The file is present (202,939,392 bytes, mode `-rwxr-xr-x`) and runs standalone: `--version` prints `Google Chrome for Testing 149.0.7790.0`, exit 0. Reproduced in Git Bash and PowerShell. Scope: Windows only — `.github/workflows/ci.yml` runs the same render on `ubuntu-latest` and is green (run 30963804165). Impact: the README's "renders immediately — no app needed" quickstart, the first thing a stranger types, is a dead end on Windows, and the failure message points only at an upstream Remotion troubleshooting URL. | **OPEN — NOT REPRODUCED in Wave 2.** Same OS build (Windows 11 10.0.26200), same Node (v22.22.2), same npm (10.9.7), fresh `git clone --depth 20` at `5486bb8` into a different directory: `npm ci` → `npx remotion browser ensure` → `npm run render:example` **exit 0**, `out/example.mp4` written at 5,985,657 bytes. Re-ran after the Iteration 1 fix: **exit 0** again, 5.8 MB. One clean pair of runs does not disprove an intermittent or path-dependent failure, and nothing in this repo changed that would explain it, so the defect is NOT closed — it is recorded as unreproducible on demand, which is the honest state. Anyone who reproduces it again should note the clone path length: the two runs differ in little else. **REPRODUCED ON DEMAND, and downgraded to Major, in Iteration 2 (2026-08-13).** The clone path length was the variable, exactly as the line above guessed: the same clone renamed from a 149-character directory (exit 0, 5,777,972 bytes) to a 172-character one fails (exit 1, ENOENT) and back again. The 260-character Windows limit is not this repository's to lift, so the render still cannot run from a deep checkout — but the error no longer names the wrong cause: `run-remotion.mjs` now prints a message saying MAX_PATH, with both lengths and the fix, from the commands routed through it — which in Iteration 2 was eight of the nine that exist, `iterate.mjs` being the one missed and Iteration 3 the one that closed it. `grep -c MAX_PATH` over the quickstart's output at a 172-character checkout: **0 before, 1 after**. Still OPEN because the command still fails; no longer Critical because it is no longer a dead end. Guarded by `npm run probe:maxpath`. |
 | D2 | Major | J2 | **FIXED in Iteration 1 — see below.** Original reproduction: Open `npm run studio` at `WT-NodeRoom`, frame 0, 1280×900. The player canvas paints **solid white** while the source frame `public/wt/NodeRoom/00.png` is a dark page. Not a load race: after a 15s wait the image reports `complete: true, naturalWidth: 2560`, the caption text is in the DOM, and there are zero console errors — the canvas is still white (`evidence/remotion-studio-desktop.png`). Scrubbing to 00:13.12 renders correctly (`evidence/remotion-studio-seek12s.png`), so only the opening is affected. Root cause, in code this repo owns: `src/Walkthrough.jsx:164` gives the frame container `background: "#fff"`, `:168` renders the current frame at `opacity: fadeIn`, and `:137` sets `fadeIn = interpolate(lf, [0, 11], [0, 1])` — so for the first 11 frames of step 0, where `prevImg` is `null` (`:136`, `prev` is undefined at step 0), the white container background is the only thing painted. Impact: every clip this tool produces opens on a ~0.37s white flash, and a looping README GIF re-flashes it on every loop — against the repo's own `loop_etiquette` rubric dimension. | **FIXED** (Iteration 1) |
 | D3 | Minor | J2 | Remotion Studio at 1280×900: 8 of 29 `<button>` elements have no accessible name (no text, no `aria-label`); at 390×844, 6 of 21. Measured in `evidence/report.json` (`btnsNoName`). Keyboard navigation was sampled, not exhausted: 8 Tab presses each landed on a control and each focused element carried an `outline` or a `box-shadow` — a check that cannot tell a focus-only ring from a shadow the element always has, so read it as "no dead tab stop observed", not as proof of 8 distinct ringed controls. Scope: this is Remotion's own studio chrome, not code in this repo, so it is logged rather than owned. Note the probe that measured `btnsNoName` was not committed (see the harness notes above). | OPEN (third-party) |
 | D4 | Minor | J2 | Remotion Studio at 390×844: the transport bar clips at the right edge — the zoom control is cut mid-word (`evidence/remotion-studio-mobile.png`), and the player canvas is blank at frame 0 for the same reason as D2. The document itself does not overflow (`scrollWidth === clientWidth === 390`), so condition 4 still holds. Scope: third-party studio chrome. | OPEN (third-party) |
@@ -291,12 +291,13 @@ probe is the exact failure this correction exists to undo.
   mistake pointed the other way.
 
   Wired at the seam rather than at the path the ledger named. D1 named
-  `render:example`; five npm scripts and two `.mjs` drivers and the CI smoke
-  render start Remotion, and a guard in one of them leaves the other seven
-  failing exactly as before. All eight now route through the one handler:
-  `package.json` (`studio`, `studio:roomos`, `render`, `render:example`,
-  `render:roomos`), `clip.mjs`, `probe-opening-frame.mjs`,
-  `.github/workflows/ci.yml`.
+  `render:example`; npm scripts, `.mjs` drivers and the CI workflow all start
+  Remotion, and a guard in one of them leaves the rest failing exactly as before.
+  **The sentence that stood here — "all eight now route through the one handler"
+  — was false when it was written.** There were nine. `iterate.mjs` (`npm run
+  iterate`, the stage-5 gate the README calls non-optional) was never wired, and
+  the guard could not say so because it consulted the same list that omitted it.
+  Repaired in Iteration 3, which also stopped keeping a list.
 
 - **Re-proved by re-running the identical probe, not by reading the code.** Same
   172-character checkout, same command:
@@ -332,7 +333,11 @@ probe is the exact failure this correction exists to undo.
   `docs/codebase/CONCERNS.md`: one real executable hard-linked to a 61-character
   path and to a 261-character path runs from the short one (exit 0) and returns
   ENOENT from the long one, with `existsSync` true for both; and every command
-  here that starts Remotion still reaches the explanation.
+  here that starts Remotion still reaches the explanation. **That second
+  assertion, as shipped in this iteration, was a hardcoded list of three
+  filenames tested for a substring, so it could not fail for a caller absent from
+  the list and passed with the CI render reverted to a bare `npx`. Replaced with
+  a scan in Iteration 3.**
 
   **Confirmed failing on the pre-fix tree: yes, twice, and the second run is the
   one that matters.** With `run-remotion.mjs` moved aside and the three source
@@ -376,3 +381,88 @@ probe is the exact failure this correction exists to undo.
     shape, so it is not re-claimed as new.
 
   Scorecard unchanged at **1/12 PASS**.
+
+### Iteration 3 — 2026-08-13 — repairing Iteration 2 after it was refuted
+
+An independent pass re-ran Iteration 2's probes instead of reading its report and
+returned **REFUTED at 2 of 4**. The MAX_PATH message itself held. Three things
+did not, and all three are the same failure wearing different clothes: a claim
+that was checked by a list rather than by a measurement.
+
+- **The seam was not closed — nine callers, not eight.** `iterate.mjs` starts
+  Remotion, is exposed as `npm run iterate`, and is documented in the README as
+  the stage-5 gate that is *not optional*. It was never wired. Measured from a
+  188-character checkout, the reader's own command:
+
+  | `node iterate.mjs --comp WT-NodeRoom --out out/it.mp4` | exit | `grep -c MAX_PATH` |
+  |---|---|---|
+  | before | 1 | **0** — Remotion's raw `ENOENT`, the unrepaired D1 |
+  | after | 1 | **1** — names the 293-character browser path, the 188-character checkout, the 154 budget |
+
+  [`evidence/max-path/iterate-188.before.log`](evidence/max-path/iterate-188.before.log),
+  [`evidence/max-path/iterate-188.after.log`](evidence/max-path/iterate-188.after.log).
+
+- **The wrapper corrupted the commands it wrapped.** Iteration 2 spawned with
+  `shell: true` on Windows and no quoting, so cmd.exe re-split every argument.
+  Measured, same clone, short checkout:
+
+  | `node run-remotion.mjs render src/index.js WT-NodeRoom "out/my clip.mp4" --frames=0-1` | exit | file written |
+  |---|---|---|
+  | before | 0 | `out/my.mp4`, 64,432 bytes — **the wrong file, no error** |
+  | after | 0 | `out/my clip.mp4`, 64,432 bytes |
+
+  [`evidence/max-path/spaced-output-path.before.log`](evidence/max-path/spaced-output-path.before.log),
+  [`evidence/max-path/spaced-output-path.after.log`](evidence/max-path/spaced-output-path.after.log).
+
+  The repo already knew this failure mode: `iterate.mjs` carried the quoting fix
+  and the comment explaining it, from the time an unquoted `--for "a
+  non-technical person…"` was judged for an audience literally named "a". That
+  same expression now lives in `run-remotion.mjs` — the only place left that
+  spawns through a shell — and `iterate.mjs`, which no longer needs a shell at
+  all, no longer carries it. One fix, one place.
+
+- **The wiring guard was decorative.** It held three filenames and asked whether
+  each contained the substring `run-remotion.mjs`. It therefore could not fail
+  for `iterate.mjs`, and with the CI smoke render reverted to a bare
+  `npx remotion render` it printed **PASS on both wiring rows and exited 0**,
+  because a comment two lines above still contained the string. It now discovers:
+  every tracked file that can execute something is read, its comments blanked in
+  place, and any Remotion invocation found outside the handler fails the probe by
+  `file:line`. Confirmed by mutation, one at a time, each restored after:
+
+  | mutation | probe verdict |
+  |---|---|
+  | none (as committed) | PASS — 45 runnable files scanned, 0 invocations outside the handler |
+  | `iterate.mjs` reverted | FAIL — `iterate.mjs:65` |
+  | CI smoke render reverted to `npx` | FAIL — `.github/workflows/ci.yml:37` |
+  | `render:example` reverted to `remotion render` | FAIL — `package.json (script "render:example")` |
+  | `clip.mjs` reverted | FAIL — `clip.mjs:40` |
+  | quoting removed from the handler | FAIL — both argument rows |
+
+  **Confirmed failing on the pre-fix tree**: with the five source files stashed
+  back to Iteration 2 and only the new probe kept, it exits 1 and names every
+  bypass at once — `.github/workflows/ci.yml:32, clip.mjs:40, iterate.mjs:66,
+  probe-opening-frame.mjs:48` — plus both quoting rows:
+  [`evidence/max-path/probe-maxpath.iteration2-tree.log`](evidence/max-path/probe-maxpath.iteration2-tree.log).
+  The CI-only and quoting-only mutations are captured beside it as
+  [`probe-maxpath.ci-reverted.log`](evidence/max-path/probe-maxpath.ci-reverted.log)
+  and [`probe-maxpath.quoting-removed.log`](evidence/max-path/probe-maxpath.quoting-removed.log).
+
+- **The overstatement is deleted, not softened, in all four places** it survived:
+  `PRODUCT_GOAL.md` (twice), the paragraph above in this file, and inside
+  `run-remotion.mjs` itself, which had claimed to be "the single place they all
+  route through" while `iterate.mjs` proved otherwise. No count replaces them: a
+  number written in a document cannot notice a tenth caller, which is the whole
+  reason the guard now scans.
+
+- **Tests:** `npm run check` **exit 0** — 38/38 files, 36/36 tour steps, 34/34
+  prose citations (the source edits were kept line-count-neutral where a doc or
+  tour cites a line). `npm run probe:maxpath` **exit 0**, 10 checks.
+  `npm run probe:opening` **exit 0**, 0.0% on all three renderers — re-run
+  because `probe-opening-frame.mjs` now takes its stills through the wrapper, and
+  a fix that quietly breaks the previous iteration's gate is not a fix. Its
+  receipt is left at Iteration 1's committed values, the verdict being identical.
+
+- **Conditions newly PASS: none.** D1 still fails from a deep checkout; only the
+  reach and honesty of the explanation changed. Scorecard unchanged at
+  **1/12 PASS**.

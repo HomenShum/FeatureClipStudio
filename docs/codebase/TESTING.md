@@ -89,8 +89,9 @@ ffmpeg and Remotion's Chrome.
 ```yaml
 - run: npm ci
 - run: npm run check
-- run: npx remotion browser ensure
-- run: npx remotion render src/index.js WT-NodeRoom /tmp/wt-smoke.mp4 --frames=0-30 --concurrency=2
+- run: npm run probe:maxpath
+- run: node run-remotion.mjs browser ensure
+- run: node run-remotion.mjs render src/index.js WT-NodeRoom /tmp/wt-smoke.mp4 --frames=0-30 --concurrency=2
 - run: test -s /tmp/wt-smoke.mp4 && stat -c '%s bytes' /tmp/wt-smoke.mp4
 ```
 

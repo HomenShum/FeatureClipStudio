@@ -67,16 +67,17 @@ about a 203 MB executable that is right there and runs fine when you invoke it
 yourself. The error names the file, so it reads as a broken download; it is not.
 Measured boundary and repro are in `docs/codebase/CONCERNS.md`, defect D1.
 
-**If you hit it anyway, the tool now tells you so itself.** Every npm script that
+**If you hit it anyway, the tool now tells you so itself.** Everything here that
 starts Remotion runs it through `run-remotion.mjs`; when the run fails, that checks
 whether the browser Remotion named is present *and* past the limit, and if it is,
 prints a message that says MAX_PATH, gives your checkout's length and the length it
-has to be, and repeats the fix. (`probe-opening-frame.mjs` still spawns Remotion
-itself, and imports the same explanation rather than routing through the wrapper —
-it needs the child's stderr, which the wrapper hands straight to your terminal.) Windows still refuses to start the file — that part is not ours to change —
-but the message stops blaming a download you do not need to repeat. `npm run
-probe:maxpath` is the regression check; it re-measures the boundary on your own
-machine and asserts every command that starts Remotion still reaches that message.
+has to be, and repeats the fix. Windows still refuses to start the file — that
+part is not ours to change — but the message stops blaming a download you do not
+need to repeat. `npm run probe:maxpath` is the regression check; it re-measures
+the boundary on your own machine, and it scans every runnable file in the repo
+for a Remotion invocation and fails on any that does not go through the wrapper.
+It scans rather than consults a list because the list-based version of that check
+shipped blind to `iterate.mjs`, which nobody had written down.
 
 ---
 
@@ -85,7 +86,7 @@ machine and asserts every command that starts Remotion still reaches that messag
 **File:** `package.json`
 **Symbol:** `scripts`
 **Called by:** a person's terminal
-**Calls next:** `run-remotion.mjs` → `remotion render src/index.js` → `src/index.js`
+**Calls next:** `run-remotion.mjs` → the Remotion CLI's render → `src/index.js`
 
 **Why this exists**
 There is no web server and no HTTP route in this repository — a stage the HUMAN-READY
@@ -105,10 +106,11 @@ command. `npm run` is the discovery surface: the list below *is* the API.
 ```
 
 No npm script invokes Remotion directly. `run-remotion.mjs` passes its arguments
-straight through and returns the same exit code, and exists only so that a browser
-launch that fails on Windows can be explained instead of misattributed — see the
-MAX_PATH note in the quickstart above. `npm run probe:maxpath` fails if any script
-here goes back to calling `remotion` itself.
+straight through — quoted, so a shell cannot re-split an output path that contains a
+space — and returns the same exit code; it exists only so that a browser launch that
+fails on Windows can be explained instead of misattributed, see the MAX_PATH note in
+the quickstart above. `npm run probe:maxpath` scans every runnable file in the repo
+and fails if anything outside the wrapper calls `remotion` itself.
 
 **Input** — command-line arguments only. No request, no session, no user.
 **Output** — a file on disk, always. Every stage of this pipeline is resumable

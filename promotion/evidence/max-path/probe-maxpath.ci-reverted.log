@@ -1,0 +1,12 @@
+PASS  boundary: a path under the limit runs — 61 chars -> status 0, error none
+PASS  boundary: a path at or over the limit returns ENOENT — 261 chars -> status null, error ENOENT
+PASS  boundary: the long path exists anyway — existsSync said true — if this is false the two halves of the contradiction no longer disagree
+PASS  handler: names MAX_PATH for a present file over the limit — 24 lines, names the path: true
+PASS  handler: silent for a path under the limit — a short path is not this defect and must keep Remotion's own message
+PASS  handler: silent for a long path that really is absent — a genuinely missing browser must keep saying ENOENT, which is then the truth
+PASS  handler: budget is derived, not written down — CHECKOUT_BUDGET is 154; 260 - 1 - 105 = 154
+PASS  handler: an argument containing a space survives the shell — path argument is "\"out/my clip.mp4\"" — unquoted, cmd.exe splits it and the render writes out/my.mp4
+PASS  handler: an argument containing quotes survives the shell — --props argument is "\"{\\\"n\\\":1}\"" — a JSON blob loses its quotes unless they are escaped
+FAIL  wiring: nothing outside the handler starts Remotion — .github/workflows/ci.yml:37 — a reader of those gets the bare ENOENT, not the MAX_PATH explanation
+
+FAIL: wrote promotion/evidence/max-path.json

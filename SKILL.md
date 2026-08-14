@@ -51,7 +51,7 @@ embedded in the README. Made of N "steps", each a captured UI state with a capti
    targets) + click ripple + step caption + progress bar, AND runs an Arcade-style
    **zoom/pan camera** (zoom ~1.36× to the click on action steps; pull back ~1.14×,
    centered, on the result state — the result is scrolled to viewport centre at capture).
-   `npx remotion render src/index.js WT-<id> out/WT-<id>.mp4`.
+   `node run-remotion.mjs render src/index.js WT-<id> out/WT-<id>.mp4`.
 4. **GIF** — two-pass palette (the single highest-leverage quality lever):
    `ffmpeg -i out/WT-<id>.mp4 -vf "fps=15,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3:diff_mode=rectangle" -loop 0 assets/feature-<name>.gif`.
    `stats_mode=diff` weights the palette to the moving region; `bayer` + `diff_mode=rectangle`

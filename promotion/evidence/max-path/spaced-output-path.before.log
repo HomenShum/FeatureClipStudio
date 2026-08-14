@@ -1,0 +1,53 @@
+🧹 Webpack config change detected. Clearing cache... 
+Bundling 6%
+Bundling 24%
+Bundling 38%
+Bundling 51%
+Bundling 65%
+Bundling 70%
+Bundling 75%
+Bundling 80%
+Bundling 85%
+Bundling 91%
+Bundling 98%
+Bundling 100%
+Copying public dir 10.5 MB
+Copying public dir 11.4 MB
+Copying public dir 14.8 MB
+Copying public dir 19.9 MB
+Copying public dir 30.5 MB
+Copying public dir 41.2 MB
+Copying public dir 51.7 MB
+Copying public dir 56.9 MB
+Copying public dir 67.4 MB
+Copying public dir 68.5 MB
+Copying public dir 79 MB
+Copying public dir 88.7 MB
+Copying public dir 98 MB
+Copying public dir 106.9 MB
+Copying public dir 117 MB
+Copying public dir 126.9 MB
+Copying public dir 137.6 MB
+Copying public dir 148.1 MB
+Copying public dir 151.5 MB
+Copying public dir 162 MB
+Copying public dir 162.1 MB
+Copying public dir 172.6 MB
+Copying public dir 183.3 MB
+Copying public dir 193.9 MB
+Getting composition
+⚡️ Cached bundle. Subsequent renders will be faster.
+[33mNo file extension specified, adding mp4 automatically.[39m
+[90mComposition          WT-NodeRoom[39m
+[90mCodec                h264[39m
+[90mOutput               out/my.mp4[39m
+[90mConcurrency          8x[39m
+Rendered 0/2
+Rendered 1/2, time remaining: 0s
+Rendered 2/2
+Encoded 2/2
+Encoded 2/2
+[34m+                    out/my.mp4[39m [90m64.4 kB[39m
+exit=0
+total 64
+-rw-r--r-- 1 hshum 197609 64432 Aug 13 17:01 my.mp4

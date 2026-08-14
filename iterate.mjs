@@ -26,6 +26,7 @@
 //   node iterate.mjs --comp WTC-TShero --out out/x.mp4 --for "a frontend engineer" --gate 30
 //
 import { execFileSync } from "node:child_process";
+import { runRemotion } from "./run-remotion.mjs";
 import { existsSync, readFileSync, writeFileSync, appendFileSync } from "node:fs";
 
 const argv = process.argv.slice(2);
@@ -44,18 +45,17 @@ if (!comp) {
   process.exit(1);
 }
 
-// `shell: true` is required on win32 for `npx` (a .cmd shim), but it makes the
-// runtime re-split every argument on whitespace -- which silently truncated the
-// audience string to its first word, so a run that reported `--for "a
-// non-technical person..."` was actually judged for an audience literally named
-// "a". The scores looked plausible, which is what made it survive a read.
-// So: shell ONLY where the shim needs it, and quote when it is on.
-const sh = (cmd, args, shell = false) =>
-  execFileSync(
-    cmd,
-    shell ? args.map((a) => (/[\s"]/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a)) : args,
-    { stdio: "inherit", shell },
-  );
+// Why there is no `shell` here, and why the render below is not spawned in this
+// file: `npx` is a .cmd shim Node cannot exec without a shell, and a shell
+// re-splits every argument on whitespace -- which once truncated the audience
+// string to its first word, so a run that reported `--for "a non-technical
+// person..."` was actually judged for an audience literally named "a". The
+// scores looked plausible, which is what made it survive a read. Everything
+// spawned from here is a real executable (`node`), so no shell is needed and
+// nothing is re-split. The one command that does need the shim -- the Remotion
+// render -- goes through run-remotion.mjs, which quotes for this same reason and
+// is where the MAX_PATH explanation for a failed render comes from (defect D1).
+const sh = (cmd, args) => execFileSync(cmd, args, { stdio: "inherit" });
 const base = out.replace(/\.(mp4|webm|mov)$/i, "");
 const LOG = `${base}.rounds.md`;
 
@@ -63,7 +63,7 @@ for (let r = 1; r <= rounds; r++) {
   console.log(`\n=== round ${r}/${rounds} — ${comp} for "${audience}" ===\n`);
 
   if (!has("no-render")) {
-    sh("npx", ["remotion", "render", entry, comp, out, "--concurrency=2"], true);
+    if (runRemotion(["render", entry, comp, out, "--concurrency=2"]).status !== 0) process.exit(1);
   }
 
   // The judge exits non-zero below the gate; that is the signal, not a crash.

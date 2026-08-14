@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Every Remotion command this package owns is spawned from here, for one reason.
+// Remotion is spawned from here, and on a failed run this is what checks whether
+// Windows refused to START the browser rather than failing to find it.
 //
 // THE FAILURE THIS EXISTS TO EXPLAIN. Someone clones this repository, runs the
 // quickstart, and gets told a file is missing:
@@ -30,11 +31,19 @@
 // AND sitting past the limit. If it is, the reader gets a message that says
 // MAX_PATH, gives the two numbers that decide it, and names the fix.
 //
-// WHY IT IS A WRAPPER AND NOT A NOTE IN EACH SCRIPT. Five npm scripts and two .mjs
-// drivers start Remotion. A guard added to the one script a bug report names
-// leaves the other six failing exactly as before. This is the single place they
-// all route through, which is also why probe-max-path.mjs asserts that they do:
-// an explanation nothing calls is not a fix.
+// WHY IT IS A WRAPPER AND NOT A NOTE IN EACH SCRIPT. npm scripts, .mjs drivers
+// and the CI workflow all start Remotion. A guard added to the one script a bug
+// report names leaves every other caller failing exactly as before — and the
+// first version of this fix proved it the hard way: it wired the callers someone
+// could remember, missed `iterate.mjs` (`npm run iterate`, the stage-5 gate the
+// README calls non-optional), and shipped a guard that could not notice, because
+// the guard checked a hardcoded list of three filenames.
+//
+// So the guard no longer holds a list. `probe-max-path.mjs` DISCOVERS callers: it
+// reads every tracked file that can execute something — scripts, npm scripts,
+// workflows — and fails on any Remotion invocation it finds outside this file.
+// What that scan cannot see, and what is therefore not claimed here: a command
+// assembled from variables, and prose in a document telling a reader to type one.
 
 import { spawnSync } from "node:child_process";
 import { existsSync, statSync } from "node:fs";
@@ -98,18 +107,39 @@ export const maxPathHint = (exe = browserExe()) => {
   ].join("\n");
 };
 
-// `npx` + `shell` on win32 is the invocation probe-opening-frame.mjs already used
-// to reach the local Remotion binary; kept identical so there is one way to do it.
-export const runRemotion = (args) => {
-  const run = spawnSync("npx", ["remotion", ...args], {
-    stdio: "inherit", shell: process.platform === "win32",
+// `npx` + `shell` on win32 is how this repository has always reached its local
+// Remotion binary; the shape is unchanged, there is now one copy of it.
+//
+// THE QUOTING IS NOT OPTIONAL AND IT IS NOT NEW. `shell: true` is what lets Node
+// start `npx` at all on Windows (it is `npx.cmd`, and Node ≥ 20.12 refuses to exec
+// a `.cmd` without a shell) — and it also makes cmd.exe re-split every argument on
+// whitespace. Unquoted, `render … "out/my clip.mp4"` renders to `out/my.mp4` and
+// exits 0: the wrong file, no error, which is worse than failing. iterate.mjs had
+// already been bitten by exactly this — an unquoted `--for "a non-technical
+// person…"` was judged for an audience literally named "a" — and this is that
+// same fix, moved to the only place left that spawns through a shell.
+const quoted = (a) => (/[\s"]/.test(a) ? `"${String(a).replace(/"/g, '\\"')}"` : a);
+
+// The argument vector runRemotion hands to spawnSync. Exported so the quoting
+// regression is asserted over the real thing rather than a copy of it —
+// probe-max-path.mjs calls this.
+export const remotionArgv = (args) =>
+  process.platform === "win32" ? ["remotion", ...args].map(quoted) : ["remotion", ...args];
+
+// Returns the whole spawnSync result, because a caller that needs the output
+// (clip.mjs reads stderr; probe-opening-frame.mjs puts it in a thrown Error) must
+// not need a second way to start Remotion. `opts` is spread last: pass
+// `stdio: "pipe"` with `encoding` to capture instead of inherit.
+export const runRemotion = (args, opts = {}) => {
+  const run = spawnSync("npx", remotionArgv(args), {
+    stdio: "inherit", shell: process.platform === "win32", ...opts,
   });
   if (run.error) console.error(`run-remotion: ${run.error.message}`);
   if (run.status !== 0) {
     const hint = maxPathHint();
     if (hint) console.error(hint);
   }
-  return run.status ?? 1;
+  return run;
 };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
@@ -118,5 +148,5 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     console.error("usage: node run-remotion.mjs <remotion args…>   e.g. render src/index.js WT-NodeRoom out/example.mp4");
     process.exit(2);
   }
-  process.exit(runRemotion(args));
+  process.exit(runRemotion(args).status ?? 1);
 }

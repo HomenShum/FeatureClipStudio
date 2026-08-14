@@ -9,7 +9,7 @@
 // launch film. The gates are the product.
 import { readFileSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { maxPathHint } from "./run-remotion.mjs";
+import { runRemotion } from "./run-remotion.mjs";
 import { linesFromStoryboard, synthesiseBeats, assemble, overruns } from "./narrate.mjs";
 import { buildScore, muxOnto } from "./score.mjs";
 
@@ -37,12 +37,12 @@ const totalFrames = newHolds.reduce((a, b) => a + b, 0);
 console.log(`  ${steps.length} beats, ${(totalFrames / 30).toFixed(1)}s, voice ${VOICE}, overruns 0`);
 
 step("render");
-const r = spawnSync("npx", ["remotion", "render", "src/index.js", `WT-${data[0].id}`, "out/clip-video.mp4", "--concurrency=2"], { encoding: "utf8", timeout: 540_000, maxBuffer: 64 * 1024 * 1024, shell: true });
+const r = runRemotion(["render", "src/index.js", `WT-${data[0].id}`, "out/clip-video.mp4", "--concurrency=2"], { stdio: "pipe", encoding: "utf8", timeout: 540_000, maxBuffer: 64 * 1024 * 1024 });
 if (r.status !== 0) {
   console.error("[clip] render failed:", (r.stderr || "").slice(-200));
-  // The 200 characters above are Remotion's `spawn …chrome-headless-shell.exe
-  // ENOENT`, which on a deep Windows checkout names a file that is present. D1.
-  console.error(maxPathHint() ?? "");
+  // The 200 characters above are the launcher's `spawn …chrome-headless-shell.exe
+  // ENOENT`, which on a deep Windows checkout names a file that is present. D1 —
+  // and run-remotion.mjs has already printed the MAX_PATH explanation for it.
   process.exit(1);
 }
 

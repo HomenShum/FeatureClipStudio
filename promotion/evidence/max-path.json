@@ -1,14 +1,14 @@
 {
   "probe": "max-path",
   "defect": "D1 - on Windows, a checkout deep enough to push Remotion's browser past MAX_PATH fails with ENOENT about a file that is present",
-  "assertion": "the 260-character boundary is real on this machine, and this repository turns hitting it into a message that says MAX_PATH from every command that starts Remotion",
+  "assertion": "the 260-character boundary is real on this machine; this repository turns hitting it into a message that says MAX_PATH; the handler that prints it passes the command through unchanged, quoting included; and a scan of every runnable tracked file finds no Remotion invocation outside that handler",
   "producer": "node probe-max-path.mjs (npm run probe:maxpath)",
-  "measuredAt": "2026-08-13T22:43:39.344Z",
+  "measuredAt": "2026-08-14T00:03:56.608Z",
   "node": "v22.22.2",
   "platform": "win32",
   "maxPath": 260,
   "checkoutBudget": 154,
-  "checkoutLength": 149,
+  "checkoutLength": 150,
   "measurement": {
     "skipped": false,
     "executable": "node.exe",
@@ -24,6 +24,10 @@
       "status": null,
       "error": "ENOENT"
     }
+  },
+  "wiring": {
+    "runnableFilesScanned": 45,
+    "invocationsOutsideHandler": []
   },
   "checks": [
     {
@@ -62,14 +66,19 @@
       "detail": "CHECKOUT_BUDGET is 154; 260 - 1 - 105 = 154"
     },
     {
-      "name": "wiring: no npm script starts Remotion directly",
+      "name": "handler: an argument containing a space survives the shell",
       "pass": true,
-      "detail": "24 scripts checked"
+      "detail": "path argument is \"\\\"out/my clip.mp4\\\"\" — unquoted, cmd.exe splits it and the render writes out/my.mp4"
     },
     {
-      "name": "wiring: every other file that starts Remotion reaches the handler",
+      "name": "handler: an argument containing quotes survives the shell",
       "pass": true,
-      "detail": "clip.mjs, probe-opening-frame.mjs, .github/workflows/ci.yml"
+      "detail": "--props argument is \"\\\"{\\\\\\\"n\\\\\\\":1}\\\"\" — a JSON blob loses its quotes unless they are escaped"
+    },
+    {
+      "name": "wiring: nothing outside the handler starts Remotion",
+      "pass": true,
+      "detail": "45 runnable files scanned, 0 invocations outside run-remotion.mjs"
     }
   ],
   "verdict": "PASS"

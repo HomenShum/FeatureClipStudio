@@ -28,7 +28,7 @@
 import { spawnSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { maxPathHint } from "./run-remotion.mjs";
+import { runRemotion } from "./run-remotion.mjs";
 
 // One composition per renderer -- the defect lives in the shared cross-fade, so
 // covering the renderer covers every composition it draws.
@@ -45,14 +45,14 @@ const CHANNEL_DELTA = 12;               // per-channel tolerance for "same pixel
 const MAX_DIFF_SHARE = 0.05;            // pointer ramp + progress bar are ~0.5% of frame; a flash is ~90%
 
 const still = (entry, id, frame, out) => {
-  const run = spawnSync("npx", ["remotion", "still", entry, id, out, `--frame=${frame}`], {
-    encoding: "utf8", timeout: 600_000, shell: process.platform === "win32",
+  const run = runRemotion(["still", entry, id, out, `--frame=${frame}`], {
+    stdio: "pipe", encoding: "utf8", timeout: 600_000,
   });
-  // maxPathHint is empty unless this checkout is deep enough that Windows cannot
-  // start the browser Remotion downloaded into it — the ENOENT-about-a-file-that-
-  // exists in defect D1. Appended here so this probe explains it too, not only
-  // the npm scripts that go through run-remotion.mjs.
-  if (run.status !== 0) throw new Error(`remotion still ${id}@${frame} failed: ${(run.stderr || run.stdout || "").slice(-500)}${maxPathHint() ?? ""}`);
+  // Failing here on a deep Windows checkout is defect D1: the browser Remotion
+  // downloaded is present but sits past MAX_PATH, and Windows reports that as
+  // ENOENT. run-remotion.mjs has already printed the explanation by the time this
+  // throws — which is the whole reason the still is spawned through it.
+  if (run.status !== 0) throw new Error(`still ${id}@${frame} failed: ${(run.stderr || run.stdout || "").slice(-500)}`);
   return out;
 };
 
