@@ -24,6 +24,7 @@
     "check": "node check.mjs",
     "probe:opening": "node probe-opening-frame.mjs",
     "probe:maxpath": "node probe-max-path.mjs",
+    "audit:ui": "node audit-ui.mjs",
     "capture": "node walkthrough.mjs",
     "capture:collab": "node walkthrough.collab.mjs",
     "capture:roomos": "node walkthrough.roomos.mjs",

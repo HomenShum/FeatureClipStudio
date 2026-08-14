@@ -100,6 +100,8 @@ reproduction; a hunch is not a defect.
 | D1 | ~~Critical~~ → Major | J1 | On Windows 11 / Node v22.22.2, from a fresh clone: `npm ci` → `npx playwright install chromium` → `npx remotion browser ensure` (all exit 0, the last printing `Has browser at …\node_modules\.remotion\chrome-headless-shell\win64\chrome-headless-shell-win64\chrome-headless-shell.exe`) → `npm run render:example` exits 1 with `Failed to launch the browser process! Error: spawn <that same path> ENOENT`. The file is present (202,939,392 bytes, mode `-rwxr-xr-x`) and runs standalone: `--version` prints `Google Chrome for Testing 149.0.7790.0`, exit 0. Reproduced in Git Bash and PowerShell. Scope: Windows only — `.github/workflows/ci.yml` runs the same render on `ubuntu-latest` and is green (run 30963804165). Impact: the README's "renders immediately — no app needed" quickstart, the first thing a stranger types, is a dead end on Windows, and the failure message points only at an upstream Remotion troubleshooting URL. | **OPEN — NOT REPRODUCED in Wave 2.** Same OS build (Windows 11 10.0.26200), same Node (v22.22.2), same npm (10.9.7), fresh `git clone --depth 20` at `5486bb8` into a different directory: `npm ci` → `npx remotion browser ensure` → `npm run render:example` **exit 0**, `out/example.mp4` written at 5,985,657 bytes. Re-ran after the Iteration 1 fix: **exit 0** again, 5.8 MB. One clean pair of runs does not disprove an intermittent or path-dependent failure, and nothing in this repo changed that would explain it, so the defect is NOT closed — it is recorded as unreproducible on demand, which is the honest state. Anyone who reproduces it again should note the clone path length: the two runs differ in little else. **REPRODUCED ON DEMAND, and downgraded to Major, in Iteration 2 (2026-08-13).** The clone path length was the variable, exactly as the line above guessed: the same clone renamed from a 149-character directory (exit 0, 5,777,972 bytes) to a 172-character one fails (exit 1, ENOENT) and back again. The 260-character Windows limit is not this repository's to lift, so the render still cannot run from a deep checkout — but the error no longer names the wrong cause: `run-remotion.mjs` now prints a message saying MAX_PATH, with both lengths and the fix, from the commands routed through it — which in Iteration 2 was eight of the nine that exist, `iterate.mjs` being the one missed and Iteration 3 the one that closed it. `grep -c MAX_PATH` over the quickstart's output at a 172-character checkout: **0 before, 1 after**. Still OPEN because the command still fails; no longer Critical because it is no longer a dead end. Guarded by `npm run probe:maxpath`. |
 | D2 | Major | J2 | **FIXED in Iteration 1 — see below.** Original reproduction: Open `npm run studio` at `WT-NodeRoom`, frame 0, 1280×900. The player canvas paints **solid white** while the source frame `public/wt/NodeRoom/00.png` is a dark page. Not a load race: after a 15s wait the image reports `complete: true, naturalWidth: 2560`, the caption text is in the DOM, and there are zero console errors — the canvas is still white (`evidence/remotion-studio-desktop.png`). Scrubbing to 00:13.12 renders correctly (`evidence/remotion-studio-seek12s.png`), so only the opening is affected. Root cause, in code this repo owns: `src/Walkthrough.jsx:164` gives the frame container `background: "#fff"`, `:168` renders the current frame at `opacity: fadeIn`, and `:137` sets `fadeIn = interpolate(lf, [0, 11], [0, 1])` — so for the first 11 frames of step 0, where `prevImg` is `null` (`:136`, `prev` is undefined at step 0), the white container background is the only thing painted. Impact: every clip this tool produces opens on a ~0.37s white flash, and a looping README GIF re-flashes it on every loop — against the repo's own `loop_etiquette` rubric dimension. | **FIXED** (Iteration 1) |
 | D3 | Minor | J2 | Remotion Studio at 1280×900: 8 of 29 `<button>` elements have no accessible name (no text, no `aria-label`); at 390×844, 6 of 21. Measured in `evidence/report.json` (`btnsNoName`). Keyboard navigation was sampled, not exhausted: 8 Tab presses each landed on a control and each focused element carried an `outline` or a `box-shadow` — a check that cannot tell a focus-only ring from a shadow the element always has, so read it as "no dead tab stop observed", not as proof of 8 distinct ringed controls. Scope: this is Remotion's own studio chrome, not code in this repo, so it is logged rather than owned. Note the probe that measured `btnsNoName` was not committed (see the harness notes above). | OPEN (third-party) |
+| D5 | Major | J3 | **FIXED in Iteration 4 — ten findings, one ledger row because they were one omission.** The demo surface had never been reviewed against an interface checklist or run through an audit, and every one of these was true while Lighthouse rated it 0.98 accessibility and 1.00 performance: a failed add destroyed the user's typed text and said nothing anywhere in the DOM (`liveRegions: 0`); the agent button was disabled by a 4.5s stopwatch rather than by the agent's state, so it was dead after the work finished and its label never changed; `prefers-reduced-motion: reduce` was ignored entirely (`0.18s`/`0.08s`); there was no `main` landmark and no live region; the input had no accessible name; controls were 43px and the input 14px on a phone; `color-scheme` was `normal` on a dark page; every load 404'd on `/favicon.ico`; layout filled in after first paint at 0.0241 CLS. Reproduction and per-finding measurements: [`WIG_REVIEW.md`](WIG_REVIEW.md). Re-provable with `npm run audit:ui` — **24 of 52 checks on the pre-fix tree, 52 of 52 after**. | **FIXED** (Iteration 4) |
+| D6 | Minor | J3 | The three controls are 43px tall at 768 and 1280; the ≥44px rule is raised only below 480px. At 1280 the input device is a mouse, but a 768px tablet in portrait is touch, so the gap is real there. Measured: `widths[1].controls` / `widths[2].controls` in [`evidence/audit-ui.json`](evidence/audit-ui.json). Not fixed, and the reason is not laziness: the correct selector is `pointer: coarse`, and this probe's browser contexts never match it, so shipping that rule would put a mechanism in the tree that nothing exercises — the failure this repo has shipped once already. | OPEN (needs a coarse-pointer context in `audit-ui.mjs` first) |
 | D4 | Minor | J2 | Remotion Studio at 390×844: the transport bar clips at the right edge — the zoom control is cut mid-word (`evidence/remotion-studio-mobile.png`), and the player canvas is blank at frame 0 for the same reason as D2. The document itself does not overflow (`scrollWidth === clientWidth === 390`), so condition 4 still holds. Scope: third-party studio chrome. | OPEN (third-party) |
 
 ## Iterations
@@ -472,3 +474,139 @@ that was checked by a list rather than by a measurement.
 - **Conditions newly PASS: none.** D1 still fails from a deep checkout; only the
   reach and honesty of the explanation changed. Scorecard unchanged at
   **1/12 PASS**.
+
+### Iteration 4 — 2026-08-13 — the two audits, and the producer the correction asked for
+
+- **Journey exercised:** J3 "Run the worked example so the collab GIF reproduces
+  on my machine" — `examples/collab-demo/`, the only rendered surface this
+  repository authors, served at `http://localhost:4912/?user=A`.
+
+- **Why this iteration exists.** Conditions 7 and 8 had been UNVERIFIED since
+  Wave 1 for one reason: neither toolchain had been run. Both are installable on
+  this machine, so both were run. Conditions 3, 4, 5, 6, 9 and 10 were UNVERIFIED
+  for a different reason — Wave 1 measured them correctly and lost the script.
+  The Wave 1 correction named what would move them: "a committed producer under
+  this repo — an `npm run audit:ui`-shaped script writing a receipt — re-runnable
+  from a clone". That is this iteration's deliverable, and it is deliberately one
+  script rather than six, because six probes rot at six different rates.
+
+- **Observed, and measured before anything was edited.** `node audit-ui.mjs
+  --tag=before` against the untouched tree: **24 of 52 checks passed**. Receipt:
+  [`evidence/audit-ui.before.json`](evidence/audit-ui.before.json), with
+  [`lighthouse-mobile.before.json`](evidence/lighthouse-mobile.before.json),
+  [`lighthouse-desktop.before.json`](evidence/lighthouse-desktop.before.json) and
+  [`axe.before.json`](evidence/axe.before.json) beside it.
+
+  | | before | after |
+  |---|---|---|
+  | Lighthouse accessibility (mobile / desktop) | 0.98 / 0.98 | **1.00 / 1.00** |
+  | Lighthouse best-practices | 0.96 / 0.96 | **1.00 / 1.00** |
+  | Lighthouse SEO | 0.90 / 0.90 | **1.00 / 1.00** |
+  | Lighthouse `errors-in-console` | **0** (`/favicon.ico` 404 on every load) | **1** |
+  | Lighthouse CLS (mobile) | 0.0241, culprit `div#board` | **0.0035**, culprit `#presence` |
+  | Lighthouse LCP / TBT (mobile) | 1065ms / 0ms | 1067ms / 0ms |
+  | axe-core violations | **2** (`landmark-one-main`, `region` x2) | **0** (35 passes) |
+  | `prefers-reduced-motion: reduce` | card `0.18s`, button `0.08s, .15s, .15s` | **`0s` / `0s`** |
+  | agent button while streaming | `{disabled:true, text:"Run agent", aria-busy:null}` | `{disabled:true, text:"Working…", aria-busy:"true"}` |
+  | agent button after the agent stopped | `{disabled:true}` — dead for another second | `{disabled:false}` |
+  | message shown when an add fails | **none anywhere in the DOM**; typed text destroyed | a `role="status"` sentence; text handed back |
+  | control height / input font at 390 | 43/43/43px, 14px | **46/47/47px, 16px** |
+  | `documentElement.colorScheme` | `normal` | **`dark`** |
+  | live regions | 0 | 1 |
+  | input accessible name | **null** | `aria-label="Card text"` |
+
+- **The finding this iteration is proudest of, because the probe missed it.**
+  Every load requested `/favicon.ico` and the server answered 404 — a failed
+  request and a console error on the first page a stranger opens. **The
+  Playwright half of this audit did not see it**, and still does not: a headless
+  Playwright page never asks for a favicon, so `consoleErrors: []` and
+  `failedRequests: []` read clean at all three widths *both before and after*.
+  Lighthouse drives a real tab and scored `errors-in-console` **0**. Condition 9
+  would have been marked PASS on a clean-looking probe while a 404 fired on every
+  load, so `audit-ui.mjs` now asserts Lighthouse's row too. A probe that agrees
+  with itself is not a second opinion.
+
+- **Root causes, one per finding, not one per symptom.** The ten major findings
+  in [`WIG_REVIEW.md`](WIG_REVIEW.md) are ten omissions with one shape: state the
+  interface owns was inferred instead of read. The agent button inferred
+  completion from a stopwatch when the server already broadcasts
+  `streaming: false`. The failed add inferred that removing the row was enough,
+  when the only thing the user could see was their text disappearing.
+  `prefers-reduced-motion` was never consulted at all. Each fix reads the thing
+  that already knows.
+
+- **Fixed, in `examples/collab-demo/public/index.html` and nowhere else** — the
+  surface owns every one of these. `<main>` around the controls and board; a
+  `role="status"` line that carries the async announcements and the errors;
+  `rollBack()` that returns the user's text instead of eating it; the agent
+  button driven by the broadcast with a bounded fallback so a dead server cannot
+  disable it forever; a `max-width: 480px` block (16px input, 44px+ targets,
+  wrapped controls, identity on its own line); a `prefers-reduced-motion` block;
+  `color-scheme: dark`; `aria-label` on the input; `role="group"` on the presence
+  row; an empty `data:` favicon; a meta description; the empty state moved into
+  the HTML so the board is not sized by JavaScript after first paint. One
+  supporting change outside it: `examples/collab-demo/server.mjs` reads `PORT`
+  from the environment, so the audit can run on a port of its own without
+  editing code. No new dependency; the two audit toolchains are `npx`-invoked at
+  pinned versions and nothing is added to the dependency graph.
+
+- **Re-proved by re-running the same producer, not by reading the diff.**
+  `node audit-ui.mjs` → **52 of 52**, exit 0. Receipt
+  [`evidence/audit-ui.json`](evidence/audit-ui.json); screenshots for every state
+  and width under [`evidence/ui/`](evidence/ui/). Both receipts come from the
+  *same* version of the script: the before pass was re-run from scratch each time
+  an assertion was added or tightened, so the two columns above are the same 52
+  checks and not two different scripts compared to each other.
+
+- **Regression check, and whether it was confirmed failing first.** The check is
+  `npm run audit:ui`, committed, and it starts the demo server itself so it is
+  one command from a clone. Confirmed failing on the pre-fix tree: yes — that is
+  what the 24/52 column is, produced by checking the pre-fix file back out and
+  running the final script against it. Two assertions are deliberately tighter
+  than the industry boundary so they can catch a regression while it is still
+  small: CLS at **0.02** rather than 0.1 (the pre-fix tree measured 0.0241 and
+  fails it), and the agent-button label asserted to *change*, because
+  "Run agent" contains the word "run" and would satisfy any looser test while
+  saying nothing.
+
+- **Honest notes on the harness, so the numbers are not misread.**
+  - `POST /mutate` is held for 400ms during the loading-state probe. On loopback
+    the round trip is ~3ms, so the optimistic row is replaced before any observer
+    can see it and the state cannot be photographed at all. The hold is recorded
+    in the receipt as `mutateDelayMs` and subtracted from the confirm assertion.
+  - The error state is provoked by aborting `POST /mutate` at the network layer.
+    That abort is this probe's own doing, so it is separated into
+    `injectedFailures` and excluded from the condition-9 counters, which are
+    named `failedRequests`.
+  - Lighthouse and axe run **before** the journey, against the empty board a
+    first-time visitor loads. Run afterwards they measured a board this script
+    had just filled with its own probe cards, and CLS in particular was a
+    different number for a different page (0.126 on a filled board). That number
+    appeared in an earlier draft of this work and is wrong for the shipping page;
+    it is written down here rather than deleted.
+  - `promotion/evidence/report.json` from Wave 1 is left untouched. Nothing in
+    the scorecard cites it as evidence any more.
+
+- **Tests:** `npm run check` **exit 0** — 39/39 JavaScript files parsed, 36/36
+  tour steps and 34/34 prose citations naming a line that matches. The citation
+  gate earned its keep again: adding the `audit:ui` script shifted the `iterate`
+  line in `package.json` by one and `docs/START_HERE.md` was still citing the old
+  number; it failed, named both, and was repaired before this entry was written.
+  `npm run probe:maxpath` **exit 0**, 10 checks, 45 runnable files scanned, 0
+  Remotion invocations outside the handler — re-run because this iteration adds a
+  new runnable file to the tree that the wiring scan must now cover.
+  `npm run audit:ui` **exit 0**, 52 checks. Not run this iteration and stated
+  rather than implied: `probe:opening` and `render:example`, which this change
+  cannot reach — it touches one HTML file under `examples/`, no renderer and no
+  Remotion path.
+
+- **Conditions newly PASS: 3, 4, 5, 6, 7, 8, 9, 10.** Scorecard **1/12 to 9/12**.
+  Explicitly *not* claimed:
+  - **1** stays FAIL. J5 has still never been run; it needs a `GEMINI_API_KEY`
+    and this wave creates no secrets. J1 still depends on checkout depth.
+  - **2** stays FAIL. D5 is fixed, but D1 is still open: the quickstart still
+    cannot render from a deep Windows checkout, it only explains itself there.
+  - **11** stays FAIL. There is now a third executing gate. Three probes are
+    still not a test suite and `package.json` still has no `test` script.
+  - **12** was already PASS and this iteration is more of the same evidence
+    shape, so it is not re-claimed as new.

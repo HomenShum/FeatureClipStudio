@@ -1,0 +1,613 @@
+{
+  "url": "http://localhost:4912/?user=A",
+  "at": "2026-08-14T02:38:55.148Z",
+  "tag": "after",
+  "commands": {
+    "lighthouse-mobile": "npx --yes lighthouse@13.4.1 http://localhost:4912/?user=A --output=json --output-path=promotion/evidence/lighthouse-mobile.json --chrome-flags=\"--headless\" --quiet",
+    "lighthouse-desktop": "npx --yes lighthouse@13.4.1 http://localhost:4912/?user=A --preset=desktop --output=json --output-path=promotion/evidence/lighthouse-desktop.json --chrome-flags=\"--headless\" --quiet",
+    "axe": "npx --yes @axe-core/cli@4.13.0 http://localhost:4912/?user=A --save promotion/evidence/axe.json"
+  },
+  "widths": [
+    {
+      "width": 390,
+      "loadMs": 322,
+      "overflowX": 0,
+      "colorScheme": "dark",
+      "landmarks": {
+        "main": 1,
+        "header": 1,
+        "footer": 1
+      },
+      "presenceRole": "group",
+      "inputAccessibleName": "aria-label:Card text",
+      "liveRegions": 1,
+      "h1": 1,
+      "controls": {
+        "add-input": {
+          "w": 358,
+          "h": 46,
+          "fontPx": 16
+        },
+        "add-btn": {
+          "w": 61,
+          "h": 47,
+          "fontPx": 14
+        },
+        "agent-btn": {
+          "w": 126,
+          "h": 47,
+          "fontPx": 14
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    {
+      "width": 768,
+      "loadMs": 108,
+      "overflowX": 0,
+      "colorScheme": "dark",
+      "landmarks": {
+        "main": 1,
+        "header": 1,
+        "footer": 1
+      },
+      "presenceRole": "group",
+      "inputAccessibleName": "aria-label:Card text",
+      "liveRegions": 1,
+      "h1": 1,
+      "controls": {
+        "add-input": {
+          "w": 513,
+          "h": 43,
+          "fontPx": 14
+        },
+        "add-btn": {
+          "w": 61,
+          "h": 43,
+          "fontPx": 14
+        },
+        "agent-btn": {
+          "w": 126,
+          "h": 43,
+          "fontPx": 14
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    {
+      "width": 1280,
+      "loadMs": 134,
+      "overflowX": 0,
+      "colorScheme": "dark",
+      "landmarks": {
+        "main": 1,
+        "header": 1,
+        "footer": 1
+      },
+      "presenceRole": "group",
+      "inputAccessibleName": "aria-label:Card text",
+      "liveRegions": 1,
+      "h1": 1,
+      "controls": {
+        "add-input": {
+          "w": 513,
+          "h": 43,
+          "fontPx": 14
+        },
+        "add-btn": {
+          "w": 61,
+          "h": 43,
+          "fontPx": 14
+        },
+        "agent-btn": {
+          "w": 126,
+          "h": 43,
+          "fontPx": 14
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    }
+  ],
+  "lighthouseMobile": {
+    "version": "13.4.1",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    },
+    "lcpMs": 1068.4079,
+    "cls": 0.003522086977651093,
+    "tbtMs": 1.9999999999998863,
+    "failed": [
+      {
+        "id": "unminified-css",
+        "score": 0.5,
+        "title": "Minify CSS"
+      },
+      {
+        "id": "unminified-javascript",
+        "score": 0.5,
+        "title": "Minify JavaScript"
+      },
+      {
+        "id": "bf-cache",
+        "score": 0,
+        "title": "Page prevented back/forward cache restoration"
+      },
+      {
+        "id": "document-latency-insight",
+        "score": 0.5,
+        "title": "Document request latency"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "score": 0,
+        "title": "Network dependency tree"
+      }
+    ]
+  },
+  "lighthouseDesktop": {
+    "version": "13.4.1",
+    "formFactor": "desktop",
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    },
+    "lcpMs": 284.37300742613803,
+    "cls": 0.0003121081049528646,
+    "tbtMs": 0,
+    "failed": [
+      {
+        "id": "unminified-css",
+        "score": 0.5,
+        "title": "Minify CSS"
+      },
+      {
+        "id": "unminified-javascript",
+        "score": 0.5,
+        "title": "Minify JavaScript"
+      },
+      {
+        "id": "bf-cache",
+        "score": 0,
+        "title": "Page prevented back/forward cache restoration"
+      },
+      {
+        "id": "document-latency-insight",
+        "score": 0.5,
+        "title": "Document request latency"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "score": 0,
+        "title": "Network dependency tree"
+      }
+    ]
+  },
+  "axe": {
+    "version": "4.13.0",
+    "violations": [],
+    "violationCount": 0,
+    "seriousOrCritical": 0,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 5
+      }
+    ],
+    "passes": 35
+  },
+  "journey": {
+    "states": {
+      "empty": "No cards yet. Add one — it appears instantly here and live in the other pane.",
+      "loading": "saving",
+      "success": "Audit probe card",
+      "agentRunning": "🤖 Agent (requested by Ana): ",
+      "error": "Could not save “This add will fail” — the request did not reach the server. Your text is back in the box; try Add again."
+    },
+    "errorState": {
+      "visibleMessage": "Could not save “This add will fail” — the request did not reach the server. Your text is back in the box; try Add again.",
+      "tone": "error",
+      "liveRegion": "status",
+      "textReturnedToInput": "This add will fail",
+      "cardsShowingFailedText": 0
+    },
+    "optimisticMs": 70,
+    "confirmedMs": 991,
+    "mutateDelayMs": 400,
+    "agentFirstPaintMs": 88,
+    "agentDoneMs": 4068,
+    "restingAgentLabel": "🤖 Run agent",
+    "agentBtnWhileRunning": {
+      "disabled": true,
+      "text": "🤖 Working…",
+      "busy": "true"
+    },
+    "agentBtnAfter": {
+      "disabled": false,
+      "text": "🤖 Run agent"
+    },
+    "tabOrder": [
+      "add-input",
+      "add-btn",
+      "agent-btn"
+    ],
+    "focusRings": [
+      {
+        "id": "add-input",
+        "changed": true
+      },
+      {
+        "id": "add-btn",
+        "changed": true
+      },
+      {
+        "id": "agent-btn",
+        "changed": true
+      }
+    ],
+    "contrast": [
+      {
+        "selector": "h1",
+        "color": [
+          230,
+          240,
+          236
+        ],
+        "background": [
+          10,
+          16,
+          14
+        ],
+        "ratio": 16.5,
+        "need": 4.5
+      },
+      {
+        "selector": ".sub",
+        "color": [
+          127,
+          154,
+          144
+        ],
+        "background": [
+          10,
+          16,
+          14
+        ],
+        "ratio": 6.34,
+        "need": 4.5
+      },
+      {
+        "selector": "#who",
+        "color": [
+          127,
+          154,
+          144
+        ],
+        "background": [
+          11,
+          18,
+          15
+        ],
+        "ratio": 6.25,
+        "need": 4.5
+      },
+      {
+        "selector": "footer",
+        "color": [
+          127,
+          154,
+          144
+        ],
+        "background": [
+          9,
+          14,
+          13
+        ],
+        "ratio": 6.41,
+        "need": 4.5
+      },
+      {
+        "selector": ".card .meta .author-chip",
+        "color": [
+          230,
+          240,
+          236
+        ],
+        "background": [
+          15,
+          23,
+          20
+        ],
+        "ratio": 15.65,
+        "need": 4.5
+      }
+    ],
+    "reducedMotion": {
+      "mediaMatches": true,
+      "cardAnimationDuration": "0s",
+      "buttonTransitionDuration": "0s"
+    },
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "failedRequests": [],
+    "injectedFailures": [
+      "POST http://localhost:4912/mutate :: net::ERR_FAILED"
+    ]
+  },
+  "checks": [
+    {
+      "name": "c4 no horizontal overflow @390",
+      "ok": true,
+      "detail": "scrollWidth-clientWidth=0"
+    },
+    {
+      "name": "c9 no console errors @390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c9 no failed requests @390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c6 one main landmark @390",
+      "ok": true,
+      "detail": "{\"main\":1,\"header\":1,\"footer\":1}"
+    },
+    {
+      "name": "c6 text input has an accessible name @390",
+      "ok": true,
+      "detail": "aria-label:Card text"
+    },
+    {
+      "name": "c3 dark color-scheme declared @390",
+      "ok": true,
+      "detail": "dark"
+    },
+    {
+      "name": "c4 no horizontal overflow @768",
+      "ok": true,
+      "detail": "scrollWidth-clientWidth=0"
+    },
+    {
+      "name": "c9 no console errors @768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c9 no failed requests @768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c6 one main landmark @768",
+      "ok": true,
+      "detail": "{\"main\":1,\"header\":1,\"footer\":1}"
+    },
+    {
+      "name": "c6 text input has an accessible name @768",
+      "ok": true,
+      "detail": "aria-label:Card text"
+    },
+    {
+      "name": "c3 dark color-scheme declared @768",
+      "ok": true,
+      "detail": "dark"
+    },
+    {
+      "name": "c4 no horizontal overflow @1280",
+      "ok": true,
+      "detail": "scrollWidth-clientWidth=0"
+    },
+    {
+      "name": "c9 no console errors @1280",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c9 no failed requests @1280",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c6 one main landmark @1280",
+      "ok": true,
+      "detail": "{\"main\":1,\"header\":1,\"footer\":1}"
+    },
+    {
+      "name": "c6 text input has an accessible name @1280",
+      "ok": true,
+      "detail": "aria-label:Card text"
+    },
+    {
+      "name": "c3 dark color-scheme declared @1280",
+      "ok": true,
+      "detail": "dark"
+    },
+    {
+      "name": "c3 mobile input font-size >= 16px",
+      "ok": true,
+      "detail": "16px"
+    },
+    {
+      "name": "c3 tap target >= 44px @390 (add-input)",
+      "ok": true,
+      "detail": "46px"
+    },
+    {
+      "name": "c3 tap target >= 44px @390 (add-btn)",
+      "ok": true,
+      "detail": "47px"
+    },
+    {
+      "name": "c3 tap target >= 44px @390 (agent-btn)",
+      "ok": true,
+      "detail": "47px"
+    },
+    {
+      "name": "c5 empty state designed",
+      "ok": true,
+      "detail": "No cards yet. Add one — it appears instantly here and live in the other pane."
+    },
+    {
+      "name": "c5 loading state designed",
+      "ok": true,
+      "detail": "saving"
+    },
+    {
+      "name": "c5 success state designed",
+      "ok": true,
+      "detail": "Audit probe card"
+    },
+    {
+      "name": "c5 agent-running state designed",
+      "ok": true,
+      "detail": "🤖 Agent (requested by Ana): "
+    },
+    {
+      "name": "c5 error state designed, announced and marked",
+      "ok": true,
+      "detail": "{\"visibleMessage\":\"Could not save “This add will fail” — the request did not reach the server. Your text is back in the box; try Add again.\",\"tone\":\"error\",\"liveRegion\":\"status\",\"textReturnedToInput\":\"This add will fail\",\"cardsShowingFailedText\":0}"
+    },
+    {
+      "name": "c5 failed add is rolled back",
+      "ok": true,
+      "detail": "0 stale cards"
+    },
+    {
+      "name": "c5 failed add hands the text back",
+      "ok": true,
+      "detail": "input holds \"This add will fail\""
+    },
+    {
+      "name": "c6 all three controls are reachable by Tab",
+      "ok": true,
+      "detail": "add-input -> add-btn -> agent-btn"
+    },
+    {
+      "name": "c6 every control's focus style differs from its resting style",
+      "ok": true,
+      "detail": "[{\"id\":\"add-input\",\"changed\":true},{\"id\":\"add-btn\",\"changed\":true},{\"id\":\"agent-btn\",\"changed\":true}]"
+    },
+    {
+      "name": "c6 async agent output is announced",
+      "ok": true,
+      "detail": "1 live regions"
+    },
+    {
+      "name": "c6 no aria-label on a role-less div",
+      "ok": true,
+      "detail": "presence role=group"
+    },
+    {
+      "name": "c6 contrast >= WCAG AA on the gradient (axe returns incomplete here)",
+      "ok": true,
+      "detail": "[{\"selector\":\"h1\",\"color\":[230,240,236],\"background\":[10,16,14],\"ratio\":16.5,\"need\":4.5},{\"selector\":\".sub\",\"color\":[127,154,144],\"background\":[10,16,14],\"ratio\":6.34,\"need\":4.5},{\"selector\":\"#who\",\"color\":[127,154,144],\"background\":[11,18,15],\"ratio\":6.25,\"need\":4.5},{\"selector\":\"footer\",\"color\":[127,154,144],\"background\":[9,14,13],\"ratio\":6.41,\"need\":4.5},{\"selector\":\".card .meta .author-chip\",\"color\":[230,240,236],\"background\":[15,23,20],\"ratio\":15.65,\"need\":4.5}]"
+    },
+    {
+      "name": "c7 prefers-reduced-motion honoured",
+      "ok": true,
+      "detail": "{\"mediaMatches\":true,\"cardAnimationDuration\":\"0s\",\"buttonTransitionDuration\":\"0s\"}"
+    },
+    {
+      "name": "c7 agent button label changes while it is working",
+      "ok": true,
+      "detail": "resting \"🤖 Run agent\" vs running {\"disabled\":true,\"text\":\"🤖 Working…\",\"busy\":\"true\"}"
+    },
+    {
+      "name": "c7 agent button re-enables when the agent actually stops",
+      "ok": true,
+      "detail": "{\"disabled\":false,\"text\":\"🤖 Run agent\"}"
+    },
+    {
+      "name": "c10 optimistic paint under 100ms",
+      "ok": true,
+      "detail": "70ms"
+    },
+    {
+      "name": "c10 optimistic paint precedes the server answer",
+      "ok": true,
+      "detail": "70ms paint vs 400ms held response"
+    },
+    {
+      "name": "c10 server confirm under 800ms once the injected hold is subtracted",
+      "ok": true,
+      "detail": "991ms total - 400ms held"
+    },
+    {
+      "name": "c10 agent first paint under 1500ms",
+      "ok": true,
+      "detail": "88ms"
+    },
+    {
+      "name": "c8 axe: zero violations",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "c9 lighthouse mobile: no browser errors logged to the console",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "c8 lighthouse mobile: accessibility 1.0",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "c8 lighthouse mobile: best-practices 1.0",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "c10 lighthouse mobile: LCP < 2500ms",
+      "ok": true,
+      "detail": "1068ms"
+    },
+    {
+      "name": "c10 lighthouse mobile: CLS < 0.02",
+      "ok": true,
+      "detail": "0.003522086977651093"
+    },
+    {
+      "name": "c9 lighthouse desktop: no browser errors logged to the console",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "c8 lighthouse desktop: accessibility 1.0",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "c8 lighthouse desktop: best-practices 1.0",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "c10 lighthouse desktop: LCP < 2500ms",
+      "ok": true,
+      "detail": "284ms"
+    },
+    {
+      "name": "c10 lighthouse desktop: CLS < 0.02",
+      "ok": true,
+      "detail": "0.0003121081049528646"
+    }
+  ],
+  "passed": 52,
+  "failed": 0
+}

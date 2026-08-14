@@ -115,6 +115,15 @@ Each journey states, in this order:
   state → `POST /mutate → 200` → card "Baseline probe card from Wave 1 / Ana` →
   `POST /agent → 202` → "🤖 Agent (requested by Ana): … done. Top theme:
   collaboration." Zero console errors.
+  **Iteration 4 (2026-08-13) re-drove this journey from a committed producer.**
+  `npm run audit:ui` starts the server, drives the same four steps at 390, 768
+  and 1280, and captures every state the gate names — empty, loading, success,
+  agent-running and, for the first time, error — under `evidence/ui/`. It also
+  found and fixed ten major interface defects along the way, listed as D5 with
+  their measurements in `WIG_REVIEW.md`. The journey now has evidence that
+  regenerates rather than evidence that was taken once: **24 of 52 checks on the
+  pre-fix tree, 52 of 52 after** (`evidence/audit-ui.before.json`,
+  `evidence/audit-ui.json`).
 
 ## J4 — "Check the toolkit is intact before I trust it in CI"
 

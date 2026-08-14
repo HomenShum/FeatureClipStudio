@@ -32,7 +32,9 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const PORT = 8930;
+// Default 8930 (the port the README and the capture specs name). PORT overrides
+// it so an audit harness can run this on a port of its own without editing code.
+const PORT = Number(process.env.PORT) || 8930;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const INDEX_PATH = path.join(__dirname, "public", "index.html");
 

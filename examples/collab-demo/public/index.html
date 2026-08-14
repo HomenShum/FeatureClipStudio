@@ -3,11 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A zero-dependency local stand-in for the Convex reactive pattern: optimistic adds, live SSE broadcast, presence, and a server-led streaming agent." />
+<!-- An empty data: icon. Without it every load spends a request on /favicon.ico,
+     the server answers 404, and the console carries an error the reader cannot
+     explain — which is exactly what condition 9 asks about. -->
+<link rel="icon" href="data:," />
 <title>Collab Demo · Convex reactive pattern (local stand-in)</title>
 <style>
   /* House style: dark UI, green accent (#10b981 / #34d399), Inter. Self-contained,
      no external CDN — the system font stack falls back gracefully if Inter is absent. */
   :root {
+    /* Tell the browser this page is dark, so the form controls, scrollbars and
+       caret it draws itself match it instead of arriving light on dark. */
+    color-scheme: dark;
     --bg: #0a0f0d;
     --panel: #0f1714;
     --panel-2: #13201b;
@@ -98,6 +106,16 @@
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent-2); }
   .btn-ghost:disabled { opacity: .5; cursor: default; }
 
+  /* ---- status line (async announcements + errors) ----
+     Always present and always the same height, so showing a message never moves
+     the board underneath it. `role="status"` makes every message a screen reader
+     hears, not only one a sighted user sees. */
+  .status {
+    min-height: 17px; margin: -8px 0 14px;
+    font-size: 12px; line-height: 17px; color: var(--muted);
+  }
+  .status[data-tone="error"] { color: #fca5a5; }
+
   /* ---- board ---- */
   #board { display: flex; flex-direction: column; gap: 10px; }
   .empty {
@@ -161,6 +179,36 @@
 
   footer { margin-top: 22px; font-size: 11px; color: var(--muted); text-align: center; line-height: 1.6; }
   code { color: var(--accent-2); background: var(--panel); padding: 1px 5px; border-radius: 5px; }
+
+  /* ---- narrow screens, decided rather than inherited ----
+     Two things a fluid layout gets wrong on a phone and cannot fix by itself:
+     a control under 44px is hard to hit accurately, and an input under 16px
+     makes iOS Safari zoom the whole page the moment it is focused. */
+  @media (max-width: 480px) {
+    .wrap { padding: 18px 16px 32px; }
+    /* "you are Ana" is written in by JavaScript. On a narrow screen that longer
+       string wraps the subtitle onto a second line, and everything below the
+       header drops by a line after first paint. Giving it its own line from the
+       start means the space is already reserved when the name arrives. */
+    #who { display: block; }
+    input[type="text"] { font-size: 16px; padding: 13px; }
+    button { padding: 13px 16px; }
+    .controls { flex-wrap: wrap; }
+    #add-input { flex: 1 1 100%; }
+  }
+
+  /* ---- reduced motion ----
+     Everything below is decoration: the pop-in, the saving spinner, the caret,
+     the button press. A reader who asked the OS for less motion gets the same
+     information with none of it. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0s !important;
+      scroll-behavior: auto !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -173,17 +221,26 @@
         <div class="sub">Convex reactive pattern · local stand-in · <span id="who">…</span></div>
       </div>
     </div>
-    <div id="presence" data-testid="presence" aria-label="Present collaborators"></div>
+    <div id="presence" data-testid="presence" role="group" aria-label="Present collaborators"></div>
   </header>
 
-  <div class="controls">
-    <input id="add-input" data-testid="add-input" type="text"
-           placeholder="Add a card…" autocomplete="off" />
-    <button id="add-btn" data-testid="add-btn" class="btn-primary">Add</button>
-    <button id="agent-btn" data-testid="agent-btn" class="btn-ghost">🤖 Run agent</button>
-  </div>
+  <main>
+    <div class="controls">
+      <input id="add-input" data-testid="add-input" type="text"
+             placeholder="Add a card…" aria-label="Card text" autocomplete="off" />
+      <button id="add-btn" data-testid="add-btn" class="btn-primary">Add</button>
+      <button id="agent-btn" data-testid="agent-btn" class="btn-ghost">🤖 Run agent</button>
+    </div>
 
-  <div id="board"></div>
+    <p id="status" data-testid="status" class="status" role="status"></p>
+
+    <!-- The empty state is in the HTML, not only in render(). The board is the
+         tallest thing on the page; filling it from JavaScript after first paint
+         moved the footer down on every load and cost 0.126 of layout shift. -->
+    <div id="board">
+      <div class="empty">No cards yet. Add one — it appears instantly here and live in the other pane.</div>
+    </div>
+  </main>
 
   <footer>
     Server-led state · optimistic add → atomic temp→real swap · live SSE broadcast to every pane.<br />
@@ -225,6 +282,24 @@
   const board = $("board");
   const presenceEl = $("presence");
   const input = $("add-input");
+  const statusEl = $("status");
+  const agentBtn = $("agent-btn");
+
+  // One line that says what just happened out of band — a save that failed, an
+  // agent that started. It is a `role="status"` region, so a screen reader is
+  // told the same thing at the same time instead of only the sighted reader.
+  function setStatus(text, tone) {
+    statusEl.textContent = text || "";
+    if (tone) statusEl.setAttribute("data-tone", tone);
+    else statusEl.removeAttribute("data-tone");
+  }
+
+  // The agent button is disabled while the agent is actually running: from the
+  // click until the streaming card the SERVER broadcasts is finished. It used to
+  // re-enable on a fixed 4.5s timer, which is a guess about someone else's work
+  // and was wrong in both directions.
+  let agentPending = false;
+  let agentWasStreaming = false;
 
   // ---- render (merge authoritative base + optimistic overlay) -----------
   function render() {
@@ -261,6 +336,16 @@
       }
       merged.push({ ...o.card, _temp: true });
     }
+
+    // Agent button state, read off the broadcast rather than off a timer.
+    const streaming = merged.some((c) => c.streaming);
+    if (streaming) agentPending = false;          // the server has taken the job
+    if (agentWasStreaming && !streaming) setStatus("Agent finished.");
+    agentWasStreaming = streaming;
+    const busy = agentPending || streaming;
+    agentBtn.disabled = busy;
+    agentBtn.textContent = busy ? "🤖 Working…" : "🤖 Run agent";
+    agentBtn.setAttribute("aria-busy", busy ? "true" : "false");
 
     board.innerHTML = "";
     if (merged.length === 0) {
@@ -355,6 +440,7 @@
     const text = input.value.trim();
     if (!text) return;
     input.value = "";
+    setStatus("");
 
     // (a) OPTIMISTIC: paint the card NOW with a temp crypto.randomUUID() id and
     //     a subtle "saving" style — zero perceived latency, before any network.
@@ -382,28 +468,51 @@
         if (o) o.realId = data.card.id;
         render();
       } else {
-        optimistic.delete(tempId); // server rejected → roll back the optimistic row
-        render();
+        rollBack(tempId, text, "the server did not accept it");
       }
     } catch {
-      optimistic.delete(tempId); // network failed → roll back (no fake success)
-      render();
+      rollBack(tempId, text, "the request did not reach the server");
     }
+  }
+
+  // A rolled-back add used to vanish in silence: the row disappeared, the box
+  // was already empty, and nothing said the card was not saved. Now the row is
+  // removed, the text is handed back so it is not lost, and the status line says
+  // what happened and what to do about it.
+  function rollBack(tempId, text, why) {
+    optimistic.delete(tempId);
+    if (!input.value) input.value = text;
+    setStatus(`Could not save “${text}” — ${why}. Your text is back in the box; try Add again.`, "error");
+    render();
   }
 
   // ---- server-led agent --------------------------------------------------
   async function runAgent() {
-    const btn = $("agent-btn");
-    btn.disabled = true;
+    agentPending = true;
+    setStatus("Agent is working…");
+    render();
     try {
-      await fetch("/agent", {
+      const r = await fetch("/agent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ clientId: CLIENT_ID }),
       });
-    } catch { /* ignore; broadcasts will reflect agent state */ }
-    // Re-enable shortly; the actual streaming/lock state is driven by broadcasts.
-    setTimeout(() => { btn.disabled = false; }, 4500);
+      if (!r.ok) throw new Error(String(r.status));
+    } catch {
+      agentPending = false;
+      setStatus("Could not start the agent — the request did not reach the server. Try again.", "error");
+      render();
+      return;
+    }
+    // The button stays disabled until a broadcast shows the agent streaming and
+    // then stops (render() owns that). This timer only covers the case where no
+    // broadcast ever arrives, so a dead server cannot disable the button forever.
+    setTimeout(() => {
+      if (!agentPending) return;
+      agentPending = false;
+      setStatus("The agent did not report back. Try again.", "error");
+      render();
+    }, 10_000);
   }
 
   // ---- wire up -----------------------------------------------------------

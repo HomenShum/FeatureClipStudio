@@ -1,0 +1,649 @@
+{
+  "url": "http://localhost:4912/?user=A",
+  "at": "2026-08-14T02:36:39.863Z",
+  "tag": "before",
+  "commands": {
+    "lighthouse-mobile": "npx --yes lighthouse@13.4.1 http://localhost:4912/?user=A --output=json --output-path=promotion/evidence/lighthouse-mobile.before.json --chrome-flags=\"--headless\" --quiet",
+    "lighthouse-desktop": "npx --yes lighthouse@13.4.1 http://localhost:4912/?user=A --preset=desktop --output=json --output-path=promotion/evidence/lighthouse-desktop.before.json --chrome-flags=\"--headless\" --quiet",
+    "axe": "npx --yes @axe-core/cli@4.13.0 http://localhost:4912/?user=A --save promotion/evidence/axe.before.json"
+  },
+  "widths": [
+    {
+      "width": 390,
+      "loadMs": 412,
+      "overflowX": 0,
+      "colorScheme": "normal",
+      "landmarks": {
+        "main": 0,
+        "header": 1,
+        "footer": 1
+      },
+      "presenceRole": null,
+      "inputAccessibleName": null,
+      "liveRegions": 0,
+      "h1": 1,
+      "controls": {
+        "add-input": {
+          "w": 143,
+          "h": 43,
+          "fontPx": 14
+        },
+        "add-btn": {
+          "w": 61,
+          "h": 43,
+          "fontPx": 14
+        },
+        "agent-btn": {
+          "w": 126,
+          "h": 43,
+          "fontPx": 14
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    {
+      "width": 768,
+      "loadMs": 72,
+      "overflowX": 0,
+      "colorScheme": "normal",
+      "landmarks": {
+        "main": 0,
+        "header": 1,
+        "footer": 1
+      },
+      "presenceRole": null,
+      "inputAccessibleName": null,
+      "liveRegions": 0,
+      "h1": 1,
+      "controls": {
+        "add-input": {
+          "w": 513,
+          "h": 43,
+          "fontPx": 14
+        },
+        "add-btn": {
+          "w": 61,
+          "h": 43,
+          "fontPx": 14
+        },
+        "agent-btn": {
+          "w": 126,
+          "h": 43,
+          "fontPx": 14
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    {
+      "width": 1280,
+      "loadMs": 73,
+      "overflowX": 0,
+      "colorScheme": "normal",
+      "landmarks": {
+        "main": 0,
+        "header": 1,
+        "footer": 1
+      },
+      "presenceRole": null,
+      "inputAccessibleName": null,
+      "liveRegions": 0,
+      "h1": 1,
+      "controls": {
+        "add-input": {
+          "w": 513,
+          "h": 43,
+          "fontPx": 14
+        },
+        "add-btn": {
+          "w": 61,
+          "h": 43,
+          "fontPx": 14
+        },
+        "agent-btn": {
+          "w": 126,
+          "h": 43,
+          "fontPx": 14
+        }
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    }
+  ],
+  "lighthouseMobile": {
+    "version": "13.4.1",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 1,
+      "accessibility": 0.98,
+      "best-practices": 0.96,
+      "seo": 0.9,
+      "agentic-browsing": 1
+    },
+    "lcpMs": 1064.0949,
+    "cls": 0.02410401668105619,
+    "tbtMs": 0,
+    "failed": [
+      {
+        "id": "errors-in-console",
+        "score": 0,
+        "title": "Browser errors were logged to the console"
+      },
+      {
+        "id": "landmark-one-main",
+        "score": 0,
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "unminified-javascript",
+        "score": 0.5,
+        "title": "Minify JavaScript"
+      },
+      {
+        "id": "meta-description",
+        "score": 0,
+        "title": "Document does not have a meta description"
+      },
+      {
+        "id": "bf-cache",
+        "score": 0,
+        "title": "Page prevented back/forward cache restoration"
+      },
+      {
+        "id": "document-latency-insight",
+        "score": 0.5,
+        "title": "Document request latency"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "score": 0,
+        "title": "Network dependency tree"
+      }
+    ]
+  },
+  "lighthouseDesktop": {
+    "version": "13.4.1",
+    "formFactor": "desktop",
+    "scores": {
+      "performance": 1,
+      "accessibility": 0.98,
+      "best-practices": 0.96,
+      "seo": 0.9,
+      "agentic-browsing": 1
+    },
+    "lcpMs": 284.2383,
+    "cls": 0.0003121081049528646,
+    "tbtMs": 0,
+    "failed": [
+      {
+        "id": "errors-in-console",
+        "score": 0,
+        "title": "Browser errors were logged to the console"
+      },
+      {
+        "id": "landmark-one-main",
+        "score": 0,
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "unminified-javascript",
+        "score": 0.5,
+        "title": "Minify JavaScript"
+      },
+      {
+        "id": "meta-description",
+        "score": 0,
+        "title": "Document does not have a meta description"
+      },
+      {
+        "id": "bf-cache",
+        "score": 0,
+        "title": "Page prevented back/forward cache restoration"
+      },
+      {
+        "id": "document-latency-insight",
+        "score": 0.5,
+        "title": "Document request latency"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "score": 0,
+        "title": "Network dependency tree"
+      }
+    ]
+  },
+  "axe": {
+    "version": "4.13.0",
+    "violations": [
+      {
+        "id": "landmark-one-main",
+        "impact": "moderate",
+        "nodes": 1
+      },
+      {
+        "id": "region",
+        "impact": "moderate",
+        "nodes": 2
+      }
+    ],
+    "violationCount": 2,
+    "seriousOrCritical": 0,
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 5
+      }
+    ],
+    "passes": 27
+  },
+  "journey": {
+    "states": {
+      "empty": "No cards yet. Add one — it appears instantly here and live in the other pane.",
+      "loading": "saving",
+      "success": "Audit probe card",
+      "agentRunning": "🤖 Agent (requested by Ana): ",
+      "error": null
+    },
+    "errorState": {
+      "visibleMessage": null,
+      "tone": null,
+      "liveRegion": null,
+      "textReturnedToInput": "",
+      "cardsShowingFailedText": 0
+    },
+    "optimisticMs": 63,
+    "confirmedMs": 973,
+    "mutateDelayMs": 400,
+    "agentFirstPaintMs": 90,
+    "agentDoneMs": 4069,
+    "restingAgentLabel": "🤖 Run agent",
+    "agentBtnWhileRunning": {
+      "disabled": true,
+      "text": "🤖 Run agent",
+      "busy": null
+    },
+    "agentBtnAfter": {
+      "disabled": true,
+      "text": "🤖 Run agent"
+    },
+    "tabOrder": [
+      "add-input",
+      "add-btn",
+      "agent-btn"
+    ],
+    "focusRings": [
+      {
+        "id": "add-input",
+        "changed": true
+      },
+      {
+        "id": "add-btn",
+        "changed": true
+      },
+      {
+        "id": "agent-btn",
+        "changed": true
+      }
+    ],
+    "contrast": [
+      {
+        "selector": "h1",
+        "color": [
+          230,
+          240,
+          236
+        ],
+        "background": [
+          10,
+          16,
+          14
+        ],
+        "ratio": 16.5,
+        "need": 4.5
+      },
+      {
+        "selector": ".sub",
+        "color": [
+          127,
+          154,
+          144
+        ],
+        "background": [
+          10,
+          16,
+          14
+        ],
+        "ratio": 6.34,
+        "need": 4.5
+      },
+      {
+        "selector": "#who",
+        "color": [
+          127,
+          154,
+          144
+        ],
+        "background": [
+          11,
+          18,
+          15
+        ],
+        "ratio": 6.25,
+        "need": 4.5
+      },
+      {
+        "selector": "footer",
+        "color": [
+          127,
+          154,
+          144
+        ],
+        "background": [
+          9,
+          14,
+          13
+        ],
+        "ratio": 6.41,
+        "need": 4.5
+      },
+      {
+        "selector": ".card .meta .author-chip",
+        "color": [
+          230,
+          240,
+          236
+        ],
+        "background": [
+          15,
+          23,
+          20
+        ],
+        "ratio": 15.65,
+        "need": 4.5
+      }
+    ],
+    "reducedMotion": {
+      "mediaMatches": true,
+      "cardAnimationDuration": "0.18s",
+      "buttonTransitionDuration": "0.08s, 0.15s, 0.15s"
+    },
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "failedRequests": [],
+    "injectedFailures": [
+      "POST http://localhost:4912/mutate :: net::ERR_FAILED"
+    ]
+  },
+  "checks": [
+    {
+      "name": "c4 no horizontal overflow @390",
+      "ok": true,
+      "detail": "scrollWidth-clientWidth=0"
+    },
+    {
+      "name": "c9 no console errors @390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c9 no failed requests @390",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c6 one main landmark @390",
+      "ok": false,
+      "detail": "{\"main\":0,\"header\":1,\"footer\":1}"
+    },
+    {
+      "name": "c6 text input has an accessible name @390",
+      "ok": false,
+      "detail": "null"
+    },
+    {
+      "name": "c3 dark color-scheme declared @390",
+      "ok": false,
+      "detail": "normal"
+    },
+    {
+      "name": "c4 no horizontal overflow @768",
+      "ok": true,
+      "detail": "scrollWidth-clientWidth=0"
+    },
+    {
+      "name": "c9 no console errors @768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c9 no failed requests @768",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c6 one main landmark @768",
+      "ok": false,
+      "detail": "{\"main\":0,\"header\":1,\"footer\":1}"
+    },
+    {
+      "name": "c6 text input has an accessible name @768",
+      "ok": false,
+      "detail": "null"
+    },
+    {
+      "name": "c3 dark color-scheme declared @768",
+      "ok": false,
+      "detail": "normal"
+    },
+    {
+      "name": "c4 no horizontal overflow @1280",
+      "ok": true,
+      "detail": "scrollWidth-clientWidth=0"
+    },
+    {
+      "name": "c9 no console errors @1280",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c9 no failed requests @1280",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "c6 one main landmark @1280",
+      "ok": false,
+      "detail": "{\"main\":0,\"header\":1,\"footer\":1}"
+    },
+    {
+      "name": "c6 text input has an accessible name @1280",
+      "ok": false,
+      "detail": "null"
+    },
+    {
+      "name": "c3 dark color-scheme declared @1280",
+      "ok": false,
+      "detail": "normal"
+    },
+    {
+      "name": "c3 mobile input font-size >= 16px",
+      "ok": false,
+      "detail": "14px"
+    },
+    {
+      "name": "c3 tap target >= 44px @390 (add-input)",
+      "ok": false,
+      "detail": "43px"
+    },
+    {
+      "name": "c3 tap target >= 44px @390 (add-btn)",
+      "ok": false,
+      "detail": "43px"
+    },
+    {
+      "name": "c3 tap target >= 44px @390 (agent-btn)",
+      "ok": false,
+      "detail": "43px"
+    },
+    {
+      "name": "c5 empty state designed",
+      "ok": true,
+      "detail": "No cards yet. Add one — it appears instantly here and live in the other pane."
+    },
+    {
+      "name": "c5 loading state designed",
+      "ok": true,
+      "detail": "saving"
+    },
+    {
+      "name": "c5 success state designed",
+      "ok": true,
+      "detail": "Audit probe card"
+    },
+    {
+      "name": "c5 agent-running state designed",
+      "ok": true,
+      "detail": "🤖 Agent (requested by Ana): "
+    },
+    {
+      "name": "c5 error state designed, announced and marked",
+      "ok": false,
+      "detail": "{\"visibleMessage\":null,\"tone\":null,\"liveRegion\":null,\"textReturnedToInput\":\"\",\"cardsShowingFailedText\":0}"
+    },
+    {
+      "name": "c5 failed add is rolled back",
+      "ok": true,
+      "detail": "0 stale cards"
+    },
+    {
+      "name": "c5 failed add hands the text back",
+      "ok": false,
+      "detail": "input holds \"\""
+    },
+    {
+      "name": "c6 all three controls are reachable by Tab",
+      "ok": true,
+      "detail": "add-input -> add-btn -> agent-btn"
+    },
+    {
+      "name": "c6 every control's focus style differs from its resting style",
+      "ok": true,
+      "detail": "[{\"id\":\"add-input\",\"changed\":true},{\"id\":\"add-btn\",\"changed\":true},{\"id\":\"agent-btn\",\"changed\":true}]"
+    },
+    {
+      "name": "c6 async agent output is announced",
+      "ok": false,
+      "detail": "0 live regions"
+    },
+    {
+      "name": "c6 no aria-label on a role-less div",
+      "ok": false,
+      "detail": "presence role=null"
+    },
+    {
+      "name": "c6 contrast >= WCAG AA on the gradient (axe returns incomplete here)",
+      "ok": true,
+      "detail": "[{\"selector\":\"h1\",\"color\":[230,240,236],\"background\":[10,16,14],\"ratio\":16.5,\"need\":4.5},{\"selector\":\".sub\",\"color\":[127,154,144],\"background\":[10,16,14],\"ratio\":6.34,\"need\":4.5},{\"selector\":\"#who\",\"color\":[127,154,144],\"background\":[11,18,15],\"ratio\":6.25,\"need\":4.5},{\"selector\":\"footer\",\"color\":[127,154,144],\"background\":[9,14,13],\"ratio\":6.41,\"need\":4.5},{\"selector\":\".card .meta .author-chip\",\"color\":[230,240,236],\"background\":[15,23,20],\"ratio\":15.65,\"need\":4.5}]"
+    },
+    {
+      "name": "c7 prefers-reduced-motion honoured",
+      "ok": false,
+      "detail": "{\"mediaMatches\":true,\"cardAnimationDuration\":\"0.18s\",\"buttonTransitionDuration\":\"0.08s, 0.15s, 0.15s\"}"
+    },
+    {
+      "name": "c7 agent button label changes while it is working",
+      "ok": false,
+      "detail": "resting \"🤖 Run agent\" vs running {\"disabled\":true,\"text\":\"🤖 Run agent\",\"busy\":null}"
+    },
+    {
+      "name": "c7 agent button re-enables when the agent actually stops",
+      "ok": false,
+      "detail": "{\"disabled\":true,\"text\":\"🤖 Run agent\"}"
+    },
+    {
+      "name": "c10 optimistic paint under 100ms",
+      "ok": true,
+      "detail": "63ms"
+    },
+    {
+      "name": "c10 optimistic paint precedes the server answer",
+      "ok": true,
+      "detail": "63ms paint vs 400ms held response"
+    },
+    {
+      "name": "c10 server confirm under 800ms once the injected hold is subtracted",
+      "ok": true,
+      "detail": "973ms total - 400ms held"
+    },
+    {
+      "name": "c10 agent first paint under 1500ms",
+      "ok": true,
+      "detail": "90ms"
+    },
+    {
+      "name": "c8 axe: zero violations",
+      "ok": false,
+      "detail": "[{\"id\":\"landmark-one-main\",\"impact\":\"moderate\",\"nodes\":1},{\"id\":\"region\",\"impact\":\"moderate\",\"nodes\":2}]"
+    },
+    {
+      "name": "c9 lighthouse mobile: no browser errors logged to the console",
+      "ok": false,
+      "detail": "[{\"id\":\"errors-in-console\",\"score\":0,\"title\":\"Browser errors were logged to the console\"}]"
+    },
+    {
+      "name": "c8 lighthouse mobile: accessibility 1.0",
+      "ok": false,
+      "detail": "0.98"
+    },
+    {
+      "name": "c8 lighthouse mobile: best-practices 1.0",
+      "ok": false,
+      "detail": "0.96"
+    },
+    {
+      "name": "c10 lighthouse mobile: LCP < 2500ms",
+      "ok": true,
+      "detail": "1064ms"
+    },
+    {
+      "name": "c10 lighthouse mobile: CLS < 0.02",
+      "ok": false,
+      "detail": "0.02410401668105619"
+    },
+    {
+      "name": "c9 lighthouse desktop: no browser errors logged to the console",
+      "ok": false,
+      "detail": "[{\"id\":\"errors-in-console\",\"score\":0,\"title\":\"Browser errors were logged to the console\"}]"
+    },
+    {
+      "name": "c8 lighthouse desktop: accessibility 1.0",
+      "ok": false,
+      "detail": "0.98"
+    },
+    {
+      "name": "c8 lighthouse desktop: best-practices 1.0",
+      "ok": false,
+      "detail": "0.96"
+    },
+    {
+      "name": "c10 lighthouse desktop: LCP < 2500ms",
+      "ok": true,
+      "detail": "284ms"
+    },
+    {
+      "name": "c10 lighthouse desktop: CLS < 0.02",
+      "ok": true,
+      "detail": "0.0003121081049528646"
+    }
+  ],
+  "passed": 24,
+  "failed": 28
+}

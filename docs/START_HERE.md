@@ -204,7 +204,7 @@ emits something that passes for evidence.** The same reasoning added the
 
 **File:** `iterate.mjs`
 **Symbol:** the top-level round loop — `iterate.mjs:62` (`for (let r = 1; r <= rounds`)
-**Called by:** `npm run iterate` — `package.json:42` (`"iterate": "node iterate.mjs"`) — and
+**Called by:** `npm run iterate` — `package.json:43` (`"iterate": "node iterate.mjs"`) — and
 nothing else. No script and no other file in this repository spawns it.
 **Calls next:** `iterate.mjs:72` (`judge-rubric.mjs`) → Google Gemini
 
