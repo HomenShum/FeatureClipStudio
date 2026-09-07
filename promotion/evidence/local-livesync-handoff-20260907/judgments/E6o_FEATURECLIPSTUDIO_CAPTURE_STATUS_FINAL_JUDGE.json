@@ -1,0 +1,248 @@
+{
+  "status": "APPROVED_SCOPED_CAPTURE_STATUS_REPAIR_WITH_OUTPUT_READABILITY_HOLD",
+  "at": "2026-09-07T09:45:42.642402+00:00",
+  "repo": "HomenShum/FeatureClipStudio",
+  "baseCommit": "208b2e0a61b8a7240b09115ab74324f6d4a2c90c",
+  "baseTree": "a2ce6fd5ea7c7c2d4d4b6c94a7753c069b7c9b00",
+  "commit": null,
+  "workingSourceFreeze": {
+    "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\08-freeze\\source-after.json",
+    "bytes": 203094,
+    "sha256": "81574f6cf97fbafd143464145f5d90481014752af6183a8250be9d39cc58200d"
+  },
+  "workerReceipt": {
+    "path": "operator-evidence\\E6o-featureclipstudio-capture-status-final-01\\receipt.json",
+    "bytes": 3473,
+    "sha256": "ccf2f335f9563ec53c87c0b6183b076cbfff1f95d578f1ba0d051b51c444cf5a"
+  },
+  "workerManifest": {
+    "path": "operator-evidence\\E6o-featureclipstudio-capture-status-final-01\\manifest.json",
+    "bytes": 932,
+    "sha256": "8338040b8424056294d9dcf9f4b8bd1c36a3c1af51b778233007027f878ec313"
+  },
+  "fourOwners": [
+    {
+      "path": "walkthrough.collab.mjs",
+      "original": {
+        "bytes": 17129,
+        "sha256": "d35347819a47a092f0a82656f1734a3f0393104489e2057eed8bbe47bdb08ddb"
+      },
+      "proposed": {
+        "bytes": 18082,
+        "sha256": "a3ccf4a92fafc15f6b87c9606524effbc3320255e785fdc3110d243bf41c8450"
+      },
+      "externalCopy": "proposed/walkthrough.collab.mjs.txt",
+      "lineEndings": "Original CRLF preserved"
+    },
+    {
+      "path": "README.md",
+      "original": {
+        "bytes": 64270,
+        "sha256": "38c0b38ce5f2d88c7810bd66b6896aa03b5d11373a7c68fe405bdf4d73cdda9c"
+      },
+      "proposed": {
+        "bytes": 65333,
+        "sha256": "f30668cb1d8bd56073cdff614dd2f9c854e76fd53fbcf3698e6233f730bf2a20"
+      },
+      "externalCopy": "proposed/README.md.txt",
+      "lineEndings": "Original CRLF preserved"
+    },
+    {
+      "path": "docs/START_HERE.md",
+      "original": {
+        "bytes": 24836,
+        "sha256": "70dc7c600b21d0cbe2d3bd4cf1489f78a1465ae349683af2abfd59132bc91855"
+      },
+      "proposed": {
+        "bytes": 25207,
+        "sha256": "0c9026ff34afeb52d08e764b932c97b5673d0424fffb98f6adb4072be0b84cdf"
+      },
+      "externalCopy": "proposed/docs/START_HERE.md.txt",
+      "lineEndings": "Original CRLF preserved"
+    },
+    {
+      "path": "docs/codebase/INTEGRATIONS.md",
+      "original": {
+        "bytes": 5399,
+        "sha256": "2a46db33ea7d11dbdb35bb1fa8c058299cf1a6dec651930ac0c294dab06f577c"
+      },
+      "proposed": {
+        "bytes": 5769,
+        "sha256": "d5fe0d5133c11b83c3994f44540fb124d817657182ccb46954b6cb510add81de"
+      },
+      "externalCopy": "proposed/docs/codebase/INTEGRATIONS.md.txt",
+      "lineEndings": "Original CRLF preserved"
+    }
+  ],
+  "namedProof": "FCS-CAPTURE-HONEST-STATUS-AFTER-01",
+  "normalCheck": {
+    "jsParsed": 39,
+    "tourCitations": 36,
+    "proseCitations": 34,
+    "seconds": 2.219,
+    "scope": "Normal source parser/citation check, not a general unit-test suite."
+  },
+  "causalBeforeAfter": [
+    {
+      "case": "unknown selector",
+      "beforeExit": 0,
+      "beforeDone": true,
+      "afterExit": 1,
+      "afterDone": false,
+      "afterCases": [
+        "unknown",
+        "mixed valid/unknown",
+        "whitespace",
+        "comma"
+      ],
+      "owner": "Complete selector validation before launch/deletion."
+    },
+    {
+      "case": "unavailable demo",
+      "beforeExit": 0,
+      "beforeDone": true,
+      "beforeSeconds": 65.437,
+      "afterExit": 1,
+      "afterDone": false,
+      "afterSeconds": 3.079,
+      "owner": "Unsuppressed navigation inside attempt forensics; final cause propagated before module/DONE."
+    },
+    {
+      "case": "late action timeout",
+      "newIndependentFailureCase": true,
+      "actualExit": 1,
+      "done": false,
+      "seconds": 63.328,
+      "nativeTimeoutMilliseconds": 60000,
+      "fixture": "Explicit reachable owned static missing-control page, not collaboration application."
+    }
+  ],
+  "negativeCases": [
+    {
+      "stage": "04-unavailable",
+      "exit": 1,
+      "seconds": 3.079,
+      "originalCause": "ERR_CONNECTION_REFUSED",
+      "retainedAvailableFiles": 3,
+      "unchangedModule": true,
+      "exactExternalRestoration": 55
+    },
+    {
+      "stage": "05-missing-control",
+      "exit": 1,
+      "seconds": 63.328,
+      "originalCause": "Timeout 60000ms exceeded",
+      "retainedAvailableFiles": 5,
+      "unchangedModule": true,
+      "exactExternalRestoration": 55
+    }
+  ],
+  "positiveCaptures": [
+    {
+      "stage": "03-positive",
+      "seconds": 17.468,
+      "nativeExit": 0,
+      "exactNativeGeneratedCopiedPngs": 54,
+      "steps": 8,
+      "frames": 588,
+      "sameTwoClientCardIdsAndTexts": true,
+      "twoContexts": true,
+      "allowedRequests": 8,
+      "errors": 0
+    },
+    {
+      "stage": "06-recovery",
+      "seconds": 16.843,
+      "nativeExit": 0,
+      "exactNativeGeneratedCopiedPngs": 54,
+      "steps": 8,
+      "frames": 588,
+      "sameTwoClientCardIdsAndTexts": true,
+      "twoContexts": true,
+      "allowedRequests": 8,
+      "errors": 0
+    }
+  ],
+  "media": [
+    {
+      "path": "checkout\\out\\status-repair-livesync.mp4",
+      "bytes": 1506505,
+      "sha256": "7b606abab5e5506758e1e015afb4c01bc75e2eb1209a9cd52668526b4ed84c3e",
+      "video": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "nb_frames": "588",
+        "r_frame_rate": "30/1",
+        "duration": "19.600000"
+      },
+      "containerDuration": "19.648000",
+      "recordedFullDecodeExit": 0,
+      "recordedDecodeStderrBytes": 0
+    },
+    {
+      "path": "checkout\\out\\status-repair-livesync.gif",
+      "bytes": 928209,
+      "sha256": "36f447ac19bef088818d19135854586c4f0ca78be435774ca674033fe48db46c",
+      "video": {
+        "codec_name": "gif",
+        "width": 720,
+        "height": 405,
+        "nb_frames": "294",
+        "r_frame_rate": "15/1",
+        "duration": "19.590000"
+      },
+      "containerDuration": "19.590000",
+      "recordedFullDecodeExit": 0,
+      "recordedDecodeStderrBytes": 0
+    }
+  ],
+  "actualPixelsViewed": {
+    "nativePrimaryStatePairs": 8,
+    "nativeImages": 16,
+    "mp4Extracted": 5,
+    "gifExtracted": 3,
+    "scope": "Fixed1280x600 native CSS cells;1920x1080 MP4 and720x405 GIF still samples, no responsive-matrix or motion certification."
+  },
+  "custody": {
+    "stageCount": 8,
+    "actualCommands": 26,
+    "frozenRawFiles": 646,
+    "currentSourceRows": 904,
+    "protectedSourceOutside58GeneratedPaths": 846,
+    "fourAuthoredOwnersUnchanged": true,
+    "historicalInstalledInputs": 908,
+    "primaryPreservedRows": 596,
+    "processIdentities": 127,
+    "sameOwnedAlive": 0,
+    "unreadableRecordedIdentities": 0,
+    "listener8930": [],
+    "guard": "CLOSED_UNCHANGED"
+  },
+  "openFindings": [
+    {
+      "id": "FCS-OUTPUT-READABILITY",
+      "severity": "P2",
+      "status": "RETAINED_OBSERVED_LIMIT",
+      "observed": "The two captured application boards occupy a narrow central band with broad empty space above and below. At1920x1080 the inner board text and local-stand-in disclosure are very small; at720x405 the inner text is largely unreadable at native size. Large captions remain legible and no longer overlap panels in this current render.",
+      "causalBoundary": "The1280x600 source capture contains a centered720CSSpx application. Fitting two entire captures into the output and then scaling to720 further reduces the actual content. The status-exit patch does not change that renderer/framing boundary.",
+      "inferenceLimit": "Still frames establish legibility and composition only; no continuous-motion, playback-speed, audio quality, performance or fresh-human comprehension claim."
+    }
+  ],
+  "limits": [
+    "Existing waitText timeout swallowing is unchanged; these receipts establish thrown navigation/action and explicit selector honesty only.",
+    "Negative55-file restoration is the external owned controller, not product rollback. Earlier selected PNGs in multi-spec runs may change even if module publication aborts; same-path concurrency/cancel/undo are untested.",
+    "The unchanged observer mode string OBSERVED_UNCHANGED_DRIVER is a legacy label. Actual changed driver is bound to a3ccf4a9; wrapper did not edit it during capture.",
+    "Both positive captures use an explicitly disclosed observer with request restrictions/state reads; native negative invocations use no --import wrapper. No performance inference from their wall time.",
+    "Demo is fixed-text local in-memory collaboration, not provider or durable Convex execution. Actual demo listener is all-interface; observed browser requests are loopback-only.",
+    "All prior failures, first-use artifacts and media remain exact. No install/browser/command/decode rerun by this judge.",
+    "Dependency advisories, shared integration, publication, production, human usability and full readiness grades remain pending or held.44criterion assessment is separate."
+  ],
+  "fullGrades": null,
+  "guard": "CLOSED_UNCHANGED",
+  "independentRawManifest": {
+    "path": "operator-evidence\\E6o-status-after-final-independent-01\\manifest.json",
+    "bytes": 959,
+    "sha256": "7704546ba7b3700771e0622e3514dc3900fc5270cc168b07b4e33ad0006f433f"
+  }
+}

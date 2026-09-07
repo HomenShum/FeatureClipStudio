@@ -1,0 +1,20 @@
+{
+  "name": "readable-ffprobe",
+  "argv": [
+    "<user-home>/scoop/shims/ffprobe.exe",
+    "-v",
+    "error",
+    "-show_streams",
+    "-show_format",
+    "-of",
+    "json",
+    "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\readable-livesync.mp4"
+  ],
+  "seconds": 0.125,
+  "timeoutSeconds": 60,
+  "timedout": false,
+  "exitCode": 0,
+  "expectedExitCodes": [
+    0
+  ]
+}

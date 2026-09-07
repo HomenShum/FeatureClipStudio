@@ -1,0 +1,2 @@
+RUNID (fresh-room code) = STR08V81
+WALKTHROUGH_COLLAB_CAPTURE_DONE — wrote src/walkthrough.collab.data.js

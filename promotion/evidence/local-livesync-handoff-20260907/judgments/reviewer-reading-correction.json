@@ -1,0 +1,834 @@
+{
+  "initialObservation": "Small displayed GIF frames seemed to omit portions of static glyphs. This was raised as a possible issue, not a confirmed defect.",
+  "resolution": "Not supported by actual pixel readback: independent Pillow and ffmpeg agree; cited static masks retain essentially all glyph pixels. Reviewer reading false alarm, not a product, encoding or extraction defect. No fix or rerender requested.",
+  "observations": [
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 105,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 272,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.13637820512820512
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 105,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1515,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.01067421308708172
+        }
+      }
+    },
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 107,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 272,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.09342948717948718
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 105,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1515,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.00675206037136332
+        }
+      }
+    },
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 110,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 272,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 105,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1515,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        }
+      }
+    },
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 113,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 271,
+          "lostBright": 1,
+          "meanAbsoluteChannelDifference": 0.05384615384615385
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 105,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1515,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.01067421308708172
+        }
+      }
+    },
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 116,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 271,
+          "lostBright": 1,
+          "meanAbsoluteChannelDifference": 0.029487179487179487
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 105,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1515,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        }
+      }
+    },
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 119,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 271,
+          "lostBright": 1,
+          "meanAbsoluteChannelDifference": 0.04903846153846154
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 105,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1515,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.00675206037136332
+        }
+      }
+    },
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 133,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 271,
+          "lostBright": 4,
+          "meanAbsoluteChannelDifference": 0.907051282051282
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 104,
+          "lostBright": 1,
+          "meanAbsoluteChannelDifference": 0.5606837606837607
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1513,
+          "lostBright": 3,
+          "meanAbsoluteChannelDifference": 0.586634892264919
+        }
+      }
+    },
+    {
+      "kind": "gif",
+      "baseline": 110,
+      "frame": 134,
+      "regions": {
+        "userText": {
+          "rect": [
+            45,
+            115,
+            175,
+            131
+          ],
+          "threshold": 150,
+          "baseBright": 272,
+          "actualBright": 271,
+          "lostBright": 4,
+          "meanAbsoluteChannelDifference": 0.9003205128205128
+        },
+        "clientB": {
+          "rect": [
+            337,
+            201,
+            402,
+            216
+          ],
+          "threshold": 150,
+          "baseBright": 105,
+          "actualBright": 104,
+          "lostBright": 1,
+          "meanAbsoluteChannelDifference": 0.5606837606837607
+        },
+        "title": {
+          "rect": [
+            35,
+            10,
+            408,
+            28
+          ],
+          "threshold": 150,
+          "baseBright": 1515,
+          "actualBright": 1513,
+          "lostBright": 3,
+          "meanAbsoluteChannelDifference": 0.586634892264919
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 210,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1580,
+          "lostBright": 3,
+          "meanAbsoluteChannelDifference": 0.088681592039801
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 367,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11316,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 220,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1580,
+          "lostBright": 2,
+          "meanAbsoluteChannelDifference": 0.05305970149253731
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 367,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11316,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.007244434916211098
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 226,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1582,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 367,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11316,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 232,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1582,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.013507462686567164
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 367,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11316,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.007244434916211098
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 238,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1582,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.026542288557213932
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 367,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.0
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11316,
+          "lostBright": 0,
+          "meanAbsoluteChannelDifference": 0.017472397899024546
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 267,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1578,
+          "lostBright": 22,
+          "meanAbsoluteChannelDifference": 1.8438308457711443
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 360,
+          "lostBright": 51,
+          "meanAbsoluteChannelDifference": 1.2311484593837534
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11330,
+          "lostBright": 27,
+          "meanAbsoluteChannelDifference": 1.5543734591060134
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 268,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1578,
+          "lostBright": 22,
+          "meanAbsoluteChannelDifference": 1.851542288557214
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 360,
+          "lostBright": 51,
+          "meanAbsoluteChannelDifference": 1.2311484593837534
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11330,
+          "lostBright": 27,
+          "meanAbsoluteChannelDifference": 1.5543734591060134
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 274,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1566,
+          "lostBright": 33,
+          "meanAbsoluteChannelDifference": 2.4197014925373135
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 360,
+          "lostBright": 51,
+          "meanAbsoluteChannelDifference": 1.2311484593837534
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11330,
+          "lostBright": 27,
+          "meanAbsoluteChannelDifference": 1.554543180762497
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 284,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1579,
+          "lostBright": 20,
+          "meanAbsoluteChannelDifference": 1.908457711442786
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 360,
+          "lostBright": 51,
+          "meanAbsoluteChannelDifference": 1.2305882352941175
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11338,
+          "lostBright": 24,
+          "meanAbsoluteChannelDifference": 1.5936863543788187
+        }
+      }
+    },
+    {
+      "kind": "movie",
+      "baseline": 226,
+      "frame": 294,
+      "regions": {
+        "userText": {
+          "rect": [
+            120,
+            307,
+            455,
+            347
+          ],
+          "threshold": 160,
+          "baseBright": 1582,
+          "actualBright": 1580,
+          "lostBright": 19,
+          "meanAbsoluteChannelDifference": 1.9274378109452737
+        },
+        "clientB": {
+          "rect": [
+            900,
+            535,
+            1070,
+            570
+          ],
+          "threshold": 160,
+          "baseBright": 367,
+          "actualBright": 370,
+          "lostBright": 47,
+          "meanAbsoluteChannelDifference": 1.2507563025210084
+        },
+        "title": {
+          "rect": [
+            103,
+            34,
+            1085,
+            72
+          ],
+          "threshold": 160,
+          "baseBright": 11316,
+          "actualBright": 11338,
+          "lostBright": 24,
+          "meanAbsoluteChannelDifference": 1.592337513845714
+        }
+      }
+    }
+  ]
+}

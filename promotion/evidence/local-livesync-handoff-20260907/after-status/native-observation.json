@@ -1,0 +1,227 @@
+{
+  "mode": "OBSERVED_UNCHANGED_DRIVER",
+  "errors": [],
+  "finalStates": [
+    {
+      "context": 0,
+      "state": {
+        "url": "http://127.0.0.1:8930/?user=A",
+        "title": "Collab · Ana",
+        "width": 1280,
+        "height": 600,
+        "body": "Collab Board\nConvex reactive pattern · local stand-in · you are Ana\nA\nB\nAdd\n🤖 Run agent\n\nAgent finished.\n\nShip the collab demo\nAna\n🤖 Agent (requested by Ana): Analyzing the board · clustering 3 themes · drafting a summary · ranking by impact · done. Top theme: collaboration.\nAgent\nServer-led state · optimistic add → atomic temp→real swap · live SSE broadcast to every pane.\nOpen ?user=A and ?user=B side by side to watch them sync.",
+        "cards": [
+          {
+            "id": "69d53880-9d72-497c-b5d1-0a2119ba3738",
+            "text": "Ship the collab demo",
+            "author": "Ana",
+            "classes": "card",
+            "rect": {
+              "x": 280,
+              "y": 161,
+              "width": 720,
+              "height": 72,
+              "top": 161,
+              "right": 1000,
+              "bottom": 233,
+              "left": 280
+            }
+          },
+          {
+            "id": "ef2492a6-6aca-4e33-a575-dfd9e05663f5",
+            "text": "🤖 Agent (requested by Ana): Analyzing the board · clustering 3 themes · drafting a summary · ranking by impact · done. Top theme: collaboration.",
+            "author": "Agent",
+            "classes": "card",
+            "rect": {
+              "x": 280,
+              "y": 243,
+              "width": 720,
+              "height": 93,
+              "top": 243,
+              "right": 1000,
+              "bottom": 336,
+              "left": 280
+            }
+          }
+        ],
+        "agent": {
+          "text": "🤖 Run agent",
+          "busy": "false",
+          "disabled": false
+        },
+        "controls": [
+          {
+            "id": "add-input",
+            "value": "",
+            "rect": {
+              "x": 280,
+              "y": 77,
+              "width": 513.21875,
+              "height": 43,
+              "top": 77,
+              "right": 793.21875,
+              "bottom": 120,
+              "left": 280
+            }
+          },
+          {
+            "id": "add-btn",
+            "value": "",
+            "rect": {
+              "x": 803.21875,
+              "y": 77,
+              "width": 61.21875,
+              "height": 43,
+              "top": 77,
+              "right": 864.4375,
+              "bottom": 120,
+              "left": 803.21875
+            }
+          },
+          {
+            "id": "agent-btn",
+            "value": "",
+            "rect": {
+              "x": 874.4375,
+              "y": 77,
+              "width": 125.5625,
+              "height": 43,
+              "top": 77,
+              "right": 1000,
+              "bottom": 120,
+              "left": 874.4375
+            }
+          }
+        ],
+        "status": "Agent finished."
+      }
+    },
+    {
+      "context": 1,
+      "state": {
+        "url": "http://127.0.0.1:8930/?user=B",
+        "title": "Collab · Ben",
+        "width": 1280,
+        "height": 600,
+        "body": "Collab Board\nConvex reactive pattern · local stand-in · you are Ben\nA\nB\nAdd\n🤖 Run agent\n\nAgent finished.\n\nShip the collab demo\nAna\n🤖 Agent (requested by Ana): Analyzing the board · clustering 3 themes · drafting a summary · ranking by impact · done. Top theme: collaboration.\nAgent\nServer-led state · optimistic add → atomic temp→real swap · live SSE broadcast to every pane.\nOpen ?user=A and ?user=B side by side to watch them sync.",
+        "cards": [
+          {
+            "id": "69d53880-9d72-497c-b5d1-0a2119ba3738",
+            "text": "Ship the collab demo",
+            "author": "Ana",
+            "classes": "card",
+            "rect": {
+              "x": 280,
+              "y": 161,
+              "width": 720,
+              "height": 72,
+              "top": 161,
+              "right": 1000,
+              "bottom": 233,
+              "left": 280
+            }
+          },
+          {
+            "id": "ef2492a6-6aca-4e33-a575-dfd9e05663f5",
+            "text": "🤖 Agent (requested by Ana): Analyzing the board · clustering 3 themes · drafting a summary · ranking by impact · done. Top theme: collaboration.",
+            "author": "Agent",
+            "classes": "card",
+            "rect": {
+              "x": 280,
+              "y": 243,
+              "width": 720,
+              "height": 93,
+              "top": 243,
+              "right": 1000,
+              "bottom": 336,
+              "left": 280
+            }
+          }
+        ],
+        "agent": {
+          "text": "🤖 Run agent",
+          "busy": "false",
+          "disabled": false
+        },
+        "controls": [
+          {
+            "id": "add-input",
+            "value": "",
+            "rect": {
+              "x": 280,
+              "y": 77,
+              "width": 513.21875,
+              "height": 43,
+              "top": 77,
+              "right": 793.21875,
+              "bottom": 120,
+              "left": 280
+            }
+          },
+          {
+            "id": "add-btn",
+            "value": "",
+            "rect": {
+              "x": 803.21875,
+              "y": 77,
+              "width": 61.21875,
+              "height": 43,
+              "top": 77,
+              "right": 864.4375,
+              "bottom": 120,
+              "left": 803.21875
+            }
+          },
+          {
+            "id": "agent-btn",
+            "value": "",
+            "rect": {
+              "x": 874.4375,
+              "y": 77,
+              "width": 125.5625,
+              "height": 43,
+              "top": 77,
+              "right": 1000,
+              "bottom": 120,
+              "left": 874.4375
+            }
+          }
+        ],
+        "status": "Agent finished."
+      }
+    }
+  ],
+  "contexts": 2,
+  "limitation": "Public Playwright launch/context/screenshot methods are wrapped for observation and request blocking. Routing disables the browser cache and state reads add timing overhead. No performance claim.",
+  "checks": [
+    {
+      "name": "two actual captured contexts",
+      "pass": true
+    },
+    {
+      "name": "54 native screenshot payloads",
+      "pass": true
+    },
+    {
+      "name": "no observed errors or disallowed requests",
+      "pass": true
+    },
+    {
+      "name": "both final boards contain exact committed card and finished fixed stream",
+      "pass": true
+    },
+    {
+      "name": "nonempty distinct DOM-reported IDs in each final board",
+      "pass": true
+    },
+    {
+      "name": "both captured clients agree on exact server IDs and texts",
+      "pass": true
+    }
+  ],
+  "driverExitCodeBeforeObserverGate": 0,
+  "passed": true,
+  "observedRequestCount": 8,
+  "allObservedRequestsAllowed": true,
+  "nativeScreenshots": 54
+}

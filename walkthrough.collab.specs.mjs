@@ -23,9 +23,10 @@ import { TRIALSCOPE_IDE_SPECS } from "./walkthrough.trialscope-ide.specs.mjs";
 export const COLLAB_SPECS = [
   {
     id: "LiveSync",
-    title: "Live Collaboration",
+    title: "Local collaboration demo · fixed text · in-memory state",
+    layout: "stacked",
     accent: "#10b981",
-    cropVH: 360,
+    cropVH: 264,
     panes: [
       { label: "Client A", url: "http://127.0.0.1:8930/?user=A" },
       { label: "Client B", url: "http://127.0.0.1:8930/?user=B" },
@@ -33,33 +34,33 @@ export const COLLAB_SPECS = [
     steps: [
       // 1) Both clients are looking at the same shared board.
       { act: "sleep", pane: 0, ms: 600 },
-      { cap: "Two clients, one shared board", hold: 70 },
+      { zoom: "header", zoomScale: 1.7, cap: "Two clients, one shared board", hold: 70 },
 
       // 2) Client A composes a new card and adds it.
       { act: "fill", pane: 0, sel: "testid:add-input", value: "Ship the collab demo" },
-      { cap: "Client A types a new card", cursor: "testid:add-input", cursorPane: 0, hold: 60 },
-      { cap: "Client A clicks Add", cursor: "testid:add-btn", cursorPane: 0, click: true, hold: 54 },
+      { zoom: "header", zoomScale: 1.7, cap: "Client A types a new card", cursor: "testid:add-input", cursorPane: 0, hold: 60 },
+      { zoom: "header", zoomScale: 1.7, cap: "Client A clicks Add", cursor: "testid:add-btn", cursorPane: 0, click: true, hold: 54 },
       { act: "click", pane: 0, sel: "testid:add-btn" },
 
       // 3) The card paints INSTANTLY in A, then syncs into B — captured as a burst on BOTH panes.
       { act: "sleep", pane: 1, ms: 120 },
-      { cap: "Client A adds a card → Client B sees it live", burst: { ms: 2600, every: 260 }, cursor: "testid:add-btn", cursorPane: 0, hold: 84 },
+      { zoom: "[data-testid=\"card\"]:first-child", zoomScale: 1.7, cap: "Client A adds a card → Client B sees it live", burst: { ms: 2600, every: 260 }, hold: 84 },
 
       // 4) Settled: both boards now show the same card.
       { act: "waitText", pane: 1, value: "Ship the collab demo" },
-      { cap: "Synced — both clients agree", hold: 78 },
+      { zoom: "[data-testid=\"card\"]:first-child", zoomScale: 1.7, cap: "Synced — both clients agree", hold: 78 },
 
       // 5) Client A triggers the server-led agent.
-      { cap: "Client A asks the agent to act", cursor: "testid:agent-btn", cursorPane: 0, click: true, hold: 56 },
+      { zoom: "header", zoomScale: 1.7, cap: "Client A asks the agent to act", cursor: "testid:agent-btn", cursorPane: 0, click: true, hold: 56 },
       { act: "click", pane: 0, sel: "testid:agent-btn" },
       { act: "sleep", pane: 0, ms: 300 },
 
       // 6) The agent card locks and its text STREAMS into BOTH panes at once.
-      { cap: "Server-led agent streams to every client", burst: { ms: 3200, every: 300 }, cursor: "testid:agent-btn", cursorPane: 0, hold: 90 },
+      { zoom: "[data-testid=\"card\"]:last-child", zoomScale: 1.7, cap: "Server-led agent streams to every client", burst: { ms: 3200, every: 300 }, hold: 90 },
 
       // 7) Done: identical end state across clients.
       { act: "sleep", pane: 0, ms: 400 },
-      { cap: "Every client converges on the same state", hold: 96 },
+      { zoom: "[data-testid=\"card\"]:last-child", zoomScale: 1.7, cap: "Every client converges on the same state", hold: 96 },
     ],
   },
 

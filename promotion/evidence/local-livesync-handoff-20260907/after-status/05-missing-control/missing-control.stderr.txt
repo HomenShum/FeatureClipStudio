@@ -1,0 +1,11 @@
+Error: Capture LiveSync failed after 1 attempt(s); generated data was not written. Partial/failed PNGs remain in checkout\public\wt-collab\LiveSync. Re-capture successfully before rendering this spec.
+    at run (file:///checkout/walkthrough.collab.mjs:295:15) {
+  [cause]: locator.click: Timeout 60000ms exceeded.
+  Call log:
+  [2m  - waiting for locator('[data-testid="add-input"]').first()[22m
+  
+      at doAct (checkout\walkthrough.collab.mjs:81:14)
+      at run (checkout\walkthrough.collab.mjs:275:19) {
+    name: 'TimeoutError'
+  }
+}

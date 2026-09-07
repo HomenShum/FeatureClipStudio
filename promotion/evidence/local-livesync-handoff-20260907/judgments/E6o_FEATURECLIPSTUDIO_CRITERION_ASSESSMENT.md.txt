@@ -1,0 +1,58 @@
+Builder mode. **AGENT_EVALUATED_ONLY_PARTIAL_WITH_OUTPUT_READABILITY_GAP**.
+
+**Re your request:** make visual, UI, responsive and interaction grading concrete — all44 standard criteria are recorded below and in the machine-readable scorecard. There are21 partial observations and23 NOT_RUN rows; all final criterion scores, eight dimension scores, overall score and letter grade remain null.
+
+The named CLI exit repair passed independently. The actual MP4/GIF still shrinks its two-client evidence and local-mode disclosure too far, especially at720×405. Fixed video dimensions are not responsive viewport evidence. No fresh human, physical device, keyboard-only or assistive-technology claim is made.
+
+| Criterion | Observed | Status |
+| --- | --- | --- |
+| V1 typography | 2 | PARTIALLY_OBSERVED |
+| V2 spacing/grid | 3 | PARTIALLY_OBSERVED |
+| V3 color/token discipline | 4 | PARTIALLY_OBSERVED |
+| V4 hierarchy | 3 | PARTIALLY_OBSERVED |
+| V5 rendered legibility/contrast | 2 | PARTIALLY_OBSERVED |
+| V6 consistent elevation/icons | 4 | PARTIALLY_OBSERVED |
+| V7 alignment | 5 | PARTIALLY_OBSERVED |
+| V8 polish of empty/loading/error/populated states | 4 | PARTIALLY_OBSERVED |
+| V9 purposeful motion and reduced-motion behavior | null | NOT_RUN |
+| D1 Clarity of the main action | 4 | PARTIALLY_OBSERVED |
+| D2 navigation/information architecture | null | NOT_RUN |
+| D3 progressive disclosure | null | NOT_RUN |
+| D4 useful information density | 3 | PARTIALLY_OBSERVED |
+| D5 consistency of component behavior and wording | 4 | PARTIALLY_OBSERVED |
+| R1 Reflow/content preservation | null | NOT_RUN |
+| R2 reachability of navigation and primary actions | null | NOT_RUN |
+| R3 modal/panel/table/canvas adaptation | null | NOT_RUN |
+| R4 touch and on-screen-keyboard usability | null | NOT_RUN |
+| R5 stability under zoom, long content and declared locales | null | NOT_RUN |
+| I1 Working controls and keyboard paths | 5 | PARTIALLY_OBSERVED |
+| I2 immediate honest feedback and durable status | 5 | PARTIALLY_OBSERVED |
+| I3 validation/error/retry behavior | 5 | PARTIALLY_OBSERVED |
+| I4 safe cancellation/undo and duplicate-action handling | null | NOT_RUN |
+| I5 state continuity through navigation, reload, conflicts and reopening | null | NOT_RUN |
+| A1 Semantic names/structure | null | NOT_RUN |
+| A2 keyboard/focus order and modal focus return | null | NOT_RUN |
+| A3 contrast/non-color cues | null | NOT_RUN |
+| A4 text resize/reflow and target size | null | NOT_RUN |
+| A5 screen-reader announcements and reduced-motion alternatives. Manual checks accompany automated scans | null | NOT_RUN |
+| P1 Initial usable view | null | NOT_RUN |
+| P2 input/scroll responsiveness | null | NOT_RUN |
+| P3 layout stability | null | NOT_RUN |
+| P4 honest long-operation feedback | 3 | PARTIALLY_OBSERVED |
+| P5 behavior with large data and constrained device/network conditions. Record workload and measured budgets separately from reviewer impressions | null | NOT_RUN |
+| U1 First-time task comprehension | null | NOT_RUN |
+| U2 successful core journey | 3 | PARTIALLY_OBSERVED |
+| U3 bounded errors/help/rework | 3 | PARTIALLY_OBSERVED |
+| U4 usable export or consumer result | 2 | PARTIALLY_OBSERVED |
+| U5 restart/reopen/handoff without hidden knowledge. Fresh-agent operability is separate from observed fresh-human usability | null | NOT_RUN |
+| L1 Fit to intended user and job | 3 | PARTIALLY_OBSERVED |
+| L2 coverage of advertised capabilities | null | NOT_RUN |
+| L3 truthful limits/status | 3 | PARTIALLY_OBSERVED |
+| L4 permissions and review authority | null | NOT_RUN |
+| L5 source/trace/artifact consistency | 5 | PARTIALLY_OBSERVED |
+
+The principal deductions are typography/legibility/export usability (2/5), and excess empty space, hierarchy, information density, inspectable core journey and visible mode disclosure (3/5). The same raw output can pass byte/decoder checks while failing the reader’s job. Native pointer actions, the exact selected/thrown-failure contract and source/artifact consistency receive5/5 only within their explicitly exercised scope; their final criterion scores are still null.
+
+Failure recovery retains its own3/5 rework deduction: the product does not roll back selected PNGs. The proof’s55-file restoration is external. The native60-second action wait is now honest at exit but still has a silent-wait feedback gap. No timeout/retry/rollback policy was changed to improve a grade.
+
+I directly viewed16 final native images and8 decoded output samples. The source/runtime judgment independently binds904 source rows,646 current raw artifacts,908 historical/installed inputs and closed owned runtime. The numeric rows cite exact source/command/pixel evidence and expose their missing coverage in [the JSON assessment](E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json). [Source approval](E6o_FEATURECLIPSTUDIO_CAPTURE_STATUS_FINAL_JUDGE.md) remains separate from these experience holds.

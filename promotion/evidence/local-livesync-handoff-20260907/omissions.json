@@ -1,0 +1,66 @@
+{
+  "boundLocalGroups": [
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/11-freeze/manifest.json",
+      "bytes": 1375,
+      "sha256": "174f35fd37c958939168b9d50037957f229990fd9c44d2827f5c1a351a2e569a",
+      "reason": "Unchanged-source setup, bundled reproduction and original failures; only relevant logs are selected.",
+      "portable": false
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-final-01/manifest.json",
+      "bytes": 932,
+      "sha256": "8338040b8424056294d9dcf9f4b8bd1c36a3c1af51b778233007027f878ec313",
+      "reason": "Complete status repair records, restoration controller, private process/source inventories and redundant captures stay local.",
+      "portable": false
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-plan-03/manifest.json",
+      "bytes": 9708,
+      "sha256": "87ae213b864572e46788134726dc7171aef420b06382ed5e598b1f8af4343fad",
+      "reason": "Full preparation/helper history and custody inventories stay local. Actual boundary is selected.",
+      "portable": false
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/01-legacy-before/manifest.json",
+      "bytes": 5807,
+      "sha256": "777374cc316ccc9999746efa71dee2f06ccd77ff159a087628ab4f4c16f87bcd",
+      "reason": "Eight old-layout stills stay local; exact eight-frame parity result is selected.",
+      "portable": false
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/03-preflight-stills/manifest.json",
+      "bytes": 28415,
+      "sha256": "765bfd7861732081a2f0d9adc6f1635e1d0b6d232c603353003a58c3b41f38af",
+      "reason": "Preflight1920/resampled720 overlaps stay local; selected final encoded PNGs supersede these for the final output claim.",
+      "portable": false
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/manifest.json",
+      "bytes": 78157,
+      "sha256": "25067467684022f9cdcef775cb47c459d8795b0685bf58ade898a70a59694999",
+      "reason": "All117 extracted sample identities and128 commands stay bound here; only selected frames and relevant raw commands are portable.",
+      "portable": false
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/05-close/manifest.json",
+      "bytes": 921,
+      "sha256": "b9a5c1cdf0c17eb6234e3d38923c457071a6c4edde9f39560d594570e0da16fb",
+      "reason": "Whole904-source/54-input inventory stays local. Selected actual source/54 PNG identities are checked separately by this packet.",
+      "portable": false
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-plan-01/generated-custody.json",
+      "bytes": 11036,
+      "sha256": "3cdfa6344640aa911a3be527e10889a75af52a2207f5860707feeab2ccf9da51",
+      "reason": "Correct historical location of generated custody map; frozen plan03 relative link was missing. Four operator probes remain working, omitted from proposed commit.",
+      "portable": false
+    }
+  ],
+  "alwaysExcluded": [
+    "Private profiles, environment inventories/values, credentials, SQLite/database state, dependency and browser caches, full DOM/session state, central source/path inventories.",
+    "Old full movies/GIFs and redundant sample images; selected actual before PNGs preserve the observed failure.",
+    "The54 original PNGs are present in public/wt-collab/LiveSync; they are not duplicated inside this packet."
+  ],
+  "rawReferences": "Inert historical reports contain operator-relative references. copy-map.json identifies selected physical payloads; omitted originals cannot be reconstructed from these hashes."
+}

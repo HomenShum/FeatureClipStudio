@@ -50,13 +50,13 @@ const Ripple = ({ x, y, lf, accent }) => {
   return <div style={{ position: "absolute", left: x - size / 2, top: y - size / 2, width: size, height: size, borderRadius: "50%", border: `4px solid ${accent}`, opacity: op, zIndex: 29 }} />;
 };
 
-const Chrome = ({ accent, label, acting }) => (
-  <div style={{ height: CHROME_H, display: "flex", alignItems: "center", gap: 8, padding: "0 16px", background: "linear-gradient(#1b2740,#141f33)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+const Chrome = ({ accent, label, acting, stacked = false }) => (
+  <div style={{ height: stacked ? 48 : CHROME_H, boxSizing: stacked ? "border-box" : undefined, display: "flex", alignItems: "center", gap: 8, padding: "0 16px", background: "linear-gradient(#1b2740,#141f33)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
     <span style={{ width: 11, height: 11, borderRadius: 99, background: "#ff5f57" }} />
     <span style={{ width: 11, height: 11, borderRadius: 99, background: "#febc2e" }} />
     <span style={{ width: 11, height: 11, borderRadius: 99, background: "#28c840" }} />
     <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, background: acting ? "rgba(16,185,129,0.16)" : "rgba(255,255,255,0.07)", color: acting ? accent : "#9fb3c8", fontFamily: FONT, fontWeight: 700, fontSize: 16, padding: "5px 14px", borderRadius: 8, border: acting ? `1px solid ${accent}` : "1px solid transparent" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, background: acting ? "rgba(16,185,129,0.16)" : "rgba(255,255,255,0.07)", color: acting ? accent : "#9fb3c8", fontFamily: FONT, fontWeight: 700, fontSize: stacked ? 32 : 16, lineHeight: stacked ? "38px" : undefined, padding: stacked ? "2px 14px" : "5px 14px", borderRadius: 8, border: acting ? `1px solid ${accent}` : "1px solid transparent" }}>
         <span style={{ width: 8, height: 8, borderRadius: 99, background: acting ? accent : "#5b6b80" }} />
         {label}
       </div>
@@ -65,7 +65,7 @@ const Chrome = ({ accent, label, acting }) => (
 );
 
 // One browser window for a single pane (dimensions passed in, so 2-up and 3-up share this).
-const PaneWindow = ({ left, top, paneW, paneH, accent, label, acting, img, prevImg, cursor, cursorOp, click, lf, fadeIn, cam, imgH, framed = true }) => (
+const PaneWindow = ({ left, top, paneW, paneH, accent, label, acting, img, prevImg, cursor, cursorOp, click, lf, fadeIn, cam, imgH, framed = true, stacked = false }) => (
   <div style={{
     position: "absolute", left, top, width: paneW, overflow: "hidden",
     // Frameless drops the rounded corners, the drop shadow and the acting-pane
@@ -78,7 +78,7 @@ const PaneWindow = ({ left, top, paneW, paneH, accent, label, acting, img, prevI
       : "none",
     background: "#0d1526",
   }}>
-    {framed && <Chrome accent={accent} label={label} acting={acting} />}
+    {framed && <Chrome accent={accent} label={label} acting={acting} stacked={stacked} />}
     <div style={{ position: "relative", width: paneW, height: paneH, overflow: "hidden", background: "#fff" }}>
       {/* camera container: img + cursor zoom/pan together so the cursor stays glued to the image */}
       <div style={{ position: "absolute", top: 0, left: 0, width: paneW, height: imgH || paneH, transformOrigin: "0 0", transform: cam || "none" }}>
@@ -128,9 +128,14 @@ export const Walkthrough2up = ({ wt }) => {
   // FILL and the surplus height is cropped -- correct here because app content is
   // top-weighted, which is the same reason `cropVH` exists.
   const framed = wt.frame !== false;
-  const MAX_H = framed ? WT2_H - 230 : WT2_H;
+  const stacked = framed && N === 2 && wt.layout === "stacked";
+  const chromeH = stacked ? 48 : CHROME_H;
+  const gap = stacked ? 20 : GAP;
+  const columns = stacked ? 1 : N;
+  // Two 424-pixel windows: y84..508 and y528..952, leaving the caption unchanged.
+  const MAX_H = stacked ? 376 : framed ? WT2_H - 230 : WT2_H;
   const margin = framed ? SIDE_MARGIN : 0;
-  let PANE_W = Math.floor((WT2_W - margin * 2 - GAP * (N - 1)) / N);
+  let PANE_W = Math.floor((WT2_W - margin * 2 - gap * (columns - 1)) / columns);
   let PANE_H = Math.round(PANE_W * cropVH / capVW);
   if (PANE_H > MAX_H) {
     PANE_H = MAX_H;
@@ -139,9 +144,9 @@ export const Walkthrough2up = ({ wt }) => {
     if (framed) PANE_W = Math.round(PANE_H * capVW / cropVH);
   }
   const SCALE = PANE_W / capVW;                               // uniform cursor-coord scale
-  const rowW = PANE_W * N + GAP * (N - 1);
+  const rowW = PANE_W * columns + gap * (columns - 1);
   const startX = Math.round((WT2_W - rowW) / 2);              // center the row horizontally
-  const winTop = framed
+  const winTop = stacked ? 84 : framed
     ? Math.max(116, Math.round((WT2_H - (CHROME_H + PANE_H)) / 2) - 4)
     : 0;
 
@@ -171,7 +176,7 @@ export const Walkthrough2up = ({ wt }) => {
       ? { s: (step && step.zoomScale) || 1.9, fx: ps.zoom.x * SCALE, fy: ps.zoom.y * SCALE }
       : { s: 1, fx: PANE_W / 2, fy: PANE_H / 2 };
     const tc = tgtOf(paneStep, cur);
-    const tp = tgtOf(prevPane, prev);
+    const tp = stacked && !prevPane ? tc : tgtOf(prevPane, prev);
     const ce = interpolate(lf, [6, 26], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.cubic) });
     const s = tp.s + (tc.s - tp.s) * ce;
     const fx = tp.fx + (tc.fx - tp.fx) * ce;
@@ -187,26 +192,27 @@ export const Walkthrough2up = ({ wt }) => {
       <Background />
 
       {framed && (
-      <div style={{ position: "absolute", top: 30, left: SIDE_MARGIN, display: "flex", alignItems: "center", gap: 16 }}>
+      <div style={{ position: "absolute", top: stacked ? 24 : 30, left: SIDE_MARGIN, display: "flex", alignItems: "center", gap: 16 }}>
         <span style={{ fontSize: 30 }}>🌱</span>
-        <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 28, color: "#eaf2ff" }}>{wt.title}</div>
-        <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 16, color: wt.accent, border: `2px solid ${wt.accent}`, borderRadius: 8, padding: "3px 10px" }}>
+        <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: stacked ? 36 : 28, color: "#eaf2ff" }}>{wt.title}</div>
+        <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: stacked ? 32 : 16, color: wt.accent, border: `2px solid ${wt.accent}`, borderRadius: 8, padding: "3px 10px" }}>
           Step {i + 1} / {steps.length}
         </div>
-        {N > 1 && <div style={{ fontFamily: FONT, fontWeight: 600, fontSize: 15, color: "#9fb3c8" }}>· {N} clients, one shared backend</div>}
+        {N > 1 && <div style={{ fontFamily: FONT, fontWeight: 600, fontSize: stacked ? 32 : 15, color: "#9fb3c8" }}>· {N} clients{!stacked && ", one shared backend"}</div>}
       </div>
       )}
 
       {Array.from({ length: N }, (_, pi) => {
         const p = panes[pi] || {};
-        const left = startX + pi * (PANE_W + GAP);
+        const left = stacked ? startX : startX + pi * (PANE_W + GAP);
+        const top = stacked ? winTop + pi * (chromeH + PANE_H + gap) : winTop;
         return (
           <PaneWindow
-            key={pi} left={left} top={winTop} paneW={PANE_W} paneH={PANE_H}
+            key={pi} left={left} top={top} paneW={PANE_W} paneH={PANE_H}
             accent={wt.accent} label={paneLabels[pi] || `Client ${String.fromCharCode(65 + pi)}`}
             acting={p.acting} img={p.img} prevImg={p.prevImg}
             cursor={p.cursor} cursorOp={p.cursorOp} click={p.click} lf={lf} fadeIn={fadeIn}
-            cam={p.cam} imgH={p.imgH} framed={framed}
+            cam={p.cam} imgH={p.imgH} framed={framed} stacked={stacked}
           />
         );
       })}

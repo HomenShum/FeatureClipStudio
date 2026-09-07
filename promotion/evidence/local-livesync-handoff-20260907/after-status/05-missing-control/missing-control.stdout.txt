@@ -1,0 +1,5 @@
+RUNID (fresh-room code) = STR1O8FO
+  LiveSync cap 0: Two clients, one shared board
+  LiveSync fail-state pane 0: Owned missing-control fixture This reachable page intentionally has no Add control. It is not the collaboration application.
+  LiveSync fail-state pane 1: Owned missing-control fixture This reachable page intentionally has no Add control. It is not the collaboration application.
+LiveSync attempt 1/1 err: locator.click: Timeout 60000ms exceeded.

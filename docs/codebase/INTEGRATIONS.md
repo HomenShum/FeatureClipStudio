@@ -19,10 +19,15 @@ on different dev servers because the url is per-spec.
 Streamlit accommodation, and the fallback exists because scoping to a selector that
 does not exist made every step fail while the run still reported success.
 
-**Failure mode:** the app is not running → `page.goto` throws a connection error and
-the spec's attempt fails into the forensics path (`zz-fail.png`). The app is running
-but slow → the `ready` proof string times out after 30 s. Neither can produce a
-green run with empty frames; that is the whole point of the `ready` field.
+**Failure mode:** the single-pane driver uses its `ready` proof string to check
+that the intended app is present. In the collaboration driver, navigation and
+thrown action errors enter the per-pane forensics path (`zz-fail-p<N>.png`). An
+exhausted attempt closes its contexts/browser and exits nonzero before writing
+generated data or printing completion. Unknown selection entries are rejected
+before browser launch or output changes. This does not make every semantic check
+strict: the existing collaboration `waitText` helper still swallows its timeout,
+so final captured state needs independent observation. Partial selected PNGs are
+diagnostics, not a rollback or a verified render input.
 
 **Setup:** `npx playwright install chromium`. `npm ci` alone is not enough.
 

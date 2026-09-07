@@ -1,0 +1,6 @@
+RUNID (fresh-room code) = STR08WGE
+  LiveSync cap 0: Two clients, one shared board
+  LiveSync fail-state pane 0: 
+  LiveSync fail-state pane 1: 
+LiveSync attempt 1/1 err: locator.click: Timeout 60000ms exceeded.
+WALKTHROUGH_COLLAB_CAPTURE_DONE — wrote src/walkthrough.collab.data.js

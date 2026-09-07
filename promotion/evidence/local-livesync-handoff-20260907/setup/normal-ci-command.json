@@ -1,0 +1,15 @@
+{
+  "name": "normal-ci",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "C:/nvm4w/nodejs/node_modules/npm/bin/npm-cli.js",
+    "ci"
+  ],
+  "seconds": 7.062,
+  "timeoutSeconds": 600,
+  "timedout": false,
+  "exitCode": 0,
+  "expectedExitCodes": [
+    0
+  ]
+}

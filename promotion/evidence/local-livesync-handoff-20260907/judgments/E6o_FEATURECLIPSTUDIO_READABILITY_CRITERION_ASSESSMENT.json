@@ -1,0 +1,1523 @@
+{
+  "schema": "repository-criterion-assessment/v1",
+  "at": "2026-09-07T11:25:11.401534+00:00",
+  "repo": "FeatureClipStudio",
+  "canonicalRepo": "https://github.com/HomenShum/FeatureClipStudio",
+  "commit": null,
+  "tree": null,
+  "baseCommit": "208b2e0a61b8a7240b09115ab74324f6d4a2c90c",
+  "baseTree": "a2ce6fd5ea7c7c2d4d4b6c94a7753c069b7c9b00",
+  "workingSourceFreeze": {
+    "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\05-close\\source-after.json",
+    "bytes": 203094,
+    "sha256": "9c0556c9d68195277515242415e7afcac8a8e20e790403aec737dc44a21bbd6e"
+  },
+  "profileRevision": "FCS-CLI-LIVESYNC-READABLE-OUTPUT-02-AGENT-EVALUATED-ONLY",
+  "referenceRefs": [
+    {
+      "path": "operator-evidence\\REPO_READINESS_STANDARD.md",
+      "bytes": 18664,
+      "sha256": "8b5bb532bf0dfeed7cc4ecd2b425d708fc49048cc05ab4cbeb315fc3534aeff2"
+    },
+    {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_CURRENT_CONSUMER_FINAL_JUDGE.json",
+      "bytes": 18212,
+      "sha256": "fdaeb9ddafea99fa9c9ae836463996e4b7c71b9a15b9d9d7732a462f27b3200d",
+      "kind": "preserved historical before"
+    },
+    {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-plan-01\\plan.json",
+      "bytes": 1578,
+      "sha256": "f88d9798efdddd700fdf370e476b9326fb0b946d0cca038ae7d5e062caaaa85a"
+    },
+    {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_CAPTURE_STATUS_FINAL_JUDGE.json",
+      "bytes": 9876,
+      "sha256": "833c51ba6f9974d60662c256f03fb87e8a16b5830006b496c9832ed0dbbf1020"
+    },
+    {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json",
+      "bytes": 52393,
+      "sha256": "1af30f642f6521de90e58fa64aea530297448627fe23770d8a23bb3420bb3ca0"
+    },
+    {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-plan-03\\plan.json",
+      "bytes": 5457,
+      "sha256": "32e0dcd1e76e4972549203bd0bae47d387af2f6072ebf77ba94871e7448a58ce"
+    },
+    {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.json",
+      "bytes": 4365,
+      "sha256": "d403ffd98ae140d87130ad2605fcceb63a0fcc9e9e2b12a2c9d7a613bc47095e"
+    }
+  ],
+  "testedAt": "2026-09-07",
+  "reviewer": {
+    "role": "independent implementation nonauthor",
+    "contextReuse": true,
+    "authored": [
+      "external read-only review scripts",
+      "judgments",
+      "criterion assessment"
+    ],
+    "productEdits": 0,
+    "nativeReplayByJudge": 0
+  },
+  "evaluationScope": "Separate successor for the frozen local LiveSync capture/render surface. New partial scores concern selected actual encoded output only. Historical CLI/native observations are retained with their original evidence; other examples remain unresolved and cannot be averaged away. No full product, responsive, accessibility, motion, human, provider or production acceptance.",
+  "environment": {
+    "os": "Windows; owned isolated checkout and child profile",
+    "nodeExecutable": "C:/nvm4w/nodejs/node.exe",
+    "nodeVersion": "Not independently re-read in this after review; exact executable/command paths retained",
+    "browser": "Headless Chromium through frozen Playwright1.60.0; browser version not promoted from a historical receipt",
+    "surface": "Prior owned local LiveSync native captures reused unchanged; new frozen encoded exports from the five-owner readability repair. No new browser/provider session in this assessment.",
+    "input": "Inherited native pointer/fill evidence only; the new review inspects encoded artifacts.",
+    "providerMode": "NONE: fixed-text local in-memory stand-in. No durable Convex or model execution.",
+    "sourceIdentity": {
+      "state": "UNCOMMITTED_REVIEWED_READABILITY_SOURCE_SNAPSHOT",
+      "sourceFreeze": {
+        "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\05-close\\source-after.json",
+        "bytes": 203094,
+        "sha256": "9c0556c9d68195277515242415e7afcac8a8e20e790403aec737dc44a21bbd6e"
+      },
+      "applicationReceipt": {
+        "path": "operator-evidence\\E6o-featureclipstudio-readability-apply-01\\receipt.json",
+        "bytes": 1834,
+        "sha256": "387e962892dd8a1f7c9641ea2b26d58a2b44e02b5aefab5a8e3a92c976361fcf"
+      }
+    },
+    "renderedOutputs": {
+      "nativeCssViewport": [
+        1280,
+        600
+      ],
+      "nativePngRaster": [
+        2560,
+        1200
+      ],
+      "nativeViewToolRaster": [
+        2048,
+        960
+      ],
+      "mp4": [
+        1920,
+        1080,
+        588,
+        "30fps"
+      ],
+      "gif": [
+        720,
+        405,
+        294,
+        "15fps"
+      ],
+      "actualCurrentMP4": {
+        "codec": "H264",
+        "width": 1920,
+        "height": 1080,
+        "frames": 588,
+        "fps": 30,
+        "videoSeconds": 19.6,
+        "containerSeconds": 19.648,
+        "audio": "AAC stereo 48000Hz; not listened to"
+      },
+      "actualCurrentGIF": {
+        "width": 720,
+        "height": 405,
+        "frames": 294,
+        "fps": 15,
+        "durationSeconds": 19.59,
+        "paletteColors": 128
+      }
+    },
+    "observerBoundary": "Two positives use the unchanged disclosed wrapper with route/state observations; native negatives have no --import instrumentation. Legacy OBSERVED_UNCHANGED_DRIVER string does not assert equality to the old baseline source."
+  },
+  "coverage": {
+    "sourceFloor": "Normal check39/39JS parse,36/36tour references,34/34prose citations; not a general unit-test suite.",
+    "nativeProof": "54exact native/generated/copied images in each positive;2matching final clients/2fresh recovery IDs;8steps588frames",
+    "normalViewports": [
+      [
+        1280,
+        600
+      ]
+    ],
+    "requiredResponsiveMatrixStatus": "NOT_RUN; export dimensions are not CSS viewport cells",
+    "computedText200": [],
+    "physicalDeviceOrHuman": false,
+    "counts": {
+      "criteria": 44,
+      "partiallyObserved": 21,
+      "notRun": 23,
+      "notApplicable": 0,
+      "belowTarget": [
+        "P4",
+        "U3"
+      ],
+      "belowTargetScope": "LiveSync/retained CLI partial rows only; other-example holds are not omitted from final readiness."
+    },
+    "historicalStatusRepair": "8stages/26actualcommands/646rawartifacts;6selectorcases,early navigation failure,late60s action timeout,two positive captures and explicit fresh-server recovery",
+    "historicalNativeAndMediaPixelsViewed": {
+      "nativePrimaryStatePairs": 8,
+      "nativeImages": 16,
+      "mp4ExtractedFrames": [
+        0,
+        4,
+        147,
+        294,
+        587
+      ],
+      "gifExtractedFrames": [
+        0,
+        147,
+        293
+      ]
+    },
+    "currentReadability": {
+      "nativeCaptureCountUnchanged": 54,
+      "preflightStills": 18,
+      "legacyRGBAParityPairs": 8,
+      "boundMP4Samples": 59,
+      "boundGIFSamples": 58,
+      "directlyViewedMP4Frames": [
+        0,
+        96,
+        156,
+        210,
+        226,
+        232,
+        268,
+        294,
+        372,
+        408,
+        420,
+        432,
+        491,
+        518,
+        587
+      ],
+      "directlyViewedGIFFrames": [
+        0,
+        2,
+        3,
+        8,
+        13,
+        34,
+        35,
+        38,
+        43,
+        48,
+        64,
+        65,
+        68,
+        73,
+        78,
+        91,
+        92,
+        95,
+        98,
+        100,
+        101,
+        104,
+        105,
+        107,
+        110,
+        113,
+        116,
+        119,
+        133,
+        134,
+        137,
+        142,
+        147,
+        172,
+        173,
+        176,
+        181,
+        186,
+        200,
+        201,
+        204,
+        207,
+        209,
+        210,
+        213,
+        214,
+        216,
+        218,
+        221,
+        224,
+        227,
+        230,
+        245,
+        246,
+        249,
+        254,
+        259,
+        293
+      ],
+      "independentGIFFramesDecoded": 294,
+      "fullMotionOrAudioAcceptance": false,
+      "runtimeRerunsByThisAssessment": 0
+    }
+  },
+  "criterionRatings": [
+    {
+      "id": "V1",
+      "field": "visualScore",
+      "name": "typography",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_105",
+        "readable_gif_259",
+        "readable_gif_293",
+        "readable_movie_587"
+      ],
+      "deductionOrMissingEvidence": "Selected input, user/agent cards, author and client labels are readable in the actual 720x405 GIF and 1920x1080 MP4. Muted inactive copy and GIF texture remain minor friction; no typography claim for the clipped off-target content.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V2",
+      "field": "visualScore",
+      "name": "spacing/grid",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_movie_432",
+        "readable_gif_216",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "Stacked focused panes use the available area effectively and separate captions from both clients. The longest selected card retains its bottom border with tight clearance; the preceding off-target card is partly cropped.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V3",
+      "field": "visualScore",
+      "name": "color/token discipline",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_0",
+        "readable_gif_216",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "Dark navy/green and client accents remain coherent in the current encoded output. Muted support text and GIF dithering remain minor polish friction; no token audit or measured contrast certification.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V4",
+      "field": "visualScore",
+      "name": "hierarchy",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_0",
+        "readable_gif_186",
+        "readable_gif_201",
+        "readable_gif_213",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "Readable acted controls and selected results now substantiate the caption. Client labels and the local fixed-text/in-memory disclosure remain visible; early camera travel and caption fade-in do not represent a fully settled hierarchy.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V5",
+      "field": "visualScore",
+      "name": "rendered legibility/contrast",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_0",
+        "readable_gif_216",
+        "readable_gif_293",
+        "independent_gif_decode"
+      ],
+      "deductionOrMissingEvidence": "The final selected result and visible mode disclosure can be read in the actual palette GIF without opening the native PNG. Inactive supporting copy and fading captions remain subdued. No numerical contrast or WCAG certification is claimed.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V6",
+      "field": "visualScore",
+      "name": "consistent elevation/icons",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_movie_432",
+        "readable_gif_216",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "Both clients retain matching cards, borders and client-label vocabulary. Mixed emoji/browser decoration persists; the longest card has only tight bottom clearance, so generous shadow clearance is not established.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V7",
+      "field": "visualScore",
+      "name": "alignment",
+      "observedScore": 5,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_0",
+        "readable_gif_216",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "The two stacked panel boxes and client labels align, and settled captions remain outside them in the inspected frames. No material box alignment or caption-overlap defect was observed; this does not close historical bundled-video overlap.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V8",
+      "field": "visualScore",
+      "name": "polish of empty/loading/error/populated states",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_0",
+        "readable_gif_216",
+        "readable_gif_293",
+        "native_working"
+      ],
+      "deductionOrMissingEvidence": "The reused empty, working and populated states remain coherent and their selected content is now legible in the output. Working/support copy is muted, and early moving crops omit some content; integrated error-state styling was not tested.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "V9",
+      "field": "visualScore",
+      "name": "purposeful motion and reduced-motion behavior",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Only sampled still frames and full-decoder outcomes were reviewed. Continuous motion quality and reduced-motion alternatives were not exercised.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "D1",
+      "field": "designScore",
+      "name": "Clarity of the main action",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "native_empty",
+        "native_typed",
+        "source_readme",
+        "selection_cases"
+      ],
+      "deductionOrMissingEvidence": "Add and Run agent are visible, labeled actions in the native board. The corrected capture instructions identify the next command and selection; the manual two-terminal/environment-variable setup remains minor developer friction. No fresh-human discovery study was run.",
+      "scope": "Agent-observed native action and corrected CLI setup path only."
+    },
+    {
+      "id": "D2",
+      "field": "designScore",
+      "name": "navigation/information architecture",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "No first-use navigation/information-architecture journey across the studio, documentation and other command families was run.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "D3",
+      "field": "designScore",
+      "name": "progressive disclosure",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "No disclosure, inspector or progressive-reveal interaction was exercised in this fixed example/output proof.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "D4",
+      "field": "designScore",
+      "name": "useful information density",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_186",
+        "readable_gif_216",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "Focused crops prioritize the acted controls and selected cards rather than shrinking the whole board. Both final results fit; neighboring content is intentionally outside the crop and longest-card clearance is tight.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "D5",
+      "field": "designScore",
+      "name": "consistency of component behavior and wording",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "unavailable_error",
+        "late_error",
+        "selection_cases",
+        "native_working",
+        "native_finished_a"
+      ],
+      "deductionOrMissingEvidence": "Selected-ID errors, original causes, recapture guidance and native working/finished labels agree with the observed behavior. Native error stacks add reading noise, and other command families are outside this proof.",
+      "scope": "Wording/behavior consistency in the named capture command and local demo."
+    },
+    {
+      "id": "R1",
+      "field": "responsiveScore",
+      "name": "Reflow/content preservation",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "The native capture used one1280x600 CSS cell. Fixed1920x1080 video and720x405 GIF sizes are export transforms, not responsive reflow tests.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "R2",
+      "field": "responsiveScore",
+      "name": "reachability of navigation and primary actions",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Actions were exercised at the single native desktop cell, without the required narrow/wide viewport matrix or responsive navigation checks.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "R3",
+      "field": "responsiveScore",
+      "name": "modal/panel/table/canvas adaptation",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Two panels fit one fixed video canvas; no adaptive modal/panel/table/canvas interaction or responsive layout was exercised.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "R4",
+      "field": "responsiveScore",
+      "name": "touch and on-screen-keyboard usability",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "No physical touch or operating-system on-screen keyboard was used. Headless pointer actions do not establish device usability.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "R5",
+      "field": "responsiveScore",
+      "name": "stability under zoom, long content and declared locales",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "No200% text,400% zoom, long-content, locale or narrow-width stability proof was run.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "I1",
+      "field": "interactionScore",
+      "name": "Working controls and keyboard paths",
+      "observedScore": 5,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "recovery_observation",
+        "native_typed",
+        "native_finished_a",
+        "native_finished_b"
+      ],
+      "deductionOrMissingEvidence": "Actual Playwright pointer/fill actions produced the intended card and fixed stream; both final clients agree. All named native CLI cases reached their expected exit. No control defect was observed in those exercised actions.",
+      "scope": "Pointer/fill and process invocation only. Keyboard-only paths, Tab order and device input remain NOT_RUN."
+    },
+    {
+      "id": "I2",
+      "field": "interactionScore",
+      "name": "immediate honest feedback and durable status",
+      "observedScore": 5,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "selection_cases",
+        "unavailable_error",
+        "late_error",
+        "recovery_observation"
+      ],
+      "deductionOrMissingEvidence": "All exercised rejected/failed commands omit DONE and return1; successful captures return0 with actual completed boards. No fake success remains in these thrown-failure cases.",
+      "scope": "Process feedback and current local state only; durable status and swallowed waitText semantics are not certified."
+    },
+    {
+      "id": "I3",
+      "field": "interactionScore",
+      "name": "validation/error/retry behavior",
+      "observedScore": 5,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "selection_cases",
+        "unavailable_command",
+        "late_command",
+        "explicit_recovery"
+      ],
+      "deductionOrMissingEvidence": "Six selector/no-filter cases, early connection refusal, late unchanged60-second timeout and an explicit fresh-server recapture all behaved as specified, retaining original causes.",
+      "scope": "These exact validation/error/recovery cases only; no automatic retry, full semantic validator or multi-spec guarantee."
+    },
+    {
+      "id": "I4",
+      "field": "interactionScore",
+      "name": "safe cancellation/undo and duplicate-action handling",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Cancellation, undo, duplicate submissions and concurrent same-path capture writers were not exercised. External cleanup/restoration is not product undo.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "I5",
+      "field": "interactionScore",
+      "name": "state continuity through navigation, reload, conflicts and reopening",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Fresh-server recovery deliberately creates new state. Navigation/reload/conflict/reopen continuity or durable state was not tested.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "A1",
+      "field": "accessibilityScore",
+      "name": "Semantic names/structure",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "The observer captured DOM text, IDs and geometry, but no semantic-role/name/structure audit was performed.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "A2",
+      "field": "accessibilityScore",
+      "name": "keyboard/focus order and modal focus return",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Pointer focus is visible in snapshots; keyboard order, keyboard-only operation, dialogs and focus return were not tested.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "A3",
+      "field": "accessibilityScore",
+      "name": "contrast/non-color cues",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Qualitative visual legibility is rated atV5. No manual/automated contrast measurements and full non-color-cue audit were performed.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "A4",
+      "field": "accessibilityScore",
+      "name": "text resize/reflow and target size",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "The fixed desktop controls were captured, but text resizing/reflow, target-size exceptions and narrow/device accessibility were not exercised.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "A5",
+      "field": "accessibilityScore",
+      "name": "screen-reader announcements and reduced-motion alternatives. Manual checks accompany automated scans",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "No screen reader, live announcement inspection or reduced-motion alternative was exercised.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "P1",
+      "field": "performanceScore",
+      "name": "Initial usable view",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Capture begins after scripted waits; no initial usable-view workload or latency budget was measured.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "P2",
+      "field": "performanceScore",
+      "name": "input/scroll responsiveness",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "The positive observer adds state-read/request-routing overhead. Input/scroll latency was not measured.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "P3",
+      "field": "performanceScore",
+      "name": "layout stability",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Sparse frames and a successful decoder do not establish layout stability or CLS.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "P4",
+      "field": "performanceScore",
+      "name": "honest long-operation feedback",
+      "observedScore": 3,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "late_stdout",
+        "late_command",
+        "media_receipt"
+      ],
+      "deductionOrMissingEvidence": "The CLI eventually reports the real timeout and rendering emits progress, but the missing-control call spends its existing60-second wait without additional user-facing progress between the initial capture line and final failure. It is bounded and honest, with a silent-wait usability gap.",
+      "scope": "Observed command-output feedback only, not throughput, latency improvement, web vitals or a performance benchmark."
+    },
+    {
+      "id": "P5",
+      "field": "performanceScore",
+      "name": "behavior with large data and constrained device/network conditions. Record workload and measured budgets separately from reviewer impressions",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "No large-data, constrained-device/network, spike or sustained-accumulation workload was run.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "U1",
+      "field": "usageScore",
+      "name": "First-time task comprehension",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "No fresh intended human participant attempted the job. An informed agent executing a prepared controller is not first-human comprehension evidence.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "U2",
+      "field": "usageScore",
+      "name": "successful core journey",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "recovery_observation",
+        "native_bijection",
+        "encoded_receipt",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "The inherited local two-client capture now ends in newly encoded files whose selected final result is readable at native GIF size. Minor crop/transition limits remain; no fresh human journey or other pipeline was run.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "U3",
+      "field": "usageScore",
+      "name": "bounded errors/help/rework",
+      "observedScore": 3,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "late_failed_outputs",
+        "external_restoration",
+        "unavailable_error",
+        "explicit_recovery"
+      ],
+      "deductionOrMissingEvidence": "Errors now give actionable causes and recapture guidance, but a failed selected capture still replaces its PNG directory with partial/diagnostic files. The successful55-file restoration in this proof is external backup work, so product recovery requires preserving artifacts and an explicit recapture.",
+      "scope": "Observed failed-output preservation/rework boundary; no new rollback capability is claimed."
+    },
+    {
+      "id": "U4",
+      "field": "usageScore",
+      "name": "usable export or consumer result",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "encoded_mp4",
+        "encoded_gif",
+        "encoded_receipt",
+        "readable_movie_432",
+        "readable_gif_216",
+        "readable_gif_293"
+      ],
+      "deductionOrMissingEvidence": "The H264 and palette GIF fully decode, and the selected user/agent results plus local-mode disclosure are readable in the actual files. Tight framing, dither texture and partial early travel remain. Continuous motion, audio and human comprehension were not assessed.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "U5",
+      "field": "usageScore",
+      "name": "restart/reopen/handoff without hidden knowledge. Fresh-agent operability is separate from observed fresh-human usability",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "Explicit technical recovery is observed, but no fresh developer followed a final portable handoff end-to-end after publication. That separate handoff remains pending.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "L1",
+      "field": "alignmentScore",
+      "name": "Fit to intended user and job",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_movie_587",
+        "readable_gif_293",
+        "readability_narrative"
+      ],
+      "deductionOrMissingEvidence": "For a developer showing this fixed local collaboration example, the exported clip now contains inspectable selected results in both clients. It remains a focused presentation requiring the stated crop/travel limits, not a complete board or provider demonstration.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "L2",
+      "field": "alignmentScore",
+      "name": "coverage of advertised capabilities",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "The current proof covers the local LiveSync capture/render only; advertised provider, narration, other-app and other composition capabilities were not exercised.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "L3",
+      "field": "alignmentScore",
+      "name": "truthful limits/status",
+      "observedScore": 4,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readable_gif_0",
+        "readable_gif_293",
+        "unavailable_error",
+        "late_error",
+        "readability_narrative"
+      ],
+      "deductionOrMissingEvidence": "The persistent title explicitly discloses local collaboration, fixed text and in-memory state at actual GIF size, matching the captured mode. Honest CLI failure observations remain inherited. Captions and selected stills do not substantiate timing, complete early stream visibility or live-provider claims.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    },
+    {
+      "id": "L4",
+      "field": "alignmentScore",
+      "name": "permissions and review authority",
+      "observedScore": null,
+      "finalScore": null,
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ],
+      "deductionOrMissingEvidence": "The owned controller has a bounded authorization/environment policy, but application review/approval/permissions behavior was not exercised and cannot be graded from the harness.",
+      "scope": "Current CLI/captured/rendered-artifact profile; absence of coverage is not N/A or a pass."
+    },
+    {
+      "id": "L5",
+      "field": "alignmentScore",
+      "name": "source/trace/artifact consistency",
+      "observedScore": 5,
+      "finalScore": null,
+      "status": "PARTIALLY_OBSERVED",
+      "evidenceRefs": [
+        "readability_source_freeze",
+        "native_bijection",
+        "encoded_samples",
+        "independent_gif_decode",
+        "readability_final_judge"
+      ],
+      "deductionOrMissingEvidence": "The accepted source freeze, unchanged 54 native images, new encoded-media hashes, all 117 bound samples and independent selected GIF pixel readback agree. No material identity inconsistency was found; provenance is local fixed-text capture, not a shared/deployed producer.",
+      "scope": "Selected actual LiveSync MP4/GIF output only; unchanged WT-NodeRoom/default findings remain separately open. No full-repository or untested-state score."
+    }
+  ],
+  "visualScore": null,
+  "designScore": null,
+  "responsiveScore": null,
+  "interactionScore": null,
+  "accessibilityScore": null,
+  "performanceScore": null,
+  "usageScore": null,
+  "alignmentScore": null,
+  "barScores": null,
+  "overallScore": null,
+  "overallGrade": null,
+  "workingTarget": {
+    "eachApplicableCriterionAtLeast": 4,
+    "eachDimensionAtLeast": 4.5,
+    "status": "UNCHANGED; no means computed because coverage is incomplete"
+  },
+  "confidence": {
+    "sourceNativeArtifactIdentity": "High within named proof",
+    "pixelDeductions": "Moderate agent judgment of all 58 selected actual GIF frames and 15 selected MP4 frames; no human calibration or continuous playback review",
+    "responsiveAccessibilityPerformanceHuman": "Not measured beyond explicit partial facts"
+  },
+  "developerHandoffStatus": "NAMED_SOURCE_CAPTURE_STATUS_AND_LIVESYNC_ENCODED_OUTPUT_APPROVED; final portable handoff/publication remains a separate step",
+  "userExperienceStatus": "AGENT_EVALUATED_ONLY_PARTIAL; LiveSync selected output readability improved; other examples and full coverage held",
+  "freshHumanUsabilityStatus": "NOT_RUN",
+  "sharedIntegrationStatus": "NOT_RUN_FOR_THIS_CANDIDATE",
+  "productionStatus": "NOT_RUN",
+  "hardGates": [
+    {
+      "name": "Exact named selector/thrown-failure status repair",
+      "status": "PASS_SCOPED",
+      "evidenceRefs": [
+        "final_judge",
+        "selection_cases",
+        "unavailable_error",
+        "late_error"
+      ]
+    },
+    {
+      "name": "Actual local capture and selected LiveSync encoded output",
+      "status": "PASS_SCOPED_WITH_PRESENTATION_LIMITS",
+      "evidenceRefs": [
+        "recovery_observation",
+        "encoded_receipt",
+        "readability_final_judge"
+      ]
+    },
+    {
+      "name": "Final responsive/accessibility/human coverage",
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "plan",
+        "stage_review"
+      ]
+    },
+    {
+      "name": "Shared integration and production",
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "source_freeze"
+      ]
+    },
+    {
+      "name": "Dependency readiness",
+      "status": "RETAINED_ADVISORIES_NOT_REASSESSED_IN_THIS_SLICE",
+      "evidenceRefs": [
+        "final_judge"
+      ]
+    },
+    {
+      "name": "Other examples and full experience coverage",
+      "status": "HELD",
+      "evidenceRefs": [
+        "bundled_historical_frame571",
+        "historical_assessment"
+      ]
+    }
+  ],
+  "requiredFixes": [
+    {
+      "id": "FCS-OUTPUT-READABILITY",
+      "criterionIds": [
+        "V1",
+        "V2",
+        "V4",
+        "V5",
+        "D4",
+        "U2",
+        "U4",
+        "L1",
+        "L3"
+      ],
+      "status": "CLOSED_ONLY_FOR_NAMED_LIVESYNC_SELECTED_OUTPUT",
+      "reason": "The nine prior LiveSync readability deductions improve to scoped observed 4s using actual encoded output; other examples remain unresolved.",
+      "nextLowestFix": "Retain tight-margin, off-target crop and early-travel limits in handoff. Any other-example repair requires its own before/after proof.",
+      "evidenceRefs": [
+        "readability_final_judge",
+        "readable_gif_216",
+        "readable_gif_293"
+      ]
+    },
+    {
+      "id": "FCS-FAILED-CAPTURE-REWORK",
+      "criterionIds": [
+        "U3",
+        "I4",
+        "I5",
+        "U5"
+      ],
+      "status": "KNOWN_PRODUCT_BOUNDARY_AND_HANDOFF_HOLD",
+      "reason": "A failed capture keeps its old generated module but can replace selected PNGs with partial diagnostics. This proof restores55files externally.",
+      "nextLowestFix": "Keep direct backup/diagnostic/recapture instructions in the handoff. Treat any future atomic multi-spec or product-rollback change as a separate planned capability, not a hidden claim from this controller.",
+      "evidenceRefs": [
+        "late_failed_outputs",
+        "external_restoration",
+        "source_integration_limits"
+      ]
+    },
+    {
+      "id": "FCS-LONG-WAIT-FEEDBACK",
+      "criterionIds": [
+        "P4"
+      ],
+      "status": "OBSERVED_FRICTION_SEPARATE_FROM_HONEST_EXIT_FIX",
+      "reason": "The real late-action case has an existing60-second silent interval after its initial capture line before the final failure.",
+      "nextLowestFix": "If addressed later, retain the native deadline and original error while giving truthful elapsed/current-step feedback; do not raise timeout or claim fake progress.",
+      "evidenceRefs": [
+        "late_stdout",
+        "late_command"
+      ]
+    },
+    {
+      "id": "FCS-DEFAULT-EXAMPLE-QUALITY",
+      "criterionIds": [
+        "V1",
+        "V2",
+        "V4",
+        "V5",
+        "V7",
+        "D4",
+        "U4",
+        "L1"
+      ],
+      "status": "UNCHANGED_OTHER_SURFACE_HOLD",
+      "reason": "The default/WT-NodeRoom historical readability and caption/contrast findings are not fixed by the LiveSync opt-in.",
+      "nextLowestFix": "Keep the affected default example separate in handoff; do not present selected legacy parity as quality repair.",
+      "evidenceRefs": [
+        "bundled_historical_frame571",
+        "bundled_historical_media",
+        "readability_preflight_judge"
+      ]
+    }
+  ],
+  "limitations": [
+    "21 partial observations and 23 NOT_RUN rows; all 44 final criterion scores, eight dimensions, overall and bar scores remain null. No letter grade, whole-repository score or readiness pass.",
+    "Nine observed LiveSync scores improve to 4; these are surface-scoped partial ratings. The repo minimum-over-required-surfaces rule remains intact and cannot be calculated with unresolved other surfaces.",
+    "All 58 selected actual GIF frames and 15 selected MP4 frames were viewed in the accepted review. All 117 supplied sample bindings were verified; all 294 GIF frames were independently decoded, with 58 exact RGBA comparisons. This assessment does not repeat those operations.",
+    "Tight longest-card lower margin, partly cropped off-target card, entering/returning controls during camera travel, muted inactive copy, caption fade-in and GIF texture remain. No claim that every early stream state is fully visible.",
+    "WT-NodeRoom/default example observations remain open. Legacy eight-pair RGBA parity preserves behavior, not a quality upgrade.",
+    "Fixed 1920x1080 movie and 720x405 GIF are export dimensions, not responsive CSS viewport proof. Responsive, keyboard/device/accessibility, continuous motion/audio and fresh-human coverage remain missing.",
+    "No new capture or provider run. Same 54 local fixed-text/in-memory native images; prior pointer/CLI outcomes retain their original source/evidence lineage. No new interaction or performance score from the renderer.",
+    "The 12 retained dependency advisories, waitText suppression, partial selected-output/no product rollback and silent late-action wait remain unchanged.",
+    "The final judge nested media.visualReview preamble was stale. An explicit reference-only correction is included; original judge bytes and its completed final verdict remain preserved.",
+    "Only immutable historical/source/evidence files were checked here. No stable current working-tree claim during separately authorized documentation publication, no runtime rerun and no central grade-file change."
+  ],
+  "evidenceRefs": {
+    "standard": {
+      "path": "operator-evidence\\REPO_READINESS_STANDARD.md",
+      "bytes": 18664,
+      "sha256": "8b5bb532bf0dfeed7cc4ecd2b425d708fc49048cc05ab4cbeb315fc3534aeff2"
+    },
+    "source_freeze": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\08-freeze\\source-after.json",
+      "bytes": 203094,
+      "sha256": "81574f6cf97fbafd143464145f5d90481014752af6183a8250be9d39cc58200d"
+    },
+    "final_judge": {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_CAPTURE_STATUS_FINAL_JUDGE.json",
+      "bytes": 9876,
+      "sha256": "833c51ba6f9974d60662c256f03fb87e8a16b5830006b496c9832ed0dbbf1020"
+    },
+    "baseline_judge": {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_CURRENT_CONSUMER_FINAL_JUDGE.json",
+      "bytes": 18212,
+      "sha256": "fdaeb9ddafea99fa9c9ae836463996e4b7c71b9a15b9d9d7732a462f27b3200d",
+      "kind": "preserved historical before"
+    },
+    "plan": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-plan-01\\plan.json",
+      "bytes": 1578,
+      "sha256": "f88d9798efdddd700fdf370e476b9326fb0b946d0cca038ae7d5e062caaaa85a"
+    },
+    "source_application": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-apply-01\\receipt.json",
+      "bytes": 2334,
+      "sha256": "7517ad977d4b0069f2bbf58029352a63e481c491f6461e387f984bfd2f6bf9e5"
+    },
+    "source_readme": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-repair-plan-01\\proposed\\README.md.txt",
+      "bytes": 65333,
+      "sha256": "f30668cb1d8bd56073cdff614dd2f9c854e76fd53fbcf3698e6233f730bf2a20"
+    },
+    "source_integration_limits": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-repair-plan-01\\proposed\\docs\\codebase\\INTEGRATIONS.md.txt",
+      "bytes": 5769,
+      "sha256": "d5fe0d5133c11b83c3994f44540fb124d817657182ccb46954b6cb510add81de"
+    },
+    "normal_check": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\01-check\\normal-check.stdout.txt",
+      "bytes": 160,
+      "sha256": "bd6cb30c52eb122651a342069acd32cf94a32ed9ee44fb386fa99239533afefb"
+    },
+    "selection_cases": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\02-selection-negatives\\selection-semantics.json",
+      "bytes": 1106,
+      "sha256": "3568846278b110ab5eba127bc6366d7cc96483fc9a7d96c19a9c1511c4cceee1"
+    },
+    "unavailable_error": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\04-unavailable\\unavailable.stderr.txt",
+      "bytes": 676,
+      "sha256": "f5006960fbf50e8e4b77432ef86695c93426fd43870933dfd3f441edc98e9cec"
+    },
+    "unavailable_command": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\04-unavailable\\unavailable-command.json",
+      "bytes": 225,
+      "sha256": "d0fa01fea600b544e7a9ecf7c8222c30f86a955b62bfd4d00f62092aae628890"
+    },
+    "late_error": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\05-missing-control\\missing-control.stderr.txt",
+      "bytes": 636,
+      "sha256": "ff955ac7ccfea174c0a74ec401314c95983b67d1448d13a1e27d6a2b36485c61"
+    },
+    "late_stdout": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\05-missing-control\\missing-control.stdout.txt",
+      "bytes": 460,
+      "sha256": "ffed6bb12aa48f864e393ce286e4f14fd94970e8b473fd87f18c8f3b8307f50b"
+    },
+    "late_command": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\05-missing-control\\missing-control-command.json",
+      "bytes": 230,
+      "sha256": "3ff6d902e3ded3e4b65ddae31d8ee15462666b69a6b3814d0bfad0532355ca96"
+    },
+    "late_failed_outputs": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\05-missing-control\\source-failed-before-restoration.json",
+      "bytes": 6724,
+      "sha256": "4b207e8f612fa366110272aa0f9f7fceaa7e57bf1254eaae650c33f2f02e570a"
+    },
+    "external_restoration": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\05-missing-control\\restoration.json",
+      "bytes": 9623,
+      "sha256": "6669a72ec6626573b92b4e5e0b2197ffa96239cdf98e6de479ed16def1dcd78a"
+    },
+    "positive_observation": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\03-positive\\observer\\report.json",
+      "bytes": 17323,
+      "sha256": "a42ab544927ca6448cd87dbc669e500cc980ee02e2b9b6a50440a3e1ac1e8d75"
+    },
+    "recovery_observation": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\observer\\report.json",
+      "bytes": 17323,
+      "sha256": "7fde87aa378f1a50ad6b690e6399c6f2a03ec263b00906f1153f9f837fcc2c45"
+    },
+    "explicit_recovery": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\explicit-recovery.json",
+      "bytes": 296,
+      "sha256": "30a2afd55aff9716327d56f5b761d758d9d430bf071973e54eeccbd7597ea5cd"
+    },
+    "native_bijection": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\native-generated-disk-bijection.json",
+      "bytes": 8499,
+      "sha256": "a97cca0bb43d1fa8710ae98f03cbe2cff84fffd48b6363e0421818660bdeb71d"
+    },
+    "native_empty": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\after\\public\\wt-collab\\LiveSync\\p0_00.png",
+      "bytes": 236192,
+      "sha256": "3432eebd1336f92b13502f69fe28b176daf260fc83e76b27f17c3bcdad908e4f"
+    },
+    "native_typed": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\after\\public\\wt-collab\\LiveSync\\p0_01.png",
+      "bytes": 241905,
+      "sha256": "36b6110a24d5ad3192cd1b013bac6f403aa71444b03f96858406cd4b68f4fd47"
+    },
+    "native_working": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\after\\public\\wt-collab\\LiveSync\\p0_06_00.png",
+      "bytes": 228274,
+      "sha256": "63cb5423e4de0b02c181e74cd34a76ee256184d3ef1140c5d13468528ad9a7a8"
+    },
+    "native_finished_a": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\after\\public\\wt-collab\\LiveSync\\p0_07.png",
+      "bytes": 233304,
+      "sha256": "40a772e63cdeab75031898e15f2c2694e549321800c70b4a86994100e766e3b2"
+    },
+    "native_finished_b": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\06-recovery\\after\\public\\wt-collab\\LiveSync\\p1_07.png",
+      "bytes": 232433,
+      "sha256": "ab6c81aed2aece48c7830fc2c34583e7547293abab36f2486bc969496b706a8e"
+    },
+    "mp4_action": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\07-media\\repaired-frame-147.png",
+      "bytes": 223729,
+      "sha256": "f4c6fcdf0cf8a73b3f555a00b5a1f37ae5126dcf06293c054e7cd37d36e30281"
+    },
+    "mp4_final": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\07-media\\repaired-frame-587.png",
+      "bytes": 234102,
+      "sha256": "c8567729d745e5de081e7e8a6483fb046a4fa712e7c5c48a005fccdb07e3ce79"
+    },
+    "gif_empty": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\07-media\\gif-frame-0.png",
+      "bytes": 41471,
+      "sha256": "0ff5273dbd5ecf0dd9ada37061ca17b381aa39ccad2837752a0729c868c46165"
+    },
+    "gif_final": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\07-media\\gif-frame-293.png",
+      "bytes": 46486,
+      "sha256": "27ce1ac241da93b211beb75ee9b777a599226e8d32a480626e29fd5eefa5ae77"
+    },
+    "media_bindings": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-final-01\\media-bindings.json",
+      "bytes": 944,
+      "sha256": "4fad28259220d9b95d1ba565c58a3d40408a847296eeefb577ebd9d36ceca357"
+    },
+    "media_receipt": {
+      "path": "operator-evidence\\E6o-featureclipstudio-capture-status-after-01\\07-media\\receipt.json",
+      "bytes": 8609,
+      "sha256": "b1b6e6eeb6cbfabe3b40e96d27023ede5cc640278ff58792447d88e4416764ab"
+    },
+    "native_pixel_review": {
+      "path": "operator-evidence\\E6o-status-after-final-independent-01\\native-pixel-review.json",
+      "bytes": 10204,
+      "sha256": "d2e1cb5040ab3e745ab789b84fd64218aaaa3b500e5ed14470b4c4786dbaab5f"
+    },
+    "media_pixel_review": {
+      "path": "operator-evidence\\E6o-status-after-final-independent-01\\media-pixel-review.json",
+      "bytes": 4288,
+      "sha256": "34afdb366b95101d9b774a3b879fdb42a390e8fcf4e18910587ccd7f966cb383"
+    },
+    "stage_review": {
+      "path": "operator-evidence\\E6o-status-after-final-independent-01\\stage-review.json",
+      "bytes": 17750,
+      "sha256": "1f851039f0b48c8bab18eff8b2e81e89c4132c3046d018349e52057e7ed6218f"
+    },
+    "source_closure": {
+      "path": "operator-evidence\\E6o-status-after-final-independent-01\\source-closing.json",
+      "bytes": 2854,
+      "sha256": "2b5db0e60a36e5f2ee7aae551d1b69841d26e980868514d47b59e51adc923c50"
+    },
+    "process_closure": {
+      "path": "operator-evidence\\E6o-status-after-final-independent-01\\process-readback.json",
+      "bytes": 111,
+      "sha256": "0085fb39f35b5900e9062413736d7c1009412fe8124c4b6362befeaf6db15447"
+    },
+    "historical_assessment": {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json",
+      "bytes": 52393,
+      "sha256": "1af30f642f6521de90e58fa64aea530297448627fe23770d8a23bb3420bb3ca0"
+    },
+    "readability_final_judge": {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.json",
+      "bytes": 4365,
+      "sha256": "d403ffd98ae140d87130ad2605fcceb63a0fcc9e9e2b12a2c9d7a613bc47095e"
+    },
+    "readability_narrative": {
+      "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.md",
+      "bytes": 6199,
+      "sha256": "ecdaf01085fefdc7777316e0f74ef4b97bf9af02a129764eb100e3b9f5a5352d"
+    },
+    "readability_field_correction": {
+      "path": "operator-evidence\\E6o-readability-criterion-successor-01\\final-judge-field-correction.json",
+      "bytes": 1066,
+      "sha256": "fbab4b9092efce1460d572e83e2839039ae36dbb801012bfe36167d941cfb6ec"
+    },
+    "readability_source_freeze": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\05-close\\source-after.json",
+      "bytes": 203094,
+      "sha256": "9c0556c9d68195277515242415e7afcac8a8e20e790403aec737dc44a21bbd6e"
+    },
+    "readability_apply": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-apply-01\\receipt.json",
+      "bytes": 1834,
+      "sha256": "387e962892dd8a1f7c9641ea2b26d58a2b44e02b5aefab5a8e3a92c976361fcf"
+    },
+    "readability_preflight_judge": {
+      "path": "operator-evidence\\E6o_READABILITY_PREFLIGHT_FINAL_JUDGE.json",
+      "bytes": 2671,
+      "sha256": "9e9231d36753ece032268420792f4688db05baef6840071aa6260109f70df0b1"
+    },
+    "readability_plan": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-plan-03\\plan.json",
+      "bytes": 5457,
+      "sha256": "32e0dcd1e76e4972549203bd0bae47d387af2f6072ebf77ba94871e7448a58ce"
+    },
+    "encoded_receipt": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\receipt.json",
+      "bytes": 96049,
+      "sha256": "9b0493230f689b4e1eba82185465aae3982c57e35554fc3a8c0d27d13843fbcf"
+    },
+    "encoded_manifest": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\manifest.json",
+      "bytes": 78157,
+      "sha256": "25067467684022f9cdcef775cb47c459d8795b0685bf58ade898a70a59694999"
+    },
+    "readability_closure": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\05-close\\receipt.json",
+      "bytes": 164,
+      "sha256": "38b5dd782102d499bb77624ec6bae6aadcac5591ab18071728e7160d733fa72c"
+    },
+    "encoded_mp4": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\readable-livesync.mp4",
+      "bytes": 2374634,
+      "sha256": "9fdf8250cfadd6957ae23e68de104b2827d9b64de3857bf3ee1808860698700e"
+    },
+    "encoded_gif": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\readable-livesync.gif",
+      "bytes": 2772039,
+      "sha256": "406425fade2aaae2b06722a4d279214f43b6b1698f22ee6b9c8b175af9967648"
+    },
+    "encoded_samples": {
+      "path": "operator-evidence\\E6o-readability-media-independent-01\\all-sample-bindings.json",
+      "bytes": 42507,
+      "sha256": "ddd580c178d9f84e2c795b18be5f28902428884fcd46bbabf5631dc5e4e7c4ae"
+    },
+    "independent_gif_decode": {
+      "path": "operator-evidence\\E6o-readability-media-independent-01\\independent-GIF-decode.json",
+      "bytes": 3365,
+      "sha256": "8138f62b1543248635aff702b4a1bf058a7166ca5a10f87eaaa11af6a686373e"
+    },
+    "bundled_historical_media": {
+      "path": "operator-evidence\\E6o-featureclipstudio-current-consumer-01\\06-bundled-render\\bundled-media.json",
+      "bytes": 245,
+      "sha256": "24ceefeda1ca379473a79cde40de1741472e2530868c7e2eafcb78284fc862ff"
+    },
+    "bundled_historical_frame571": {
+      "path": "operator-evidence\\E6o-featureclipstudio-current-consumer-01\\06-bundled-render\\bundled-frame-571.png",
+      "bytes": 533368,
+      "sha256": "da3a2553d5d0db53e9de23ca2435d1da2eddb25907cc98ad15aaeb6838fea63d"
+    },
+    "readable_movie_0": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-0.png",
+      "bytes": 449030,
+      "sha256": "181cd4d925a5f1bb1645d75357c04d58e1b816ade5624b8dd614611f81fb1da4"
+    },
+    "readable_movie_96": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-96.png",
+      "bytes": 518760,
+      "sha256": "4a30488b5e8064adf7e5be51861587637b9ed9cc8c7de8b35f7ed29da24351b0"
+    },
+    "readable_movie_156": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-156.png",
+      "bytes": 516450,
+      "sha256": "b9f3ff3791015b83c710feca1bf1644ec98320dd36887cf941b5be2300b08c72"
+    },
+    "readable_movie_210": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-210.png",
+      "bytes": 304978,
+      "sha256": "283f6a9a3b4310ed32e7b0eeb420510d6437029666b4338a80ef916bbdec7db6"
+    },
+    "readable_movie_294": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-294.png",
+      "bytes": 289199,
+      "sha256": "0c0d46c1c07a4d98fb7eb5c7026b00f67d44572be7a85aa88a2ec5b7360d6b40"
+    },
+    "readable_movie_372": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-372.png",
+      "bytes": 506643,
+      "sha256": "2ad49cbc3cb519cffff293ef5a104b773263793c9d4f3356f1ce23e394003d89"
+    },
+    "readable_movie_408": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-408.png",
+      "bytes": 493764,
+      "sha256": "4f135552f905d3a29ea360945dabcb37b395871dcae936275a4adeb9c492cef8"
+    },
+    "readable_movie_420": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-420.png",
+      "bytes": 425302,
+      "sha256": "c02b3301b5ab2e1c9cf54ca899cc4841ef9fd5d0f7db17c39145bccbf2a1cf6d"
+    },
+    "readable_movie_432": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-432.png",
+      "bytes": 553961,
+      "sha256": "bfb055ea03da0b5aa564d59122bac4ad3198db09a1b964e15ebc9fc14ef06b37"
+    },
+    "readable_movie_491": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-491.png",
+      "bytes": 582849,
+      "sha256": "6141beb9895647c5c48c03e1a1e10a837d034564870ee83cf46d4e39827b692e"
+    },
+    "readable_movie_518": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-518.png",
+      "bytes": 578710,
+      "sha256": "d18a89ec9f72f7fa05810036e4ce48813d380853066180d096f52d014508ee00"
+    },
+    "readable_movie_587": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\movie-587.png",
+      "bytes": 578774,
+      "sha256": "105372737a0521a8deab9fca32cb9ba25e40e3845d8e7b20851521c99cd4aae7"
+    },
+    "readable_gif_0": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-0.png",
+      "bytes": 69971,
+      "sha256": "7d1a6004259387788d815b049f17e6ba70764389938657f22b8b27b458151ab2"
+    },
+    "readable_gif_48": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-48.png",
+      "bytes": 77084,
+      "sha256": "0fe14996174cb39f6b6a9a14e44b6a596dc97face9acb28a039e5f3ecadc5457"
+    },
+    "readable_gif_78": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-78.png",
+      "bytes": 76323,
+      "sha256": "ed299db2f33c8261df32ab60842260623b323543a02d9e8364839250a8c332bd"
+    },
+    "readable_gif_105": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-105.png",
+      "bytes": 51717,
+      "sha256": "3811256de7e9126e8435952858c78d1bdf4b66db709224f348146acdfe6569ee"
+    },
+    "readable_gif_147": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-147.png",
+      "bytes": 50905,
+      "sha256": "83812d5e087eb8cf6ef58c34b01b52b4dd4a222659aa921a8d5096c768e05e22"
+    },
+    "readable_gif_176": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-176.png",
+      "bytes": 51551,
+      "sha256": "31aa73f0806cdc4167ce85a6fa80c1d46af4aba501b3e3574bf073b292c5c001"
+    },
+    "readable_gif_186": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-186.png",
+      "bytes": 76240,
+      "sha256": "603372e3becb11b7b9479df7b892023a624c57c9eee55bf2b81228a57ba97043"
+    },
+    "readable_gif_201": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-201.png",
+      "bytes": 72022,
+      "sha256": "cd0c71876f41ca5664739c8bfb557d36f7d50f7bb8eeceb73f29e7c4256fa861"
+    },
+    "readable_gif_204": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-204.png",
+      "bytes": 75230,
+      "sha256": "ec3d85c21127980139b9095194e29c4f0dacca356360687493f7320d9a941714"
+    },
+    "readable_gif_213": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-213.png",
+      "bytes": 66997,
+      "sha256": "5135e50d56755a468f670ffa59e3d319663df70613a3ba703b4b3771c57672b0"
+    },
+    "readable_gif_216": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-216.png",
+      "bytes": 71097,
+      "sha256": "310cd10b6ceaad026d319473828f5504b4eee23b2e4b35305c6dc428b5759a21"
+    },
+    "readable_gif_245": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-245.png",
+      "bytes": 73248,
+      "sha256": "58b5ef44eab8546ebe05e46e7adacf3433e39d24f5bbdb0b7887c4605ebd7966"
+    },
+    "readable_gif_259": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-259.png",
+      "bytes": 72989,
+      "sha256": "f9277d00ea2a411ff80fc7c69de3387c84c9edfb1016a82bae6e6bf924101a5d"
+    },
+    "readable_gif_293": {
+      "path": "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\gif-293.png",
+      "bytes": 73016,
+      "sha256": "1203538167ff51942b507d05391142772b0034f9a3423e6971865772d8d03fb3"
+    }
+  },
+  "completionTraceability": "Re your request for explicit visual/UI/responsive/interaction grading: this separate 44-criterion successor records nine evidence-supported LiveSync readability improvements, preserves other-example findings and historical assessment, and leaves all full scores null.",
+  "historicalAssessment": {
+    "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json",
+    "bytes": 52393,
+    "sha256": "1af30f642f6521de90e58fa64aea530297448627fe23770d8a23bb3420bb3ca0"
+  },
+  "scopeCarryForward": "The same 54 native captures and accepted failure-policy lineage are retained. No native interaction was repeated in this presentation-only slice. Unchanged rows retain their original evidence and scope, not a claim of new testing. This assessment binds the immutable 904-row source freeze; later documentation/publication working-tree edits are outside it.",
+  "surfaceObservations": [
+    {
+      "surface": "LiveSync selected encoded presentation",
+      "status": "SCOPED_READABILITY_IMPROVED",
+      "evidenceRefs": [
+        "readability_final_judge",
+        "encoded_mp4",
+        "encoded_gif"
+      ],
+      "finalScore": null
+    },
+    {
+      "surface": "WT-NodeRoom / bundled default example",
+      "status": "HISTORICAL_FINDINGS_RETAINED_UNRESOLVED",
+      "observations": [
+        "Bundled historical input is distinct from fresh LiveSync capture.",
+        "Prior caption/overlap, small inner content and contrast observations remain. The LiveSync opt-in does not repair this surface.",
+        "Eight legacy RGBA parity pairs establish unchanged selected output, not improved quality or a whole-default-example pass."
+      ],
+      "evidenceRefs": [
+        "bundled_historical_media",
+        "bundled_historical_frame571",
+        "baseline_judge",
+        "readability_preflight_judge"
+      ],
+      "finalScore": null
+    }
+  ]
+}

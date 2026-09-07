@@ -1,0 +1,14 @@
+{
+  "name": "missing-control",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "walkthrough.collab.mjs"
+  ],
+  "seconds": 63.328,
+  "timeoutSeconds": 150,
+  "timedout": false,
+  "exitCode": 1,
+  "expectedExitCodes": [
+    1
+  ]
+}

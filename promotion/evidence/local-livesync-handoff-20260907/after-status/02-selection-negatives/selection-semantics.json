@@ -1,0 +1,44 @@
+{
+  "cases": [
+    {
+      "name": "unknown",
+      "expectedMessage": "Unknown COLLAB_ONLY",
+      "explicitValue": "FCS_UNKNOWN_OWNED",
+      "present": true
+    },
+    {
+      "name": "mixed",
+      "expectedMessage": "Unknown COLLAB_ONLY",
+      "explicitValue": "LiveSync,FCS_UNKNOWN_OWNED",
+      "present": true
+    },
+    {
+      "name": "whitespace",
+      "expectedMessage": "Unknown COLLAB_ONLY",
+      "explicitValue": "   ",
+      "present": true
+    },
+    {
+      "name": "comma",
+      "expectedMessage": "Unknown COLLAB_ONLY",
+      "explicitValue": ",",
+      "present": true
+    },
+    {
+      "name": "absent",
+      "expectedMessage": "refusing to wipe",
+      "explicitValue": null,
+      "present": false
+    },
+    {
+      "name": "empty-env",
+      "expectedMessage": "refusing to wipe",
+      "explicitValue": "",
+      "present": true
+    }
+  ],
+  "allExit1": true,
+  "sourceExact": true,
+  "observedChromeChildren": 0,
+  "emptyEnvironmentMeaning": "Empty string is falsy and follows existing no-filter refusal. Whitespace/comma values have empty entries and fail validation."
+}
