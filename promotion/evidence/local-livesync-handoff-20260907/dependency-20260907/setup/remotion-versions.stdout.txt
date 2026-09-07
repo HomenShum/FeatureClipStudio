@@ -1,0 +1,25 @@
+Node.JS = v22.22.2, OS = win32
+
+On version: 4.0.479
+- @remotion/bundler
+- @remotion/canvas-capture
+- @remotion/cli
+- @remotion/compositor-win32-x64-msvc
+- remotion
+- @remotion/licensing
+- @remotion/media-utils
+- @remotion/player
+- @remotion/renderer
+- @remotion/streaming
+- @remotion/studio-server
+- @remotion/studio-shared
+- @remotion/studio
+- @remotion/timeline-utils
+- @remotion/media-parser
+- @remotion/zod-types
+- @remotion/web-renderer
+
+Extra packages:
+- zod@[32m4.3.6[39m
+
+All packages have the correct version.

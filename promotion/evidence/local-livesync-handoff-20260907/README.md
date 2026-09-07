@@ -8,7 +8,8 @@ The [movie](after-output/readable-livesync.mp4) and [actual palette GIF](after-o
 
 | Claim | Physical payload |
 |---|---|
-| Normal locked setup and current source check | [Install output](setup/normal-ci.stdout.txt), [Node version](setup/node-version.stdout.txt), [normal check](checks/normal-check.stdout.txt). The install recorded 12 advisories; they remain unresolved. |
+| Current locked setup and matched output after the dependency update | [September 7 follow-up](dependency-20260907/README.md): Remotion 4.0.479, installed audit zero, 44 stills and 122 encoded samples matched, full movies/GIF decoded. |
+| Original locked setup and source check | [Install output](setup/normal-ci.stdout.txt), [Node version](setup/node-version.stdout.txt), [normal check](checks/normal-check.stdout.txt). These historical logs recorded 12 affected packages. |
 | Original false success | [Unknown selector exit](before-status/unknown-selector-command.json), [unavailable demo exit](before-status/unavailable-demo-command.json), [original completion output](before-status/unavailable-demo.stdout.txt). These are historical failures, not passing examples. |
 | Corrected selection boundary | [Six selector cases](after-status/02-selection-negatives/selection-semantics.json), including absent/explicit empty versus whitespace/comma semantics. |
 | Failed work exits with its cause; explicit recovery succeeds | [Unavailable demo](after-status/04-unavailable/unavailable-command.json), [missing control](after-status/05-missing-control/missing-control-command.json), [successful recapture](after-status/06-recovery/selected-livesync-command.json), [native observation](after-status/native-observation.json), [54 native-buffer/generated/disk bindings](after-status/06-recovery/native-generated-disk-bijection.json). |
@@ -34,7 +35,7 @@ All eight settled steps have MP4/GIF samples: [1](after-output/movie-26.png), [2
 
 The [historical assessment](judgments/E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json) stays a distinct prior observation. The [scoped successor](judgments/E6o_FEATURECLIPSTUDIO_READABILITY_CRITERION_ASSESSMENT.json) updates evidence supported by LiveSync's output, retaining 21 partial observations, 23 not run and all full scores null. Its [precise field correction](judgments/final-judge-field-correction.json) explains the final judgment's inherited nested pending-review label; the top-level approval is unchanged. The [reviewer's resolved reading concern](judgments/reviewer-reading-correction.json) is also preserved.
 
-The default WT-NodeRoom example, recorded dependency advisories, inherited swallowed `waitText` timeout, provider/model paths and production remain held. This scoped approval does not certify those surfaces.
+The default WT-NodeRoom readability, inherited swallowed `waitText` timeout, provider/model paths and production remain held. The [dependency successor](dependency-20260907/README.md) records the dated audit closure and output reproduction separately. This scoped approval does not certify those surfaces.
 
 ## Portability and verification
 
@@ -47,6 +48,6 @@ python promotion/evidence/local-livesync-handoff-20260907/verify.py --source-roo
 
 [The manifest](manifest.json) checks strict packet bytes, including logs and inert historical text. [The copy map](copy-map.json) distinguishes exact raw copies from explicit derivatives and binds each to its original hash. Derivatives remove named operator/home path prefixes or redundant recorder fields; they are never labelled exact raw copies. The narrow `.gitattributes` preserves raw packet bytes under Git.
 
-[Selected source bindings](source-bindings.json) separately record raw working SHA-256/Git blob and the actual Git-filtered canonical identities. Optional source verification permits CRLF→LF only for rows where the native Git filter demonstrated that equivalence; binary and other exact rows stay strict. This is a selected-source check, not a full repository or installed-dependency inventory. The current behavior proof precedes this documentation-only addition; it does not assert a new shared CI run.
+[Selected source bindings](source-bindings.json) separately record raw working SHA-256/Git blob and the actual Git-filtered canonical identities. Optional source verification permits CRLF→LF only for rows where the native Git filter demonstrated that equivalence; binary and other exact rows stay strict. This is a selected-source check, not a full repository or installed-dependency inventory. The original behavior proof precedes the historical documentation-only addition. Current bindings now include the exact dependency successor and revised handoff; [prior metadata](dependency-20260907/lineage/source-bindings.json) remains inert lineage. These local results do not assert a new shared CI run.
 
 [Omissions](omissions.json) identify hash-bound operator-local groups. Unselected pictures, full DOM/session state, old movies, controller histories, private path/environment inventories, databases and caches are not portable. Hashes do not reconstruct them. Inert historical reports may reference those local originals; use the copy map to find the files actually supplied. The correct historical generated-custody origin is plan01, as recorded in omissions, rather than the missing relative plan03 link.

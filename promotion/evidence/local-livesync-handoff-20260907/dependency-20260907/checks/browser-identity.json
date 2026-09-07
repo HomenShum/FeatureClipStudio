@@ -1,0 +1,9 @@
+{
+  "path": "<checkout>\\node_modules\\.remotion\\chrome-headless-shell\\win64\\chrome-headless-shell-win64\\chrome-headless-shell.exe",
+  "pathLength": 136,
+  "binding": {
+    "bytes": 202939392,
+    "sha256": "ec76dc3e69ffab9daddf0bbe7bf0a9e0a034b2d086741a0ae2ef6358a597537b"
+  },
+  "versionOutput": "Google Chrome for Testing 149.0.7790.0\n"
+}
