@@ -1,0 +1,35 @@
+{
+  "groups": [
+    {
+      "origin": "fcs-dependency-install-02/manifest.json",
+      "bytes": 4240,
+      "sha256": "87e23359ab1d9113a135b9e59c2d8602293dd67106200695d505f74fafedc149"
+    },
+    {
+      "origin": "fcs-dependency-render-01/01-checks/manifest.json",
+      "bytes": 4254,
+      "sha256": "e61403a9efd2663f7e2e14b32234e904ca4e64752b5e2174616ae1e41a70c475"
+    },
+    {
+      "origin": "fcs-dependency-render-01/02-stills/manifest.json",
+      "bytes": 43423,
+      "sha256": "ef8ea919436b7f3ed2ecda068a618fb719b6d31209201b607c53d79175651e11"
+    },
+    {
+      "origin": "fcs-dependency-render-01/03-livesync/manifest.json",
+      "bytes": 117065,
+      "sha256": "d93c4b6a5419b85fc590424efb0285adb9866dcd0097de761176a66a7195a3c9"
+    },
+    {
+      "origin": "fcs-dependency-render-01/04-legacy/manifest.json",
+      "bytes": 14842,
+      "sha256": "3c11a0eefcc44d5b8ab5d841a100740fb99a861883cb024e11796b4f96605893"
+    }
+  ],
+  "excluded": [
+    "Private paths, environment requests, caches, full source inventories and PID histories",
+    "Unselected 44 stills and 117 encoded frame comparisons; their bounded native results are summarized, selected actual pixels supplied",
+    "No new capture, provider/model/voice requests, audio listening or human comprehension test"
+  ],
+  "lineage": "The four exact prior metadata files are inert lineage; their manifest describes the prior packet, not this directory."
+}

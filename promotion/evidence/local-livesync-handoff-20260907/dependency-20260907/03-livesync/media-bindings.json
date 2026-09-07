@@ -1,0 +1,13 @@
+{
+  "mp4": {
+    "bytes": 2374634,
+    "sha256": "0f7415e7ad018d3e0c19f11170ead3c3a6b6adfd2cbbfe18d7e675a821f104c0"
+  },
+  "gif": {
+    "bytes": 2772039,
+    "sha256": "406425fade2aaae2b06722a4d279214f43b6b1698f22ee6b9c8b175af9967648"
+  },
+  "movieFrames": 588,
+  "gifFrames": 294,
+  "fullyDecoded": true
+}

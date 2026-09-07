@@ -6,7 +6,7 @@ A developer can use FeatureClipStudio to turn a recorded two-client interaction 
 
 ## First render
 
-The observed lane used Windows, Node 22.22.2, the locked Remotion 4.0.479 and Playwright 1.60.0. Use a short checkout path on Windows. Have ffmpeg and ffprobe on PATH; Python 3 is needed only for the evidence verifier. Other host/version combinations were not certified by this run.
+The observed lane used Windows, Node 22.22.2, the locked Remotion 4.0.474 and Playwright 1.60.0. Use a short checkout path on Windows. Have ffmpeg and ffprobe on PATH; Python 3 is needed only for the evidence verifier. Other host/version combinations were not certified by this run.
 
 Run from the repository root, choosing fresh output names:
 
@@ -21,7 +21,7 @@ ffprobe -v error -show_streams -show_format -of json out/local-livesync.mp4
 
 This uses 54 checked-in captures and authored presentation metadata; it performs no new browser interaction. The [accepted movie](promotion/evidence/local-livesync-handoff-20260907/after-output/readable-livesync.mp4) has 588 video frames, 1920×1080 at 30 fps and 19.600 seconds of video. Its container is 19.648 seconds because of the AAC stream. The [actual GIF](promotion/evidence/local-livesync-handoff-20260907/after-output/readable-livesync.gif) has 294 frames, 720×405 at nominal 15 fps. Both fully decoded without errors. Encoded bytes can differ across environments; the supplied files have exact hashes in the packet.
 
-The dependency follow-up repeated the normal source check: 39 JavaScript parses, 36 tour anchors and 34 prose citations passed. Its [dated evidence](promotion/evidence/local-livesync-handoff-20260907/dependency-20260907/README.md) includes the new movie and GIF, installed identities and actual audit. All 44 matched stills, 117 encoded LiveSync samples and five default-example samples matched their retained references in decoded pixels. Both full movies and the GIF decoded without errors. The original files above remain historical accepted outputs; this paragraph does not assert a new shared CI result.
+The normal source check passed 39 JavaScript parses, 36 tour anchors and 34 prose citations on the reviewed behavior source. This handoff and its evidence index were added afterward; they do not imply another runtime run or shared CI result.
 
 ## Optional: capture the local interaction again
 
@@ -68,7 +68,7 @@ An unavailable demo or exhausted action failure now exits nonzero, preserves dia
 
 The accepted framing makes the selected control/result and both client labels readable in the actual movie and GIF. The longest card has a tight lower margin. The previous card is partly cropped, and early camera travel does not show every complete stream state. These are disclosed presentation limits, not synchronization latency measurements. Audio was not listened to; no full continuous-motion or human-comprehension grade was granted.
 
-The default `npm run render:example` still renders historical WT-NodeRoom inputs and retains a separate output-quality hold. LiveSync acceptance does not certify other examples, responsive browser behavior, physical devices, provider behavior or production. The earlier install reported 12 affected packages (2 low, 10 high). The normal installed-tree audit for the exact Remotion 4.0.479 lock reported zero on September 7, 2026. That is a dated dependency result, not a full security assessment. Full criterion and overall grades remain null.
+The default `npm run render:example` still renders historical WT-NodeRoom inputs and retains a separate output-quality hold. LiveSync acceptance does not certify other examples, responsive browser behavior, physical devices, provider behavior or production. The recorded install reported 12 dependency advisories (2 low, 10 high), which remain unresolved. Full criterion and overall grades remain null.
 
 Verify the packet and its selected current source bindings from the repository root:
 

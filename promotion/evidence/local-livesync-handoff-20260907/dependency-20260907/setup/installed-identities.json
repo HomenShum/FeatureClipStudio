@@ -1,0 +1,59 @@
+{
+  "direct": {
+    "@remotion/cli": {
+      "binding": {
+        "bytes": 1985,
+        "sha256": "2d17c67cf8780d607db4f26fc7a2aa38aec0d84aca763113566f53e145cb0893"
+      },
+      "version": "4.0.479"
+    },
+    "remotion": {
+      "binding": {
+        "bytes": 2117,
+        "sha256": "eb13a411270a8ad51de6d878966865051252a509526d4feb703f30a6bf31ff8f"
+      },
+      "version": "4.0.479"
+    },
+    "react": {
+      "binding": {
+        "bytes": 999,
+        "sha256": "d4e68a5c96babb20cad1daafea8b78822eae45b341552cf5418d06a5304fa64c"
+      },
+      "version": "18.3.1"
+    },
+    "react-dom": {
+      "binding": {
+        "bytes": 1353,
+        "sha256": "d2f29e31bd48b833e48cd7bbf41f192e8ee4ff8da249fdbe10d4ac4114b8b12e"
+      },
+      "version": "18.3.1"
+    },
+    "playwright": {
+      "binding": {
+        "bytes": 1559,
+        "sha256": "8be9edc5642a8c761b677e7af8b9937f36c0443a91e14765877716d70034e5bf"
+      },
+      "version": "1.60.0"
+    }
+  },
+  "cohort": {
+    "@remotion/bundler": "4.0.479",
+    "@remotion/canvas-capture": "4.0.479",
+    "@remotion/cli": "4.0.479",
+    "@remotion/compositor-win32-x64-msvc": "4.0.479",
+    "@remotion/licensing": "4.0.479",
+    "@remotion/media-parser": "4.0.479",
+    "@remotion/media-utils": "4.0.479",
+    "@remotion/player": "4.0.479",
+    "@remotion/renderer": "4.0.479",
+    "@remotion/streaming": "4.0.479",
+    "@remotion/studio": "4.0.479",
+    "@remotion/studio-server": "4.0.479",
+    "@remotion/studio-shared": "4.0.479",
+    "@remotion/timeline-utils": "4.0.479",
+    "@remotion/web-renderer": "4.0.479",
+    "@remotion/zod-types": "4.0.479"
+  },
+  "auditFindings": 0,
+  "remotionVersion": "4.0.479"
+}

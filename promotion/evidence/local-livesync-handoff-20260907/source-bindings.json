@@ -2,20 +2,20 @@
   "schema": "fcs-selected-source-bindings/v1",
   "scope": "Selected render/capture/demo/check/metadata owners plus54 native PNGs. No whole repository/dependency/private-source inventory.",
   "behaviorProofSourceDigest": "9c0556c9d68195277515242415e7afcac8a8e20e790403aec737dc44a21bbd6e",
-  "documentationSuccessor": "Only HANDOFF and the README link follow that behavior proof; this optional check binds their actual bytes.",
+  "documentationSuccessor": "Historical behavior digest retained above. Current dependency successor changes only package.json, package-lock.json and HANDOFF selected bindings; the other 74 selected rows remain exact. Dated local setup, render and comparison evidence is under dependency-20260907. No current shared CI claim.",
   "files": [
     {
       "path": "HANDOFF.md",
-      "rawBytes": 6005,
-      "rawSHA256": "7047501dcdd81f3a1a05393adeebd7427f4d3520cc4faca7ac8c3b7c9b0a3b97",
-      "rawGitBlob": "f42a804e4f607e183f05baa29f74bc30b1c1ee9b",
-      "canonicalBytes": 6005,
-      "canonicalSHA256": "7047501dcdd81f3a1a05393adeebd7427f4d3520cc4faca7ac8c3b7c9b0a3b97",
-      "canonicalGitBlob": "f42a804e4f607e183f05baa29f74bc30b1c1ee9b",
+      "rawBytes": 6593,
+      "rawSHA256": "b87ed21416af57d1d5fa856f57038eb78424423d907d84640a591884710504f1",
+      "rawGitBlob": "c27ce975caf7d234eb23e5b394e6a1b96615ea26",
+      "canonicalBytes": 6513,
+      "canonicalSHA256": "7153b4340a35ee74555d009699a288c3ae1410e1685fb52195fc2e9e42d8d9dd",
+      "canonicalGitBlob": "bf8bf0bd51af63de5e39bd48c0f34b0e80c76a1b",
       "checkoutNormalization": "crlf-to-lf",
       "gitFilterProof": {
-        "actualRawFilteredBlob": "f42a804e4f607e183f05baa29f74bc30b1c1ee9b",
-        "CRLFVariantFilteredBlob": "f42a804e4f607e183f05baa29f74bc30b1c1ee9b"
+        "actualRawFilteredBlob": "bf8bf0bd51af63de5e39bd48c0f34b0e80c76a1b",
+        "CRLFVariantFilteredBlob": "bf8bf0bd51af63de5e39bd48c0f34b0e80c76a1b"
       }
     },
     {
@@ -104,30 +104,30 @@
     },
     {
       "path": "package-lock.json",
-      "rawBytes": 109685,
-      "rawSHA256": "0ac5e892a39160a0b625ab319bd2a949188350e238512ebb41a63addb292cfae",
-      "rawGitBlob": "78d70f39e3420ce48a4b5f29a37446df39dbee73",
-      "canonicalBytes": 106747,
-      "canonicalSHA256": "ea3893c70509be630eb2e7abadd9c4cebe609396c216df1a2fbea5e42fcd8284",
-      "canonicalGitBlob": "e581cc060e5cc326a305e28268785c52b9530e0e",
+      "rawBytes": 110263,
+      "rawSHA256": "8864c9babbd153bf12738a859cda08b385f87e8fde3b69df54f1c11e246a4d4f",
+      "rawGitBlob": "ef70facce634c4fea4f392c89fe071b1c48f51ba",
+      "canonicalBytes": 107311,
+      "canonicalSHA256": "651d66ae74485f23bb01a167ab02609bbd42eb1153970e40e6f24c322d702d74",
+      "canonicalGitBlob": "a11437d46f02a3c3519cdcc0218465170c33ed49",
       "checkoutNormalization": "crlf-to-lf",
       "gitFilterProof": {
-        "actualRawFilteredBlob": "e581cc060e5cc326a305e28268785c52b9530e0e",
-        "CRLFVariantFilteredBlob": "e581cc060e5cc326a305e28268785c52b9530e0e"
+        "actualRawFilteredBlob": "a11437d46f02a3c3519cdcc0218465170c33ed49",
+        "CRLFVariantFilteredBlob": "a11437d46f02a3c3519cdcc0218465170c33ed49"
       }
     },
     {
       "path": "package.json",
-      "rawBytes": 2190,
-      "rawSHA256": "bd5a8a60201b6b7c9bfe7eaa86300969111edc44d81409811b9eb1495b7209f3",
-      "rawGitBlob": "23c63eabc67d15718935d7f6ebdb2a009d9f94ba",
-      "canonicalBytes": 2131,
-      "canonicalSHA256": "e3ea003670c17e0d8cbd0b0163ddedc0ab8f167072c4a2a000295fd97c31ad2a",
-      "canonicalGitBlob": "c735540f2b24fea1a0c8347b4f01b6018e3412ab",
+      "rawBytes": 2188,
+      "rawSHA256": "d734691d9a0b87eb52e5010fa890b336dc7bb06a21a11884e5f0e2b34fe0c552",
+      "rawGitBlob": "606a9c8537a0460396275e1c9e5b1d97cb073ce5",
+      "canonicalBytes": 2129,
+      "canonicalSHA256": "bb23c9674b8d7dd0dd82b702e801dfbd595031a46eafbe1de9745f2329911cac",
+      "canonicalGitBlob": "4b9b31796556621f77a5493b54a3865b5aca1c90",
       "checkoutNormalization": "crlf-to-lf",
       "gitFilterProof": {
-        "actualRawFilteredBlob": "c735540f2b24fea1a0c8347b4f01b6018e3412ab",
-        "CRLFVariantFilteredBlob": "c735540f2b24fea1a0c8347b4f01b6018e3412ab"
+        "actualRawFilteredBlob": "4b9b31796556621f77a5493b54a3865b5aca1c90",
+        "CRLFVariantFilteredBlob": "4b9b31796556621f77a5493b54a3865b5aca1c90"
       }
     },
     {

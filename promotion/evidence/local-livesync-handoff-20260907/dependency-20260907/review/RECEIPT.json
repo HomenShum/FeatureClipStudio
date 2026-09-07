@@ -1,0 +1,48 @@
+{
+  "status": "APPROVED_DEPENDENCY_MEDIA_PARITY_FOR_FINITE_HANDOFF_PREPARATION",
+  "timeUtc": "2026-09-07T13:47:28.939434+00:00",
+  "request": "Judge actual dependency-updated LiveSync and default legacy media, decoded samples and preservation without rerender.",
+  "guard": "CLOSED_CANDIDATE_PRIMARY_SOURCE_AND_GIT_UNCHANGED",
+  "source": {
+    "candidateHead": "cc5ac9f2683c7318c1040af1d0b44123f0cd8bc1",
+    "candidateTree": "43c603ae9b6b80e538548a31d4bc88c19365df7d",
+    "candidateSourceFilesRehashed": 1021,
+    "primaryHead": "cc5ac9f2683c7318c1040af1d0b44123f0cd8bc1",
+    "primarySourceFilesRehashed": 1021,
+    "candidateIndexRefsWorktreesStatusExact": true,
+    "primaryIndexRefsWorktreesStatusExact": true,
+    "dirtyOperatorProbes": "Preserved within exact candidate source bindings/status; no source metadata edit was made by reviewer."
+  },
+  "verification": {
+    "rawPayloadsRehashed": 830,
+    "nativeCommands": 138,
+    "savedPNGDecodedComparisons": 122,
+    "liveSyncMovieSamples": 59,
+    "liveSyncGIFSamples": 58,
+    "defaultLegacySamples": 5,
+    "allComparedRGBAExact": true,
+    "ownedPIDCreationTimeIdentitiesRechecked": 560,
+    "sameIdentitiesRemaining": 0
+  },
+  "media": "native-media-verification.json",
+  "directlyViewedCurrentPNGs": [
+    "03-livesync/movie-432.png",
+    "03-livesync/movie-587.png",
+    "03-livesync/gif-216.png",
+    "03-livesync/gif-293.png",
+    "04-legacy/legacy-285.png",
+    "04-legacy/legacy-571.png"
+  ],
+  "pixelJudgment": "LiveSync target text, Client A/B labels, local fixed-text/in-memory disclosure and final matching state retain accepted readability. Long-card bottom clearance remains tight but visible, and the neighboring Ana card clips above the chosen focus. Actual palette GIF216/293 remains readable at720x405. Default WT-NodeRoom retains caption-over-content and low-contrast result prose, visibly present at571; equality does not resolve those historical defects.",
+  "claimBoundary": "LiveSync588 video frames at30fps =19.6s; MP4 container19.648s including AAC. GIF294frames at15fps has19.59s duration. Default1142 video frames give38.066667s; MP4 container38.122667s including AAC. All media decoded with empty error output. GIF bytes match the accepted historical GIF exactly. Both MP4 hashes differ from their retained references despite equal byte sizes; only selected decoded-frame parity is asserted, not whole MP4 byte identity or all-frame pixel equality.",
+  "decision": "Release the finite dependency HANDOFF/source-binding/evidence update preparation. Actual proposed document/packet bytes, raw-versus-derived publication treatment and staged/committed tree need their own bounded review. No full product/readability upgrade, source transfer, push or deploy is approved by this media judgment.",
+  "limits": [
+    "No renderer, capture, browser, install or suite rerun by reviewer. Pillow decoded saved PNGs; native full decode logs were inspected.",
+    "Audio streams were not listened to or semantically evaluated. No continuous-motion, timing smoothness, human-perception or performance claim from saved stills.",
+    "No fresh responsive app proof, provider behavior, waitText contract fix or default-example readability repair. Earlier44 criterion values/full null grades stay unchanged.",
+    "Dependency audit/install security findings are separately source-bound; no security certification from image equality.",
+    "Historical captures and reference media remain unchanged; current encoded outputs are new artifacts."
+  ],
+  "fullGrades": null,
+  "findings": []
+}

@@ -1,0 +1,171 @@
+[
+  {
+    "stage": "03-livesync",
+    "receipt": {
+      "bytes": 65402,
+      "sha256": "66c59fbf788e43cd2ca0261ff353b5cb7a4956c17327787db9a25792dd94770a"
+    },
+    "manifest": {
+      "bytes": 117065,
+      "sha256": "d93c4b6a5419b85fc590424efb0285adb9866dcd0097de761176a66a7195a3c9"
+    },
+    "rawPayloads": 739,
+    "nativeCommands": 123,
+    "allNativeExitZero": true,
+    "allJobReceiptsValid": true,
+    "media": {
+      "mp4": {
+        "bytes": 2374634,
+        "sha256": "0f7415e7ad018d3e0c19f11170ead3c3a6b6adfd2cbbfe18d7e675a821f104c0"
+      },
+      "gif": {
+        "bytes": 2772039,
+        "sha256": "406425fade2aaae2b06722a4d279214f43b6b1698f22ee6b9c8b175af9967648"
+      },
+      "movieFrames": 588,
+      "gifFrames": 294,
+      "fullyDecoded": true
+    },
+    "probes": [
+      {
+        "name": "livesync",
+        "video": {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "pix_fmt": "yuvj420p",
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "duration": "19.600000",
+          "nb_frames": "588"
+        },
+        "containerDuration": "19.648000",
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "duration": "19.600000"
+          },
+          {
+            "codec_type": "audio",
+            "codec_name": "aac",
+            "duration": "19.648000"
+          }
+        ],
+        "fullDecodeExit": 0,
+        "fullDecodeErrorBytes": 0
+      },
+      {
+        "name": "gif",
+        "video": {
+          "codec_name": "gif",
+          "width": 720,
+          "height": 405,
+          "pix_fmt": "bgra",
+          "r_frame_rate": "15/1",
+          "avg_frame_rate": "15/1",
+          "duration": "19.590000",
+          "nb_frames": "294"
+        },
+        "containerDuration": "19.590000",
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "gif",
+            "duration": "19.590000"
+          }
+        ],
+        "fullDecodeExit": 0,
+        "fullDecodeErrorBytes": 0
+      }
+    ],
+    "samplePairs": 117
+  },
+  {
+    "stage": "04-legacy",
+    "receipt": {
+      "bytes": 7302,
+      "sha256": "70882a4d3b51e0bd68d8c1cb16237c4dc198a981c4353b089d60a6dbb3a02ed0"
+    },
+    "manifest": {
+      "bytes": 14842,
+      "sha256": "3c11a0eefcc44d5b8ab5d841a100740fb99a861883cb024e11796b4f96605893"
+    },
+    "rawPayloads": 91,
+    "nativeCommands": 15,
+    "allNativeExitZero": true,
+    "allJobReceiptsValid": true,
+    "media": {
+      "mp4": {
+        "bytes": 5777972,
+        "sha256": "844778917cb21252c8a1e42583465740e408d75bc729255a9c591d3ac9966515"
+      },
+      "frames": 1142,
+      "fullyDecoded": true,
+      "retainedExample": {
+        "bytes": 5777972,
+        "sha256": "871e973ff7675dbae31ef6194e8feddaac97fda58cb12e7ce30da74b2d684e3f"
+      },
+      "defaultReadability": "Historical limitations remain; reproduction is not quality certification"
+    },
+    "probes": [
+      {
+        "name": "legacy",
+        "video": {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "pix_fmt": "yuvj420p",
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "duration": "38.066667",
+          "nb_frames": "1142"
+        },
+        "containerDuration": "38.122667",
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "duration": "38.066667"
+          },
+          {
+            "codec_type": "audio",
+            "codec_name": "aac",
+            "duration": "38.122667"
+          }
+        ],
+        "fullDecodeExit": 0,
+        "fullDecodeErrorBytes": 0
+      },
+      {
+        "name": "retained-example",
+        "video": {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "pix_fmt": "yuvj420p",
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "duration": "38.066667",
+          "nb_frames": "1142"
+        },
+        "containerDuration": "38.122667",
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "duration": "38.066667"
+          },
+          {
+            "codec_type": "audio",
+            "codec_name": "aac",
+            "duration": "38.122667"
+          }
+        ],
+        "fullDecodeExit": 0,
+        "fullDecodeErrorBytes": 0
+      }
+    ],
+    "samplePairs": 5
+  }
+]
