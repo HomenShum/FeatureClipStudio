@@ -1,0 +1,29 @@
+# FeatureClipStudio: scoped readability grading successor
+
+**Builder. Re your request:** visual, UI, responsiveness and interaction grading now has a separate 44-criterion successor for the repaired LiveSync export. A developer can show the selected result in both clients, and viewers can read that result and its local fixed-text disclosure in the actual GIF. This is a partial observation, not a whole-product grade.
+
+Nine observed scores improve to **4**. Five additional rows refresh their output evidence without changing scores; the other 30 rows remain exact. The historical assessment is preserved. All **21 partial / 23 NOT_RUN** statuses, all 44 final criterion scores, eight dimensions, overall and bar scores remain unchanged/null as applicable.
+
+| Criterion | Before | After |
+| --- | ---: | ---: |
+| V1 typography | 2 | 4 |
+| V2 spacing/grid | 3 | 4 |
+| V4 hierarchy | 3 | 4 |
+| V5 rendered legibility/contrast | 2 | 4 |
+| D4 useful information density | 3 | 4 |
+| U2 successful core journey | 3 | 4 |
+| U4 usable export or consumer result | 2 | 4 |
+| L1 Fit to intended user and job | 3 | 4 |
+| L3 truthful limits/status | 3 | 4 |
+
+The new evidence is the actual H264 1920x1080 movie and 720x405 palette GIF, with 58 selected GIF frames and 15 MP4 frames directly viewed in the accepted final review. The same 54 native captures are retained. This grading pass only read immutable evidence; it did not rerun capture, rendering, decoding or application tests.
+
+The longest card keeps its lower border with tight clearance. A neighboring off-target card remains partly cropped; early camera travel does not show every complete stream state. Muted inactive text, caption fade-in and GIF texture remain minor limitations. Continuous playback, audio, fresh-human comprehension, responsive browser/device/accessibility coverage and provider behavior remain untested.
+
+**WT-NodeRoom and the bundled default example remain unresolved.** Their earlier small-content, caption/overlap and contrast observations are not repaired by the LiveSync opt-in. Eight legacy pixel-parity selections prove preservation only. The repository minimum-over-required-surfaces rule remains unchanged, so these scoped improvements cannot produce a full grade.
+
+The retained CLI rows still record partial selected-output recovery (U3=3) and the silent late-action wait (P4=3). The 12 dependency advisories, waitText suppression, provider/production and final handoff/integration limits stay explicit.
+
+A stale nested `media.visualReview` preamble in the already accepted final judge is documented in an append-only field correction. Its explicit completed view lists, narrative and final approval are unchanged; no evidence or verdict is replaced.
+
+[Machine-readable 44 rows](E6o_FEATURECLIPSTUDIO_READABILITY_CRITERION_ASSESSMENT.json) · [Exact row delta](E6o-readability-criterion-successor-01/criterion-delta.json) · [Historical assessment](E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json) · [Final source/output judgment](E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.md) · [Field correction](E6o-readability-criterion-successor-01/final-judge-field-correction.json)

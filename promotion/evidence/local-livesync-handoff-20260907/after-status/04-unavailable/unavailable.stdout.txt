@@ -1,0 +1,4 @@
+RUNID (fresh-room code) = STR1N2ZR
+  LiveSync fail-state pane 0: 
+  LiveSync fail-state pane 1: 
+LiveSync attempt 1/1 err: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8930/?user=B

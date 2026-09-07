@@ -313,9 +313,14 @@ hand.` and the run prints `WALKTHROUGH_CAPTURE_DONE`.
 **Output** — `src/walkthrough.data.js`, overwritten whole. Its sibling generated files
 follow the same rule: `src/walkthrough.collab.data.js` (from `walkthrough.collab.mjs`),
 `src/walkthrough.roomos.data.js`, `src/walkthrough.visual.data.js`.
-**Failure behavior** — the file is written even if some specs failed all their
-retries; a failed spec contributes an empty `steps` array rather than aborting the
-others. Check the console for `attempt N/M err:` lines before trusting a render.
+**Failure behavior** — the single-pane writer described here can write the file
+even if a spec exhausted its retries. Check its `attempt N/M err:` lines before
+trusting a render. The collaboration driver has a stricter command boundary:
+every selected ID must exist, and an exhausted navigation/action failure exits
+nonzero before the generated module is written or its completion marker printed.
+Partial/failed PNGs remain for diagnosis; the previously generated module is not
+rewritten, but earlier selected frames are not automatically restored. Re-capture
+that selection successfully before rendering it.
 **One more writer, and it is worth knowing about:** `clip.mjs:31` (`writeFileSync("src/walkthrough.data.js"`) **rewrites this same
 file in place**, changing each step's `hold` so the picture lasts exactly as long as
 its spoken narration. That is the only other thing that edits generated data.

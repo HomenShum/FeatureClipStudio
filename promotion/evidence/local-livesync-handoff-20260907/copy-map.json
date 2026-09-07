@@ -1,0 +1,1255 @@
+{
+  "schema": "fcs-selected-evidence-map/v1",
+  "origins": "Paths are relative to the operator evidence root, not links claiming every original is portable.",
+  "files": [
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/02-install/normal-ci-command.json",
+      "originBytes": 258,
+      "originSHA256": "c84b3f3625fc2ccd15da4fd1469f635c487a02fce7b9979d9d74104e195308fb",
+      "path": "setup/normal-ci-command.json",
+      "bytes": 258,
+      "sha256": "c84b3f3625fc2ccd15da4fd1469f635c487a02fce7b9979d9d74104e195308fb",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual ordinary locked setup and tool versions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/02-install/normal-ci.stdout.txt",
+      "originBytes": 230,
+      "originSHA256": "21be77b9f71f41300cbb75f576b35c0fcedcafade477b3bb35484f35ce6ca4a2",
+      "path": "setup/normal-ci.stdout.txt",
+      "bytes": 230,
+      "sha256": "21be77b9f71f41300cbb75f576b35c0fcedcafade477b3bb35484f35ce6ca4a2",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual ordinary locked setup and tool versions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/02-install/normal-ci.stderr.txt",
+      "originBytes": 125,
+      "originSHA256": "d5075113082a929119680914d84f6aca56a7b331f8d88abbbb82b1cab4e94788",
+      "path": "setup/normal-ci.stderr.txt",
+      "bytes": 125,
+      "sha256": "d5075113082a929119680914d84f6aca56a7b331f8d88abbbb82b1cab4e94788",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual ordinary locked setup and tool versions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/02-install/node-version.stdout.txt",
+      "originBytes": 10,
+      "originSHA256": "99149e35f76aa1efc846f029c3d2733b3541fe76ac97b74d33883481c0ce8dd9",
+      "path": "setup/node-version.stdout.txt",
+      "bytes": 10,
+      "sha256": "99149e35f76aa1efc846f029c3d2733b3541fe76ac97b74d33883481c0ce8dd9",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual ordinary locked setup and tool versions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/02-install/npm-version.stdout.txt",
+      "originBytes": 7,
+      "originSHA256": "35217e32d288f09fea0fe2b8124665225fc00ac7ea72c312bb523db9950a13c4",
+      "path": "setup/npm-version.stdout.txt",
+      "bytes": 7,
+      "sha256": "35217e32d288f09fea0fe2b8124665225fc00ac7ea72c312bb523db9950a13c4",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual ordinary locked setup and tool versions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/02-install/ffmpeg-version.stdout.txt",
+      "originBytes": 1964,
+      "originSHA256": "f4d5c3a47d3592181730b4d37764498c96091f1604066b43ad60db1a480992dd",
+      "path": "setup/ffmpeg-version.stdout.txt",
+      "bytes": 1964,
+      "sha256": "f4d5c3a47d3592181730b4d37764498c96091f1604066b43ad60db1a480992dd",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual ordinary locked setup and tool versions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/02-install/ffprobe-version.stdout.txt",
+      "originBytes": 1965,
+      "originSHA256": "4cac2bf444f8d0c49ba2d8a05a4dd16656b762c24eba79d95a7fe8fc9a672cf9",
+      "path": "setup/ffprobe-version.stdout.txt",
+      "bytes": 1965,
+      "sha256": "4cac2bf444f8d0c49ba2d8a05a4dd16656b762c24eba79d95a7fe8fc9a672cf9",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual ordinary locked setup and tool versions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/10-negatives/unknown-selector-command.json",
+      "originBytes": 243,
+      "originSHA256": "d59aa53af90f6ded6dc55191199c907bcbd71f64acbd72c0faa4601202efb984",
+      "path": "before-status/unknown-selector-command.json",
+      "bytes": 243,
+      "sha256": "d59aa53af90f6ded6dc55191199c907bcbd71f64acbd72c0faa4601202efb984",
+      "kind": "exact-raw-copy",
+      "purpose": "Original false-success behavior; historical failure remains visible",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/10-negatives/unknown-selector.stdout.txt",
+      "originBytes": 108,
+      "originSHA256": "db73075647daa78f0c51a2a2f68fad46d41eaec30250b482f606f709e536bfba",
+      "path": "before-status/unknown-selector.stdout.txt",
+      "bytes": 108,
+      "sha256": "db73075647daa78f0c51a2a2f68fad46d41eaec30250b482f606f709e536bfba",
+      "kind": "exact-raw-copy",
+      "purpose": "Original false-success behavior; historical failure remains visible",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/10-negatives/unknown-selector.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "before-status/unknown-selector.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Original false-success behavior; historical failure remains visible",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/10-negatives/unavailable-demo-command.json",
+      "originBytes": 245,
+      "originSHA256": "d106fc54fbee5b5321c3aaf441431504a32ee1de16289a258d48262503f3be27",
+      "path": "before-status/unavailable-demo-command.json",
+      "bytes": 245,
+      "sha256": "d106fc54fbee5b5321c3aaf441431504a32ee1de16289a258d48262503f3be27",
+      "kind": "exact-raw-copy",
+      "purpose": "Original false-success behavior; historical failure remains visible",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/10-negatives/unavailable-demo.stdout.txt",
+      "originBytes": 285,
+      "originSHA256": "f6db93d8bb1ae45d6acb696c0afc695ce3b3418f1ab82809067f0d17bfffdbeb",
+      "path": "before-status/unavailable-demo.stdout.txt",
+      "bytes": 285,
+      "sha256": "f6db93d8bb1ae45d6acb696c0afc695ce3b3418f1ab82809067f0d17bfffdbeb",
+      "kind": "exact-raw-copy",
+      "purpose": "Original false-success behavior; historical failure remains visible",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-current-consumer-01/10-negatives/unavailable-demo.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "before-status/unavailable-demo.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Original false-success behavior; historical failure remains visible",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/selection-semantics.json",
+      "originBytes": 1106,
+      "originSHA256": "3568846278b110ab5eba127bc6366d7cc96483fc9a7d96c19a9c1511c4cceee1",
+      "path": "after-status/02-selection-negatives/selection-semantics.json",
+      "bytes": 1106,
+      "sha256": "3568846278b110ab5eba127bc6366d7cc96483fc9a7d96c19a9c1511c4cceee1",
+      "kind": "exact-raw-copy",
+      "purpose": "Six exact absent/empty/unknown/mixed selector outcomes",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/unknown-command.json",
+      "originBytes": 220,
+      "originSHA256": "80f5eb1edba4a6559ed59c59a803fd5fe09c5be57bd3bd7d92f46b9f0c7faeac",
+      "path": "after-status/02-selection-negatives/unknown-command.json",
+      "bytes": 220,
+      "sha256": "80f5eb1edba4a6559ed59c59a803fd5fe09c5be57bd3bd7d92f46b9f0c7faeac",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/unknown.stderr.txt",
+      "originBytes": 554,
+      "originSHA256": "e474a2e198303999331cdf0eed5c4a3e7d2feb4dc012d329956405066ecbbe77",
+      "path": "after-status/02-selection-negatives/unknown.stderr.txt",
+      "bytes": 508,
+      "sha256": "2713c01ce3ee34fad04c071a41325c06e9467c9249e2d7fc226bf6c12ee779ee",
+      "kind": "explicit-derivative",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": [
+        "Forward-slash/file-URL spelling of the same named absolute root is also replaced; no exception or exit value altered."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/mixed-command.json",
+      "originBytes": 218,
+      "originSHA256": "e97f05d33503da464cff4fc2ca94f67c1e4f587a77815e90b9631f65bd841012",
+      "path": "after-status/02-selection-negatives/mixed-command.json",
+      "bytes": 218,
+      "sha256": "e97f05d33503da464cff4fc2ca94f67c1e4f587a77815e90b9631f65bd841012",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/mixed.stderr.txt",
+      "originBytes": 554,
+      "originSHA256": "e474a2e198303999331cdf0eed5c4a3e7d2feb4dc012d329956405066ecbbe77",
+      "path": "after-status/02-selection-negatives/mixed.stderr.txt",
+      "bytes": 508,
+      "sha256": "2713c01ce3ee34fad04c071a41325c06e9467c9249e2d7fc226bf6c12ee779ee",
+      "kind": "explicit-derivative",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": [
+        "Forward-slash/file-URL spelling of the same named absolute root is also replaced; no exception or exit value altered."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/whitespace-command.json",
+      "originBytes": 223,
+      "originSHA256": "ad8428a723845ef7a75c23f1df5a5411f888336f6a58ea06fe0c8c3b0b61ee80",
+      "path": "after-status/02-selection-negatives/whitespace-command.json",
+      "bytes": 223,
+      "sha256": "ad8428a723845ef7a75c23f1df5a5411f888336f6a58ea06fe0c8c3b0b61ee80",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/whitespace.stderr.txt",
+      "originBytes": 537,
+      "originSHA256": "31706d225ae0a00cb45107abb819d7a5504ed0e66fd0cd8ced5a18645feeb006",
+      "path": "after-status/02-selection-negatives/whitespace.stderr.txt",
+      "bytes": 491,
+      "sha256": "8553db10149a86f10c3de1cad04e4a28814ca04d316fd3053bbd58b1df48bb78",
+      "kind": "explicit-derivative",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": [
+        "Forward-slash/file-URL spelling of the same named absolute root is also replaced; no exception or exit value altered."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/comma-command.json",
+      "originBytes": 218,
+      "originSHA256": "08df08325cf34063ea6173fbff9fb17c302ce3860cbfe20a7400a003c020b007",
+      "path": "after-status/02-selection-negatives/comma-command.json",
+      "bytes": 218,
+      "sha256": "08df08325cf34063ea6173fbff9fb17c302ce3860cbfe20a7400a003c020b007",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/comma.stderr.txt",
+      "originBytes": 541,
+      "originSHA256": "c9acfcf903f6e2976ff4732ddb40e7324180d39abfcdc023931f2bf928a4c804",
+      "path": "after-status/02-selection-negatives/comma.stderr.txt",
+      "bytes": 495,
+      "sha256": "eb019103075c177d12feaa3d08d837f53eeffcba74dee954d4a507342fabf9ac",
+      "kind": "explicit-derivative",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": [
+        "Forward-slash/file-URL spelling of the same named absolute root is also replaced; no exception or exit value altered."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/absent-command.json",
+      "originBytes": 219,
+      "originSHA256": "6112757274385c917ceca8da49dddeffc9f0a5b4aa3f7777595b3a1c19bb2f9d",
+      "path": "after-status/02-selection-negatives/absent-command.json",
+      "bytes": 219,
+      "sha256": "6112757274385c917ceca8da49dddeffc9f0a5b4aa3f7777595b3a1c19bb2f9d",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/absent.stderr.txt",
+      "originBytes": 275,
+      "originSHA256": "ff04f1b1378a71378492d2aa74f326832907481551e4b23aba498fcdbfe4ea11",
+      "path": "after-status/02-selection-negatives/absent.stderr.txt",
+      "bytes": 275,
+      "sha256": "ff04f1b1378a71378492d2aa74f326832907481551e4b23aba498fcdbfe4ea11",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/empty-env-command.json",
+      "originBytes": 222,
+      "originSHA256": "b9d149879166de1d3f410a2dbfc3e90131a6139845cc16fc515ca0a6469ada46",
+      "path": "after-status/02-selection-negatives/empty-env-command.json",
+      "bytes": 222,
+      "sha256": "b9d149879166de1d3f410a2dbfc3e90131a6139845cc16fc515ca0a6469ada46",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/02-selection-negatives/empty-env.stderr.txt",
+      "originBytes": 275,
+      "originSHA256": "ff04f1b1378a71378492d2aa74f326832907481551e4b23aba498fcdbfe4ea11",
+      "path": "after-status/02-selection-negatives/empty-env.stderr.txt",
+      "bytes": 275,
+      "sha256": "ff04f1b1378a71378492d2aa74f326832907481551e4b23aba498fcdbfe4ea11",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual exit and diagnostic for this selection boundary",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/04-unavailable/unavailable-command.json",
+      "originBytes": 225,
+      "originSHA256": "d0fa01fea600b544e7a9ecf7c8222c30f86a955b62bfd4d00f62092aae628890",
+      "path": "after-status/04-unavailable/unavailable-command.json",
+      "bytes": 225,
+      "sha256": "d0fa01fea600b544e7a9ecf7c8222c30f86a955b62bfd4d00f62092aae628890",
+      "kind": "exact-raw-copy",
+      "purpose": "Failure exits nonzero and exposes original cause, including unchanged60s timeout",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/04-unavailable/unavailable.stdout.txt",
+      "originBytes": 195,
+      "originSHA256": "f3210d5e17ef70528e079b868686528d15c99f66e77c6e32f07dbffb43c6f77f",
+      "path": "after-status/04-unavailable/unavailable.stdout.txt",
+      "bytes": 195,
+      "sha256": "f3210d5e17ef70528e079b868686528d15c99f66e77c6e32f07dbffb43c6f77f",
+      "kind": "exact-raw-copy",
+      "purpose": "Failure exits nonzero and exposes original cause, including unchanged60s timeout",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/04-unavailable/unavailable.stderr.txt",
+      "originBytes": 676,
+      "originSHA256": "f5006960fbf50e8e4b77432ef86695c93426fd43870933dfd3f441edc98e9cec",
+      "path": "after-status/04-unavailable/unavailable.stderr.txt",
+      "bytes": 584,
+      "sha256": "95552b1733068b682749538fcae681f620b29d4c018b40d68bbfebc8b2a7100e",
+      "kind": "explicit-derivative",
+      "purpose": "Failure exits nonzero and exposes original cause, including unchanged60s timeout",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; original stack locations remain bound locally.",
+        "Forward-slash/file-URL spelling of the same named absolute root is also replaced; no exception or exit value altered."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/05-missing-control/missing-control-command.json",
+      "originBytes": 230,
+      "originSHA256": "3ff6d902e3ded3e4b65ddae31d8ee15462666b69a6b3814d0bfad0532355ca96",
+      "path": "after-status/05-missing-control/missing-control-command.json",
+      "bytes": 230,
+      "sha256": "3ff6d902e3ded3e4b65ddae31d8ee15462666b69a6b3814d0bfad0532355ca96",
+      "kind": "exact-raw-copy",
+      "purpose": "Failure exits nonzero and exposes original cause, including unchanged60s timeout",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/05-missing-control/missing-control.stdout.txt",
+      "originBytes": 460,
+      "originSHA256": "ffed6bb12aa48f864e393ce286e4f14fd94970e8b473fd87f18c8f3b8307f50b",
+      "path": "after-status/05-missing-control/missing-control.stdout.txt",
+      "bytes": 460,
+      "sha256": "ffed6bb12aa48f864e393ce286e4f14fd94970e8b473fd87f18c8f3b8307f50b",
+      "kind": "exact-raw-copy",
+      "purpose": "Failure exits nonzero and exposes original cause, including unchanged60s timeout",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/05-missing-control/missing-control.stderr.txt",
+      "originBytes": 636,
+      "originSHA256": "ff955ac7ccfea174c0a74ec401314c95983b67d1448d13a1e27d6a2b36485c61",
+      "path": "after-status/05-missing-control/missing-control.stderr.txt",
+      "bytes": 544,
+      "sha256": "eb048e753761ef99a5fec7d897a5acd37d766e6e7ad6c1b6d24a49a4d86093ec",
+      "kind": "explicit-derivative",
+      "purpose": "Failure exits nonzero and exposes original cause, including unchanged60s timeout",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; original stack locations remain bound locally.",
+        "Forward-slash/file-URL spelling of the same named absolute root is also replaced; no exception or exit value altered."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/06-recovery/selected-livesync-command.json",
+      "originBytes": 423,
+      "originSHA256": "d4c6e7ed487b541bf7cca053607e8207b827a6853b2db7d65c7c95056a49b6c9",
+      "path": "after-status/06-recovery/selected-livesync-command.json",
+      "bytes": 420,
+      "sha256": "ca1f766a481063a2a1829c082891cb9ad8f452b4cf3a6a224d92926eb83f0bc3",
+      "kind": "explicit-derivative",
+      "purpose": "Actual successful recovery and exact54capture/native-buffer/disk relation",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/06-recovery/selected-livesync.stdout.txt",
+      "originBytes": 570,
+      "originSHA256": "99138eaeb5576d6819730aa42932715c9e213d1114f2fe2bae8729f0281b48a1",
+      "path": "after-status/06-recovery/selected-livesync.stdout.txt",
+      "bytes": 570,
+      "sha256": "99138eaeb5576d6819730aa42932715c9e213d1114f2fe2bae8729f0281b48a1",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual successful recovery and exact54capture/native-buffer/disk relation",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/06-recovery/selected-livesync.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "after-status/06-recovery/selected-livesync.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual successful recovery and exact54capture/native-buffer/disk relation",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/06-recovery/native-generated-disk-bijection.json",
+      "originBytes": 8499,
+      "originSHA256": "a97cca0bb43d1fa8710ae98f03cbe2cff84fffd48b6363e0421818660bdeb71d",
+      "path": "after-status/06-recovery/native-generated-disk-bijection.json",
+      "bytes": 8499,
+      "sha256": "a97cca0bb43d1fa8710ae98f03cbe2cff84fffd48b6363e0421818660bdeb71d",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual successful recovery and exact54capture/native-buffer/disk relation",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/06-recovery/observer/report.json",
+      "originBytes": 17323,
+      "originSHA256": "7fde87aa378f1a50ad6b690e6399c6f2a03ec263b00906f1153f9f837fcc2c45",
+      "path": "after-status/native-observation.json",
+      "bytes": 6921,
+      "sha256": "b47e4b58b281a071358faee6fc1abfa84e92fed8277195f1efcf8d2d844eb21e",
+      "kind": "explicit-derivative",
+      "purpose": "Actual two-client board agreement and local request/error observations",
+      "omittedOrTransformed": [
+        "Per-request origin/path rows omitted; allowed/count derived from those exact rows.",
+        "Per-screenshot rows omitted; exact native/generated/disk table is separately included."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/02-normal-check/normal-check-command.json",
+      "originBytes": 275,
+      "originSHA256": "3cc47d0741288a4da4e4e8ca68017d0b63e3c3bfbec83b02edd488270ceab742",
+      "path": "checks/normal-check-command.json",
+      "bytes": 275,
+      "sha256": "3cc47d0741288a4da4e4e8ca68017d0b63e3c3bfbec83b02edd488270ceab742",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual current39JavaScript/36tour/34citation check",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/02-normal-check/normal-check.stdout.txt",
+      "originBytes": 160,
+      "originSHA256": "bd6cb30c52eb122651a342069acd32cf94a32ed9ee44fb386fa99239533afefb",
+      "path": "checks/normal-check.stdout.txt",
+      "bytes": 160,
+      "sha256": "bd6cb30c52eb122651a342069acd32cf94a32ed9ee44fb386fa99239533afefb",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual current39JavaScript/36tour/34citation check",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/02-normal-check/normal-check.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "checks/normal-check.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual current39JavaScript/36tour/34citation check",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/03-preflight-stills/legacy-parity.json",
+      "originBytes": 2777,
+      "originSHA256": "1736a8a1bf96b1132b3beba23d0733c7e409083c54fb3ba543c7fd6c1849785c",
+      "path": "checks/legacy-parity.json",
+      "bytes": 2777,
+      "sha256": "1736a8a1bf96b1132b3beba23d0733c7e409083c54fb3ba543c7fd6c1849785c",
+      "kind": "exact-raw-copy",
+      "purpose": "Eight selected legacy frame comparisons, not all old compositions",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/07-media/repaired-frame-0.png",
+      "originBytes": 190598,
+      "originSHA256": "8b909c3b819574600c9a6fd5a814bd17c062e542cec7e16dfdb4e268bf707ecc",
+      "path": "before-output/repaired-frame-0.png",
+      "bytes": 190598,
+      "sha256": "8b909c3b819574600c9a6fd5a814bd17c062e542cec7e16dfdb4e268bf707ecc",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual old unreadable exported state at named frame",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/07-media/repaired-frame-147.png",
+      "originBytes": 223729,
+      "originSHA256": "f4c6fcdf0cf8a73b3f555a00b5a1f37ae5126dcf06293c054e7cd37d36e30281",
+      "path": "before-output/repaired-frame-147.png",
+      "bytes": 223729,
+      "sha256": "f4c6fcdf0cf8a73b3f555a00b5a1f37ae5126dcf06293c054e7cd37d36e30281",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual old unreadable exported state at named frame",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/07-media/repaired-frame-294.png",
+      "originBytes": 209727,
+      "originSHA256": "4ba2fca74b9ce400e9f2a05e6cea6519c984cd0870ce28c711569ced75e00839",
+      "path": "before-output/repaired-frame-294.png",
+      "bytes": 209727,
+      "sha256": "4ba2fca74b9ce400e9f2a05e6cea6519c984cd0870ce28c711569ced75e00839",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual old unreadable exported state at named frame",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/07-media/repaired-frame-587.png",
+      "originBytes": 234102,
+      "originSHA256": "c8567729d745e5de081e7e8a6483fb046a4fa712e7c5c48a005fccdb07e3ce79",
+      "path": "before-output/repaired-frame-587.png",
+      "bytes": 234102,
+      "sha256": "c8567729d745e5de081e7e8a6483fb046a4fa712e7c5c48a005fccdb07e3ce79",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual old unreadable exported state at named frame",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-capture-status-after-01/07-media/gif-frame-293.png",
+      "originBytes": 46486,
+      "originSHA256": "27ce1ac241da93b211beb75ee9b777a599226e8d32a480626e29fd5eefa5ae77",
+      "path": "before-output/gif-frame-293.png",
+      "bytes": 46486,
+      "sha256": "27ce1ac241da93b211beb75ee9b777a599226e8d32a480626e29fd5eefa5ae77",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual old720 palette GIF frame, not a resampled substitute",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-plan-03/change-boundary.png",
+      "originBytes": 224067,
+      "originSHA256": "f69cea8c46e7ddfef5967388f8eb76346337716a4a7c50dead85a0b6865b9f04",
+      "path": "scope/change-boundary.png",
+      "bytes": 224067,
+      "sha256": "f69cea8c46e7ddfef5967388f8eb76346337716a4a7c50dead85a0b6865b9f04",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual labelled change boundary of frozen old output",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-plan-03/change-boundary.md",
+      "originBytes": 3717,
+      "originSHA256": "cbfe55ab985d59603a6cde6f576bd32ed87f187f60d07345dcc9107940da99b8",
+      "path": "scope/change-boundary.md.txt",
+      "bytes": 3717,
+      "sha256": "cbfe55ab985d59603a6cde6f576bd32ed87f187f60d07345dcc9107940da99b8",
+      "kind": "exact-raw-copy",
+      "purpose": "Scope contract and explicit motion/focus limits",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_CAPTURE_STATUS_FINAL_JUDGE.md",
+      "originBytes": 3192,
+      "originSHA256": "927c8638a8691e46512bf6411f6474c7c3d91b55507a6ddf1e209d4ec959ba22",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_CAPTURE_STATUS_FINAL_JUDGE.md.txt",
+      "bytes": 3192,
+      "sha256": "927c8638a8691e46512bf6411f6474c7c3d91b55507a6ddf1e209d4ec959ba22",
+      "kind": "exact-raw-copy",
+      "purpose": "Independent historical scoped status/criterion judgment; source/local references explicitly mapped",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_CAPTURE_STATUS_FINAL_JUDGE.json",
+      "originBytes": 9876,
+      "originSHA256": "833c51ba6f9974d60662c256f03fb87e8a16b5830006b496c9832ed0dbbf1020",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_CAPTURE_STATUS_FINAL_JUDGE.json",
+      "bytes": 9258,
+      "sha256": "b40c0069d521d23554dd092811cb4e81046ce894c6875ebdc92162e3ed13b299",
+      "kind": "explicit-derivative",
+      "purpose": "Independent historical scoped status/criterion judgment; source/local references explicitly mapped",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.md",
+      "originBytes": 5000,
+      "originSHA256": "34ff93d97754f0e66041feeb19c0545dcf3d84e1f356673a3fdd9ff5cdc3a446",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.md.txt",
+      "bytes": 5000,
+      "sha256": "34ff93d97754f0e66041feeb19c0545dcf3d84e1f356673a3fdd9ff5cdc3a446",
+      "kind": "exact-raw-copy",
+      "purpose": "Independent historical scoped status/criterion judgment; source/local references explicitly mapped",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json",
+      "originBytes": 52393,
+      "originSHA256": "1af30f642f6521de90e58fa64aea530297448627fe23770d8a23bb3420bb3ca0",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_CRITERION_ASSESSMENT.json",
+      "bytes": 47752,
+      "sha256": "1e9d47b96c0213865628321e04243120451b8ffbbd86be50b54530477a04d49a",
+      "kind": "explicit-derivative",
+      "purpose": "Independent historical scoped status/criterion judgment; source/local references explicitly mapped",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-livesync.mp4",
+      "originBytes": 2374634,
+      "originSHA256": "9fdf8250cfadd6957ae23e68de104b2827d9b64de3857bf3ee1808860698700e",
+      "path": "after-output/readable-livesync.mp4",
+      "bytes": 2374634,
+      "sha256": "9fdf8250cfadd6957ae23e68de104b2827d9b64de3857bf3ee1808860698700e",
+      "kind": "exact-raw-copy",
+      "purpose": "Accepted encoded LiveSync output; actual bytes, not a regenerated example.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-livesync.gif",
+      "originBytes": 2772039,
+      "originSHA256": "406425fade2aaae2b06722a4d279214f43b6b1698f22ee6b9c8b175af9967648",
+      "path": "after-output/readable-livesync.gif",
+      "bytes": 2772039,
+      "sha256": "406425fade2aaae2b06722a4d279214f43b6b1698f22ee6b9c8b175af9967648",
+      "kind": "exact-raw-copy",
+      "purpose": "Accepted encoded LiveSync output; actual bytes, not a regenerated example.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-0.png",
+      "originBytes": 449030,
+      "originSHA256": "181cd4d925a5f1bb1645d75357c04d58e1b816ade5624b8dd614611f81fb1da4",
+      "path": "after-output/movie-0.png",
+      "bytes": 449030,
+      "sha256": "181cd4d925a5f1bb1645d75357c04d58e1b816ade5624b8dd614611f81fb1da4",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-0.png",
+      "originBytes": 69971,
+      "originSHA256": "7d1a6004259387788d815b049f17e6ba70764389938657f22b8b27b458151ab2",
+      "path": "after-output/gif-0.png",
+      "bytes": 69971,
+      "sha256": "7d1a6004259387788d815b049f17e6ba70764389938657f22b8b27b458151ab2",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-26.png",
+      "originBytes": 480813,
+      "originSHA256": "de3ace6e9d21b81ea7af5c713a000b79c18040b36d733ed7db28468a557e7c45",
+      "path": "after-output/movie-26.png",
+      "bytes": 480813,
+      "sha256": "de3ace6e9d21b81ea7af5c713a000b79c18040b36d733ed7db28468a557e7c45",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-13.png",
+      "originBytes": 73397,
+      "originSHA256": "a54cd91e516ec85e78a2f0f0ed1e49f54605f05f4c1995b0bd246f146fd16e6b",
+      "path": "after-output/gif-13.png",
+      "bytes": 73397,
+      "sha256": "a54cd91e516ec85e78a2f0f0ed1e49f54605f05f4c1995b0bd246f146fd16e6b",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-96.png",
+      "originBytes": 518760,
+      "originSHA256": "4a30488b5e8064adf7e5be51861587637b9ed9cc8c7de8b35f7ed29da24351b0",
+      "path": "after-output/movie-96.png",
+      "bytes": 518760,
+      "sha256": "4a30488b5e8064adf7e5be51861587637b9ed9cc8c7de8b35f7ed29da24351b0",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-48.png",
+      "originBytes": 77084,
+      "originSHA256": "0fe14996174cb39f6b6a9a14e44b6a596dc97face9acb28a039e5f3ecadc5457",
+      "path": "after-output/gif-48.png",
+      "bytes": 77084,
+      "sha256": "0fe14996174cb39f6b6a9a14e44b6a596dc97face9acb28a039e5f3ecadc5457",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-156.png",
+      "originBytes": 516450,
+      "originSHA256": "b9f3ff3791015b83c710feca1bf1644ec98320dd36887cf941b5be2300b08c72",
+      "path": "after-output/movie-156.png",
+      "bytes": 516450,
+      "sha256": "b9f3ff3791015b83c710feca1bf1644ec98320dd36887cf941b5be2300b08c72",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-78.png",
+      "originBytes": 76323,
+      "originSHA256": "ed299db2f33c8261df32ab60842260623b323543a02d9e8364839250a8c332bd",
+      "path": "after-output/gif-78.png",
+      "bytes": 76323,
+      "sha256": "ed299db2f33c8261df32ab60842260623b323543a02d9e8364839250a8c332bd",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-210.png",
+      "originBytes": 304978,
+      "originSHA256": "283f6a9a3b4310ed32e7b0eeb420510d6437029666b4338a80ef916bbdec7db6",
+      "path": "after-output/movie-210.png",
+      "bytes": 304978,
+      "sha256": "283f6a9a3b4310ed32e7b0eeb420510d6437029666b4338a80ef916bbdec7db6",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-105.png",
+      "originBytes": 51717,
+      "originSHA256": "3811256de7e9126e8435952858c78d1bdf4b66db709224f348146acdfe6569ee",
+      "path": "after-output/gif-105.png",
+      "bytes": 51717,
+      "sha256": "3811256de7e9126e8435952858c78d1bdf4b66db709224f348146acdfe6569ee",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-294.png",
+      "originBytes": 289199,
+      "originSHA256": "0c0d46c1c07a4d98fb7eb5c7026b00f67d44572be7a85aa88a2ec5b7360d6b40",
+      "path": "after-output/movie-294.png",
+      "bytes": 289199,
+      "sha256": "0c0d46c1c07a4d98fb7eb5c7026b00f67d44572be7a85aa88a2ec5b7360d6b40",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-147.png",
+      "originBytes": 50905,
+      "originSHA256": "83812d5e087eb8cf6ef58c34b01b52b4dd4a222659aa921a8d5096c768e05e22",
+      "path": "after-output/gif-147.png",
+      "bytes": 50905,
+      "sha256": "83812d5e087eb8cf6ef58c34b01b52b4dd4a222659aa921a8d5096c768e05e22",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-372.png",
+      "originBytes": 506643,
+      "originSHA256": "2ad49cbc3cb519cffff293ef5a104b773263793c9d4f3356f1ce23e394003d89",
+      "path": "after-output/movie-372.png",
+      "bytes": 506643,
+      "sha256": "2ad49cbc3cb519cffff293ef5a104b773263793c9d4f3356f1ce23e394003d89",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-186.png",
+      "originBytes": 76240,
+      "originSHA256": "603372e3becb11b7b9479df7b892023a624c57c9eee55bf2b81228a57ba97043",
+      "path": "after-output/gif-186.png",
+      "bytes": 76240,
+      "sha256": "603372e3becb11b7b9479df7b892023a624c57c9eee55bf2b81228a57ba97043",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-402.png",
+      "originBytes": 467540,
+      "originSHA256": "83ac02498b8b713b0cc83460b2d009559cdc8560be8061b4e16ac9e71a3df747",
+      "path": "after-output/movie-402.png",
+      "bytes": 467540,
+      "sha256": "83ac02498b8b713b0cc83460b2d009559cdc8560be8061b4e16ac9e71a3df747",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-201.png",
+      "originBytes": 72022,
+      "originSHA256": "cd0c71876f41ca5664739c8bfb557d36f7d50f7bb8eeceb73f29e7c4256fa861",
+      "path": "after-output/gif-201.png",
+      "bytes": 72022,
+      "sha256": "cd0c71876f41ca5664739c8bfb557d36f7d50f7bb8eeceb73f29e7c4256fa861",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-408.png",
+      "originBytes": 493764,
+      "originSHA256": "4f135552f905d3a29ea360945dabcb37b395871dcae936275a4adeb9c492cef8",
+      "path": "after-output/movie-408.png",
+      "bytes": 493764,
+      "sha256": "4f135552f905d3a29ea360945dabcb37b395871dcae936275a4adeb9c492cef8",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-204.png",
+      "originBytes": 75230,
+      "originSHA256": "ec3d85c21127980139b9095194e29c4f0dacca356360687493f7320d9a941714",
+      "path": "after-output/gif-204.png",
+      "bytes": 75230,
+      "sha256": "ec3d85c21127980139b9095194e29c4f0dacca356360687493f7320d9a941714",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-420.png",
+      "originBytes": 425302,
+      "originSHA256": "c02b3301b5ab2e1c9cf54ca899cc4841ef9fd5d0f7db17c39145bccbf2a1cf6d",
+      "path": "after-output/movie-420.png",
+      "bytes": 425302,
+      "sha256": "c02b3301b5ab2e1c9cf54ca899cc4841ef9fd5d0f7db17c39145bccbf2a1cf6d",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-210.png",
+      "originBytes": 64383,
+      "originSHA256": "712b70119c50f2bca4dba9d93b9c1af99fab0158ca2dc301d0a3bc27be0d1beb",
+      "path": "after-output/gif-210.png",
+      "bytes": 64383,
+      "sha256": "712b70119c50f2bca4dba9d93b9c1af99fab0158ca2dc301d0a3bc27be0d1beb",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-432.png",
+      "originBytes": 553961,
+      "originSHA256": "bfb055ea03da0b5aa564d59122bac4ad3198db09a1b964e15ebc9fc14ef06b37",
+      "path": "after-output/movie-432.png",
+      "bytes": 553961,
+      "sha256": "bfb055ea03da0b5aa564d59122bac4ad3198db09a1b964e15ebc9fc14ef06b37",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-216.png",
+      "originBytes": 71097,
+      "originSHA256": "310cd10b6ceaad026d319473828f5504b4eee23b2e4b35305c6dc428b5759a21",
+      "path": "after-output/gif-216.png",
+      "bytes": 71097,
+      "sha256": "310cd10b6ceaad026d319473828f5504b4eee23b2e4b35305c6dc428b5759a21",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-518.png",
+      "originBytes": 578710,
+      "originSHA256": "d18a89ec9f72f7fa05810036e4ce48813d380853066180d096f52d014508ee00",
+      "path": "after-output/movie-518.png",
+      "bytes": 578710,
+      "sha256": "d18a89ec9f72f7fa05810036e4ce48813d380853066180d096f52d014508ee00",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-259.png",
+      "originBytes": 72989,
+      "originSHA256": "f9277d00ea2a411ff80fc7c69de3387c84c9edfb1016a82bae6e6bf924101a5d",
+      "path": "after-output/gif-259.png",
+      "bytes": 72989,
+      "sha256": "f9277d00ea2a411ff80fc7c69de3387c84c9edfb1016a82bae6e6bf924101a5d",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/movie-587.png",
+      "originBytes": 578774,
+      "originSHA256": "105372737a0521a8deab9fca32cb9ba25e40e3845d8e7b20851521c99cd4aae7",
+      "path": "after-output/movie-587.png",
+      "bytes": 578774,
+      "sha256": "105372737a0521a8deab9fca32cb9ba25e40e3845d8e7b20851521c99cd4aae7",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual decoded MP4 sample: eight settled steps plus start/final, early travel and longest card.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-293.png",
+      "originBytes": 73016,
+      "originSHA256": "1203538167ff51942b507d05391142772b0034f9a3423e6971865772d8d03fb3",
+      "path": "after-output/gif-293.png",
+      "bytes": 73016,
+      "sha256": "1203538167ff51942b507d05391142772b0034f9a3423e6971865772d8d03fb3",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual palette GIF decoded sample; nominal half-frame selection, not a downscaled still.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/render-readable-command.json",
+      "originBytes": 490,
+      "originSHA256": "a226c9314b027b2a616b7ca826b01e729ba38c91ae5604602f19965a5c101aaf",
+      "path": "encoding/render-readable-command.json",
+      "bytes": 410,
+      "sha256": "a561836ee6990bda38e3d38e48d95aec553a77983c8eb39d7043e76cb0f654bb",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/render-readable.stdout.txt",
+      "originBytes": 24668,
+      "originSHA256": "6b918a87efc0ef29eb9fc50acdfbbe868fccdf8eb985908fda6e703a0bf1e387",
+      "path": "encoding/render-readable.stdout.txt",
+      "bytes": 24526,
+      "sha256": "1c63c0152442e2baf5ef84bfcf94bc2628bbda911beff26c1d2a2dd56973e1fc",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; original stack locations remain bound locally."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/render-readable.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/render-readable.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/documented-gif-command.json",
+      "originBytes": 822,
+      "originSHA256": "c508d3f0c76284233dd8a0b18d257dfd0d8b3764eac81457c0d526c7f28c81c5",
+      "path": "encoding/documented-gif-command.json",
+      "bytes": 659,
+      "sha256": "f8d9833aba9a37ebeeb9397e6a380dd575eeab140d42ed812111872996ca14bd",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/documented-gif.stdout.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/documented-gif.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/documented-gif.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/documented-gif.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-ffprobe-command.json",
+      "originBytes": 488,
+      "originSHA256": "12383996e1b080bdfdbba7435d9972fdaa98b8f78de1772bdcb43d698691ea60",
+      "path": "encoding/readable-ffprobe-command.json",
+      "bytes": 405,
+      "sha256": "c1cb42c1c5b5489412c9335a93da56efdea6d386643810288656f772c0292f78",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-ffprobe.stdout.txt",
+      "originBytes": 4771,
+      "originSHA256": "70df8b237d3f4b3f549ef32690bd69bed33f9bb8a2efdf0df752081f3fffabc8",
+      "path": "encoding/readable-ffprobe.stdout.txt",
+      "bytes": 4691,
+      "sha256": "1de72f7b43285da7f9574b6582fb1440e030ea2a60944f40c7407effc5e4c8fe",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "JSON-escaped spelling of the same operator prefix in stdout text replaced; raw probe output remains locally bound."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-ffprobe.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/readable-ffprobe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-decode-command.json",
+      "originBytes": 463,
+      "originSHA256": "5e276742b471c2d99d9c24b3ccaa0a3ee1e9721a71b304081172767be0157783",
+      "path": "encoding/readable-decode-command.json",
+      "bytes": 380,
+      "sha256": "89c7627791507cf220f160b7a30ecbbd34d81ae53435c3cd250492631f7db2b8",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-decode.stdout.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/readable-decode.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-decode.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/readable-decode.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-probe-command.json",
+      "originBytes": 481,
+      "originSHA256": "3b6d4586e69b9c10affc0f7becf212102ac80d48aaa62735eeeeb16e28e602a6",
+      "path": "encoding/gif-probe-command.json",
+      "bytes": 398,
+      "sha256": "9a27f234af491a0b929c4a19c6144173e83eecf59dbdeb12cc3a593c8d6b4486",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-probe.stdout.txt",
+      "originBytes": 2151,
+      "originSHA256": "a5e3af9a2102580cb967a324ed4917ce787c75fc09efb6a018eec712fdd9baa1",
+      "path": "encoding/gif-probe.stdout.txt",
+      "bytes": 2071,
+      "sha256": "aecf348b482f91d97df7cb52a5c68e57d26ca8c8ffbb7d2e5c9bc14999ad9c38",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "JSON-escaped spelling of the same operator prefix in stdout text replaced; raw probe output remains locally bound."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-probe.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/gif-probe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-decode-command.json",
+      "originBytes": 458,
+      "originSHA256": "14a19d38fa5c3a0aa4f9c0ec2c5e11bbb72f15ba6d7a6139fe56646c33dc03c4",
+      "path": "encoding/gif-decode-command.json",
+      "bytes": 375,
+      "sha256": "395b25f5bb52414ae083c2446807a0281433ea0cd2aaaf2b48684656d6085ab3",
+      "kind": "explicit-derivative",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-decode.stdout.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/gif-decode.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/gif-decode.stderr.txt",
+      "originBytes": 0,
+      "originSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "encoding/gif-decode.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual one-render/one-GIF command or probe/full-decode output.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/receipt.json",
+      "originBytes": 96049,
+      "originSHA256": "9b0493230f689b4e1eba82185465aae3982c57e35554fc3a8c0d27d13843fbcf",
+      "path": "encoding/stage04-receipt.json",
+      "bytes": 23747,
+      "sha256": "40d9b4e7633222cde48d692f803322e2c220bfa7e532f7d1b5b9055074183056",
+      "kind": "explicit-derivative",
+      "purpose": "Outcome/deadline summary retains the original receipt's explicit lack of visual certification.",
+      "omittedOrTransformed": [
+        "Full argv rows omitted; render/GIF/probe/decode exact commands are separately included. All128 outcome/deadline rows retained."
+      ]
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/closed.json",
+      "originBytes": 118,
+      "originSHA256": "17bc5068498b462463adebd3d8f6331da34ae185e43da69271520d365cf614ad",
+      "path": "encoding/stage04-closed.json",
+      "bytes": 118,
+      "sha256": "17bc5068498b462463adebd3d8f6331da34ae185e43da69271520d365cf614ad",
+      "kind": "exact-raw-copy",
+      "purpose": "Closed stage source/process scope.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/05-close/receipt.json",
+      "originBytes": 164,
+      "originSHA256": "38b5dd782102d499bb77624ec6bae6aadcac5591ab18071728e7160d733fa72c",
+      "path": "encoding/stage05-receipt.json",
+      "bytes": 164,
+      "sha256": "38b5dd782102d499bb77624ec6bae6aadcac5591ab18071728e7160d733fa72c",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual final stage outcome.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/05-close/closed.json",
+      "originBytes": 118,
+      "originSHA256": "17bc5068498b462463adebd3d8f6331da34ae185e43da69271520d365cf614ad",
+      "path": "encoding/stage05-closed.json",
+      "bytes": 118,
+      "sha256": "17bc5068498b462463adebd3d8f6331da34ae185e43da69271520d365cf614ad",
+      "kind": "exact-raw-copy",
+      "purpose": "Actual final source/process closure.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.json",
+      "originBytes": 4365,
+      "originSHA256": "d403ffd98ae140d87130ad2605fcceb63a0fcc9e9e2b12a2c9d7a613bc47095e",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.json",
+      "bytes": 3645,
+      "sha256": "e0177f82b99146a7aef40bb804d3cd1b3ef07ca535fc2ad2695b6ddf6ddc712c",
+      "kind": "explicit-derivative",
+      "purpose": "Independent scoped final output judgment or separate criterion successor; original historical assessment stays exact locally.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local.",
+        "JSON-escaped spelling of the same operator prefix in stdout text replaced; raw probe output remains locally bound."
+      ]
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.md",
+      "originBytes": 6199,
+      "originSHA256": "ecdaf01085fefdc7777316e0f74ef4b97bf9af02a129764eb100e3b9f5a5352d",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.md.txt",
+      "bytes": 6199,
+      "sha256": "ecdaf01085fefdc7777316e0f74ef4b97bf9af02a129764eb100e3b9f5a5352d",
+      "kind": "exact-raw-copy",
+      "purpose": "Independent scoped final output judgment or separate criterion successor; original historical assessment stays exact locally.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_READABILITY_CRITERION_ASSESSMENT.json",
+      "originBytes": 74834,
+      "originSHA256": "54b065247acc4539ef36c31465862e45204e2ba8b96bf33020f930c8f753c941",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_READABILITY_CRITERION_ASSESSMENT.json",
+      "bytes": 66031,
+      "sha256": "ae178f351d8a05353d2e8ad4081a4098bc829b41cab2ffbf4b2ab9448495dba0",
+      "kind": "explicit-derivative",
+      "purpose": "Independent scoped final output judgment or separate criterion successor; original historical assessment stays exact locally.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o_FEATURECLIPSTUDIO_READABILITY_CRITERION_ASSESSMENT.md",
+      "originBytes": 3190,
+      "originSHA256": "d90269fa28006e1a930ba4a67a415f1a63ef7bceb59b6b915282d3b1d0cbcc26",
+      "path": "judgments/E6o_FEATURECLIPSTUDIO_READABILITY_CRITERION_ASSESSMENT.md.txt",
+      "bytes": 3190,
+      "sha256": "d90269fa28006e1a930ba4a67a415f1a63ef7bceb59b6b915282d3b1d0cbcc26",
+      "kind": "exact-raw-copy",
+      "purpose": "Independent scoped final output judgment or separate criterion successor; original historical assessment stays exact locally.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-readability-criterion-successor-01/final-judge-field-correction.json",
+      "originBytes": 1066,
+      "originSHA256": "fbab4b9092efce1460d572e83e2839039ae36dbb801012bfe36167d941cfb6ec",
+      "path": "judgments/final-judge-field-correction.json",
+      "bytes": 889,
+      "sha256": "491fc358c694d972b1e7bc0b77be8e4e10ce3961a6353a5f22d9cbdbfc3266c3",
+      "kind": "explicit-derivative",
+      "purpose": "Explicit correction of inherited nested pending visualReview field; top-level final approval unchanged.",
+      "omittedOrTransformed": [
+        "Absolute operator/checkout/home prefixes replaced by labelled placeholders; referenced originals remain operator-local."
+      ]
+    },
+    {
+      "origin": "E6o-readability-media-independent-01/reviewer-reading-correction.json",
+      "originBytes": 18801,
+      "originSHA256": "86da1a54c33480e3cc8424c41b31534e92f1c998d92e6fed49c730816468a0d1",
+      "path": "judgments/reviewer-reading-correction.json",
+      "bytes": 18801,
+      "sha256": "86da1a54c33480e3cc8424c41b31534e92f1c998d92e6fed49c730816468a0d1",
+      "kind": "exact-raw-copy",
+      "purpose": "Preserved independent image-reading false alarm and its numeric resolution; no product rerender.",
+      "omittedOrTransformed": []
+    },
+    {
+      "origin": "E6o-featureclipstudio-readability-render-01/04-full-media/readable-frame-147.png",
+      "originBytes": 512543,
+      "originSHA256": "a5c8875fced0460989322cf476485e485964ec1b7ace316325f386a22dfb797a",
+      "path": "after-output/movie-147.png",
+      "bytes": 512543,
+      "sha256": "a5c8875fced0460989322cf476485e485964ec1b7ace316325f386a22dfb797a",
+      "kind": "exact-raw-copy",
+      "purpose": "Exact same-frame147 comparison with the retained original movie; native decode from the accepted MP4.",
+      "omittedOrTransformed": []
+    }
+  ]
+}

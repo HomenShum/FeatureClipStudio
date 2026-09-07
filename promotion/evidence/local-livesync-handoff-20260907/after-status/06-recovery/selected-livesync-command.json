@@ -1,0 +1,16 @@
+{
+  "name": "selected-livesync",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "--import",
+    "file:///<user-home>/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6o-featureclipstudio-capture-status-after-plan-01/observe-capture.mjs",
+    "walkthrough.collab.mjs"
+  ],
+  "seconds": 16.843,
+  "timeoutSeconds": 180,
+  "timedout": false,
+  "exitCode": 0,
+  "expectedExitCodes": [
+    0
+  ]
+}

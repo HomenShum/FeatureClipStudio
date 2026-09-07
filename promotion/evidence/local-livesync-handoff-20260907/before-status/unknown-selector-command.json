@@ -1,0 +1,16 @@
+{
+  "name": "unknown-selector",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "walkthrough.collab.mjs"
+  ],
+  "seconds": 0.688,
+  "timeoutSeconds": 45,
+  "timedout": false,
+  "exitCode": 0,
+  "expectedExitCodes": [
+    0,
+    1,
+    2
+  ]
+}

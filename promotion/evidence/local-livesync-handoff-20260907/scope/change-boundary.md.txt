@@ -1,0 +1,28 @@
+# Frozen export change boundary
+
+Audience: a developer or reviewer needs to follow one local action, see both clients agree, and read the result without mistaking a fixed-text, in-memory demo for a provider or durable backend.
+
+Scope: output composition `WTC-LiveSync`, 1920 × 1080 at 30 fps and its 720 × 405 GIF at 15 fps. Theme, input, eight holds and 54 captured PNG bytes are frozen. These annotations show existing exported images in an inert viewer. They are not a fresh render, a browser responsive test, or another completed capture.
+
+CHANGE A is the complete Client A pane, currently x48/y388, width898, height298 including the chrome border. CHANGE B is Client B at x974/y388 with the same size. CHANGE C is the existing title, step and summary group at x48/y28, width652, height44; its title will disclose local fixed text and in-memory state. The future A/B bounds are x48/y84 and x48/y528, width1824, total height424 each, with a real 20-pixel gap and bottom952. The caption, progress bar and background are unchanged neighbors.
+
+## State contract
+
+| Step | Preserved state | Focus and required observation |
+| --- | --- | --- |
+| 1 | Both clients, empty board | Both labels and controls; disclosure remains readable |
+| 2 | A has typed the card | A input and native cursor; B remains distinguishable |
+| 3 | A clicks Add | Entire Add control and ripple inside the focused pane |
+| 4 | Card burst | Added card on both clients through every burst edge; obsolete off-crop hint removed |
+| 5 | Card settled | Exact same card text on A and B |
+| 6 | A asks the agent | Entire actual agent button and click inside the focused pane |
+| 7 | Fixed text streams | Inspect every captured burst edge, including early indices0/1 during camera travel and the longest 98-pixel card; require the complete settled result on both clients |
+| 8 | Final agreement | Full final text and card bottom border/shadow; both labels and disclosure readable |
+
+Available exported before stills bind steps 1, 3, 5 and 8 at frames 0, 147, 294 and 587, plus GIF frame293. Other before states are in the frozen full movie and native capture inventory; no missing exported still is fabricated. The annotation records raw-image hashes, exact DOM boxes and removal/restoration. Original files are never written.
+
+After coverage includes every step start, camera offsets 6/16/26, each step end, opening frame4, and each burst image edge; both full-size stills and actual full GIF frames are inspected. During a focus transition the whole relevant region may be temporarily outside the crop; it must settle without a clipped final state, unrelated pointer, hidden client identity or unreadable disclosure. At the longest agent state the lower margin is only 1.515 CSS pixels, so actual border/shadow/text pixels are an explicit gate. No geometry-only pass is allowed.
+
+Legacy exclusions: unopted one-, two- and three-pane and frameless layouts retain their original pixels at selected identical frames. No app state, caption, timing, font family, palette, provider behavior, capture selector actions, retry budget, or dependency changes. Error/recovery was already proved by the prior status slice; no fabricated error state or repeated native action is required here. Browser responsive behavior, real devices, external targets, voice and durable/provider claims remain outside this output proof.
+
+The header focus40.5 is an authored projection; the existing focusOf helper rounds it to41. Both clamp to the same top0 crop. Inspecting all burst edges does not mean every early state is completely visible during travel. The proof must preserve that sequence and show a clear action followed by both-client result, with no latency claim.

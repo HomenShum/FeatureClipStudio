@@ -19,7 +19,7 @@
 //   src/walkthrough.collab.data.js                    (consumed by src/Walkthrough2up.jsx)
 //
 //   # serve the demo app on :8930 first, then:
-//   node walkthrough.collab.mjs
+//   COLLAB_ONLY=LiveSync node walkthrough.collab.mjs
 import { chromium } from "playwright";
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -147,6 +147,10 @@ const run = async () => {
   // COLLAB_ONLY=NRsync,LiveSync re-captures just those specs and MERGES into the existing data
   // (iterate one walkthrough without re-running the others). No filter = full run + wipe.
   const ONLY = process.env.COLLAB_ONLY ? process.env.COLLAB_ONLY.split(",").map((s) => s.trim()) : null;
+  const invalid = ONLY?.filter((id) => !COLLAB_SPECS.some((spec) => spec.id === id));
+  if (invalid?.length) {
+    throw new Error(`Unknown COLLAB_ONLY selector(s): ${invalid.map((id) => JSON.stringify(id)).join(", ")}. Choose: ${COLLAB_SPECS.map((spec) => spec.id).join(", ")}`);
+  }
   const specs = ONLY ? COLLAB_SPECS.filter((s) => ONLY.includes(s.id)) : COLLAB_SPECS;
   // The unfiltered run used to wipe EVERY capture in the repo with no prompt, so
   // a mistyped invocation -- e.g. passing the spec id as an argv the script does
@@ -172,137 +176,146 @@ const run = async () => {
   const browser = await chromium.launch({ headless: true });
 
   const out = [];
-  for (const spec of specs) {
-    const dir = join(PUB, spec.id);
-    // Per-spec retries (opt-in via `retries: N`) — each attempt wipes the frame dir and runs in
-    // FRESH contexts, so a retried capture never inherits a half-driven, poisoned UI on any pane.
-    const maxAttempts = 1 + (spec.retries || 0);
-    let steps = [];
-    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    rmSync(dir, { recursive: true, force: true });
-    mkdirSync(dir, { recursive: true });
+  try {
+    for (const spec of specs) {
+      const dir = join(PUB, spec.id);
+      // Per-spec retries (opt-in via `retries: N`) — each attempt wipes the frame dir and runs in
+      // FRESH contexts, so a retried capture never inherits a half-driven, poisoned UI on any pane.
+      const maxAttempts = 1 + (spec.retries || 0);
+      let steps = [];
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      rmSync(dir, { recursive: true, force: true });
+      mkdirSync(dir, { recursive: true });
 
-    // ONE context per pane => fully independent clients (separate cookies/storage/socket).
-    const contexts = [];
-    const pages = [];
-    for (const pane of spec.panes) {
-      // deviceScaleFactor is per-spec because it is not free: at dsf 2 in
-      // headless Chromium, xterm.js's canvas renderer paints NOTHING -- an IDE
-      // capture ran a real pytest whose output existed in the server-side buffer
-      // but every frame showed a blank terminal (decorations still drew, because
-      // those are DOM). Proven by a one-variable A/B: same page, same commands,
-      // dsf 2 blank / dsf 1 fully rendered. Specs that show a terminal need
-      // `dsf: 1` and trade away Retina sharpness for text that exists.
-      const ctx = await browser.newContext({ viewport: { width: spec.vw || VW, height: spec.vh || VH }, deviceScaleFactor: spec.dsf || 2 });
-      const page = await ctx.newPage();
-      page.setDefaultTimeout(60000);
-      contexts.push(ctx);
-      pages.push(page);
-    }
-    // Navigate every pane to its own URL.
-    const attemptRunId = RUNID + (attempt > 1 ? "X" + attempt : "");   // fresh room on EACH attempt
-    await Promise.all(pages.map(async (page, k) => {
-      const pane = spec.panes[k];
-      if (pane.navDelay) await page.waitForTimeout(pane.navDelay);   // stagger (e.g. create-then-join)
-      await page.goto(pane.url.replace(/__RUNID__/g, attemptRunId), { waitUntil: "domcontentloaded" }).catch(() => {});
-    }));
-    await Promise.all(pages.map((page) => sleep(page, 1200)));
+      // ONE context per pane => fully independent clients (separate cookies/storage/socket).
+      const contexts = [];
+      const pages = [];
+      let ok = false;
+      let attemptError;
+      try {
+        for (const pane of spec.panes) {
+          // deviceScaleFactor is per-spec because it is not free: at dsf 2 in
+          // headless Chromium, xterm.js's canvas renderer paints NOTHING -- an IDE
+          // capture ran a real pytest whose output existed in the server-side buffer
+          // but every frame showed a blank terminal (decorations still drew, because
+          // those are DOM). Proven by a one-variable A/B: same page, same commands,
+          // dsf 2 blank / dsf 1 fully rendered. Specs that show a terminal need
+          // `dsf: 1` and trade away Retina sharpness for text that exists.
+          const ctx = await browser.newContext({ viewport: { width: spec.vw || VW, height: spec.vh || VH }, deviceScaleFactor: spec.dsf || 2 });
+          const page = await ctx.newPage();
+          page.setDefaultTimeout(60000);
+          contexts.push(ctx);
+          pages.push(page);
+        }
+        // Navigate every pane to its own URL.
+        const attemptRunId = RUNID + (attempt > 1 ? "X" + attempt : "");   // fresh room on EACH attempt
+        await Promise.all(pages.map(async (page, k) => {
+          const pane = spec.panes[k];
+          if (pane.navDelay) await page.waitForTimeout(pane.navDelay);   // stagger (e.g. create-then-join)
+          await page.goto(pane.url.replace(/__RUNID__/g, attemptRunId), { waitUntil: "domcontentloaded" });
+        }));
+        await Promise.all(pages.map((page) => sleep(page, 1200)));
 
-    steps = [];
-    let lastCursorPane = 0;       // which pane the most recent `act` touched (the ACTING pane)
-    let ok = false;
-    try {
-      let n = 0;
-      for (const op of spec.steps) {
-        if (op.cap && op.burst) {
-          // BURST: rapidly capture a SEQUENCE on EVERY pane at the same wall-clock ticks so
-          // the rendered clip shows real cross-client motion — the card painting in A, then
-          // syncing into B; the agent text streaming into BOTH at once.
-          const every = op.burst.every || 300;
-          const count = Math.max(2, Math.round((op.burst.ms || 2800) / every));
-          const actPane = op.cursorPane != null ? op.cursorPane : lastCursorPane;
-          const cur = await cursorOf(pages[actPane], op.cursor);
-          const zoom = op.zoom ? await Promise.all(pages.map((pg) => focusOf(pg, op.zoom))) : null;
-          const paneImgs = spec.panes.map(() => []);
-          for (let b = 0; b < count; b++) {
-            const bb = String(b).padStart(2, "0");
-            // Screenshot all panes as close to the same instant as possible.
-            await Promise.all(pages.map(async (page, pi) => {
-              const fn = `p${pi}_${String(n).padStart(2, "0")}_${bb}.png`;
-              await page.screenshot({ path: join(dir, fn) });
-              paneImgs[pi].push(`wt-collab/${spec.id}/${fn}`);
-            }));
-            if (b < count - 1) await Promise.all(pages.map((page) => sleep(page, every)));
-          }
-          const panes = spec.panes.map((_, pi) => ({
-            imgs: paneImgs[pi],
-            cursor: pi === actPane ? cur : null,
-            click: pi === actPane ? !!op.click : false,
-            zoom: zoom ? zoom[pi] : null,
-          }));
-          steps.push({ caption: op.caption || op.cap, hold: op.hold || 78, burst: true, zoomScale: op.zoomScale || null, panes });
-          console.log(`  ${spec.id} burst ${n}: ${count} frames x ${spec.panes.length} panes — ${op.caption || op.cap}`);
-          n++;
-        } else if (op.cap) {
-          const actPane = op.cursorPane != null ? op.cursorPane : lastCursorPane;
-          const cur = await cursorOf(pages[actPane], op.cursor);
-          const zoom = op.zoom ? await Promise.all(pages.map((pg) => focusOf(pg, op.zoom))) : null;
-          await Promise.all(pages.map((page) => sleep(page, 300)));
-          const panes = [];
-          for (let pi = 0; pi < spec.panes.length; pi++) {
-            const name = `p${pi}_${String(n).padStart(2, "0")}.png`;
-            await pages[pi].screenshot({ path: join(dir, name) });
-            panes.push({
-              img: `wt-collab/${spec.id}/${name}`,
+        steps = [];
+        let lastCursorPane = 0;       // which pane the most recent `act` touched (the ACTING pane)
+        let n = 0;
+        for (const op of spec.steps) {
+          if (op.cap && op.burst) {
+            // BURST: rapidly capture a SEQUENCE on EVERY pane at the same wall-clock ticks so
+            // the rendered clip shows real cross-client motion — the card painting in A, then
+            // syncing into B; the agent text streaming into BOTH at once.
+            const every = op.burst.every || 300;
+            const count = Math.max(2, Math.round((op.burst.ms || 2800) / every));
+            const actPane = op.cursorPane != null ? op.cursorPane : lastCursorPane;
+            const cur = await cursorOf(pages[actPane], op.cursor);
+            const zoom = op.zoom ? await Promise.all(pages.map((pg) => focusOf(pg, op.zoom))) : null;
+            const paneImgs = spec.panes.map(() => []);
+            for (let b = 0; b < count; b++) {
+              const bb = String(b).padStart(2, "0");
+              // Screenshot all panes as close to the same instant as possible.
+              await Promise.all(pages.map(async (page, pi) => {
+                const fn = `p${pi}_${String(n).padStart(2, "0")}_${bb}.png`;
+                await page.screenshot({ path: join(dir, fn) });
+                paneImgs[pi].push(`wt-collab/${spec.id}/${fn}`);
+              }));
+              if (b < count - 1) await Promise.all(pages.map((page) => sleep(page, every)));
+            }
+            const panes = spec.panes.map((_, pi) => ({
+              imgs: paneImgs[pi],
               cursor: pi === actPane ? cur : null,
               click: pi === actPane ? !!op.click : false,
               zoom: zoom ? zoom[pi] : null,
-            });
+            }));
+            steps.push({ caption: op.caption || op.cap, hold: op.hold || 78, burst: true, zoomScale: op.zoomScale || null, panes });
+            console.log(`  ${spec.id} burst ${n}: ${count} frames x ${spec.panes.length} panes — ${op.caption || op.cap}`);
+            n++;
+          } else if (op.cap) {
+            const actPane = op.cursorPane != null ? op.cursorPane : lastCursorPane;
+            const cur = await cursorOf(pages[actPane], op.cursor);
+            const zoom = op.zoom ? await Promise.all(pages.map((pg) => focusOf(pg, op.zoom))) : null;
+            await Promise.all(pages.map((page) => sleep(page, 300)));
+            const panes = [];
+            for (let pi = 0; pi < spec.panes.length; pi++) {
+              const name = `p${pi}_${String(n).padStart(2, "0")}.png`;
+              await pages[pi].screenshot({ path: join(dir, name) });
+              panes.push({
+                img: `wt-collab/${spec.id}/${name}`,
+                cursor: pi === actPane ? cur : null,
+                click: pi === actPane ? !!op.click : false,
+                zoom: zoom ? zoom[pi] : null,
+              });
+            }
+            steps.push({ caption: op.caption || op.cap, hold: op.hold || DEFAULT_HOLD, burst: false, zoomScale: op.zoomScale || null, panes });
+            console.log(`  ${spec.id} cap ${n}: ${op.caption || op.cap}`);
+            n++;
+          } else {
+            // ACTION on a single pane.
+            const pi = op.pane != null ? op.pane : 0;
+            lastCursorPane = pi;
+            await doAct(pages[pi], op);
           }
-          steps.push({ caption: op.caption || op.cap, hold: op.hold || DEFAULT_HOLD, burst: false, zoomScale: op.zoomScale || null, panes });
-          console.log(`  ${spec.id} cap ${n}: ${op.caption || op.cap}`);
-          n++;
-        } else {
-          // ACTION on a single pane.
-          const pi = op.pane != null ? op.pane : 0;
-          lastCursorPane = pi;
-          await doAct(pages[pi], op);
         }
+        ok = true;
+      } catch (e) {
+        attemptError = e;
+        // FAILURE FORENSICS: freeze EVERY pane's exact state + a body-text snippet before retry —
+        // "which client was in which state" ends debugging guesswork. zz-fail-* sorts last and is
+        // never referenced by walkthrough.collab.data.js.
+        await Promise.all(pages.map((page, pi) => page.screenshot({ path: join(dir, `zz-fail-p${pi}.png`) }).catch(() => {})));
+        for (let pi = 0; pi < pages.length; pi++) {
+          const bt = await pages[pi].evaluate(() => document.body.innerText.replace(/\s+/g, " ").slice(0, 160)).catch(() => "(unreadable)");
+          console.log(`  ${spec.id} fail-state pane ${pi}: ${bt}`);
+        }
+        console.log(`${spec.id} attempt ${attempt}/${maxAttempts} err: ${e.message.split("\n")[0]}`);
+      } finally {
+        for (const ctx of contexts) await ctx.close().catch(() => {});
       }
-      ok = true;
-    } catch (e) {
-      // FAILURE FORENSICS: freeze EVERY pane's exact state + a body-text snippet before retry —
-      // "which client was in which state" ends debugging guesswork. zz-fail-* sorts last and is
-      // never referenced by walkthrough.collab.data.js.
-      await Promise.all(pages.map((page, pi) => page.screenshot({ path: join(dir, `zz-fail-p${pi}.png`) }).catch(() => {})));
-      for (let pi = 0; pi < pages.length; pi++) {
-        const bt = await pages[pi].evaluate(() => document.body.innerText.replace(/\s+/g, " ").slice(0, 160)).catch(() => "(unreadable)");
-        console.log(`  ${spec.id} fail-state pane ${pi}: ${bt}`);
+      if (ok) break;
+      if (attempt === maxAttempts) {
+        throw new Error(`Capture ${spec.id} failed after ${maxAttempts} attempt(s); generated data was not written. Partial/failed PNGs remain in ${dir}. Re-capture successfully before rendering this spec.`, { cause: attemptError });
       }
-      console.log(`${spec.id} attempt ${attempt}/${maxAttempts} err: ${e.message.split("\n")[0]}`);
+      console.log(`  retrying ${spec.id} in fresh contexts`);
+      }
+      out.push({
+        id: spec.id,
+        title: spec.title,
+        accent: spec.accent,
+        vw: spec.vw || VW,
+        vh: spec.vh || VH,
+        cropVH: spec.cropVH || null,
+        // This object is a WHITELIST, not a spread: a field the renderer needs but
+        // that is not copied here is silently dropped, and the symptom is a spec
+        // change that appears to do nothing after a re-render. `frame` was added
+        // for exactly that reason -- add new render-time spec fields HERE too.
+        frame: spec.frame !== false,
+        layout: spec.layout,
+        paneLabels: spec.panes.map((p) => p.label),
+        steps,
+      });
     }
-
-    for (const ctx of contexts) await ctx.close().catch(() => {});
-    if (ok) break;
-    if (attempt < maxAttempts) console.log(`  retrying ${spec.id} in fresh contexts`);
-    }
-    out.push({
-      id: spec.id,
-      title: spec.title,
-      accent: spec.accent,
-      vw: spec.vw || VW,
-      vh: spec.vh || VH,
-      cropVH: spec.cropVH || null,
-      // This object is a WHITELIST, not a spread: a field the renderer needs but
-      // that is not copied here is silently dropped, and the symptom is a spec
-      // change that appears to do nothing after a re-render. `frame` was added
-      // for exactly that reason -- add new render-time spec fields HERE too.
-      frame: spec.frame !== false,
-      paneLabels: spec.panes.map((p) => p.label),
-      steps,
-    });
+  } finally {
+    await browser.close();
   }
-  await browser.close();
 
   // When filtering, MERGE captured specs into the existing data (preserve the others + order).
   let final = out;

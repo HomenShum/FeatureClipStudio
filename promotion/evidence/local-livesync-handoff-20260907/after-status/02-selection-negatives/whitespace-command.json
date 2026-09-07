@@ -1,0 +1,14 @@
+{
+  "name": "whitespace",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "walkthrough.collab.mjs"
+  ],
+  "seconds": 0.344,
+  "timeoutSeconds": 45,
+  "timedout": false,
+  "exitCode": 1,
+  "expectedExitCodes": [
+    1
+  ]
+}

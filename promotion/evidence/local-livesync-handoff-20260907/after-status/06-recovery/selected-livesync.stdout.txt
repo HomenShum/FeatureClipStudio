@@ -1,0 +1,10 @@
+RUNID (fresh-room code) = STR1QH7X
+  LiveSync cap 0: Two clients, one shared board
+  LiveSync cap 1: Client A types a new card
+  LiveSync cap 2: Client A clicks Add
+  LiveSync burst 3: 10 frames x 2 panes — Client A adds a card → Client B sees it live
+  LiveSync cap 4: Synced — both clients agree
+  LiveSync cap 5: Client A asks the agent to act
+  LiveSync burst 6: 11 frames x 2 panes — Server-led agent streams to every client
+  LiveSync cap 7: Every client converges on the same state
+WALKTHROUGH_COLLAB_CAPTURE_DONE — wrote src/walkthrough.collab.data.js

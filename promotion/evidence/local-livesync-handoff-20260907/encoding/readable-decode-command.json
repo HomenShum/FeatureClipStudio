@@ -1,0 +1,20 @@
+{
+  "name": "readable-decode",
+  "argv": [
+    "<user-home>/scoop/shims/ffmpeg.exe",
+    "-v",
+    "error",
+    "-i",
+    "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\readable-livesync.mp4",
+    "-f",
+    "null",
+    "-"
+  ],
+  "seconds": 0.25,
+  "timeoutSeconds": 180,
+  "timedout": false,
+  "exitCode": 0,
+  "expectedExitCodes": [
+    0
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "normal-check",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "C:/nvm4w/nodejs/node_modules/npm/bin/npm-cli.js",
+    "run",
+    "check"
+  ],
+  "seconds": 1.954,
+  "timeoutSeconds": 180,
+  "timedout": false,
+  "exitCode": 0,
+  "expectedExitCodes": [
+    0
+  ]
+}

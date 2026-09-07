@@ -1,0 +1,11 @@
+Error: Capture LiveSync failed after 1 attempt(s); generated data was not written. Partial/failed PNGs remain in checkout\public\wt-collab\LiveSync. Re-capture successfully before rendering this spec.
+    at run (file:///checkout/walkthrough.collab.mjs:295:15) {
+  [cause]: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8930/?user=B
+  Call log:
+  [2m  - navigating to "http://127.0.0.1:8930/?user=B", waiting until "domcontentloaded"[22m
+  
+      at checkout\walkthrough.collab.mjs:215:22
+      at run (checkout\walkthrough.collab.mjs:212:33) {
+    name: 'Error'
+  }
+}

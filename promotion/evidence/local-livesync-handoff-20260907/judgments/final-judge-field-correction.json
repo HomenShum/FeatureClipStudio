@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-07T11:25:11.401534+00:00",
+  "original": {
+    "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.json",
+    "bytes": 4365,
+    "sha256": "d403ffd98ae140d87130ad2605fcceb63a0fcc9e9e2b12a2c9d7a613bc47095e"
+  },
+  "field": "media.visualReview",
+  "originalValue": "PENDING_ACTUAL_VIEW",
+  "correctedInterpretation": "ACTUAL_SELECTED_PIXELS_REVIEWED_AND_SCOPED_APPROVAL_COMPLETE",
+  "reason": "The nested preamble value was not refreshed. The final status, explicit 58 GIF/15 MP4 view lists and final narrative already recorded completed visual review. This reference-only correction changes no raw evidence, verdict, score, scope or source.",
+  "narrative": {
+    "path": "operator-evidence\\E6o_FEATURECLIPSTUDIO_READABILITY_FINAL_JUDGE.md",
+    "bytes": 6199,
+    "sha256": "ecdaf01085fefdc7777316e0f74ef4b97bf9af02a129764eb100e3b9f5a5352d"
+  }
+}

@@ -30,6 +30,14 @@ Not a single final‑state "hero shot" — the viewer follows the *whole flow*.
 
 ---
 
+For the reviewed local example, use the [current developer handoff](HANDOFF.md): locked setup, explicit capture, accepted exports and known limits.
+
+## Local collaboration presentation
+
+The two-client `LiveSync` example uses `layout: "stacked"` and the existing per-step zoom metadata to keep the acted control or relevant result visible in both labelled clients. Its persistent title identifies fixed text and in-memory state. The other examples keep their existing framing.
+
+The checked-in LiveSync presentation metadata was projected onto the same 54 captured images; it does not record another action, measure synchronization latency, or establish durable state. A future explicit LiveSync capture obtains zoom points from the spec's selectors. Output readability must be judged from the actual MP4 and 720-pixel GIF, including the complete final result, rather than from readable native screenshots. The inherited `waitText` limitation and the capture failure/recovery behavior below remain unchanged.
+
 ## Storyboard first
 
 The default quality bar is not "nice zooms." A walkthrough should have a clear
@@ -1248,13 +1256,26 @@ Ships with a **worked example** (the live-collab counterpart to the single-pane 
   `useMutation().withOptimisticUpdate`, `ctx.scheduler` + `internalMutation` for the
   streamed agent) — the production reference, mapped 1:1 to the local demo.
 
-Reproduce it:
+After `npm ci` and `npx playwright install chromium`, keep the demo server running
+in one terminal and run the selected capture in another:
 ```bash
-node examples/collab-demo/server.mjs        # local demo on :8930 (no install, no login)
-node walkthrough.collab.mjs                 # multi-pane capture: Client A + Client B
+node examples/collab-demo/server.mjs        # terminal 1: local demo on :8930
+COLLAB_ONLY=LiveSync node walkthrough.collab.mjs  # terminal 2 (Bash): Client A + Client B
 node run-remotion.mjs render src/index.js WTC-LiveSync out/collab.mp4
 # then the same two-pass ffmpeg palette → assets/feature-collab.gif
 ```
+In PowerShell, set `$env:COLLAB_ONLY = "LiveSync"` before `node walkthrough.collab.mjs`.
+The demo uses local, in-memory state and fixed text; it does not call a model or
+prove durable Convex behavior. Its listener is not restricted to loopback by the server.
+
+Every selected ID must exist. Unknown or empty selector entries fail before the
+browser starts or capture files change. An exhausted navigation/action failure
+keeps the diagnostic PNGs, exits nonzero and does not write generated data or print
+the completion marker. Selected frame directories can contain partial output;
+this is not automatic rollback. Preserve the failed evidence and re-capture the
+selected walkthrough successfully before rendering it. Configured retry counts
+are unchanged; a successful command still needs its actual captured states checked.
+
 Panes + steps live in `walkthrough.collab.specs.mjs`; the 2-up renderer is
 `src/Walkthrough2up.jsx`. See **[`STACK_GUIDELINES.md`](STACK_GUIDELINES.md)** for why
 Convex + React demos need this and Streamlit doesn't.
@@ -1355,8 +1376,9 @@ against a real, deployed app (not just a demo harness).
 
 </details>
 
-Specs: `walkthrough.noderoom.specs.mjs`. Capture: `node walkthrough.collab.mjs` (the NodeRoom
-specs are imported into the collab specs). Render: `node run-remotion.mjs render src/index.js WTC-NRsolo`
+Historical examples use `walkthrough.noderoom.specs.mjs`, imported into the collab specs.
+Re-capturing requires an explicitly selected current spec ID in `COLLAB_ONLY` and
+its intended application running; a bare capture command is refused. Render: `node run-remotion.mjs render src/index.js WTC-NRsolo`
 / `WTC-NRsync` / `WTC-NRfresh` / `WTC-NRdeepDive`.
 
 ## Designing for specific stacks

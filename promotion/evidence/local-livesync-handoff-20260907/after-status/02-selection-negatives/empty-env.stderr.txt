@@ -1,0 +1,4 @@
+refusing to wipe every capture in public/wt-collab.
+  re-capture ONE walkthrough:  COLLAB_ONLY=TShero node walkthrough.collab.mjs
+  full re-capture from empty:  COLLAB_WIPE=1 node walkthrough.collab.mjs
+(note COLLAB_ONLY is an ENV VAR, not an argv — a bare id is ignored.)

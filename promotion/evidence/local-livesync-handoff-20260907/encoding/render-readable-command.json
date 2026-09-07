@@ -1,0 +1,19 @@
+{
+  "name": "render-readable",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "run-remotion.mjs",
+    "render",
+    "src/index.js",
+    "WTC-LiveSync",
+    "operator-evidence\\E6o-featureclipstudio-readability-render-01\\04-full-media\\readable-livesync.mp4",
+    "--concurrency=2"
+  ],
+  "seconds": 26.657,
+  "timeoutSeconds": 1200,
+  "timedout": false,
+  "exitCode": 0,
+  "expectedExitCodes": [
+    0
+  ]
+}

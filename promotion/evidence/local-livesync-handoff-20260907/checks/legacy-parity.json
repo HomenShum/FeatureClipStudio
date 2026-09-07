@@ -1,0 +1,106 @@
+[
+  {
+    "composition": "WTC-NRsolo",
+    "frame": 0,
+    "before": {
+      "bytes": 696734,
+      "sha256": "64829bc1c00898a3ddb3bb04f6691613ac03b99b8a36564f6e530690b06118df"
+    },
+    "after": {
+      "bytes": 696734,
+      "sha256": "64829bc1c00898a3ddb3bb04f6691613ac03b99b8a36564f6e530690b06118df"
+    },
+    "decodedPixelsExact": true
+  },
+  {
+    "composition": "WTC-NRsolo",
+    "frame": 34,
+    "before": {
+      "bytes": 711545,
+      "sha256": "076a932452dd22f41034b46aae41c321bcf83e0f29042d817ecd7d1be2482d43"
+    },
+    "after": {
+      "bytes": 711545,
+      "sha256": "076a932452dd22f41034b46aae41c321bcf83e0f29042d817ecd7d1be2482d43"
+    },
+    "decodedPixelsExact": true
+  },
+  {
+    "composition": "WTC-NRsync",
+    "frame": 0,
+    "before": {
+      "bytes": 689073,
+      "sha256": "53a8462b82570fb73162f6a567d74aad89c154e0de4833287a3a24a6a007bdd2"
+    },
+    "after": {
+      "bytes": 689073,
+      "sha256": "53a8462b82570fb73162f6a567d74aad89c154e0de4833287a3a24a6a007bdd2"
+    },
+    "decodedPixelsExact": true
+  },
+  {
+    "composition": "WTC-NRsync",
+    "frame": 34,
+    "before": {
+      "bytes": 693215,
+      "sha256": "a90ce3c87964e5c38623eaac82638100a9ff1462ec9c1588d82a94c3cdf3d59e"
+    },
+    "after": {
+      "bytes": 693215,
+      "sha256": "a90ce3c87964e5c38623eaac82638100a9ff1462ec9c1588d82a94c3cdf3d59e"
+    },
+    "decodedPixelsExact": true
+  },
+  {
+    "composition": "WTC-LiveSync3",
+    "frame": 0,
+    "before": {
+      "bytes": 788366,
+      "sha256": "9f073df1001bd6aea718debd0cee7278d16d4df0fd535f413fd32a4bbc0f92f0"
+    },
+    "after": {
+      "bytes": 788366,
+      "sha256": "9f073df1001bd6aea718debd0cee7278d16d4df0fd535f413fd32a4bbc0f92f0"
+    },
+    "decodedPixelsExact": true
+  },
+  {
+    "composition": "WTC-LiveSync3",
+    "frame": 34,
+    "before": {
+      "bytes": 797287,
+      "sha256": "cad3fdc71e1162a9b88b0fb8dfdab55bf66c5e23549e19184d7d0d492ef0605c"
+    },
+    "after": {
+      "bytes": 797287,
+      "sha256": "cad3fdc71e1162a9b88b0fb8dfdab55bf66c5e23549e19184d7d0d492ef0605c"
+    },
+    "decodedPixelsExact": true
+  },
+  {
+    "composition": "WTC-TShero",
+    "frame": 0,
+    "before": {
+      "bytes": 75600,
+      "sha256": "67f6c6b9ab1dcb988c723cc96e565463cb000cccceb92f9dd04ea3ff9e2a20de"
+    },
+    "after": {
+      "bytes": 75600,
+      "sha256": "67f6c6b9ab1dcb988c723cc96e565463cb000cccceb92f9dd04ea3ff9e2a20de"
+    },
+    "decodedPixelsExact": true
+  },
+  {
+    "composition": "WTC-TShero",
+    "frame": 34,
+    "before": {
+      "bytes": 89187,
+      "sha256": "68de95ced7725e1d197dc47459af4abf7a96c0f1c6fa11e7861832c0ac7176d5"
+    },
+    "after": {
+      "bytes": 89187,
+      "sha256": "68de95ced7725e1d197dc47459af4abf7a96c0f1c6fa11e7861832c0ac7176d5"
+    },
+    "decodedPixelsExact": true
+  }
+]
