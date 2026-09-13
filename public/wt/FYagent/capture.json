@@ -8,13 +8,13 @@
     "width": 1440,
     "height": 900
   },
-  "capturedAt": "2026-09-13T03:15:39.662Z",
-  "captureBuildSha": "ad70fc8d127f74282451f295a77e41b75ba675a5",
+  "capturedAt": "2026-09-13T04:41:28.923Z",
+  "captureBuildSha": "09e5207a02491874944b4c0b8d83300e81527d1a",
   "capturePromoted": false,
   "snapshot": {
     "source": "file",
-    "sha256": "e980b7f7bd5ecacd10bed61f6a4cd3730cad73713a83fa5bfd5828a2e31d41d7",
-    "generatedAt": "2026-09-13T02:07:40.955Z"
+    "sha256": "90067f1dfd9cacbe6ed12f7e9901fe2aaa5c11ffc11bcd2ab4e2fbe04c65ec2c",
+    "generatedAt": "2026-09-13T03:30:41.452Z"
   },
   "storyboard": {
     "premise": "An engineer wiring their own AI agent to this board needs to know, before connecting anything real: does it still work with no live database configured, and does it tell the truth about where its data came from?",
@@ -28,25 +28,25 @@
   "frames": [
     {
       "path": "wt/FYagent/00.png",
-      "sha256": "d9d887416e8396cb956167029061b4ec9aaadae0d0321ad70cb3a7b8f9de5ef9",
+      "sha256": "94ee842f432594714ac269de81e8211d17767ce9bc53f250f7ad3cafc436a119",
       "caption": "Picture an engineer wiring their own AI agent to this board. The point: even with nothing live wired up yet, the page still works and never lies about where its data comes from — right now it plainly labels itself as a saved file, not a live feed.",
       "asserted": "testid:foyer-wall[data-foyer-snapshot-source]=\"file\""
     },
     {
       "path": "wt/FYagent/01.png",
-      "sha256": "1d2ddac8fc656e72c6fa4330b9be12edae2effc7d1e420d6ea65fa1816a7f4f8",
-      "caption": "Typing the address /.well-known/agent-ui.json is how that engineer's agent fetches a plain summary directly. It's raw and technical on purpose — built for a program to parse, not for a person to read line by line — and it comes from this very same build.",
+      "sha256": "7e379f48d3b8f2c210182e625d459b2473a519ef151d76c8f90c755d5a8ef25a",
+      "caption": "An AI agent can't read this page the way a person does, so it needs its own copy of the same honest information, written for a program instead of a person to read. That copy lives at a fixed address, /.well-known/agent-ui.json, and what's on screen now comes from that very same build.",
       "asserted": "css:pre text matches"
     },
     {
       "path": "wt/FYagent/02.png",
-      "sha256": "9d791d54eb255e66cae4e526a554312fbb3ca4846d1bd8fe5f24a135783bc389",
-      "caption": "A second, simpler address lists the same products in a flatter shape some agent tools expect — same build, same honest data, just a different door in.",
+      "sha256": "a00b24d01fe2dba36909bfe9e88775568d6ca89336df5a1d17f89af0a758576f",
+      "caption": "Some other agent tools expect that same list laid out a little differently, so there's a second copy just for them — still the same build, still the same honest data, just organized the way that kind of tool reads it. Its address is /api/apps.json.",
       "asserted": "css:pre text matches"
     },
     {
       "path": "wt/FYagent/03.png",
-      "sha256": "e2b76238795fb412bd09fb5613ea8734b91de4928d8ad97ece9c2a484654c1d6",
+      "sha256": "7c1910f8ceb383036d06f25156a2d5e7793c4385644dbfa7666a2c7327d8e633",
       "caption": "Back on the board after that round trip, the label still honestly says this data came from a saved file, not a live database — the same plain label that engineer's agent can rely on either way.",
       "asserted": "testid:foyer-wall[data-foyer-snapshot-source]=\"file\""
     }

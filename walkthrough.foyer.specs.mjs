@@ -53,7 +53,14 @@ export const FOYER_SPECS = [
     },
     steps: [
       {
-        cap: "This board checks every product's own live pages every few minutes — each check is called a \"sweep\" here — and shows exactly what came back. Nobody typed these results in by hand.",
+        // Round-12 cycle 2 (Judge comprehension "mom test": wouldMomUnderstand false, citing
+        // "sweeps" among the unexplained terms). "sweep" was flavor text here, not load-bearing —
+        // nothing downstream requires the word (the caption-count assert on beat 03 already says
+        // "checks", which the seal's regex accepts on its own) — so it is dropped rather than
+        // re-explained.
+        // Round-12 cycle 3 (Judge P0: "no target persona is defined"): names who this board is
+        // for, up front, before anything else.
+        cap: "For a release lead who has to trust a status board without reading anyone's source code: this board checks every product's own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand.",
         cursor: "css:.foyer-header__line",
         hold: 96,
         assert: { sel: "css:.foyer-header__line", visible: true },
@@ -67,12 +74,22 @@ export const FOYER_SPECS = [
         hold: 90,
         assert: { sel: 'css:[data-testid^="foyer-card-"]', count: 22 },
       },
-      { act: "center", sel: 'css:[data-testid="foyer-card-NodeVoice"]' },
+      // Round-12 repair (Steward critical, round-11 review): the old beat pointed this claim at
+      // NodeVoice, whose own pill reads "1 layer" on the same frame — a caption saying both a
+      // front door and a back door were checked, shown over a card admitting it only has one, is
+      // false of its own frame. NodeSlide is verified on BOTH layers on production (ec2a44e), and
+      // hovering its card reveals the apparatus line "frontend <sha> matches backend <sha>" — the
+      // exact two-layer evidence the caption below claims, so the assert below checks that string
+      // is really on screen (e2e/rules.ts's two-layer caption rule requires it). Caption reworded
+      // in plain words too: round-11's judge failed the "mom test" on the jargon "front door and
+      // back door" — this rewrite says what got checked instead of naming it with a metaphor.
+      { act: "center", sel: 'css:[data-testid="foyer-card-NodeSlide"]' },
+      { act: "hover", sel: "testid:foyer-card-NodeSlide" },
       {
-        cap: "Green means verified: this product's front door and back door were both checked live, and they reported the same version. Amber means it answered, but there was nothing to compare it against.",
-        cursor: 'css:[data-testid="foyer-card-NodeVoice"] .foyer-pill',
+        cap: "Green means verified. For this product both the website people see and the service behind it were checked live a moment ago, and both reported the same version. Amber means it answered, but there was nothing to compare against.",
+        cursor: 'css:[data-testid="foyer-card-NodeSlide"] .foyer-pill',
         hold: 120,
-        assert: { sel: 'css:[data-testid="foyer-card-NodeVoice"] .foyer-pill', attr: "data-state", equals: "verified" },
+        assert: { sel: "testid:foyer-apparatus-NodeSlide", matches: "matches backend" },
       },
       // NodeRoom sits close enough to the top of the page that centering it would need a
       // NEGATIVE scroll, which clamps to 0 — the same position frame 00 already used. An
@@ -100,7 +117,8 @@ export const FOYER_SPECS = [
       },
       { act: "hover", sel: "testid:foyer-card-node-foyer" },
       {
-        cap: "This board even checks itself. Verified means its own deploy workflow read its own live page back afterward and confirmed the version numbers matched — that's what turns this badge green.",
+        // Round-12 cycle 2: "deploy workflow" was the other jargon the comprehension judge cited.
+        cap: "This board even checks itself. Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that's what turns this badge green.",
         hold: 118,
         assert: { sel: "testid:foyer-apparatus-node-foyer", matches: "matches backend" },
       },
@@ -208,14 +226,19 @@ export const FOYER_SPECS = [
       // body), never a fabricated click on a link that isn't there (STORYBOARD.md's rule).
       { act: "goto", url: "/.well-known/agent-ui.json", settle: 700 },
       {
-        cap: "Typing the address /.well-known/agent-ui.json is how that engineer's agent fetches a plain summary directly. It's raw and technical on purpose — built for a program to parse, not for a person to read line by line — and it comes from this very same build.",
+        // Round-12 repair (Judge P0: non_expert_sense scored 0, "unexplained developer jargon";
+        // momLosesThemAt this exact beat). The old caption named the technical address BEFORE
+        // saying what it is for; a non-expert loses the thread at the first unexplained term. This
+        // rewrite states the everyday purpose first — an AI agent needs its own copy of the same
+        // information, written for a program instead of a person — and only THEN names the address.
+        cap: "An AI agent can't read this page the way a person does, so it needs its own copy of the same honest information, written for a program instead of a person to read. That copy lives at a fixed address, /.well-known/agent-ui.json, and what's on screen now comes from that very same build.",
         cursor: "css:pre",
         hold: 140,
         assert: { sel: "css:pre", matches: '"schema"' },
       },
       { act: "goto", url: "/api/apps.json", settle: 700 },
       {
-        cap: "A second, simpler address lists the same products in a flatter shape some agent tools expect — same build, same honest data, just a different door in.",
+        cap: "Some other agent tools expect that same list laid out a little differently, so there's a second copy just for them — still the same build, still the same honest data, just organized the way that kind of tool reads it. Its address is /api/apps.json.",
         cursor: "css:pre",
         hold: 140,
         assert: { sel: "css:pre", matches: '"apps"' },
