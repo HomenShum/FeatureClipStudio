@@ -97,7 +97,7 @@
     {
       "file": "src/Walkthrough.jsx",
       "line": 202,
-      "pattern": "width: WT_W \\* progress",
+      "pattern": "width: canvasW \\* progress",
       "title": "14 — And out the other side",
       "description": "Caption lower-third above, progress bar here, and the frame is done. `remotion render` collects these into an MP4; the README's ffmpeg palette command turns that into the GIF you paste into a README. You have now followed the whole path."
     }
