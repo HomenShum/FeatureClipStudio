@@ -16,7 +16,7 @@ export const FOYER_WALKTHROUGHS = [
     "steps": [
       {
         "img": "wt/FYwall/00.png",
-        "caption": "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand.",
+        "caption": "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages on a fixed schedule (the header names the last sweep) and shows exactly what came back. Nobody typed these results in by hand.",
         "cursor": {
           "x": 720,
           "y": 84
@@ -26,14 +26,14 @@ export const FOYER_WALKTHROUGHS = [
       },
       {
         "img": "wt/FYwall/01.png",
-        "caption": "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest say so with a registry-only badge.",
+        "caption": "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest are simply listed, never checked, and say so with a registry-only badge.",
         "cursor": null,
         "click": false,
         "hold": 90
       },
       {
         "img": "wt/FYwall/02.png",
-        "caption": "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. Amber means it answered, but there was nothing to compare against.",
+        "caption": "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. An amber Reachable badge means it answered, but there was nothing to compare against; an amber Unknown badge means it never answered.",
         "cursor": {
           "x": 449,
           "y": 152
@@ -43,7 +43,7 @@ export const FOYER_WALKTHROUGHS = [
       },
       {
         "img": "wt/FYwall/03.png",
-        "caption": "This green badge has held steady for 21 checks in a row, back to back — not just one lucky moment.",
+        "caption": "This green badge has held steady for 23 checks in a row, back to back — not just one lucky moment.",
         "cursor": {
           "x": 549,
           "y": 242
@@ -53,7 +53,7 @@ export const FOYER_WALKTHROUGHS = [
       },
       {
         "img": "wt/FYwall/04.png",
-        "caption": "Hovering shows the receipt behind the badge: the exact address it checked, when it checked, and a short fingerprint of what came back, so anyone can double-check it themselves.",
+        "caption": "Hovering shows the receipt behind the badge: the exact address it checked, when it checked, whether it answered successfully, and a short fingerprint of what came back. Nobody needs to understand that fingerprint themselves — it just lets anyone compare notes later and catch a fake.",
         "cursor": null,
         "click": false,
         "hold": 118
@@ -67,7 +67,7 @@ export const FOYER_WALKTHROUGHS = [
       },
       {
         "img": "wt/FYwall/06.png",
-        "caption": "This board even checks itself. Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that's what turns this badge green.",
+        "caption": "This board even checks itself — the highlighted card is this board's own card (node-foyer). Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that is what makes it verified.",
         "cursor": null,
         "click": false,
         "hold": 118

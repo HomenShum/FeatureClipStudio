@@ -1,19 +1,19 @@
 {
   "id": "FYwall",
-  "renderedAt": "2026-09-13T05:59:53.843Z",
-  "mp4Sha256": "f0e2bfcf3fc3b6554d611823a6ce0b0ce53ce2efd92fea4fd77c56f78febc1b9",
-  "gifSha256": "71a8a2113bd1b47715b83c35319dab32351665f59d2e44cb521a60f97e269b46",
+  "renderedAt": "2026-09-13T06:57:02.964Z",
+  "mp4Sha256": "1d6af0ea57f36c19f65f1cecaaf5edb4321a3993c18f3f1e73fc1cb8d3bda38d",
+  "gifSha256": "b5569f6fa8e0456828f805defffe09eb051a49661fa0097e4de36257c580d5be",
   "gifWidth": 640,
   "gifHeight": 400,
   "judgeRuns": [
     {
       "file": "judge-run1.json",
-      "sha256": "1bcb92f6f20bf2e54ccea3397d83b5c198a89b9d18898ae417d05df3416f9864"
+      "sha256": "b41ffb394be513ed941134241b98dec1b3a9bb60605f26dda8ec168be3161a34"
     },
     {
       "file": "judge-run2.json",
-      "sha256": "afc0b70c6ad885da17c8ee417b0077c598da59061dd268b91eb249b6cd4dc119"
+      "sha256": "c20bff35d1617761489a470c5bb544ee4988131d1a7db9496bfacadf50b38774"
     }
   ],
-  "kept": "1bcb92f6f20bf2e54ccea3397d83b5c198a89b9d18898ae417d05df3416f9864"
+  "kept": "c20bff35d1617761489a470c5bb544ee4988131d1a7db9496bfacadf50b38774"
 }
