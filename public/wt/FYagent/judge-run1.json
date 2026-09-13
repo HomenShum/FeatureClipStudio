@@ -1,0 +1,285 @@
+{
+  "timeline": [
+    {
+      "ts": "00:00",
+      "what": "The Node Foyer web page displays project cards (NodeRoom, NodeSlide, parity-studio, NodeVideo) with snapshot metadata and status labels."
+    },
+    {
+      "ts": "00:04",
+      "what": "Screen changes to a text view displaying formatted raw JSON data for /.well-known/agent-ui.json."
+    },
+    {
+      "ts": "00:09",
+      "what": "The JSON display updates to show alternate schema formatted for /api/apps.json."
+    },
+    {
+      "ts": "00:14",
+      "what": "The display returns to the visual Node Foyer grid dashboard view."
+    }
+  ],
+  "scores": {
+    "storyboard_clarity": {
+      "score": 1,
+      "evidence": "00:00 to 00:14 explains data transparency across visual UI and agent endpoints, but lacks a single unifying aha moment."
+    },
+    "state_coverage": {
+      "score": 0,
+      "evidence": "00:04, 00:09, and 00:14 switch directly between UI dashboard and raw JSON views, skipping user actions, input, and loading states."
+    },
+    "cursor_truth": {
+      "score": 0,
+      "evidence": "00:00, 00:04, 00:09, and 00:14 record cursor remaining completely static near top center while screen contents change."
+    },
+    "caption_sync": {
+      "score": 2,
+      "evidence": "00:00, 00:04, 00:09, and 00:14 captions and voiceover directly match the endpoint schemas and dashboard labels on screen."
+    },
+    "pacing": {
+      "score": 1,
+      "evidence": "00:00 to 00:14 holds each of the 4 screen states for ~4s, which is enough to read captions, but state changes occur abruptly without transition time."
+    },
+    "legibility": {
+      "score": 1,
+      "evidence": "00:04 and 00:09 show formatted JSON text and bottom caption overlays across all timestamps."
+    },
+    "proof_feel": {
+      "score": 1,
+      "evidence": "00:04 and 00:09 show real formatted JSON schema paths, but instant transitions without user triggers make it feel like a static deck."
+    },
+    "safety": {
+      "score": 2,
+      "evidence": "00:00 to 00:14 shows public project card names and standard schema endpoints without exposed secret keys or private data."
+    },
+    "loop_etiquette": {
+      "score": 1,
+      "evidence": "00:14 loops back to the starting dashboard, but total length is short (14s) and lacks a held final rest state."
+    },
+    "motion_craft": {
+      "score": 0,
+      "evidence": "00:04, 00:09, and 00:14 use hard cuts with zero camera movement, zoom framing, or smooth pan transitions."
+    },
+    "visual_hierarchy": {
+      "score": 1,
+      "evidence": "00:04 and 00:09 present full-screen JSON code, but fail to highlight or frame specific key-value lines being discussed."
+    }
+  },
+  "defects": [
+    {
+      "ts": "00:00",
+      "severity": "P0",
+      "observed": "No single aha moment driving the video thesis.",
+      "fix": "Rebuild video around a single moment where an AI agent actively queries the endpoint and updates the board."
+    },
+    {
+      "ts": "00:04",
+      "severity": "P1",
+      "observed": "Cursor stays static near top center across screen state changes at 00:04, 00:09, and 00:14.",
+      "fix": "Animate the cursor traveling to and clicking address bar endpoints or toggle buttons."
+    },
+    {
+      "ts": "00:04",
+      "severity": "P1",
+      "observed": "unverifiable-from-video: claims JSON endpoints serve identical live data as visual board, but live request execution is not shown in frame.",
+      "fix": "Show DevTools network tab or terminal curl request confirming dynamic live data match."
+    },
+    {
+      "ts": "00:04",
+      "severity": "P0",
+      "observed": "Non-experts are lost immediately when raw JSON schema at /.well-known/agent-ui.json is shown without context.",
+      "fix": "Add an introductory plain-English frame explaining why AI tools need structural data specs."
+    }
+  ],
+  "singleMoment": null,
+  "verdict": "rework",
+  "summary": "The demo effectively explains how structured JSON endpoints expose board metadata to AI agents, but relies on static slides and jump cuts with an unmoving cursor. Because interactions, intermediate loading, and live trigger steps are completely omitted, it feels like a presentation rather than an actual product walkthrough. The clip requires animated cursor interactions, visual framing, and a clear core aha moment before publishing.",
+  "comprehension": {
+    "persona": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "00:00 narration refers to 'an engineer wiring their own AI agent', identifying developers generally rather than a concrete persona."
+    },
+    "purpose": {
+      "score": 2,
+      "ts": "00:04",
+      "evidence": "00:04 explicitly explains that agents need machine-readable JSON endpoints at fixed addresses matching user visual data."
+    },
+    "use_case": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "00:00 to 00:14 shows serving project board data to AI agents, but does not depict a complete workflow task."
+    },
+    "feature_clarity": {
+      "score": 2,
+      "ts": "00:04",
+      "evidence": "00:04 and 00:09 clearly demonstrate endpoint paths (/.well-known/agent-ui.json and /api/apps.json) returning structured JSON metadata."
+    },
+    "full_interaction": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "00:04, 00:09, and 00:14 jump between screens automatically; no user click, navigation, or interaction is shown."
+    },
+    "responsiveness": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "00:00 to 00:14 shows instant state cuts with no loading states, progress indicators, or latency."
+    },
+    "flow": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "00:00 starts on dashboard, moves through JSON endpoints at 00:04 and 00:09, and returns to dashboard at 00:14."
+    },
+    "result": {
+      "score": 2,
+      "ts": "00:04",
+      "evidence": "00:04 and 00:09 clearly show the resulting raw JSON structures returned by the endpoints."
+    },
+    "non_expert_sense": {
+      "score": 0,
+      "ts": "00:04",
+      "evidence": "00:04 introduces endpoint paths like '/.well-known/agent-ui.json' and raw JSON schemas without explaining them for non-technical viewers."
+    },
+    "transfer": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "00:00 to 00:14 does not show how a user can implement or configure these endpoints in their own project."
+    },
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:04",
+      "what": "Raw JSON schema at /.well-known/agent-ui.json is shown with developer jargon."
+    },
+    "missingEntirely": [
+      "full_interaction",
+      "responsiveness",
+      "non_expert_sense",
+      "transfer"
+    ]
+  },
+  "observed": {
+    "timeline": [
+      {
+        "ts": "00:00",
+        "what": "The Node Foyer web page displays project cards (NodeRoom, NodeSlide, parity-studio, NodeVideo) with snapshot metadata and status labels."
+      },
+      {
+        "ts": "00:04",
+        "what": "Screen changes to a text view displaying formatted raw JSON data for /.well-known/agent-ui.json."
+      },
+      {
+        "ts": "00:09",
+        "what": "The JSON display updates to show alternate schema formatted for /api/apps.json."
+      },
+      {
+        "ts": "00:14",
+        "what": "The display returns to the visual Node Foyer grid dashboard view."
+      }
+    ],
+    "cursorEvents": [
+      {
+        "ts": "00:00",
+        "what": "Cursor positioned static near top header title."
+      },
+      {
+        "ts": "00:04",
+        "what": "Cursor remains near top center area."
+      },
+      {
+        "ts": "00:09",
+        "what": "Cursor stays near top center."
+      },
+      {
+        "ts": "00:14",
+        "what": "Cursor remains fixed near top center."
+      }
+    ],
+    "stateChanges": [
+      {
+        "ts": "00:04",
+        "from": "Node Foyer web gallery view",
+        "to": "agent-ui.json code view"
+      },
+      {
+        "ts": "00:09",
+        "from": "agent-ui.json code view",
+        "to": "api/apps.json code view"
+      },
+      {
+        "ts": "00:14",
+        "from": "api/apps.json code view",
+        "to": "Node Foyer web gallery view"
+      }
+    ],
+    "textShown": [
+      {
+        "ts": "00:00",
+        "text": "Picture an engineer wiring their own AI agent to this board. The point: even with nothing live wired up yet, the page still works and never lies about where its data comes from — right now it plainly labels itself as a saved file, not a live feed."
+      },
+      {
+        "ts": "00:04",
+        "text": "An AI agent can't read this page the way a person does, so it needs its own copy of the same honest information, written for a program instead of a person to read. That copy lives at a fixed address, /.well-known/agent-ui.json, and what's on screen now comes from that very same address."
+      },
+      {
+        "ts": "00:09",
+        "text": "Some other agent tools expect that same list laid out a little differently, so there's a second copy just for them — still the same build, still the same honest data, just organized the way that kind of tool reads it. Its address is /api/apps.json."
+      },
+      {
+        "ts": "00:14",
+        "text": "Back on the board after that round trip, the label still honestly says this data came from a saved file, not a live database — the same plain label that engineer's agent can rely on either way."
+      }
+    ],
+    "audio": {
+      "present": true,
+      "music": "Soft background instrumental music",
+      "voice": "Male narrator explaining AI agent endpoint integration and data transparency.",
+      "cues": [
+        {
+          "ts": "00:00",
+          "what": "Narrator begins speaking about AI agent integration."
+        },
+        {
+          "ts": "00:04",
+          "what": "Narrator discusses agent-ui.json format."
+        },
+        {
+          "ts": "00:09",
+          "what": "Narrator explains api/apps.json alternative structure."
+        },
+        {
+          "ts": "00:14",
+          "what": "Narrator concludes discussion on persistent state labels."
+        }
+      ]
+    },
+    "waits": [],
+    "static": false
+  },
+  "judgedBy": "gemini-3.6-flash",
+  "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
+  "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
+  "comprehensionVerdict": {
+    "status": "blocked",
+    "momFails": true,
+    "uniform": false,
+    "scored": 10,
+    "total": 9,
+    "max": 20,
+    "zeros": [
+      "full_interaction",
+      "responsiveness",
+      "non_expert_sense",
+      "transfer"
+    ],
+    "blocking": [
+      "non_expert_sense"
+    ],
+    "unscored": [],
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:04",
+      "what": "Raw JSON schema at /.well-known/agent-ui.json is shown with developer jargon."
+    }
+  },
+  "videoBytes": 3761647,
+  "referencesCited": [],
+  "judgedAt": "2026-09-13T04:52:17.213Z"
+}

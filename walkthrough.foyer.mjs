@@ -207,7 +207,16 @@ const run = async () => {
             if (op.cap) {
               capIndex++;
               const isLast = capIndex === capOps.length;
-              const { str: asserted, value: assertedValue } = await assertHolds(page, op.assert);
+              // A cap step may carry one assert object, or (round-13) an array of them when a
+              // single frame backs more than one claim (e.g. a total count AND a specific chip
+              // being on screen) — each must hold; their `str`s join into one `asserted` record.
+              let asserted = "";
+              let assertedValue = null;
+              for (const a of Array.isArray(op.assert) ? op.assert : [op.assert]) {
+                const r = await assertHolds(page, a);
+                asserted = asserted ? `${asserted}; ${r.str}` : r.str;
+                if (r.value != null) assertedValue = r.value;
+              }
               // A caption may cite a live count, but only the number this run actually observed
               // (round-10 minor: "11 sweeps" captioned over a frame whose real count was 12).
               const cap = op.cap.includes("{n}") && assertedValue != null ? op.cap.replace("{n}", assertedValue) : op.cap;

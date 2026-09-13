@@ -1,0 +1,294 @@
+{
+  "timeline": [
+    {
+      "ts": "00:00",
+      "what": "Node Foyer web interface displays project cards with bottom caption text."
+    },
+    {
+      "ts": "00:02",
+      "what": "Node Foyer interface remains static."
+    },
+    {
+      "ts": "00:04",
+      "what": "Screen changes to raw JSON data page. Caption text updates."
+    },
+    {
+      "ts": "00:07",
+      "what": "Raw JSON view remains displayed."
+    },
+    {
+      "ts": "00:09",
+      "what": "JSON document scrolls slightly. Caption text updates."
+    },
+    {
+      "ts": "00:12",
+      "what": "JSON view remains on screen."
+    },
+    {
+      "ts": "00:14",
+      "what": "Screen returns to Node Foyer web interface. Caption text updates."
+    },
+    {
+      "ts": "00:17",
+      "what": "Node Foyer interface remains displayed until video ends."
+    }
+  ],
+  "scores": {
+    "storyboard_clarity": {
+      "score": 1,
+      "evidence": "00:00 and 00:04 show dashboard and JSON views with captions explaining AI agent readable endpoints, but state transitions lack navigational context."
+    },
+    "state_coverage": {
+      "score": 0,
+      "evidence": "00:04 and 00:14 jump directly between views without showing user actions, loading states, or intermediate request handling."
+    },
+    "cursor_truth": {
+      "score": 0,
+      "evidence": "00:00 observation shows cursor remains stationary near top-center and never moves to or activates controls during screen changes."
+    },
+    "caption_sync": {
+      "score": 2,
+      "evidence": "00:00, 00:04, 00:09, and 00:14 audio cues and text updates precisely align with screen switches and JSON scrolling."
+    },
+    "pacing": {
+      "score": 1,
+      "evidence": "00:00 caption contains dense text (~40 words) shown for 4 seconds, requiring viewers to read rapidly alongside voice narration."
+    },
+    "legibility": {
+      "score": 2,
+      "evidence": "00:00 project cards and 00:04 raw JSON data text are rendered clearly with readable font size and high-contrast captions."
+    },
+    "proof_feel": {
+      "score": 1,
+      "evidence": "00:04 shows actual raw JSON content, but sudden jumps without user action give a slide presentation feel rather than live product proof."
+    },
+    "safety": {
+      "score": 2,
+      "evidence": "00:04 and 00:09 display standard public endpoint paths without exposing private keys, tokens, or credentials."
+    },
+    "loop_etiquette": {
+      "score": 1,
+      "evidence": "00:14 to 00:17 provides a 3-second hold on the final state, which is brief for a 17-second total video duration."
+    },
+    "motion_craft": {
+      "score": 1,
+      "evidence": "00:09 includes a slight JSON scroll, but scene transitions at 00:04 and 00:14 are instantaneous static cuts without camera focus or motion."
+    },
+    "visual_hierarchy": {
+      "score": 1,
+      "evidence": "00:04 displays full-page JSON without zoom, callouts, or highlighting on the specific key-value pairs described in caption text."
+    }
+  },
+  "defects": [
+    {
+      "ts": "00:00",
+      "severity": "P0",
+      "observed": "non_expert_sense scored 0 due to unexplained technical jargon ('/.well-known/agent-ui.json') at 00:04 without non-expert framing.",
+      "fix": "Introduce concepts using plain language before displaying raw JSON path endpoints."
+    },
+    {
+      "ts": "00:04",
+      "severity": "P1",
+      "observed": "unverifiable-from-video: Screen jumps instantly from dashboard to raw JSON view without interactive action or cursor movement.",
+      "fix": "Animate the cursor clicking a link or navigating to the endpoint URL."
+    },
+    {
+      "ts": "00:14",
+      "severity": "P1",
+      "observed": "unverifiable-from-video: Screen hard-cuts back to dashboard view without showing browser navigation.",
+      "fix": "Show cursor clicking back button or tab switch to demonstrate full flow."
+    }
+  ],
+  "singleMoment": "Showing that the raw JSON endpoint directly mirrors the web dashboard layout for AI agents.",
+  "verdict": "rework",
+  "summary": "The video effectively explains how AI agents read UI data via standardized JSON endpoints using synchronized narration and captions. However, the static cursor and hard cuts between views skip interactive actions and loading states, resulting in a slideshow feel rather than interactive product proof.",
+  "comprehension": {
+    "persona": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "00:00 caption specifically names 'an engineer wiring their own AI agent to this board'."
+    },
+    "purpose": {
+      "score": 1,
+      "ts": "00:04",
+      "evidence": "00:04 text states AI agents need machine-readable JSON data at fixed addresses rather than visual UI."
+    },
+    "use_case": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "00:00 references wiring an AI agent to a board displaying saved file data vs live feeds."
+    },
+    "feature_clarity": {
+      "score": 1,
+      "ts": "00:04",
+      "evidence": "00:04 and 00:09 show serving structured JSON endpoints matching web interface data."
+    },
+    "full_interaction": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "00:04 and 00:14 transitions are hard cuts; clicks, URL entries, and intermediate states are omitted."
+    },
+    "responsiveness": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No loading states, request indicators, or latency are shown during screen updates."
+    },
+    "flow": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "Sequences from dashboard (00:00) to JSON view (00:04) and back to dashboard (00:14)."
+    },
+    "result": {
+      "score": 1,
+      "ts": "00:04",
+      "evidence": "00:04 displays the rendered JSON payload on screen."
+    },
+    "non_expert_sense": {
+      "score": 0,
+      "ts": "00:04",
+      "evidence": "Technical jargon like standard endpoint paths ('/.well-known/agent-ui.json') is presented without non-domain explanation."
+    },
+    "transfer": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "The video shows raw JSON outputs but does not demonstrate how a viewer can implement or query these endpoints in their own environment."
+    },
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:04",
+      "what": "Unexplained transition to raw JSON text and technical endpoint addresses like /.well-known/agent-ui.json."
+    },
+    "missingEntirely": [
+      "full_interaction",
+      "responsiveness",
+      "non_expert_sense",
+      "transfer"
+    ]
+  },
+  "observed": {
+    "timeline": [
+      {
+        "ts": "00:00",
+        "what": "Node Foyer web interface displays project cards with bottom caption text."
+      },
+      {
+        "ts": "00:02",
+        "what": "Node Foyer interface remains static."
+      },
+      {
+        "ts": "00:04",
+        "what": "Screen changes to raw JSON data page. Caption text updates."
+      },
+      {
+        "ts": "00:07",
+        "what": "Raw JSON view remains displayed."
+      },
+      {
+        "ts": "00:09",
+        "what": "JSON document scrolls slightly. Caption text updates."
+      },
+      {
+        "ts": "00:12",
+        "what": "JSON view remains on screen."
+      },
+      {
+        "ts": "00:14",
+        "what": "Screen returns to Node Foyer web interface. Caption text updates."
+      },
+      {
+        "ts": "00:17",
+        "what": "Node Foyer interface remains displayed until video ends."
+      }
+    ],
+    "cursorEvents": [
+      {
+        "ts": "00:00",
+        "what": "Cursor remains stationary near top-center."
+      }
+    ],
+    "stateChanges": [
+      {
+        "ts": "00:04",
+        "from": "Node Foyer dashboard view",
+        "to": "Raw JSON document view"
+      },
+      {
+        "ts": "00:14",
+        "from": "Raw JSON document view",
+        "to": "Node Foyer dashboard view"
+      }
+    ],
+    "textShown": [
+      {
+        "ts": "00:00",
+        "text": "Picture an engineer wiring their own AI agent to this board. The point: even with nothing live wired up yet, the page still works and never lies about where its data comes from — right now it plainly labels itself as a saved file, not a live feed."
+      },
+      {
+        "ts": "00:04",
+        "text": "An AI agent can't read this page the way a person does, so it needs its own copy of the same honest information, written for a program instead of a person to read. That copy lives at a fixed address, /.well-known/agent-ui.json, and what's on screen now comes from that very same body."
+      },
+      {
+        "ts": "00:09",
+        "text": "Some other agent tools expect that same list laid out a little differently, so there's a second copy just for them — still the same build, still the same honest data, just organized the way that kind of tool reads it. Its address is /api/apps.json."
+      },
+      {
+        "ts": "00:14",
+        "text": "Back on the board after that round trip, the label still honestly says this data came from a saved file, not a live database — the same plain label that engineer's agent can rely on either way."
+      }
+    ],
+    "audio": {
+      "present": true,
+      "music": "none",
+      "voice": "Male voice narrator reading onscreen captions.",
+      "cues": [
+        {
+          "ts": "00:00",
+          "what": "Voice reads first caption text."
+        },
+        {
+          "ts": "00:04",
+          "what": "Voice reads second caption text."
+        },
+        {
+          "ts": "00:09",
+          "what": "Voice reads third caption text."
+        },
+        {
+          "ts": "00:14",
+          "what": "Voice reads fourth caption text."
+        }
+      ]
+    },
+    "waits": [],
+    "static": false
+  },
+  "judgedBy": "gemini-3.6-flash",
+  "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
+  "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
+  "comprehensionVerdict": {
+    "status": "blocked",
+    "momFails": true,
+    "uniform": false,
+    "scored": 10,
+    "total": 7,
+    "max": 20,
+    "zeros": [
+      "full_interaction",
+      "responsiveness",
+      "non_expert_sense",
+      "transfer"
+    ],
+    "blocking": [
+      "non_expert_sense"
+    ],
+    "unscored": [],
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:04",
+      "what": "Unexplained transition to raw JSON text and technical endpoint addresses like /.well-known/agent-ui.json."
+    }
+  },
+  "videoBytes": 3761647,
+  "referencesCited": [],
+  "judgedAt": "2026-09-13T04:52:59.561Z"
+}

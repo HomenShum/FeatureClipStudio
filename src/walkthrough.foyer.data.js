@@ -16,7 +16,7 @@ export const FOYER_WALKTHROUGHS = [
     "steps": [
       {
         "img": "wt/FYwall/00.png",
-        "caption": "For a release lead who has to trust a status board without reading anyone's source code: this board checks every product's own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand.",
+        "caption": "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand.",
         "cursor": {
           "x": 720,
           "y": 84
@@ -26,14 +26,14 @@ export const FOYER_WALKTHROUGHS = [
       },
       {
         "img": "wt/FYwall/01.png",
-        "caption": "Twenty-two products are tracked here, each with its own honest badge — scroll down and every single one gets checked the exact same way.",
+        "caption": "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest say so with a registry-only badge.",
         "cursor": null,
         "click": false,
         "hold": 90
       },
       {
         "img": "wt/FYwall/02.png",
-        "caption": "Green means verified. For this product both the website people see and the service behind it were checked live a moment ago, and both reported the same version. Amber means it answered, but there was nothing to compare against.",
+        "caption": "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. Amber means it answered, but there was nothing to compare against.",
         "cursor": {
           "x": 449,
           "y": 152
@@ -43,10 +43,10 @@ export const FOYER_WALKTHROUGHS = [
       },
       {
         "img": "wt/FYwall/03.png",
-        "caption": "This green badge has held steady for 18 checks in a row, back to back — not just one lucky moment.",
+        "caption": "This green badge has held steady for 21 checks in a row, back to back — not just one lucky moment.",
         "cursor": {
-          "x": 206,
-          "y": 221
+          "x": 549,
+          "y": 242
         },
         "click": false,
         "hold": 100
@@ -71,62 +71,6 @@ export const FOYER_WALKTHROUGHS = [
         "cursor": null,
         "click": false,
         "hold": 118
-      }
-    ]
-  },
-  {
-    "id": "FYagent",
-    "title": "Node Foyer — the honest fallback",
-    "accent": "#3f7a5c",
-    "scales": {
-      "action": 1,
-      "result": 1,
-      "open": 1
-    },
-    "captureViewport": {
-      "width": 1440,
-      "height": 900
-    },
-    "steps": [
-      {
-        "img": "wt/FYagent/00.png",
-        "caption": "Picture an engineer wiring their own AI agent to this board. The point: even with nothing live wired up yet, the page still works and never lies about where its data comes from — right now it plainly labels itself as a saved file, not a live feed.",
-        "cursor": {
-          "x": 720,
-          "y": 22
-        },
-        "click": false,
-        "hold": 140
-      },
-      {
-        "img": "wt/FYagent/01.png",
-        "caption": "An AI agent can't read this page the way a person does, so it needs its own copy of the same honest information, written for a program instead of a person to read. That copy lives at a fixed address, /.well-known/agent-ui.json, and what's on screen now comes from that very same build.",
-        "cursor": {
-          "x": 720,
-          "y": 22
-        },
-        "click": false,
-        "hold": 140
-      },
-      {
-        "img": "wt/FYagent/02.png",
-        "caption": "Some other agent tools expect that same list laid out a little differently, so there's a second copy just for them — still the same build, still the same honest data, just organized the way that kind of tool reads it. Its address is /api/apps.json.",
-        "cursor": {
-          "x": 720,
-          "y": 22
-        },
-        "click": false,
-        "hold": 140
-      },
-      {
-        "img": "wt/FYagent/03.png",
-        "caption": "Back on the board after that round trip, the label still honestly says this data came from a saved file, not a live database — the same plain label that engineer's agent can rely on either way.",
-        "cursor": {
-          "x": 720,
-          "y": 8
-        },
-        "click": false,
-        "hold": 140
       }
     ]
   }

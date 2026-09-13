@@ -1,0 +1,19 @@
+{
+  "id": "FYagent",
+  "renderedAt": "2026-09-13T04:51:29.667Z",
+  "mp4Sha256": "b64227015ddce418e82055fb7ef57f1b077fd75982cdf76fd37f7a86186805bd",
+  "gifSha256": "00d8d7c4151dcb25e4bb8da0316692ed2655cf1591f014ce5546b120a192cd11",
+  "gifWidth": 720,
+  "gifHeight": 450,
+  "judgeRuns": [
+    {
+      "file": "judge-run1.json",
+      "sha256": "3c0ace243404ab4247d1c70dae08aeb2b94b7fb2e81bd4a2cb68610315805612"
+    },
+    {
+      "file": "judge-run2.json",
+      "sha256": "1bdf4f2ab6d576bdfb6f6a2ec2f6ca83313d274f8c1490abda3777b2806cf07f"
+    }
+  ],
+  "kept": "3c0ace243404ab4247d1c70dae08aeb2b94b7fb2e81bd4a2cb68610315805612"
+}

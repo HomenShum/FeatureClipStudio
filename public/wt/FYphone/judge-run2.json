@@ -1,0 +1,245 @@
+{
+  "timeline": [
+    {
+      "ts": "00:00",
+      "what": "Mobile screen layout showing NodeAgentSpec and NodeBenchBoilerplate card items with bottom overlay text."
+    },
+    {
+      "ts": "00:02",
+      "what": "View pans to Node Foyer header and NodeRoom card preview."
+    },
+    {
+      "ts": "00:04",
+      "what": "Cursor clicks 'Details' button on NodeRoom card."
+    },
+    {
+      "ts": "00:07",
+      "what": "Details drawer slides up over dimmed page background displaying technical metadata."
+    },
+    {
+      "ts": "00:10",
+      "what": "Details drawer remains visible while overlay caption text updates."
+    },
+    {
+      "ts": "00:13",
+      "what": "Cursor clicks 'Close' button; drawer dismisses and keyboard focus highlights 'Details' button."
+    }
+  ],
+  "scores": {
+    "storyboard_clarity": {
+      "score": 2,
+      "evidence": "Cites 00:00, 00:04, 00:13. Clear comparison between desktop hover and mobile tap interaction, explaining why focus restoration matters."
+    },
+    "state_coverage": {
+      "score": 2,
+      "evidence": "Cites 00:00 (initial board state), 00:04 (click action), 00:07 (drawer open state), and 00:13 (closed state with active focus)."
+    },
+    "cursor_truth": {
+      "score": 2,
+      "evidence": "Cites 00:04 (cursor clicks 'Details' button) and 00:13 (cursor clicks 'Close' button)."
+    },
+    "caption_sync": {
+      "score": 2,
+      "evidence": "Cites 00:00, 00:04, 00:06, 00:10, and 00:13. Overlay captions closely track the exact UI transitions and focus behaviors shown."
+    },
+    "pacing": {
+      "score": 1,
+      "evidence": "Cites 00:00, 00:06, 00:10. Multiple multi-line captions display within 3-4 second windows, making reading slightly rushed."
+    },
+    "legibility": {
+      "score": 2,
+      "evidence": "Cites 00:00 and 00:07. Mobile text wrapping and detail drawer metadata are cleanly rendered and legible."
+    },
+    "proof_feel": {
+      "score": 2,
+      "evidence": "Cites 00:07 and 00:13. Real UI behavior is demonstrated through background dimming and keyboard focus state restoration."
+    },
+    "safety": {
+      "score": 2,
+      "evidence": "Cites 00:00 and 00:07. Only generic mockup data (NodeAgentSpec, NodeRoom) and public metadata are visible."
+    },
+    "loop_etiquette": {
+      "score": 2,
+      "evidence": "Cites 00:00-00:13. The 13-second runtime ends cleanly back on the card list, allowing seamless looping."
+    },
+    "motion_craft": {
+      "score": 2,
+      "evidence": "Cites 00:02 and 00:07. Smooth pan to NodeRoom card followed by an eased drawer slide-up with background dimming."
+    },
+    "visual_hierarchy": {
+      "score": 2,
+      "evidence": "Cites 00:07 (background dims when drawer opens) and 00:13 (focus outline highlights 'Details' button upon return)."
+    }
+  },
+  "defects": [
+    {
+      "ts": "00:00",
+      "severity": "P2",
+      "observed": "Overlay captions contain dense explanations that cycle quickly (every 3-4 seconds), competing with visual observation.",
+      "fix": "Shorten text overlay copy or extend frame duration by 1-2 seconds per caption beat."
+    }
+  ],
+  "singleMoment": "Opening the mobile details drawer and returning keyboard focus directly to the trigger button upon close.",
+  "verdict": "publish",
+  "summary": "The demo effectively highlights mobile UI detail parity and accessibility features such as drawer dimming and focus restoration. Cursor target landing and state transitions are accurately timed and clear. Trimming dense overlay copy would improve overall readability.",
+  "comprehension": {
+    "persona": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "Addresses 'a visitor checking this board from their phone', targeting mobile users/developers generally rather than a specific persona."
+    },
+    "purpose": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "Solves the problem of maintaining full information density and focus accessibility on narrow mobile screens."
+    },
+    "use_case": {
+      "score": 2,
+      "ts": "00:04",
+      "evidence": "Inspecting card details on a mobile web board and closing the detail panel."
+    },
+    "feature_clarity": {
+      "score": 2,
+      "ts": "00:04",
+      "evidence": "Demonstrates a responsive mobile detail drawer with background dimming and focus management."
+    },
+    "full_interaction": {
+      "score": 2,
+      "ts": "00:04",
+      "evidence": "Shows initial click, panel slide-up, content review, close action, and focus return."
+    },
+    "responsiveness": {
+      "score": 2,
+      "ts": "00:07",
+      "evidence": "Visually showcases animated drawer slide-up, page dimming, and button focus ring restoration at 00:13."
+    },
+    "flow": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "Logical progression: overview -> trigger drawer -> view metadata -> close drawer -> focus restored."
+    },
+    "result": {
+      "score": 2,
+      "ts": "00:13",
+      "evidence": "Drawer closes completely and focus state returns explicitly to the Details button."
+    },
+    "non_expert_sense": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "Requires frontend/accessibility knowledge to understand why keyboard cursor focus restoration matters."
+    },
+    "transfer": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "Shows component behavior well, but does not show how a user would build or configure this board with their own data."
+    },
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:00",
+      "what": "Technical frontend concepts like word-breaking rules and keyboard cursor focus restoration upon panel closure."
+    },
+    "missingEntirely": []
+  },
+  "observed": {
+    "timeline": [
+      {
+        "ts": "00:00",
+        "what": "Mobile screen layout showing NodeAgentSpec and NodeBenchBoilerplate card items with bottom overlay text."
+      },
+      {
+        "ts": "00:02",
+        "what": "View pans to Node Foyer header and NodeRoom card preview."
+      },
+      {
+        "ts": "00:04",
+        "what": "Cursor clicks 'Details' button on NodeRoom card."
+      },
+      {
+        "ts": "00:07",
+        "what": "Details drawer slides up over dimmed page background displaying technical metadata."
+      },
+      {
+        "ts": "00:10",
+        "what": "Details drawer remains visible while overlay caption text updates."
+      },
+      {
+        "ts": "00:13",
+        "what": "Cursor clicks 'Close' button; drawer dismisses and keyboard focus highlights 'Details' button."
+      }
+    ],
+    "cursorEvents": [
+      {
+        "ts": "00:04",
+        "what": "Cursor clicks 'Details' button on NodeRoom card."
+      },
+      {
+        "ts": "00:13",
+        "what": "Cursor clicks 'Close' button in upper right of details panel."
+      }
+    ],
+    "stateChanges": [
+      {
+        "ts": "00:04",
+        "from": "Card list view",
+        "to": "Details drawer open"
+      },
+      {
+        "ts": "00:13",
+        "from": "Details drawer open",
+        "to": "Card list view with focused Details button"
+      }
+    ],
+    "textShown": [
+      {
+        "ts": "00:00",
+        "text": "A visitor checking this board from their phone gets the same trustworthy detail a desktop visitor gets — starting with something small: even a long product name breaks cleanly onto the next line, never chopped mid-word, even on a screen this narrow."
+      },
+      {
+        "ts": "00:04",
+        "text": "There's no mouse to hover with on a phone, so tapping \"Details\" opens the same information a desktop visitor gets just by hovering."
+      },
+      {
+        "ts": "00:06",
+        "text": "The detail panels slide up, and everything behind it stops responding to taps while it's open — it's dimmed on purpose, not just for looks."
+      },
+      {
+        "ts": "00:10",
+        "text": "The Open button stays big enough to tap accurately with a thumb — it never shrinks down to a sliver of text."
+      },
+      {
+        "ts": "00:13",
+        "text": "After closing the panel, the keyboard cursor lands right back on the Details button — nothing gets lost when you lose it."
+      }
+    ],
+    "audio": {
+      "present": false,
+      "music": "none",
+      "voice": "none",
+      "cues": []
+    },
+    "waits": [],
+    "static": false
+  },
+  "judgedBy": "gemini-3.6-flash",
+  "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
+  "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
+  "comprehensionVerdict": {
+    "status": "blocked",
+    "momFails": true,
+    "uniform": false,
+    "scored": 10,
+    "total": 17,
+    "max": 20,
+    "zeros": [],
+    "blocking": [],
+    "unscored": [],
+    "wouldMomUnderstand": false,
+    "momLosesThemAt": {
+      "ts": "00:00",
+      "what": "Technical frontend concepts like word-breaking rules and keyboard cursor focus restoration upon panel closure."
+    }
+  },
+  "videoBytes": 3855029,
+  "referencesCited": [],
+  "judgedAt": "2026-09-13T03:18:02.391Z"
+}

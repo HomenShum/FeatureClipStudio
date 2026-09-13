@@ -45,7 +45,7 @@
 // Remotion.
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { join } from "node:path";
+import { join } from "node:path"; import { createHash } from "node:crypto";
 
 // Vendored, generated, or separately-installed trees. argo-demos and examples/
 // are their own npm projects with their own dependencies; parsing them here
@@ -140,9 +140,33 @@ for (const tour of tours) {
 }
 for (const doc of ["docs/START_HERE.md"]) if (existsSync(doc)) prose(doc, readFileSync(doc, "utf8"));
 
+// --- 3. every public/wt/<id>/render.json matches the committed GIF and the ----
+//        vendored judge runs it names (round-13: the README embeds exactly what
+//        the judge scored, and "worse of two runs kept" is checkable, not just
+//        claimed) -----------------------------------------------------------
+const sha256 = (path) => createHash("sha256").update(readFileSync(path)).digest("hex");
+const wtDir = existsSync("public/wt") ? readdirSync("public/wt", { withFileTypes: true }) : [];
+let renders = 0;
+for (const entry of wtDir) {
+  if (!entry.isDirectory()) continue;
+  const renderPath = join("public/wt", entry.name, "render.json");
+  if (!existsSync(renderPath)) continue;
+  renders++;
+  const r = JSON.parse(readFileSync(renderPath, "utf8"));
+  const gifPath = `assets/feature-foyer-${entry.name}.gif`;
+  if (!existsSync(gifPath)) problems.push(`${renderPath} — no such file: ${gifPath}`);
+  else if (sha256(gifPath) !== r.gifSha256) problems.push(`${renderPath} — ${gifPath} sha256 ${sha256(gifPath)} does not match gifSha256 ${r.gifSha256}`);
+  for (const run of r.judgeRuns ?? []) {
+    const runPath = join("public/wt", entry.name, run.file);
+    if (!existsSync(runPath)) problems.push(`${renderPath} — judgeRuns names ${run.file}, no such file: ${runPath}`);
+    else if (sha256(runPath) !== run.sha256) problems.push(`${renderPath} — ${runPath} sha256 ${sha256(runPath)} does not match judgeRuns entry ${run.sha256}`);
+  }
+  if (!(r.judgeRuns ?? []).some((run) => run.sha256 === r.kept)) problems.push(`${renderPath} — kept ${r.kept} is not one of judgeRuns' sha256 values`);
+}
+
 // Print the counts, always. A gate that reports only "ok" cannot be caught
 // shrinking: the previous one lost thirty files without changing its output.
-console.log(`[check] parsed ${parsed}/${files.length} JavaScript files; ${resolved}/${steps} tour steps and ${checked}/${quoted} prose citations name a line that matches`);
+console.log(`[check] parsed ${parsed}/${files.length} JavaScript files; ${resolved}/${steps} tour steps and ${checked}/${quoted} prose citations name a line that matches; ${renders} render.json record(s) verified`);
 if (problems.length) {
   console.error(`\n[check] ${problems.length} problem(s):\n` + problems.map((p) => `  - ${p}`).join("\n"));
   process.exit(1);

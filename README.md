@@ -1381,7 +1381,7 @@ Re-capturing requires an explicitly selected current spec ID in `COLLAB_ONLY` an
 its intended application running; a bare capture command is refused. Render: `node run-remotion.mjs render src/index.js WTC-NRsolo`
 / `WTC-NRsync` / `WTC-NRfresh` / `WTC-NRdeepDive`.
 
-## Real-world example: Node Foyer (fail-closed asserts, round 12)
+## Real-world example: Node Foyer (fail-closed asserts, round 13)
 
 [Node Foyer](https://github.com/HomenShum/node-foyer) is a portfolio wall that probes each
 hosted product's own public files and shows one honest state per repo. Its three walkthroughs
@@ -1392,34 +1392,38 @@ stale state aborts instead of shipping (fail-closed, same `zz-fail.png` contract
 `walkthrough.mjs`, applied to a *claim* rather than only to a crash). Each capture also reads the
 wall's own `foyer-build-sha` at the first and last frame and discards the run if the served build
 moved mid-capture — see `walkthrough.foyer.mjs`'s `assertHolds` and `freshBuildSha`. Every final
-cut is judged twice and the worse of the two scores is the one that gets recorded and quoted below.
+cut is judged twice; the worse of the two scores (by verdict, then P0 count, then a blocked
+comprehension gate) is the one recorded and quoted below, and BOTH run JSONs are vendored under
+`public/wt/<id>/judge-run1.json` / `judge-run2.json` (see `render.json` in the same directory) so
+"worse kept" is a claim anyone can check against a file, not just this README's word for it.
 
-<details><summary><b>Node Foyer · the wall</b> (production, 1440x900) — published</summary>
+<details><summary><b>Node Foyer · the wall</b> (production, 1440x900) — published in the Foyer's sealed walkthrough manifest (whether it is live is read from node-foyer.vercel.app, not from this README)</summary>
 
-<img src="assets/feature-foyer-FYwall.gif" alt="Node Foyer's wall: the header's provenance line stating every product is checked every half hour, all 22 cards, NodeSlide's card whose hover apparatus reads 'matches backend' after both its layers were checked live, NodeRoom's stable-sweeps count and its hover receipt (probe URL, fetch time, sha256), the dead fixture staying UNKNOWN with its tried URL, and the Foyer's own card verified on both its frontend and backend layers" width="720">
+<img src="assets/feature-foyer-FYwall.gif" alt="Node Foyer's wall: the header naming the last sweep's timestamp and how many sweeps are kept, all 22 cards including twelve registry-only badges among the ten hosted ones, NodeSlide's card whose hover apparatus reads 'matches backend' after both its layers were checked on the last sweep, NodeSlide's own stable-sweeps count, NodeRoom's hover receipt (probe URL, fetch time, sha256), the dead fixture staying UNKNOWN with its tried URL, and the Foyer's own card verified on both its frontend and backend layers" width="720">
 
-Judge: `publish`, 0 P0 / 1 P1 / 1 P2, comprehension passed (`gemini-3.6-flash`, worse of 2 runs kept).
+Judge: `fix-then-publish`, 0 P0 / 1 P1 / 1 P2, comprehension incomplete — not blocked, `wouldMomUnderstand: true` (`gemini-3.6-flash`, worse of 2 runs kept; both runs in `public/wt/FYwall/`).
 
 </details>
 
-<details><summary><b>Node Foyer · the phone sheet</b> (production, 390x844) — captured, not published</summary>
+<details><summary><b>Node Foyer · the phone sheet</b> (production, 390x844) — captured, not published in the manifest</summary>
 
 <img src="assets/feature-foyer-FYphone.gif" alt="Node Foyer at phone width: a long product name wrapping cleanly onto the next line instead of breaking mid-word, the Details button opening a real dialog with the wall inert behind it, a 44px Open target, and Close returning focus to Details" width="390">
 
-Judge: `publish`, 0 P0 / 0 P1 / 1 P2 (`gemini-3.6-flash`, worse of 2 runs kept) — but comprehension
-blocked on that worse run, so this clip is **not published** on the wall; it stays listed in the
-apparatus below the card grid.
+Judge: `publish`, 0 P0 / 0 P1 / 1 P2 (`gemini-3.6-flash`, worse of 2 runs kept; both runs in
+`public/wt/FYphone/`) — but comprehension blocked on that worse run, so this clip is **not
+published** on the wall; it stays listed in the apparatus below the card grid.
 
 </details>
 
-<details><summary><b>Node Foyer · the honest fallback</b> (built preview, no ledger URL) — captured, not published</summary>
+<details><summary><b>Node Foyer · the honest fallback</b> (built preview, no ledger URL) — captured, not published in the manifest</summary>
 
 <img src="assets/feature-foyer-FYagent.gif" alt="Node Foyer built with no VITE_CONVEX_URL: the wall root's own data-foyer-snapshot-source attribute says file, then the same build's /.well-known/agent-ui.json and /api/apps.json contract files rendered raw" width="720">
 
 Judge: `rework`, 2 P0 / 2 P1, comprehension blocked on `non_expert_sense` (`gemini-3.6-flash`, worse
-of 2 runs kept) — **not published**. Two rounds of plain-language rewrites on the two JSON-endpoint
-captions (state the everyday purpose before the technical address) still didn't clear
-comprehension; kept as an honest record rather than stretched further.
+of 2 runs kept; both runs in `public/wt/FYagent/`) — **not published**. Rewritten in rounds 11 and
+12 (plain-language passes on the two JSON-endpoint captions: state the everyday purpose before the
+technical address) and still didn't clear comprehension; kept as an honest record rather than
+stretched further.
 
 </details>
 
