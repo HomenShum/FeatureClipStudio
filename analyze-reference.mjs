@@ -16,6 +16,7 @@ const flag = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv
 const url = flag("url");
 const windows = flag("windows", "");
 const label = flag("label", "reference");
+const lens = flag("lens", "format");   // format | product
 if (!url) { console.error("usage: node analyze-reference.mjs --url <youtube-url> [--windows m:ss-m:ss,...] [--label name]"); process.exit(1); }
 
 const key = () => {
@@ -46,6 +47,27 @@ timestamps. Report STRICT JSON:
  "evidence_style": "what is used to BACK a design claim — a diagram, a measurement, a benchmark, a code line, a story about a failure, or nothing",
  "transferable_rules": ["3-7 concrete, imitable rules of form, each one sentence, each anchored to something observed at a timestamp"]}`;
 
+// PRODUCT lens: what the thing DOES, who uses it, and specifically whether the
+// three competencies still open on our checklist apply -- write actions (HITL),
+// multi-turn sessions (context compression), and distinct specialised
+// capabilities (multi-agent). Asked as observations with evidence, so a "no"
+// is as usable as a "yes".
+const PRODUCT_PROMPT = `You are watching a PRODUCT DEMO. Extract what the product actually does.
+Report only what you SEE or HEAR, with timestamps. Where you are inferring, say so in the field.
+
+Return STRICT JSON:
+{"what_it_does": "the product's job, in one plain sentence",
+ "user_role": "who is operating it - job title and seniority if stated or visible",
+ "workflow": "the observable sequence the demo walks through",
+ "data_sources": "what data it reads - named systems, documents, databases, APIs",
+ "artifacts_produced": "what the user leaves with - report, deck, dataset, decision, message",
+ "write_actions": "does it WRITE, SEND, SUBMIT, SCHEDULE or otherwise change external state? quote what you see. 'none observed' is a valid and useful answer",
+ "approval_or_review_ui": "any human approve/reject/confirm step, draft-for-review, or audit gate shown on screen",
+ "multi_turn": "is it a continuing conversation with memory across turns, or one-shot queries? evidence",
+ "specialised_agents": "are multiple distinct agents/skills/tools named or shown, each with a different job? list the names shown",
+ "provenance_shown": "does it cite sources, show its work, or display confidence anywhere?",
+ "verbatim_ui_text": ["up to 12 exact strings visible on screen - labels, buttons, headings"]}`;
+
 const call = async (win) => {
   const part = { file_data: { file_uri: url } };
   if (win) part.video_metadata = { start_offset: `${secs(win[0])}s`, end_offset: `${secs(win[1])}s` };
@@ -53,7 +75,7 @@ const call = async (win) => {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      contents: [{ parts: [part, { text: PROMPT + (win ? `\nYou are watching ONLY ${win[0]}-${win[1]}.` : "") }] }],
+      contents: [{ parts: [part, { text: (lens === "product" ? PRODUCT_PROMPT : PROMPT) + (win ? `\nYou are watching ONLY ${win[0]}-${win[1]}.` : "") }] }],
       generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
     }),
   });
@@ -72,5 +94,6 @@ writeFileSync(`out/${label}.format.json`, JSON.stringify(out, null, 2));
 console.log(`[analyze] wrote out/${label}.format.json`);
 for (const o of out) {
   console.log(`\n=== ${o.window} ===`);
-  for (const r of o.transferable_rules || []) console.log("  -", r);
+  if (lens === "product") { for (const [k, v] of Object.entries(o)) if (k !== "window") console.log(`  ${k}: ${JSON.stringify(v).slice(0, 400)}`); }
+  else for (const r of o.transferable_rules || []) console.log("  -", r);
 }
