@@ -1381,7 +1381,7 @@ Re-capturing requires an explicitly selected current spec ID in `COLLAB_ONLY` an
 its intended application running; a bare capture command is refused. Render: `node run-remotion.mjs render src/index.js WTC-NRsolo`
 / `WTC-NRsync` / `WTC-NRfresh` / `WTC-NRdeepDive`.
 
-## Real-world example: Node Foyer (fail-closed asserts, round 13)
+## Real-world example: Node Foyer (fail-closed asserts, rounds 13-16)
 
 [Node Foyer](https://github.com/HomenShum/node-foyer) is a portfolio wall that probes each
 hosted product's own public files and shows one honest state per repo. Its three walkthroughs
@@ -1415,7 +1415,7 @@ card's own apparatus (hover on desktop, Details on a phone).
 Judge: `publish`, 0 P0 / 0 P1 / 1 P2 (`gemini-3.6-flash`, worse of 2 runs kept — run 1 passed the
 non-expert test but carried 1 P1 and 1 P2; both runs in
 `public/wt/FYphone/`) — but comprehension blocked on that worse run, so this clip is **not
-published** on the wall; it stays listed in the Foyer card's own apparatus (hover on desktop,
+published** on the wall; once node-foyer's main is deployed its card's apparatus lists it (hover on desktop,
 Details on a phone).
 
 </details>
@@ -1425,7 +1425,7 @@ Details on a phone).
 <img src="assets/feature-foyer-FYagent.gif" alt="Node Foyer built with no VITE_CONVEX_URL: the wall root's own data-foyer-snapshot-source attribute says file, then the same build's /.well-known/agent-ui.json and /api/apps.json contract files rendered raw" width="720">
 
 Judge: `rework`, 2 P0 / 2 P1, comprehension blocked on `non_expert_sense` (`gemini-3.6-flash`, worse
-of 2 runs kept; both runs in `public/wt/FYagent/`) — **not published**. Rewritten in rounds 11 and
+of 2 runs kept; run 2: `rework`, 1 P0 / 2 P1 / 0 P2, also blocked; both runs in `public/wt/FYagent/`) — **not published**. Rewritten in rounds 11 and
 12 (plain-language passes on the two JSON-endpoint captions: state the everyday purpose before the
 technical address) and still didn't clear comprehension; kept as an honest record rather than
 stretched further.
