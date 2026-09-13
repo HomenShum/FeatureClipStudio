@@ -80,13 +80,13 @@ const assertHolds = async (p, a) => {
   if (a.count !== undefined) {
     const n = await locAll(p, a.sel).count();
     if (n !== a.count) throw new Error(`assert failed: ${a.sel} count=${n}, expected ${a.count}`);
-    return `${a.sel} count=${a.count}`;
+    return { str: `${a.sel} count=${a.count}`, value: null };
   }
   const L = loc(p, a.sel);
   if (a.focused) {
     const isFocused = await L.evaluate((n) => n === document.activeElement).catch(() => false);
     if (!isFocused) throw new Error(`assert failed: ${a.sel} is not the focused element`);
-    return `${a.sel} focused`;
+    return { str: `${a.sel} focused`, value: null };
   }
   const visible = await L.first().isVisible().catch(() => false);
   if (a.visible !== false && !visible) throw new Error(`assert failed: ${a.sel} is not visible`);
@@ -96,7 +96,10 @@ const assertHolds = async (p, a) => {
       throw new Error(`assert failed: ${a.sel}[${a.attr}] = ${JSON.stringify(val)}, expected ${JSON.stringify(a.equals)}`);
     if (a.matches !== undefined && !new RegExp(a.matches).test(val ?? ""))
       throw new Error(`assert failed: ${a.sel}[${a.attr}] = ${JSON.stringify(val)} does not match /${a.matches}/`);
-    return `${a.sel}[${a.attr}]=${JSON.stringify(val)}`;
+    // `value` flows back to the caller so a caption can be templated from the LIVE number
+    // (round-10 minor: a caption hardcoded "11 sweeps" while the live attribute said 12 — a
+    // caption may never assert a fact the capture itself didn't read).
+    return { str: `${a.sel}[${a.attr}]=${JSON.stringify(val)}`, value: val };
   }
   if (a.equals !== undefined || a.matches !== undefined) {
     const text = (await L.first().innerText().catch(() => "")).trim();
@@ -104,9 +107,9 @@ const assertHolds = async (p, a) => {
       throw new Error(`assert failed: ${a.sel} text=${JSON.stringify(text.slice(0, 80))}, expected ${JSON.stringify(a.equals)}`);
     if (a.matches !== undefined && !new RegExp(a.matches).test(text))
       throw new Error(`assert failed: ${a.sel} text does not match /${a.matches}/: ${JSON.stringify(text.slice(0, 160))}`);
-    return `${a.sel} text matches`;
+    return { str: `${a.sel} text matches`, value: null };
   }
-  return `${a.sel} visible`;
+  return { str: `${a.sel} visible`, value: null };
 };
 
 const doAct = async (p, a, baseUrl) => {
@@ -115,7 +118,18 @@ const doAct = async (p, a, baseUrl) => {
   else if (a.act === "goto") await p.goto(new URL(a.url, baseUrl).toString(), { waitUntil: "domcontentloaded" });
   else if (a.act === "key") await p.keyboard.press(a.value);
   else if (a.act === "sleep") await sleep(p, a.ms);
-  else throw new Error(`unknown act "${a.act}" — valid: hover, click, goto, key, sleep`);
+  // Distinct-frame beats (round-10 minor: four sealed beats shared one byte-identical frame).
+  // Unlike scrollIntoViewIfNeeded (a no-op once an element is merely on-screen — the actual bug:
+  // NodeRoom's card sat fully inside the initial viewport, so "scroll to it" scrolled nothing and
+  // the frame stayed byte-identical), scrollIntoView({block:"center"}) always recenters the
+  // target, so consecutive beats on different cards always land at different scroll offsets.
+  else if (a.act === "center") await loc(p, a.sel).evaluate((el) => el.scrollIntoView({ block: "center", inline: "nearest" })).catch(() => {});
+  // Absolute scroll position — "center" clamps to 0 for anything near the top of the page (a
+  // card that would need a NEGATIVE scroll to be centered), which collided with an already-at-0
+  // frame (FYwall 00 vs 03) rather than producing a distinct one. scrollAbs picks the exact
+  // pixel offset instead of deriving it from an element that may be too close to an edge.
+  else if (a.act === "scrollAbs") await p.evaluate((y) => window.scrollTo(0, y), a.y ?? 0);
+  else throw new Error(`unknown act "${a.act}" — valid: hover, click, goto, key, sleep, center, scrollAbs`);
   await sleep(p, a.settle ?? 300);
 };
 
@@ -183,16 +197,19 @@ const run = async () => {
             if (op.cap) {
               capIndex++;
               const isLast = capIndex === capOps.length;
-              const asserted = await assertHolds(page, op.assert);
+              const { str: asserted, value: assertedValue } = await assertHolds(page, op.assert);
+              // A caption may cite a live count, but only the number this run actually observed
+              // (round-10 minor: "11 sweeps" captioned over a frame whose real count was 12).
+              const cap = op.cap.includes("{n}") && assertedValue != null ? op.cap.replace("{n}", assertedValue) : op.cap;
               const cur = await cursorOf(page, op.cursor, spec.vw, spec.vh);
               await sleep(page, 250);
               const fn = String(n).padStart(2, "0") + ".png";
               const path = join(dir, fn);
               await page.screenshot({ path });
               const bytes = readFileSync(path);
-              frames.push({ path: `wt/${spec.id}/${fn}`, sha256: sha256(bytes), caption: op.cap, asserted });
-              renderSteps.push({ img: `wt/${spec.id}/${fn}`, caption: op.cap, cursor: cur, click: !!op.click, hold: op.hold || 60 });
-              console.log(`  ${spec.id} cap ${n}: ${op.cap}`);
+              frames.push({ path: `wt/${spec.id}/${fn}`, sha256: sha256(bytes), caption: cap, asserted });
+              renderSteps.push({ img: `wt/${spec.id}/${fn}`, caption: cap, cursor: cur, click: !!op.click, hold: op.hold || 60, chromeUrl: op.chromeUrl });
+              console.log(`  ${spec.id} cap ${n}: ${cap}`);
               n++;
               if (isLast) buildShaLast = await freshBuildSha(page);
             } else {
@@ -220,12 +237,17 @@ const run = async () => {
       }
 
       const capturePromoted = !!provenanceFirst.buildSha && promotedText.includes(provenanceFirst.buildSha);
+      // Contract rule (src/lib/probe/types.ts): a preview capture's demoUrl is the literal
+      // "built preview" — never the localhost URL the capturer actually drove (round-10 minor:
+      // FYagent shipped http://127.0.0.1:5270/ into the public manifest).
+      const demoUrl = spec.captureKind === "preview" ? "built preview" : spec.url;
       const capture = {
         id: spec.id,
         repo: spec.repo,
         title: spec.title,
-        demoUrl: spec.url,
+        demoUrl,
         captureKind: spec.captureKind,
+        viewport: { width: spec.vw, height: spec.vh },
         capturedAt,
         captureBuildSha: provenanceFirst.buildSha,
         capturePromoted,
@@ -247,6 +269,8 @@ const run = async () => {
         title: spec.title,
         accent: spec.accent,
         scales: spec.scales,
+        chrome: spec.chrome,
+        chromeUrl: spec.chromeUrl,
         captureViewport: { width: spec.vw, height: spec.vh },
         steps: renderSteps,
       });

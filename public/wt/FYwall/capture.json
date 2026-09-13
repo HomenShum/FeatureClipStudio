@@ -4,13 +4,17 @@
   "title": "Node Foyer — the wall",
   "demoUrl": "https://node-foyer.vercel.app/",
   "captureKind": "production",
-  "capturedAt": "2026-09-13T01:37:26.530Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "capturedAt": "2026-09-13T03:12:23.642Z",
   "captureBuildSha": "ec2a44e19b304ab4ca2aa181f8722908a0329b5a",
   "capturePromoted": false,
   "snapshot": {
     "source": "ledger",
-    "sha256": "274ab988a64bfede8dc6e430018b3d5db82312927541f12d5e5327ea17a2c0bf",
-    "generatedAt": "2026-09-13T01:12:41.554Z"
+    "sha256": "91eee03c8379d88824209a3ed88ac75d2d94d52f0a3e7c850228cf86964f9acd",
+    "generatedAt": "2026-09-13T02:42:41.630Z"
   },
   "storyboard": {
     "premise": "Node Foyer claims to read every product's own public files, live, on every sweep, and never invent a state.",
@@ -24,44 +28,44 @@
   "frames": [
     {
       "path": "wt/FYwall/00.png",
-      "sha256": "708bfd30e1d6100339c189d6350d386cda564e3f67cd2b0c4455e6bc790b7727",
-      "caption": "Every push to main deploys both layers; this wall reads back what each product actually serves, right now.",
+      "sha256": "7f9f33df70e70c007dd171dd6fb444f1363b2a11b97fb0915d83274b8f1c1630",
+      "caption": "This board checks every product's own live pages every few minutes — each check is called a \"sweep\" here — and shows exactly what came back. Nobody typed these results in by hand.",
       "asserted": "css:.foyer-header__line visible"
     },
     {
       "path": "wt/FYwall/01.png",
-      "sha256": "708bfd30e1d6100339c189d6350d386cda564e3f67cd2b0c4455e6bc790b7727",
-      "caption": "22 repos, one honest card each — hosted products probed live, everything else marked registry-only.",
+      "sha256": "609dcc0ac9743cc7d4992e67f7c04bdbccfc0286071fb9d4c9df103ce6efd268",
+      "caption": "Twenty-two products are tracked here, each with its own honest badge — scroll down and every single one gets checked the exact same way.",
       "asserted": "css:[data-testid^=\"foyer-card-\"] count=22"
     },
     {
       "path": "wt/FYwall/02.png",
-      "sha256": "708bfd30e1d6100339c189d6350d386cda564e3f67cd2b0c4455e6bc790b7727",
-      "caption": "Same colour rule for both: NodeProof only answered (amber, reachable) — NodeVoice's two layers agreed (green, verified).",
+      "sha256": "77f0ef9a48ec10b18e02dde2b9c9685a8b6cb2cb173dd630695908460c1d3b23",
+      "caption": "Green means verified: this product's front door and back door were both checked live, and they reported the same version. Amber means it answered, but there was nothing to compare it against.",
       "asserted": "css:[data-testid=\"foyer-card-NodeVoice\"] .foyer-pill[data-state]=\"verified\""
     },
     {
       "path": "wt/FYwall/03.png",
-      "sha256": "708bfd30e1d6100339c189d6350d386cda564e3f67cd2b0c4455e6bc790b7727",
-      "caption": "\"same state for 11 sweeps\" — the ledger's own stability count, not a claim about one lucky probe.",
-      "asserted": "testid:foyer-card-NodeRoom[data-foyer-stable-sweeps]=\"12\""
+      "sha256": "59ddbae460bd85b297eb96cca3a93e8b55f9324b765a052ecb89857f939d66e5",
+      "caption": "This green badge has held steady for 15 checks in a row, back to back — not just one lucky moment.",
+      "asserted": "testid:foyer-card-NodeRoom[data-foyer-stable-sweeps]=\"15\""
     },
     {
       "path": "wt/FYwall/04.png",
-      "sha256": "28a3a3e7d40949872ae29d754e8bb3355e93f4e9c79a2ccedf6eb867aa0d6312",
-      "caption": "Hover reveals the apparatus: the exact URL probed, its HTTP status, when it answered, and the sha256 of what it returned.",
+      "sha256": "85ca5cd2b2c9b913b26b009ebe35028a2b1f0ac44e322321b1785a7fe0b395da",
+      "caption": "Hovering shows the receipt behind the badge: the exact address it checked, when it checked, and a short fingerprint of what came back, so anyone can double-check it themselves.",
       "asserted": "testid:foyer-apparatus-NodeRoom visible"
     },
     {
       "path": "wt/FYwall/05.png",
-      "sha256": "2ecd6456275032d5daa53424e2bd3a9ad95b202658f328d4c6a7d1e5b777c199",
-      "caption": "The dead fixture stays UNKNOWN, forever — its apparatus shows the exact URL it tried and failed, never a guess.",
+      "sha256": "bf8ad83c87150513cf55b3b433318c367910b42c98f887e5cc0478c8721e4845",
+      "caption": "One product here is deliberately broken on purpose, to prove the checker doesn't fake results: it always shows unknown, and shows the exact address it tried and failed to reach.",
       "asserted": "testid:foyer-apparatus-__fixture_dead text matches"
     },
     {
       "path": "wt/FYwall/06.png",
-      "sha256": "16faeaeea0203dee218abafff8f068e5b95d2b4ec4906889a8fc9592a45a4433",
-      "caption": "The Foyer probes itself, too: frontend and backend agree on the same build sha, so its own card is verified on both layers.",
+      "sha256": "1bbc10e32259e5cdee931b375740e82bc3e57768e6f1446373ac24b5da1332c8",
+      "caption": "This board even checks itself. Verified means its own deploy workflow read its own live page back afterward and confirmed the version numbers matched — that's what turns this badge green.",
       "asserted": "testid:foyer-apparatus-node-foyer text matches"
     }
   ]
