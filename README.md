@@ -1393,7 +1393,7 @@ stale state aborts instead of shipping (fail-closed, same `zz-fail.png` contract
 wall's own `foyer-build-sha` at the first and last frame and discards the run if the served build
 moved mid-capture — see `walkthrough.foyer.mjs`'s `assertHolds` and `freshBuildSha`. Every final
 cut is judged twice; the worse of the two scores (by verdict, then P0 count, then a blocked
-comprehension gate) is the one recorded and quoted below, and BOTH run JSONs are vendored under
+comprehension gate, then P1 count, then P2 count; exact ties keep run 1) is the one recorded and quoted below, and BOTH run JSONs are vendored under
 `public/wt/<id>/judge-run1.json` / `judge-run2.json` (see `render.json` in the same directory) so
 "worse kept" is a claim anyone can check against a file, not just this README's word for it.
 
