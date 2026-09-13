@@ -1,0 +1,44 @@
+{
+  "id": "FYagent",
+  "repo": "node-foyer",
+  "title": "Node Foyer — the honest fallback",
+  "demoUrl": "http://127.0.0.1:5270/",
+  "captureKind": "preview",
+  "capturedAt": "2026-09-13T01:39:33.590Z",
+  "captureBuildSha": "8a0fedd48d04e582a094f10f53f4fd49c48a7c31",
+  "capturePromoted": false,
+  "snapshot": {
+    "source": "file",
+    "sha256": "a122eb091348d68bb014c84056778c466f57877e67bba95fd519f58cf4ac3df0",
+    "generatedAt": "2026-09-12T22:29:43.131Z"
+  },
+  "storyboard": {
+    "premise": "The ledger URL an agent would read the wall from is unset in this build — no dev, no prod Convex.",
+    "question": "Does the wall degrade to the committed snapshot file honestly, or does it hang, blank, or lie about where its data came from?",
+    "axis": "ledger-backed snapshot (production) vs file-fallback snapshot (this preview, no ledger URL at all)",
+    "conflict": "no VITE_CONVEX_URL — the exact condition an agent hits before any ledger is configured",
+    "evidence": "the wall root's own data-foyer-snapshot-source=\"file\" attribute, and the same two machine-readable contract files production serves",
+    "verdict": "the wall renders the committed snapshot and says so on its own root node; /.well-known/agent-ui.json and /api/apps.json are still served from this build, unchanged",
+    "exit": "an agent with no ledger configured gets a working wall and an honest source attribute — never a blank screen or a silent lie"
+  },
+  "frames": [
+    {
+      "path": "wt/FYagent/00.png",
+      "sha256": "c86b8a0bcfeb059c3c4516c2ba89b041df63948f4be09adf185af8a831168622",
+      "caption": "Picture an agent-workspace harness opening this build with no ledger URL configured: the wall falls back to the committed snapshot file, and says so on its own root node — not a blank screen, not a silent lie.",
+      "asserted": "testid:foyer-wall[data-foyer-snapshot-source]=\"file\""
+    },
+    {
+      "path": "wt/FYagent/01.png",
+      "sha256": "09b801426a393b96bce83bd9125dd43b0fec9d0aff2354287505572e15146ec6",
+      "caption": "That agent fetches this fixed URL directly — no browser click, no ledger: the same build still serves its machine-readable contract file.",
+      "asserted": "css:pre text matches"
+    },
+    {
+      "path": "wt/FYagent/02.png",
+      "sha256": "1b662b828e986e6d02f3d2709c24dfe8cac3876af702c796b6072eca9ab2a842",
+      "caption": "And the plain apps.json an agent-workspace harness already knows how to read, from the exact same build.",
+      "asserted": "css:pre text matches"
+    }
+  ]
+}

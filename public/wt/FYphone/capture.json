@@ -1,0 +1,56 @@
+{
+  "id": "FYphone",
+  "repo": "node-foyer",
+  "title": "Node Foyer — the phone sheet",
+  "demoUrl": "https://node-foyer.vercel.app/",
+  "captureKind": "production",
+  "capturedAt": "2026-09-13T01:37:32.139Z",
+  "captureBuildSha": "ec2a44e19b304ab4ca2aa181f8722908a0329b5a",
+  "capturePromoted": false,
+  "snapshot": {
+    "source": "ledger",
+    "sha256": "274ab988a64bfede8dc6e430018b3d5db82312927541f12d5e5327ea17a2c0bf",
+    "generatedAt": "2026-09-13T01:12:41.554Z"
+  },
+  "storyboard": {
+    "premise": "At phone width there is no hover, so the same apparatus a desktop reviewer sees on mouseover has to become a real, tappable dialog.",
+    "question": "Is the bottom sheet an actual modal — focus trapped, background inert, closes cleanly — or a menu that only looks like one?",
+    "axis": "desktop hover apparatus vs mobile tap-opened sheet: same ApparatusBody, two entry points",
+    "conflict": "a long product name (NodeBenchBoilerplate) has to wrap without breaking mid-word inside a 390px card",
+    "evidence": "the sheet's role=\"dialog\", its backdrop over the now-inert wall, the same [data-probe-row] apparatus, and a 44px Open target",
+    "verdict": "the name soft-hyphenates cleanly, Details opens a real dialog with the wall inert behind it, Open stays a full 44px target, and Close returns focus to Details",
+    "exit": "the mobile sheet is not a stripped-down view — it is the same evidence, reachable by tap instead of hover"
+  },
+  "frames": [
+    {
+      "path": "wt/FYphone/00.png",
+      "sha256": "42dab25cb328790de3b7a5bbca1ab5ea6a74c253ef63793507f1e903cc8f63c8",
+      "caption": "Long product names soft-hyphenate instead of breaking mid-word, even in a 390px card.",
+      "asserted": "css:[data-testid=\"foyer-card-NodeBenchBoilerplate\"] .foyer-card__name[aria-label]=\"NodeBenchBoilerplate\""
+    },
+    {
+      "path": "wt/FYphone/01.png",
+      "sha256": "8dc1c06dd1bc03a3ca03af626febc62efe8595b4fc9ef9289ca5bab76cea7217",
+      "caption": "No hover on a phone — Details is the real, tappable path to the same apparatus.",
+      "asserted": "css:[data-testid=\"foyer-card-NodeRoom\"] button.foyer-details-btn visible"
+    },
+    {
+      "path": "wt/FYphone/02.png",
+      "sha256": "57e780a2702c65b25ecf2e8080e6d92b05a74b5093af44bee5c11e4496d2639c",
+      "caption": "The sheet opens as a real dialog over a backdrop — the wall behind it is now inert, not just visually dimmed.",
+      "asserted": "css:.foyer-sheet-backdrop visible"
+    },
+    {
+      "path": "wt/FYphone/03.png",
+      "sha256": "e520c45e0cde011aafd5704ab1d56da0cfcbf8bb4fb7272fba7ce1cfca5fded0",
+      "caption": "Open stays a full 44px target on the card face, never a text sliver.",
+      "asserted": "css:[data-testid=\"foyer-card-NodeRoom\"] a[href] visible"
+    },
+    {
+      "path": "wt/FYphone/04.png",
+      "sha256": "e520c45e0cde011aafd5704ab1d56da0cfcbf8bb4fb7272fba7ce1cfca5fded0",
+      "caption": "Close returned focus to Details — nothing is left stranded on body.",
+      "asserted": "css:[data-testid=\"foyer-card-NodeRoom\"] button.foyer-details-btn focused"
+    }
+  ]
+}
