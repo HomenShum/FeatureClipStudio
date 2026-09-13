@@ -89,14 +89,14 @@
     },
     {
       "file": "src/Walkthrough.jsx",
-      "line": 181,
+      "line": 186,
       "pattern": "opacity: prevImg \\? fadeIn : 1",
       "title": "13 — The one guard not to simplify away",
       "description": "`opacity: prevImg ? fadeIn : 1`. The fade is a CROSS-fade and only means anything with the previous step's still underneath. Step 0 has no previous step, so an unguarded ramp faded the first frame up from this container's white — every clip opened on a 0.37 second flash and a looping README GIF re-flashed every loop. That is defect D2. `npm run probe:opening` exists to keep it fixed."
     },
     {
       "file": "src/Walkthrough.jsx",
-      "line": 197,
+      "line": 202,
       "pattern": "width: WT_W \\* progress",
       "title": "14 — And out the other side",
       "description": "Caption lower-third above, progress bar here, and the frame is done. `remotion render` collects these into an MP4; the README's ffmpeg palette command turns that into the GIF you paste into a README. You have now followed the whole path."

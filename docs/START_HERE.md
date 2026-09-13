@@ -358,7 +358,7 @@ export const Walkthrough = ({ wt }) => {
 **Output** — the JSX for exactly one frame.
 **Failure behavior** — an empty step list returns a plain dark frame — `src/Walkthrough.jsx:104` (`if (!steps.length) return`) — instead
 of throwing. A missing PNG surfaces as a Remotion asset error naming the file.
-**The one bug fixed here that you must not undo** — `src/Walkthrough.jsx:181` (`opacity: prevImg ? fadeIn : 1`): the still is drawn with
+**The one bug fixed here that you must not undo** — `src/Walkthrough.jsx:186` (`opacity: prevImg ? fadeIn : 1`): the still is drawn with
 `opacity: prevImg ? fadeIn : 1`. The fade is a *cross*-fade and only means anything
 with the previous step underneath. On step 0 there is no previous step, so an
 unguarded ramp faded the first frame up from the container's white — every clip opened
