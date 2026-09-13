@@ -204,7 +204,7 @@ emits something that passes for evidence.** The same reasoning added the
 
 **File:** `iterate.mjs`
 **Symbol:** the top-level round loop — `iterate.mjs:62` (`for (let r = 1; r <= rounds`)
-**Called by:** `npm run iterate` — `package.json:43` (`"iterate": "node iterate.mjs"`) — and
+**Called by:** `npm run iterate` — `package.json:45` (`"iterate": "node iterate.mjs"`) — and
 nothing else. No script and no other file in this repository spawns it.
 **Calls next:** `iterate.mjs:72` (`judge-rubric.mjs`) → Google Gemini
 
@@ -285,7 +285,7 @@ contain `_`.
 **Output** — a composition registry the Remotion CLI and studio read.
 **Failure behavior** — a composition whose steps array is empty still registers, with
 `durationInFrames` clamped to 1 by the `Math.max(1, …)`; the renderer paints a blank
-frame rather than crashing — `src/Walkthrough.jsx:97` (`if (!steps.length) return`).
+frame rather than crashing — `src/Walkthrough.jsx:104` (`if (!steps.length) return`).
 **Next** — Step 6, the file this registry reads.
 
 ---
@@ -331,9 +331,9 @@ its spoken narration. That is the only other thing that edits generated data.
 ## Step 7 — Rendering: one function turns a step list into every frame
 
 **File:** `src/Walkthrough.jsx`
-**Symbol:** `Walkthrough` — `src/Walkthrough.jsx:94` (`export const Walkthrough`)
+**Symbol:** `Walkthrough` — `src/Walkthrough.jsx:101` (`export const Walkthrough`)
 **Called by:** Remotion, once per frame, via the `Composition` in Step 5
-**Calls next:** `src/Walkthrough.jsx:49` (`const burstFrame`), `src/Walkthrough.jsx:34` (`const camTarget`), plus `Pointer` and `Ripple`
+**Calls next:** `src/Walkthrough.jsx:56` (`const burstFrame`), `src/Walkthrough.jsx:41` (`const camTarget`), plus `Pointer` and `Ripple`
 
 **Why this exists**
 This is the whole visual language of the product in one component: which captured
@@ -356,9 +356,9 @@ export const Walkthrough = ({ wt }) => {
 
 **Input** — one walkthrough object as the `wt` prop.
 **Output** — the JSX for exactly one frame.
-**Failure behavior** — an empty step list returns a plain dark frame — `src/Walkthrough.jsx:97` (`if (!steps.length) return`) — instead
+**Failure behavior** — an empty step list returns a plain dark frame — `src/Walkthrough.jsx:104` (`if (!steps.length) return`) — instead
 of throwing. A missing PNG surfaces as a Remotion asset error naming the file.
-**The one bug fixed here that you must not undo** — `src/Walkthrough.jsx:172` (`opacity: prevImg ? fadeIn : 1`): the still is drawn with
+**The one bug fixed here that you must not undo** — `src/Walkthrough.jsx:181` (`opacity: prevImg ? fadeIn : 1`): the still is drawn with
 `opacity: prevImg ? fadeIn : 1`. The fade is a *cross*-fade and only means anything
 with the previous step underneath. On step 0 there is no previous step, so an
 unguarded ramp faded the first frame up from the container's white — every clip opened

@@ -1381,6 +1381,48 @@ Re-capturing requires an explicitly selected current spec ID in `COLLAB_ONLY` an
 its intended application running; a bare capture command is refused. Render: `node run-remotion.mjs render src/index.js WTC-NRsolo`
 / `WTC-NRsync` / `WTC-NRfresh` / `WTC-NRdeepDive`.
 
+## Real-world example: Node Foyer (fail-closed asserts, FOYER-V3 R1)
+
+[Node Foyer](https://github.com/HomenShum/node-foyer) is a portfolio wall that probes each
+hosted product's own public files and shows one honest state per repo. Its three walkthroughs
+(`walkthrough.foyer.specs.mjs`, captured by `walkthrough.foyer.mjs`) go one step past every
+other spec in this repo: **every `cap` op carries an `assert`** — checked against the live DOM
+immediately before the screenshot, not after — so a capture that would have shown a wrong or
+stale state aborts instead of shipping (fail-closed, same `zz-fail.png` contract as
+`walkthrough.mjs`, applied to a *claim* rather than only to a crash). Each capture also reads the
+wall's own `foyer-build-sha` at the first and last frame and discards the run if the served build
+moved mid-capture — see `walkthrough.foyer.mjs`'s `assertHolds` and `freshBuildSha`.
+
+<details><summary><b>Node Foyer · the wall</b> (production, 1440x900)</summary>
+
+<img src="assets/feature-foyer-FYwall.gif" alt="Node Foyer's wall: the header's provenance line, all 22 cards, a verified card (NodeVoice) beside a reachable-only card (NodeProof), a stable-sweeps count, the NodeRoom apparatus on hover (probe URL, HTTP status, sha256), the dead fixture staying UNKNOWN with its tried URL, and the Foyer's own card verified on both its frontend and backend layers" width="720">
+
+Judge: `fix-then-publish`, 20/22 (`gemini-3.6-flash`).
+
+</details>
+
+<details><summary><b>Node Foyer · the phone sheet</b> (production, 390x844)</summary>
+
+<img src="assets/feature-foyer-FYphone.gif" alt="Node Foyer at phone width: a soft-hyphenated long product name, the Details button opening a real dialog with the wall inert behind it, a 44px Open target, and Close returning focus to Details" width="390">
+
+Judge: `fix-then-publish`, 22/22 (`gemini-3.6-flash`).
+
+</details>
+
+<details><summary><b>Node Foyer · the honest fallback</b> (built preview, no ledger URL)</summary>
+
+<img src="assets/feature-foyer-FYagent.gif" alt="Node Foyer built with no VITE_CONVEX_URL: the wall root's own data-foyer-snapshot-source attribute says file, then the same build's /.well-known/agent-ui.json and /api/apps.json contract files rendered raw" width="720">
+
+Judge: `rework` (2 of 3 sampled runs; scores 13/8/6 out of 22 — this repo's own documented judge
+variance, see "The instrument is noisy" above). The honest defect underneath the noise is real
+and repeats across runs: a `goto` between the wall and a raw JSON response has no in-app element
+to click, so `cursor_truth`/`state_coverage` score low every time. Fabricating a click here would
+violate STORYBOARD.md's own rule against claiming an interaction the frame does not show; the
+judge's own suggestion — a terminal/curl panel showing the actual fetch — is a real fix for a
+follow-up round, not this one.
+
+</details>
+
 ## Designing for specific stacks
 
 What's worth *showing* in a walkthrough differs by architecture — a single-cursor
