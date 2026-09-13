@@ -107,7 +107,17 @@ const assertHolds = async (p, a) => {
       throw new Error(`assert failed: ${a.sel} text=${JSON.stringify(text.slice(0, 80))}, expected ${JSON.stringify(a.equals)}`);
     if (a.matches !== undefined && !new RegExp(a.matches).test(text))
       throw new Error(`assert failed: ${a.sel} text does not match /${a.matches}/: ${JSON.stringify(text.slice(0, 160))}`);
-    return { str: `${a.sel} text matches`, value: null };
+    // Round-12 repair: this used to record only the generic phrase "<sel> text matches", which
+    // discarded WHAT was actually checked. node-foyer's two-layer caption rule (e2e/rules.ts)
+    // requires the literal string "matches backend" to appear inside `asserted` before it will
+    // accept a caption that claims both layers were checked — a generic phrase can never satisfy
+    // that, no matter what the live text really said. Recording the matched pattern (or the
+    // expected value for `equals`) is also just a more honest receipt: a reviewer reading
+    // capture.json should see what the assert actually verified, not a vague confirmation.
+    return {
+      str: a.matches !== undefined ? `${a.sel} text matches ${JSON.stringify(a.matches)}` : `${a.sel} text equals ${JSON.stringify(a.equals)}`,
+      value: null,
+    };
   }
   return { str: `${a.sel} visible`, value: null };
 };
