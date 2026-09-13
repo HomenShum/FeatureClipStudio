@@ -1,0 +1,5 @@
+# Hash-sealed records (capture.json, judge-run*.json, render.json, e2e.json, frames) are vendored byte-for-byte
+# by node-foyer and cross-checked against this repo with `git show`; never convert their line endings on
+# checkout (round-16: a default Windows clone turned 13 JSON files into CRLF and check.mjs reported 4 mismatches).
+public/wt/** -text
+assets/** -text
