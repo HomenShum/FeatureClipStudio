@@ -1415,7 +1415,7 @@ card's own apparatus (hover on desktop, Details on a phone).
 Judge: `publish`, 0 P0 / 0 P1 / 1 P2 (`gemini-3.6-flash`, worse of 2 runs kept — run 1 passed the
 non-expert test but carried 1 P1 and 1 P2; both runs in
 `public/wt/FYphone/`) — but comprehension blocked on that worse run, so this clip is **not
-published** on the wall; once node-foyer's main is deployed its card's apparatus lists it (hover on desktop,
+published** on the wall; once the Foyer candidate that vendors it is pushed and deployed, its card's apparatus lists it (hover on desktop,
 Details on a phone).
 
 </details>
