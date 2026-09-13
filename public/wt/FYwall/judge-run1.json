@@ -2,242 +2,250 @@
   "timeline": [
     {
       "ts": "00:00",
-      "what": "Dashboard displays Node Foyer grid with product cards."
+      "what": "Dashboard titled 'Node Foyer' displays status cards for 'NodeRoom', 'NodeSlide', 'parity-studio', and 'NodeVideo'."
     },
     {
       "ts": "00:03",
-      "what": "Page scrolls down showing additional product cards including NodeKit and NodeMem."
+      "what": "Page scrolls down showing registry-only project cards including 'NodeKit', 'NodeMem', and '__fixture_dead'."
     },
     {
       "ts": "00:06",
-      "what": "Page scrolls up; cursor hovers over VERIFIED badge on NodeSlide, displaying tooltip."
+      "what": "View moves back to top cards, highlighting 'VERIFIED' badges on 'NodeRoom' and 'NodeSlide'."
     },
     {
-      "ts": "00:10",
-      "what": "Cursor hovers over text below NodeSlide card."
+      "ts": "00:09",
+      "what": "Detail panel opens beneath 'NodeSlide' showing state history and metadata."
     },
     {
-      "ts": "00:14",
-      "what": "Cursor moves to hover over VERIFIED badge on NodeRoom card, displaying popup info."
+      "ts": "00:13",
+      "what": "Detail panel displays expanded HTTP response status, timestamps, and commit hashes."
     },
     {
-      "ts": "00:18",
-      "what": "Page scrolls down; cursor hovers over UNKNOWN badge on __fixture_dead card."
+      "ts": "00:17",
+      "what": "View focuses on '__fixture_dead' card displaying an 'UNKNOWN' badge and error message."
     },
     {
       "ts": "00:21",
-      "what": "Page scrolls up and left; hover tooltip displays check details for node-foyer."
+      "what": "View shifts to left panel displaying verification receipt for 'node-foyer' itself."
     }
   ],
   "scores": {
     "storyboard_clarity": {
       "score": 2,
-      "evidence": "00:00 caption clearly defines the target role and core premise; 00:18 demonstrates honest failure reporting to build trust."
+      "evidence": "00:00 to 00:21 clearly establishes the problem (trusting status boards), demonstrates verification receipts (00:13), negative testing (00:17), and self-verification (00:21)."
     },
     "state_coverage": {
-      "score": 0,
-      "evidence": "00:00-00:21 record shows empty stateChanges array; no state transitions are executed."
+      "score": 1,
+      "evidence": "00:09 shows state transition from collapsed to expanded detail panel, but omits intermediate loading or empty states."
     },
     "cursor_truth": {
       "score": 1,
-      "evidence": "00:06, 00:14, 00:18 cursor travels directly to badges to open hover tooltips, but no interactive control clicks occur."
+      "evidence": "00:06, 00:11, and 00:17 show visible hovers over controls/cards, but 00:09 opens panel without an explicit click ripple/action."
     },
     "caption_sync": {
       "score": 2,
-      "evidence": "00:06-00:21 captions precisely match each badge hover and popup element displayed on screen."
+      "evidence": "00:00 through 00:21 captions precisely match on-screen visuals and male voice narration."
     },
     "pacing": {
-      "score": 1,
-      "evidence": "00:00-00:21 content flows steadily every 3-4 seconds, though purely hover-based navigation feels slightly passive."
+      "score": 2,
+      "evidence": "Scene transitions occur at 3-4 second intervals (00:00, 00:03, 00:06, 00:09, 00:13, 00:17, 00:21), allowing comfortable reading time."
     },
     "legibility": {
       "score": 2,
-      "evidence": "00:00-00:21 text captions and inspectable hover tooltips present detailed text clearly."
+      "evidence": "00:00 text overlays and 00:13 HTTP status, commit hashes, and timestamps are clear and legible."
     },
     "proof_feel": {
       "score": 2,
-      "evidence": "00:18 highlights '__fixture_dead' failure fixture to prove honest reporting, and 00:21 shows inspectable verification receipts."
+      "evidence": "00:13 displays real HTTP responses and commit hashes, while 00:17 shows a deliberately failing fixture card (__fixture_dead) to prove unedited integrity."
     },
     "safety": {
       "score": 2,
-      "evidence": "00:00-00:21 displays public product status badges and test fixtures with no sensitive keys or internal URLs exposed."
+      "evidence": "00:13 displays commit hashes and public status endpoints; no tokens, secrets, or sensitive private data are exposed."
     },
     "loop_etiquette": {
       "score": 1,
-      "evidence": "00:21 length is concise at ~21 seconds, but ends abruptly on a hover state without a final resting hold."
+      "evidence": "00:21 to 00:25 ends cleanly following narration, but lacks an explicit hold state or loop transition back to start."
     },
     "motion_craft": {
-      "score": 1,
-      "evidence": "00:03, 00:06, 00:18 smooth scrolling reveals cards, though scrolling back up to top left at 00:21 feels slightly repetitive."
+      "score": 2,
+      "evidence": "Camera movements at 00:03 (scroll down), 00:06 (scroll top), 00:17 (card focus), and 00:21 (panel focus) intentionally reveal key evidence."
     },
     "visual_hierarchy": {
-      "score": 1,
-      "evidence": "00:06, 00:14 hover tooltips bring attention to key badges, but the background grid remains uniformly visible."
+      "score": 2,
+      "evidence": "00:06 highlights VERIFIED badges, 00:17 isolates the failing fixture card, and 00:21 shifts focus to the self-checking left panel."
     }
   },
   "defects": [
     {
-      "ts": "00:00",
-      "severity": "P1",
-      "observed": "The demo relies entirely on hover states and scrolling with zero active state changes or triggers.",
-      "fix": "Include at least one active flow, such as triggering an on-demand status check or adding a product endpoint."
+      "ts": "00:09",
+      "severity": "P2",
+      "observed": "Detail panel expands following hover without showing a click action trigger.",
+      "fix": "Add a visible cursor click ripple at 00:08 prior to expanding the detail panel."
     },
     {
       "ts": "00:21",
       "severity": "P2",
-      "observed": "Video ends abruptly while hovering over node-foyer tooltip without holding on a final overview state.",
-      "fix": "Add a 1.5-second final hold on the full status board overview before looping."
+      "observed": "Video ends on self-check view without a short call-to-action or onboarding step showing how to connect a new repo.",
+      "fix": "Add a brief closing frame showing how a release lead connects a service or repository."
     }
   ],
-  "singleMoment": "Showing the intentionally broken '__fixture_dead' card at 00:18 to prove the board honestly reports failures rather than faking status.",
-  "verdict": "fix-then-publish",
-  "summary": "The walkthrough effectively communicates its purpose to release leads through excellent captions and proof mechanisms like failure fixtures and self-checking badges. However, it lacks active user interactions, consisting entirely of scrolling and hover states. Showing an active state change before publishing will complete the proof.",
+  "singleMoment": "The highlight of '__fixture_dead' at 00:17 demonstrating an intentionally broken check to prove status results are not faked.",
+  "verdict": "publish",
+  "summary": "An exemplary, story-first walkthrough that avoids hero-shot traps by showing real receipts, commit hashes, and a negative test fixture. Pacing, caption sync, and narration are well aligned, making the value proposition instantly clear.",
   "comprehension": {
     "persona": {
       "score": 2,
       "ts": "00:00",
-      "evidence": "Explicitly names target persona: 'a release lead who has to trust a status board without reading anyone's source code'."
+      "evidence": "Explicitly addresses 'a release lead who has to trust a status board without reading anyone's source code'."
     },
     "purpose": {
       "score": 2,
       "ts": "00:00",
-      "evidence": "Explains purpose: automated verification of hosted products so release leads do not have to manually verify status."
+      "evidence": "Solves the problem of verifying status board reliability without inspecting underlying repository source code."
     },
     "use_case": {
       "score": 2,
-      "ts": "00:00",
-      "evidence": "00:00-00:03 shows monitoring 22 products with automated live checks occurring every half hour."
+      "ts": "00:03",
+      "evidence": "Auditing health badges, HTTP receipts, and state history across 22 microservice projects."
     },
     "feature_clarity": {
       "score": 2,
       "ts": "00:06",
-      "evidence": "Clear demonstration that the board runs automated checks and provides verifiable badge receipts."
+      "evidence": "Node Foyer provides verified status badges backed by state history, commit receipts, and self-checks."
     },
     "full_interaction": {
-      "score": 0,
-      "ts": "never",
-      "evidence": "No trigger-to-outcome user interaction flow is shown; video only displays hover tooltips."
+      "score": 1,
+      "ts": "00:09",
+      "evidence": "Panel expansion at 00:09 occurs immediately after cursor hover without showing explicit click actuation."
     },
     "responsiveness": {
-      "score": 0,
-      "ts": "never",
-      "evidence": "No loading, processing, or dynamic updates are triggered on screen."
+      "score": 1,
+      "ts": "00:09",
+      "evidence": "Panel expands instantaneously with no loading state or latency shown."
     },
     "flow": {
       "score": 2,
       "ts": "00:00",
-      "evidence": "Logically moves from board overview (00:00) to verified badges (00:06), receipts (00:14), intentional failure proof (00:18), and self-verification (00:21)."
+      "evidence": "Logical progression from persona intro (00:00), board overview (00:03), receipt inspection (00:13), negative test (00:17), to self-check (00:21)."
     },
     "result": {
       "score": 2,
-      "ts": "00:06",
-      "evidence": "00:06 and 00:18 clearly display outcome badges ('VERIFIED' and 'UNKNOWN') with verification tooltips."
+      "ts": "00:13",
+      "evidence": "Displays exact HTTP response codes, commit hashes, and timestamp verification receipts on screen."
     },
     "non_expert_sense": {
-      "score": 1,
-      "ts": "00:03",
-      "evidence": "Core utility is understandable, but terms like 'registry-only badge' (00:03) and '__fixture_dead' (00:18) require developer context."
+      "score": 2,
+      "ts": "00:06",
+      "evidence": "Narration translates technical concepts into clear plain English ('Green means verified', 'receipt behind the badge', 'deliberately broken on purpose')."
     },
     "transfer": {
       "score": 1,
-      "ts": "00:00",
-      "evidence": "Shows how to read status results and receipts, but does not show how a user configures their own endpoints."
+      "ts": "00:21",
+      "evidence": "Demonstrates product evaluation and self-checking well, but leaves repository setup/onboarding steps implicit."
     },
     "wouldMomUnderstand": true,
     "momLosesThemAt": {
-      "ts": "00:03",
-      "what": "Introduction of technical terminology such as 'registry-only badge' and '__fixture_dead'."
+      "ts": "00:13",
+      "what": "Technical details showing HTTP statuses and commit hashes, though narration maintains high-level context."
     },
-    "missingEntirely": [
-      "full_interaction",
-      "responsiveness"
-    ]
+    "missingEntirely": []
   },
   "observed": {
     "timeline": [
       {
         "ts": "00:00",
-        "what": "Dashboard displays Node Foyer grid with product cards."
+        "what": "Dashboard titled 'Node Foyer' displays status cards for 'NodeRoom', 'NodeSlide', 'parity-studio', and 'NodeVideo'."
       },
       {
         "ts": "00:03",
-        "what": "Page scrolls down showing additional product cards including NodeKit and NodeMem."
+        "what": "Page scrolls down showing registry-only project cards including 'NodeKit', 'NodeMem', and '__fixture_dead'."
       },
       {
         "ts": "00:06",
-        "what": "Page scrolls up; cursor hovers over VERIFIED badge on NodeSlide, displaying tooltip."
+        "what": "View moves back to top cards, highlighting 'VERIFIED' badges on 'NodeRoom' and 'NodeSlide'."
       },
       {
-        "ts": "00:10",
-        "what": "Cursor hovers over text below NodeSlide card."
+        "ts": "00:09",
+        "what": "Detail panel opens beneath 'NodeSlide' showing state history and metadata."
       },
       {
-        "ts": "00:14",
-        "what": "Cursor moves to hover over VERIFIED badge on NodeRoom card, displaying popup info."
+        "ts": "00:13",
+        "what": "Detail panel displays expanded HTTP response status, timestamps, and commit hashes."
       },
       {
-        "ts": "00:18",
-        "what": "Page scrolls down; cursor hovers over UNKNOWN badge on __fixture_dead card."
+        "ts": "00:17",
+        "what": "View focuses on '__fixture_dead' card displaying an 'UNKNOWN' badge and error message."
       },
       {
         "ts": "00:21",
-        "what": "Page scrolls up and left; hover tooltip displays check details for node-foyer."
+        "what": "View shifts to left panel displaying verification receipt for 'node-foyer' itself."
       }
     ],
     "cursorEvents": [
       {
         "ts": "00:06",
-        "what": "Cursor hovers over VERIFIED badge on NodeSlide card."
+        "what": "Cursor hovers over 'NodeSlide' card."
       },
       {
-        "ts": "00:10",
-        "what": "Cursor hovers over 'same state for 21 sweeps' text."
+        "ts": "00:11",
+        "what": "Cursor hovers over metadata link under 'NodeSlide'."
       },
       {
-        "ts": "00:14",
-        "what": "Cursor hovers over VERIFIED badge on NodeRoom card."
-      },
-      {
-        "ts": "00:18",
-        "what": "Cursor hovers over UNKNOWN badge on __fixture_dead card."
+        "ts": "00:17",
+        "what": "Cursor moves over '__fixture_dead' card."
       }
     ],
-    "stateChanges": [],
+    "stateChanges": [
+      {
+        "ts": "00:09",
+        "from": "NodeSlide card collapsed",
+        "to": "NodeSlide detail panel expanded"
+      }
+    ],
     "textShown": [
       {
         "ts": "00:00",
-        "text": "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand."
+        "text": "For a release lead who has to trust a status board without reading anyone's source code..."
       },
       {
         "ts": "00:03",
-        "text": "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest say so with a registry-only badge."
+        "text": "Twenty-two products are tracked here, each with its own honest badge..."
       },
       {
         "ts": "00:06",
-        "text": "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. Amber means it answered, but there was nothing to compare against."
+        "text": "Green means verified. For this product both the website people see and the service behind it were checked..."
       },
       {
-        "ts": "00:10",
-        "text": "This green badge has held steady for 21 checks in a row, back to back — not just one lucky moment."
+        "ts": "00:09",
+        "text": "This green badge has held state for 23 checks in a row, back to back..."
       },
       {
-        "ts": "00:14",
-        "text": "Hovering the shows receipt behind the badge: the exact address it checked, when it checked, and a short fingerprint of what came back, so anyone can double-check it themselves."
+        "ts": "00:13",
+        "text": "Hovering shows the receipt behind the badge: the exact address it checked..."
       },
       {
-        "ts": "00:18",
-        "text": "One product here is deliberately broken on purpose, to prove the checker doesn't fake results: it always shows unknown, and shows the exact address it tried and failed to reach."
+        "ts": "00:17",
+        "text": "One product here is deliberately broken on purpose, to prove the checker doesn't fake results..."
       },
       {
         "ts": "00:21",
-        "text": "This board even checks itself. Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that's what turns this badge green."
+        "text": "This board even checks itself — the highlighted card is this board's own card (node-foyer)..."
       }
     ],
     "audio": {
-      "present": false,
+      "present": true,
       "music": "none",
-      "voice": "none",
-      "cues": []
+      "voice": "Male voice narration reading the onscreen text overlay.",
+      "cues": [
+        {
+          "ts": "00:00",
+          "what": "Voice begins narrating introduction text."
+        },
+        {
+          "ts": "00:25",
+          "what": "Voice finish narration."
+        }
+      ]
     },
     "waits": [],
     "static": false
@@ -246,25 +254,22 @@
   "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
   "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
   "comprehensionVerdict": {
-    "status": "incomplete",
+    "status": "passed",
     "momFails": false,
     "uniform": false,
     "scored": 10,
-    "total": 14,
+    "total": 17,
     "max": 20,
-    "zeros": [
-      "full_interaction",
-      "responsiveness"
-    ],
+    "zeros": [],
     "blocking": [],
     "unscored": [],
     "wouldMomUnderstand": true,
     "momLosesThemAt": {
-      "ts": "00:03",
-      "what": "Introduction of technical terminology such as 'registry-only badge' and '__fixture_dead'."
+      "ts": "00:13",
+      "what": "Technical details showing HTTP statuses and commit hashes, though narration maintains high-level context."
     }
   },
-  "videoBytes": 6056657,
+  "videoBytes": 6508267,
   "referencesCited": [],
-  "judgedAt": "2026-09-13T06:00:48.240Z"
+  "judgedAt": "2026-09-13T07:00:18.419Z"
 }

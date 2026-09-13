@@ -65,7 +65,7 @@ export const FOYER_SPECS = [
         // the ten hosted rows are ever probed (the other twelve are registry-only, see beat 01).
         // Narrowed to "the ten hosted products", and the header's own last-sweep timestamp is
         // named explicitly so the claim is checkable against what beat 00's frame shows.
-        cap: "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand.",
+        cap: "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages on a fixed schedule (the header names the last sweep) and shows exactly what came back. Nobody typed these results in by hand.",
         cursor: "css:.foyer-header__line",
         hold: 96,
         assert: { sel: "css:.foyer-header__line", visible: true },
@@ -80,7 +80,7 @@ export const FOYER_SPECS = [
         // probed; products.json: hosted=false). Narrowed to name the ten that ARE hosted, and
         // the assert now also proves a registry-only chip is really on this frame (not just
         // that the count is 22), so the claim about "the rest" is checkable too.
-        cap: "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest say so with a registry-only badge.",
+        cap: "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest are simply listed, never checked, and say so with a registry-only badge.",
         hold: 90,
         assert: [
           { sel: 'css:[data-testid^="foyer-card-"]', count: 22 },
@@ -102,7 +102,7 @@ export const FOYER_SPECS = [
         // Round-13 minor (round-12 review): the probe that decided this state ran on the last
         // half-hour sweep, not "a moment ago" — the apparatus's own fetched-at timestamp can be
         // minutes old by the time this frame is captured.
-        cap: "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. Amber means it answered, but there was nothing to compare against.",
+        cap: "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. An amber Reachable badge means it answered, but there was nothing to compare against; an amber Unknown badge means it never answered.",
         cursor: 'css:[data-testid="foyer-card-NodeSlide"] .foyer-pill',
         hold: 120,
         assert: { sel: "testid:foyer-apparatus-NodeSlide", matches: "matches backend" },
@@ -133,7 +133,7 @@ export const FOYER_SPECS = [
       },
       { act: "hover", sel: "testid:foyer-card-NodeRoom" },
       {
-        cap: "Hovering shows the receipt behind the badge: the exact address it checked, when it checked, and a short fingerprint of what came back, so anyone can double-check it themselves.",
+        cap: "Hovering shows the receipt behind the badge: the exact address it checked, when it checked, whether it answered successfully, and a short fingerprint of what came back. Nobody needs to understand that fingerprint themselves — it just lets anyone compare notes later and catch a fake.",
         hold: 118,
         assert: { sel: "testid:foyer-apparatus-NodeRoom", visible: true },
       },
@@ -153,7 +153,7 @@ export const FOYER_SPECS = [
       { act: "center", sel: "testid:foyer-apparatus-node-foyer" },
       {
         // Round-12 cycle 2: "deploy workflow" was the other jargon the comprehension judge cited.
-        cap: "This board even checks itself. Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that's what turns this badge green.",
+        cap: "This board even checks itself — the highlighted card is this board's own card (node-foyer). Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that is what makes it verified.",
         hold: 118,
         assert: { sel: "testid:foyer-apparatus-node-foyer", matches: "matches backend" },
       },

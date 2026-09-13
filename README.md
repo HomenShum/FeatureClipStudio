@@ -1397,11 +1397,14 @@ comprehension gate) is the one recorded and quoted below, and BOTH run JSONs are
 `public/wt/<id>/judge-run1.json` / `judge-run2.json` (see `render.json` in the same directory) so
 "worse kept" is a claim anyone can check against a file, not just this README's word for it.
 
-<details><summary><b>Node Foyer · the wall</b> (production, 1440x900) — published in the Foyer's sealed walkthrough manifest (whether it is live is read from node-foyer.vercel.app, not from this README)</summary>
+<details><summary><b>Node Foyer · the wall</b> (production, 1440x900) — captured, not published in the manifest</summary>
 
-<img src="assets/feature-foyer-FYwall.gif" alt="Node Foyer's wall: the header naming the last sweep's timestamp and how many sweeps are kept, all 22 cards including twelve registry-only badges among the ten hosted ones, NodeSlide's card whose hover apparatus reads 'matches backend' after both its layers were checked on the last sweep, NodeSlide's own stable-sweeps count, NodeRoom's hover receipt (probe URL, fetch time, sha256), the dead fixture staying UNKNOWN with its tried URL, and the Foyer's own card verified on both its frontend and backend layers" width="720">
+<img src="assets/feature-foyer-FYwall.gif" alt="Node Foyer's wall: the header naming the last sweep's timestamp and how many sweeps are kept, all 22 cards — ten hosted, twelve marked registry-only, NodeSlide's card whose hover apparatus reads 'matches backend' after both its layers were checked on the last sweep, NodeSlide's own stable-sweeps count, NodeRoom's hover receipt (probe URL, fetch time, sha256), the dead fixture staying UNKNOWN with its tried URL, and the Foyer's own card verified on both its frontend and backend layers" width="720">
 
-Judge: `fix-then-publish`, 0 P0 / 1 P1 / 1 P2, comprehension incomplete — not blocked, `wouldMomUnderstand: true` (`gemini-3.6-flash`, worse of 2 runs kept; both runs in `public/wt/FYwall/`).
+Judge: `publish`, 0 P0 / 1 P1 / 0 P2, comprehension blocked (`gemini-3.6-flash`, worse of 2 runs
+kept — run 1 ranked better: `publish`, 0 P0 / 0 P1 / 2 P2, comprehension passed; both runs in
+`public/wt/FYwall/`) — so this clip is **not published** on the wall; it stays listed in the Foyer
+card's own apparatus (hover on desktop, Details on a phone).
 
 </details>
 
@@ -1409,9 +1412,11 @@ Judge: `fix-then-publish`, 0 P0 / 1 P1 / 1 P2, comprehension incomplete — not 
 
 <img src="assets/feature-foyer-FYphone.gif" alt="Node Foyer at phone width: a long product name wrapping cleanly onto the next line instead of breaking mid-word, the Details button opening a real dialog with the wall inert behind it, a 44px Open target, and Close returning focus to Details" width="390">
 
-Judge: `publish`, 0 P0 / 0 P1 / 1 P2 (`gemini-3.6-flash`, worse of 2 runs kept; both runs in
+Judge: `publish`, 0 P0 / 0 P1 / 1 P2 (`gemini-3.6-flash`, worse of 2 runs kept — run 1 passed the
+non-expert test but carried 1 P1 and 1 P2; both runs in
 `public/wt/FYphone/`) — but comprehension blocked on that worse run, so this clip is **not
-published** on the wall; it stays listed in the apparatus below the card grid.
+published** on the wall; it stays listed in the Foyer card's own apparatus (hover on desktop,
+Details on a phone).
 
 </details>
 

@@ -8,13 +8,13 @@
     "width": 1440,
     "height": 900
   },
-  "capturedAt": "2026-09-13T05:58:58.720Z",
+  "capturedAt": "2026-09-13T06:56:18.093Z",
   "captureBuildSha": "ec2a44e19b304ab4ca2aa181f8722908a0329b5a",
   "capturePromoted": false,
   "snapshot": {
     "source": "ledger",
-    "sha256": "09d3696d420383783a5cb977b70a570c37f0a5a1dd5640db049aaa2153f61243",
-    "generatedAt": "2026-09-13T05:42:41.691Z"
+    "sha256": "a544fe26a1059608793c1c8746f4756908b1070390b046d49596edd16ec53eb0",
+    "generatedAt": "2026-09-13T06:42:41.595Z"
   },
   "storyboard": {
     "premise": "Node Foyer claims to read every product's own public files, live, on every sweep, and never invent a state.",
@@ -28,44 +28,44 @@
   "frames": [
     {
       "path": "wt/FYwall/00.png",
-      "sha256": "05cb479cc3df38ce1d8704b44164548ddf51ab62db7d8d124f3f9f3796c5ae63",
-      "caption": "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand.",
+      "sha256": "e6599b29266db4222ccde36a98e6d0a7c5118201ba0a7315ac971203cde7fc58",
+      "caption": "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages on a fixed schedule (the header names the last sweep) and shows exactly what came back. Nobody typed these results in by hand.",
       "asserted": "css:.foyer-header__line visible"
     },
     {
       "path": "wt/FYwall/01.png",
-      "sha256": "ccb5464a8f9cdc61f996c5e25befd85aef23d9fbfd527cbf1b067c351afb1c21",
-      "caption": "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest say so with a registry-only badge.",
+      "sha256": "edb8d8624abf489593d4a76e73da146eaa3388980d6e01e9f4f47e0360c2a3cc",
+      "caption": "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest are simply listed, never checked, and say so with a registry-only badge.",
       "asserted": "css:[data-testid^=\"foyer-card-\"] count=22; css:.foyer-pill[data-state=\"registry-only\"] visible"
     },
     {
       "path": "wt/FYwall/02.png",
-      "sha256": "a4500a3c597aa4c1be7398bf13604a3124ada5abca2365d6d1885202bec44ba0",
-      "caption": "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. Amber means it answered, but there was nothing to compare against.",
+      "sha256": "e44f3c26130861ddff0a9fefc5ae7a1e14c3b309a65639b4e8e671ce6c46f9f6",
+      "caption": "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. An amber Reachable badge means it answered, but there was nothing to compare against; an amber Unknown badge means it never answered.",
       "asserted": "testid:foyer-apparatus-NodeSlide text matches \"matches backend\""
     },
     {
       "path": "wt/FYwall/03.png",
-      "sha256": "80b048d9f1b90cf4ff8ffae5824cd17169ffe38a7f8f6bab47c1cdb442d0a916",
-      "caption": "This green badge has held steady for 21 checks in a row, back to back — not just one lucky moment.",
-      "asserted": "testid:foyer-card-NodeSlide[data-foyer-stable-sweeps]=\"21\""
+      "sha256": "829698ee527ea00dc8bf1e29b8131c59003292cabc0e2b9e72a4334f3e85a82b",
+      "caption": "This green badge has held steady for 23 checks in a row, back to back — not just one lucky moment.",
+      "asserted": "testid:foyer-card-NodeSlide[data-foyer-stable-sweeps]=\"23\""
     },
     {
       "path": "wt/FYwall/04.png",
-      "sha256": "08935b1d289b313fc69c851a819987c5f5d77600283816e1a00fbc5df18ebc8c",
-      "caption": "Hovering shows the receipt behind the badge: the exact address it checked, when it checked, and a short fingerprint of what came back, so anyone can double-check it themselves.",
+      "sha256": "537278e2c0e64e173ac6913f071fdaeb538ceea029abaaa6dbfd3d2abffaa0bb",
+      "caption": "Hovering shows the receipt behind the badge: the exact address it checked, when it checked, whether it answered successfully, and a short fingerprint of what came back. Nobody needs to understand that fingerprint themselves — it just lets anyone compare notes later and catch a fake.",
       "asserted": "testid:foyer-apparatus-NodeRoom visible"
     },
     {
       "path": "wt/FYwall/05.png",
-      "sha256": "654033fa6af3bfcae4710699fe47304b95a907d5dc1c5e349e9312fcb9e10582",
+      "sha256": "f6a6b7115337af3a4de3f5c250010ac59043ec4018dc3176d910d6de6e9dae1c",
       "caption": "One product here is deliberately broken on purpose, to prove the checker doesn't fake results: it always shows unknown, and shows the exact address it tried and failed to reach.",
       "asserted": "testid:foyer-apparatus-__fixture_dead text matches \"foyer-fixture\\\\.invalid\""
     },
     {
       "path": "wt/FYwall/06.png",
-      "sha256": "cba0b9c0b2620f0dd3f992948878e13e421e727acfa8a4a995197f312d6dd85e",
-      "caption": "This board even checks itself. Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that's what turns this badge green.",
+      "sha256": "5a4ae8c688f0703dc1a5a433bb03d60fabecd36167ef62ef42894d0a077d4232",
+      "caption": "This board even checks itself — the highlighted card is this board's own card (node-foyer). Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that is what makes it verified.",
       "asserted": "testid:foyer-apparatus-node-foyer text matches \"matches backend\""
     }
   ]
