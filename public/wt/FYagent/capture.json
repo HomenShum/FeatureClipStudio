@@ -36,13 +36,13 @@
       "path": "wt/FYagent/01.png",
       "sha256": "7e379f48d3b8f2c210182e625d459b2473a519ef151d76c8f90c755d5a8ef25a",
       "caption": "An AI agent can't read this page the way a person does, so it needs its own copy of the same honest information, written for a program instead of a person to read. That copy lives at a fixed address, /.well-known/agent-ui.json, and what's on screen now comes from that very same build.",
-      "asserted": "css:pre text matches"
+      "asserted": "css:pre text matches \"\\\"schema\\\"\""
     },
     {
       "path": "wt/FYagent/02.png",
       "sha256": "a00b24d01fe2dba36909bfe9e88775568d6ca89336df5a1d17f89af0a758576f",
       "caption": "Some other agent tools expect that same list laid out a little differently, so there's a second copy just for them — still the same build, still the same honest data, just organized the way that kind of tool reads it. Its address is /api/apps.json.",
-      "asserted": "css:pre text matches"
+      "asserted": "css:pre text matches \"\\\"apps\\\"\""
     },
     {
       "path": "wt/FYagent/03.png",

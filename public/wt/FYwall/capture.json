@@ -42,7 +42,7 @@
       "path": "wt/FYwall/02.png",
       "sha256": "93efbe1c65c5e23f6037f9d2fb834fae015d2d6c16fa8f9d40723d5666aa036c",
       "caption": "Green means verified. For this product both the website people see and the service behind it were checked live a moment ago, and both reported the same version. Amber means it answered, but there was nothing to compare against.",
-      "asserted": "testid:foyer-apparatus-NodeSlide text matches"
+      "asserted": "testid:foyer-apparatus-NodeSlide text matches \"matches backend\""
     },
     {
       "path": "wt/FYwall/03.png",
@@ -60,13 +60,13 @@
       "path": "wt/FYwall/05.png",
       "sha256": "9e2ac6eaf70579931bc35fd6ea0f350473de73236d23fa28318edb7b5834e350",
       "caption": "One product here is deliberately broken on purpose, to prove the checker doesn't fake results: it always shows unknown, and shows the exact address it tried and failed to reach.",
-      "asserted": "testid:foyer-apparatus-__fixture_dead text matches"
+      "asserted": "testid:foyer-apparatus-__fixture_dead text matches \"foyer-fixture\\\\.invalid\""
     },
     {
       "path": "wt/FYwall/06.png",
       "sha256": "154d3b256d3dc4ea4d8ac81190ab2b29bb2305895298365f03b9b5fe8321b4e3",
       "caption": "This board even checks itself. Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that's what turns this badge green.",
-      "asserted": "testid:foyer-apparatus-node-foyer text matches"
+      "asserted": "testid:foyer-apparatus-node-foyer text matches \"matches backend\""
     }
   ]
 }
