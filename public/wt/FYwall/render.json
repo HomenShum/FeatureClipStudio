@@ -2,9 +2,9 @@
   "id": "FYwall",
   "renderedAt": "2026-09-13T05:59:53.843Z",
   "mp4Sha256": "f0e2bfcf3fc3b6554d611823a6ce0b0ce53ce2efd92fea4fd77c56f78febc1b9",
-  "gifSha256": "0c11a9824e53c0b6a0b89c705558a3a4cfc90d7f1d8c4cbb4beb4e11fe016740",
-  "gifWidth": 720,
-  "gifHeight": 450,
+  "gifSha256": "71a8a2113bd1b47715b83c35319dab32351665f59d2e44cb521a60f97e269b46",
+  "gifWidth": 640,
+  "gifHeight": 400,
   "judgeRuns": [
     {
       "file": "judge-run1.json",
