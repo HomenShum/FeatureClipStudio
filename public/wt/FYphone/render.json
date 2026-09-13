@@ -1,0 +1,19 @@
+{
+  "id": "FYphone",
+  "renderedAt": "2026-09-13T03:16:14.335Z",
+  "mp4Sha256": "6acd8a9edd432f1d2883cfc4d965f8cebcdac59bc263bd182718f8cf0b441363",
+  "gifSha256": "dfb833ed7232899a27457f5c06275e45164ee27d50982f5f70cde1fcfdd06bfe",
+  "gifWidth": 270,
+  "gifHeight": 585,
+  "judgeRuns": [
+    {
+      "file": "judge-run1.json",
+      "sha256": "37513abfe266a7e5aebf09bdbcfe17b184ffcfb944ebf715339ff5e5fc4ddae9"
+    },
+    {
+      "file": "judge-run2.json",
+      "sha256": "34abb012f50b3a51c0ee41169b365c10eb4867fff791e8816694d63305a8237b"
+    }
+  ],
+  "kept": "34abb012f50b3a51c0ee41169b365c10eb4867fff791e8816694d63305a8237b"
+}

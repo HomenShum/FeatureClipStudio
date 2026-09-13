@@ -47,7 +47,7 @@
     },
     {
       "file": "check.mjs",
-      "line": 145,
+      "line": 169,
       "pattern": "console\\.log\\(`\\[check\\] parsed",
       "title": "7 — Why it prints counts",
       "description": "This gate used to be fifteen `node --check` calls chained in package.json. The hand-kept list drifted to covering 15 of 45 files, including neither of two capture drivers, while still exiting 0. A gate that reports only 'ok' cannot be caught shrinking."

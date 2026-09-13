@@ -1,0 +1,270 @@
+{
+  "timeline": [
+    {
+      "ts": "00:00",
+      "what": "Dashboard displays Node Foyer grid with product cards."
+    },
+    {
+      "ts": "00:03",
+      "what": "Page scrolls down showing additional product cards including NodeKit and NodeMem."
+    },
+    {
+      "ts": "00:06",
+      "what": "Page scrolls up; cursor hovers over VERIFIED badge on NodeSlide, displaying tooltip."
+    },
+    {
+      "ts": "00:10",
+      "what": "Cursor hovers over text below NodeSlide card."
+    },
+    {
+      "ts": "00:14",
+      "what": "Cursor moves to hover over VERIFIED badge on NodeRoom card, displaying popup info."
+    },
+    {
+      "ts": "00:18",
+      "what": "Page scrolls down; cursor hovers over UNKNOWN badge on __fixture_dead card."
+    },
+    {
+      "ts": "00:21",
+      "what": "Page scrolls up and left; hover tooltip displays check details for node-foyer."
+    }
+  ],
+  "scores": {
+    "storyboard_clarity": {
+      "score": 2,
+      "evidence": "00:00 caption clearly defines the target role and core premise; 00:18 demonstrates honest failure reporting to build trust."
+    },
+    "state_coverage": {
+      "score": 0,
+      "evidence": "00:00-00:21 record shows empty stateChanges array; no state transitions are executed."
+    },
+    "cursor_truth": {
+      "score": 1,
+      "evidence": "00:06, 00:14, 00:18 cursor travels directly to badges to open hover tooltips, but no interactive control clicks occur."
+    },
+    "caption_sync": {
+      "score": 2,
+      "evidence": "00:06-00:21 captions precisely match each badge hover and popup element displayed on screen."
+    },
+    "pacing": {
+      "score": 1,
+      "evidence": "00:00-00:21 content flows steadily every 3-4 seconds, though purely hover-based navigation feels slightly passive."
+    },
+    "legibility": {
+      "score": 2,
+      "evidence": "00:00-00:21 text captions and inspectable hover tooltips present detailed text clearly."
+    },
+    "proof_feel": {
+      "score": 2,
+      "evidence": "00:18 highlights '__fixture_dead' failure fixture to prove honest reporting, and 00:21 shows inspectable verification receipts."
+    },
+    "safety": {
+      "score": 2,
+      "evidence": "00:00-00:21 displays public product status badges and test fixtures with no sensitive keys or internal URLs exposed."
+    },
+    "loop_etiquette": {
+      "score": 1,
+      "evidence": "00:21 length is concise at ~21 seconds, but ends abruptly on a hover state without a final resting hold."
+    },
+    "motion_craft": {
+      "score": 1,
+      "evidence": "00:03, 00:06, 00:18 smooth scrolling reveals cards, though scrolling back up to top left at 00:21 feels slightly repetitive."
+    },
+    "visual_hierarchy": {
+      "score": 1,
+      "evidence": "00:06, 00:14 hover tooltips bring attention to key badges, but the background grid remains uniformly visible."
+    }
+  },
+  "defects": [
+    {
+      "ts": "00:00",
+      "severity": "P1",
+      "observed": "The demo relies entirely on hover states and scrolling with zero active state changes or triggers.",
+      "fix": "Include at least one active flow, such as triggering an on-demand status check or adding a product endpoint."
+    },
+    {
+      "ts": "00:21",
+      "severity": "P2",
+      "observed": "Video ends abruptly while hovering over node-foyer tooltip without holding on a final overview state.",
+      "fix": "Add a 1.5-second final hold on the full status board overview before looping."
+    }
+  ],
+  "singleMoment": "Showing the intentionally broken '__fixture_dead' card at 00:18 to prove the board honestly reports failures rather than faking status.",
+  "verdict": "fix-then-publish",
+  "summary": "The walkthrough effectively communicates its purpose to release leads through excellent captions and proof mechanisms like failure fixtures and self-checking badges. However, it lacks active user interactions, consisting entirely of scrolling and hover states. Showing an active state change before publishing will complete the proof.",
+  "comprehension": {
+    "persona": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "Explicitly names target persona: 'a release lead who has to trust a status board without reading anyone's source code'."
+    },
+    "purpose": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "Explains purpose: automated verification of hosted products so release leads do not have to manually verify status."
+    },
+    "use_case": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "00:00-00:03 shows monitoring 22 products with automated live checks occurring every half hour."
+    },
+    "feature_clarity": {
+      "score": 2,
+      "ts": "00:06",
+      "evidence": "Clear demonstration that the board runs automated checks and provides verifiable badge receipts."
+    },
+    "full_interaction": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No trigger-to-outcome user interaction flow is shown; video only displays hover tooltips."
+    },
+    "responsiveness": {
+      "score": 0,
+      "ts": "never",
+      "evidence": "No loading, processing, or dynamic updates are triggered on screen."
+    },
+    "flow": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "Logically moves from board overview (00:00) to verified badges (00:06), receipts (00:14), intentional failure proof (00:18), and self-verification (00:21)."
+    },
+    "result": {
+      "score": 2,
+      "ts": "00:06",
+      "evidence": "00:06 and 00:18 clearly display outcome badges ('VERIFIED' and 'UNKNOWN') with verification tooltips."
+    },
+    "non_expert_sense": {
+      "score": 1,
+      "ts": "00:03",
+      "evidence": "Core utility is understandable, but terms like 'registry-only badge' (00:03) and '__fixture_dead' (00:18) require developer context."
+    },
+    "transfer": {
+      "score": 1,
+      "ts": "00:00",
+      "evidence": "Shows how to read status results and receipts, but does not show how a user configures their own endpoints."
+    },
+    "wouldMomUnderstand": true,
+    "momLosesThemAt": {
+      "ts": "00:03",
+      "what": "Introduction of technical terminology such as 'registry-only badge' and '__fixture_dead'."
+    },
+    "missingEntirely": [
+      "full_interaction",
+      "responsiveness"
+    ]
+  },
+  "observed": {
+    "timeline": [
+      {
+        "ts": "00:00",
+        "what": "Dashboard displays Node Foyer grid with product cards."
+      },
+      {
+        "ts": "00:03",
+        "what": "Page scrolls down showing additional product cards including NodeKit and NodeMem."
+      },
+      {
+        "ts": "00:06",
+        "what": "Page scrolls up; cursor hovers over VERIFIED badge on NodeSlide, displaying tooltip."
+      },
+      {
+        "ts": "00:10",
+        "what": "Cursor hovers over text below NodeSlide card."
+      },
+      {
+        "ts": "00:14",
+        "what": "Cursor moves to hover over VERIFIED badge on NodeRoom card, displaying popup info."
+      },
+      {
+        "ts": "00:18",
+        "what": "Page scrolls down; cursor hovers over UNKNOWN badge on __fixture_dead card."
+      },
+      {
+        "ts": "00:21",
+        "what": "Page scrolls up and left; hover tooltip displays check details for node-foyer."
+      }
+    ],
+    "cursorEvents": [
+      {
+        "ts": "00:06",
+        "what": "Cursor hovers over VERIFIED badge on NodeSlide card."
+      },
+      {
+        "ts": "00:10",
+        "what": "Cursor hovers over 'same state for 21 sweeps' text."
+      },
+      {
+        "ts": "00:14",
+        "what": "Cursor hovers over VERIFIED badge on NodeRoom card."
+      },
+      {
+        "ts": "00:18",
+        "what": "Cursor hovers over UNKNOWN badge on __fixture_dead card."
+      }
+    ],
+    "stateChanges": [],
+    "textShown": [
+      {
+        "ts": "00:00",
+        "text": "For a release lead who has to trust a status board without reading anyone's source code: this board checks the ten hosted products' own live pages every half hour and shows exactly what came back. Nobody typed these results in by hand."
+      },
+      {
+        "ts": "00:03",
+        "text": "Twenty-two products are tracked here, each with its own honest badge. The ten that are hosted get checked the exact same way; the rest say so with a registry-only badge."
+      },
+      {
+        "ts": "00:06",
+        "text": "Green means verified. For this product both the website people see and the service behind it were checked on the last sweep, and both reported the same version. Amber means it answered, but there was nothing to compare against."
+      },
+      {
+        "ts": "00:10",
+        "text": "This green badge has held steady for 21 checks in a row, back to back — not just one lucky moment."
+      },
+      {
+        "ts": "00:14",
+        "text": "Hovering the shows receipt behind the badge: the exact address it checked, when it checked, and a short fingerprint of what came back, so anyone can double-check it themselves."
+      },
+      {
+        "ts": "00:18",
+        "text": "One product here is deliberately broken on purpose, to prove the checker doesn't fake results: it always shows unknown, and shows the exact address it tried and failed to reach."
+      },
+      {
+        "ts": "00:21",
+        "text": "This board even checks itself. Verified means that after a new version of this board goes live, it reads its own page back and confirms the version numbers match — that's what turns this badge green."
+      }
+    ],
+    "audio": {
+      "present": false,
+      "music": "none",
+      "voice": "none",
+      "cues": []
+    },
+    "waits": [],
+    "static": false
+  },
+  "judgedBy": "gemini-3.6-flash",
+  "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
+  "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
+  "comprehensionVerdict": {
+    "status": "incomplete",
+    "momFails": false,
+    "uniform": false,
+    "scored": 10,
+    "total": 14,
+    "max": 20,
+    "zeros": [
+      "full_interaction",
+      "responsiveness"
+    ],
+    "blocking": [],
+    "unscored": [],
+    "wouldMomUnderstand": true,
+    "momLosesThemAt": {
+      "ts": "00:03",
+      "what": "Introduction of technical terminology such as 'registry-only badge' and '__fixture_dead'."
+    }
+  },
+  "videoBytes": 6056657,
+  "referencesCited": [],
+  "judgedAt": "2026-09-13T06:00:48.240Z"
+}

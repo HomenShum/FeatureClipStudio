@@ -1,0 +1,255 @@
+{
+  "timeline": [
+    {
+      "ts": "00:00",
+      "what": "Mobile web page displaying Node Foyer cards."
+    },
+    {
+      "ts": "00:03",
+      "what": "View changes to top of board; cursor moves to Details button."
+    },
+    {
+      "ts": "00:06",
+      "what": "Details panel opens over dimmed background."
+    },
+    {
+      "ts": "00:09",
+      "what": "Close button clicked; panel closes."
+    },
+    {
+      "ts": "00:11",
+      "what": "NodeRoom card displayed with focus state on UI elements."
+    },
+    {
+      "ts": "00:14",
+      "what": "Focus highlight remains on Details button."
+    }
+  ],
+  "scores": {
+    "storyboard_clarity": {
+      "score": 2,
+      "evidence": "00:00-00:14 clearly establishes the mobile web parity thesis, demonstrating text wrapping, details panel overlay, and focus restoration."
+    },
+    "state_coverage": {
+      "score": 2,
+      "evidence": "00:00 (initial card list) -> 00:05 (tap Details) -> 00:06 (modal open) -> 00:09 (tap Close) -> 00:11 (restored card list with focus highlight)."
+    },
+    "cursor_truth": {
+      "score": 2,
+      "evidence": "00:03 cursor visibly travels to Details button before clicking at 00:05; 00:09 cursor travels to and clicks Close button."
+    },
+    "caption_sync": {
+      "score": 2,
+      "evidence": "00:00, 00:03, 00:06, 00:10, and 00:13 captions align directly with on-screen visual events and focus states."
+    },
+    "pacing": {
+      "score": 2,
+      "evidence": "Transitions occur cleanly every 2-3 seconds across 00:00 to 00:14, giving adequate time to read captions and observe state changes."
+    },
+    "legibility": {
+      "score": 2,
+      "evidence": "00:00 and 00:11 show legible card titles, clean word breaks, and high-contrast step captions."
+    },
+    "proof_feel": {
+      "score": 2,
+      "evidence": "00:06 and 00:11 show real interactive states (modal overlay dimming and keyboard focus state restoration)."
+    },
+    "safety": {
+      "score": 2,
+      "evidence": "No sensitive data, private keys, or secret tokens visible in any frame from 00:00 to 00:14."
+    },
+    "loop_etiquette": {
+      "score": 2,
+      "evidence": "Total duration is concise (14s) and ends on a clean hold at 00:14 with focus restored on the initial button."
+    },
+    "motion_craft": {
+      "score": 2,
+      "evidence": "00:03 camera moves smoothly to the top of the board, and 00:06 panel slide is well-eased with purposeful background dimming."
+    },
+    "visual_hierarchy": {
+      "score": 2,
+      "evidence": "00:06 dims background elements to focus strictly on the open detail panel; 00:11-00:14 uses focus highlights to guide attention."
+    }
+  },
+  "defects": [
+    {
+      "ts": "00:06",
+      "severity": "P1",
+      "observed": "unverifiable-from-video: caption claims background stops responding to taps while modal is open, which cannot be verified visually.",
+      "fix": "Demonstrate a blocked tap attempt or rephrase caption to describe visual modal behavior."
+    },
+    {
+      "ts": "00:10",
+      "severity": "P2",
+      "observed": "Caption refers to 'Open button' remaining big enough to tap, while the action taking place at 00:09 is clicking the 'Close' button.",
+      "fix": "Update caption text to consistently reference the 'Details' or 'Close' button."
+    }
+  ],
+  "singleMoment": "Tapping 'Details' on a mobile web view slides up a dedicated panel and seamlessly restores focus back to the original trigger button upon closing.",
+  "verdict": "publish",
+  "summary": "The walkthrough effectively demonstrates mobile web accessibility, touch-friendly UI design, and keyboard focus restoration in a crisp 14-second sequence. The state coverage, cursor mechanics, and visual pacing meet a high standard. Minor caption rephrasing will perfect the execution.",
+  "comprehension": {
+    "persona": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "Explicitly addresses a visitor accessing the board from a mobile phone."
+    },
+    "purpose": {
+      "score": 2,
+      "ts": "00:00",
+      "evidence": "Solves the issue of mobile visitors missing detailed card information available on desktop displays."
+    },
+    "use_case": {
+      "score": 2,
+      "ts": "00:03",
+      "evidence": "Viewing detailed card info on a narrow mobile browser without losing navigation context."
+    },
+    "feature_clarity": {
+      "score": 2,
+      "ts": "00:00-00:14",
+      "evidence": "Shows mobile detail drawer overlay with automatic focus restoration."
+    },
+    "full_interaction": {
+      "score": 2,
+      "ts": "00:00-00:14",
+      "evidence": "Shows initial board view, button click, modal slide-up, close action, and return to focus state."
+    },
+    "responsiveness": {
+      "score": 2,
+      "ts": "00:05-00:11",
+      "evidence": "Displays clear UI reaction upon tapping Details (modal slide) and tapping Close (panel dismissal)."
+    },
+    "flow": {
+      "score": 2,
+      "ts": "00:00-00:14",
+      "evidence": "Logical flow from mobile board view to modal inspection and back to the original trigger position."
+    },
+    "result": {
+      "score": 2,
+      "ts": "00:11",
+      "evidence": "Modal closes smoothly and focus returns exactly to the Details button."
+    },
+    "non_expert_sense": {
+      "score": 2,
+      "ts": "00:00-00:14",
+      "evidence": "Plain-language captions explain thumb-friendly tap targets and dimmed backgrounds without heavy jargon."
+    },
+    "transfer": {
+      "score": 2,
+      "ts": "00:00-00:14",
+      "evidence": "Clear demonstration of how mobile visitors navigate cards on mobile web layouts."
+    },
+    "wouldMomUnderstand": true,
+    "momLosesThemAt": {
+      "ts": "none",
+      "what": "Captions and UI interactions remain accessible throughout."
+    },
+    "missingEntirely": []
+  },
+  "observed": {
+    "timeline": [
+      {
+        "ts": "00:00",
+        "what": "Mobile web page displaying Node Foyer cards."
+      },
+      {
+        "ts": "00:03",
+        "what": "View changes to top of board; cursor moves to Details button."
+      },
+      {
+        "ts": "00:06",
+        "what": "Details panel opens over dimmed background."
+      },
+      {
+        "ts": "00:09",
+        "what": "Close button clicked; panel closes."
+      },
+      {
+        "ts": "00:11",
+        "what": "NodeRoom card displayed with focus state on UI elements."
+      },
+      {
+        "ts": "00:14",
+        "what": "Focus highlight remains on Details button."
+      }
+    ],
+    "cursorEvents": [
+      {
+        "ts": "00:03",
+        "what": "Cursor moves to Details button on NodeRoom card."
+      },
+      {
+        "ts": "00:05",
+        "what": "Cursor clicks Details button."
+      },
+      {
+        "ts": "00:09",
+        "what": "Cursor clicks Close button."
+      }
+    ],
+    "stateChanges": [
+      {
+        "ts": "00:05",
+        "from": "Card list view",
+        "to": "Details modal overlay open"
+      },
+      {
+        "ts": "00:09",
+        "from": "Details modal overlay open",
+        "to": "Card list view with focus restored"
+      }
+    ],
+    "textShown": [
+      {
+        "ts": "00:00",
+        "text": "A visitor checking this board from their phone gets the same trustworthy detail a desktop visitor gets — starting with something small: even a long product name breaks cleanly onto the next line, never chopped mid-word, even on a screen this narrow."
+      },
+      {
+        "ts": "00:03",
+        "text": "There's no mouse to hover with on a phone, so tapping \"Details\" opens the same information a desktop visitor gets just by hovering."
+      },
+      {
+        "ts": "00:06",
+        "text": "The detail panel slides up, and everything behind it stops responding to taps while it's open — it's dimmed on purpose, not just for looks."
+      },
+      {
+        "ts": "00:10",
+        "text": "The Open button stays big enough to tap accurately with a thumb — it never shrinks down to a sliver of text."
+      },
+      {
+        "ts": "00:13",
+        "text": "After closing the panel, the keyboard cursor lands right back on the Details button — nothing gets lost when you close it."
+      }
+    ],
+    "audio": {
+      "present": false,
+      "music": "none",
+      "voice": "none",
+      "cues": []
+    },
+    "waits": [],
+    "static": false
+  },
+  "judgedBy": "gemini-3.6-flash",
+  "rubricVersion": "2026-08-04.two-stage-blind-scorer-v1",
+  "comprehensionVersion": "2026-08-04.ten-dimensions-v1",
+  "comprehensionVerdict": {
+    "status": "passed",
+    "momFails": false,
+    "uniform": true,
+    "scored": 10,
+    "total": 20,
+    "max": 20,
+    "zeros": [],
+    "blocking": [],
+    "unscored": [],
+    "wouldMomUnderstand": true,
+    "momLosesThemAt": {
+      "ts": "none",
+      "what": "Captions and UI interactions remain accessible throughout."
+    }
+  },
+  "videoBytes": 3855029,
+  "referencesCited": [],
+  "judgedAt": "2026-09-13T03:17:23.450Z"
+}
