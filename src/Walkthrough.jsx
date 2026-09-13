@@ -103,7 +103,12 @@ export const Walkthrough = ({ wt }) => {
   const steps = wt.steps || [];
   if (!steps.length) return <AbsoluteFill style={{ background: "#0b1220" }} />;
   const geometry = geometryFor(wt);
-  const fill = Math.min(WT_W / IMG_W, WT_H / geometry.imgH);   // scale that fits the capture to the canvas
+  // Per-walkthrough canvas override (FOYER-V3 round-3 repair): a capture whose own aspect isn't
+  // 16:9 (e.g. a 390x844 phone, or a 1440x900 desktop page) letterboxes inside the fixed WT_W/WT_H
+  // canvas otherwise. `wt.canvasW`/`wt.canvasH` (set per-composition by FoyerRoot.jsx) replace it;
+  // every other caller (Root.jsx, RoomOsRoot.jsx) sets neither, so this is a no-op for them.
+  const canvasW = wt.canvasW || WT_W, canvasH = wt.canvasH || WT_H;
+  const fill = Math.min(canvasW / IMG_W, canvasH / geometry.imgH);   // scale that fits the capture to the canvas
 
   const starts = [];
   let acc = 0;
@@ -150,8 +155,8 @@ export const Walkthrough = ({ wt }) => {
 
   const framed = wt.chrome === true;
   const fit = framed ? 1 : fill;
-  const winLeft = framed ? (WT_W - IMG_W) / 2 : (WT_W - IMG_W * fit) / 2;
-  const winTop = framed ? 70 : (WT_H - geometry.imgH * fit) / 2;
+  const winLeft = framed ? (canvasW - IMG_W) / 2 : (canvasW - IMG_W * fit) / 2;
+  const winTop = framed ? 70 : (canvasH - geometry.imgH * fit) / 2;
 
   return (
     <AbsoluteFill style={{ background: "#0b1220" }}>
@@ -169,7 +174,7 @@ export const Walkthrough = ({ wt }) => {
 
       {/* The capture itself. Chromeless it is scaled to fill; overflow clips the zoomed camera. */}
       <div style={{ position: "absolute", left: winLeft, top: winTop, width: IMG_W, transform: `scale(${fit})`, transformOrigin: "0 0", borderRadius: framed ? 14 : 0, overflow: "hidden", boxShadow: framed ? "0 36px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06)" : "none", background: "#0d1526" }}>
-        {framed && <Chrome accent={wt.accent} url={wt.chromeUrl || "localhost"} />}
+        {framed && <Chrome accent={wt.accent} url={cur.chromeUrl || wt.chromeUrl || "localhost"} />}
         <div style={{ position: "relative", width: IMG_W, height: geometry.imgH, overflow: "hidden", background: "#fff" }}>
           {/* Camera: zoom + pan toward the active region */}
           <div style={{ position: "absolute", top: 0, left: 0, width: IMG_W, height: geometry.imgH, transformOrigin: "0 0", transform: `translate(${tx}px, ${ty}px) scale(${s})` }}>
@@ -194,7 +199,7 @@ export const Walkthrough = ({ wt }) => {
       </AbsoluteFill>
 
       {/* Progress bar (bottom) */}
-      <div style={{ position: "absolute", bottom: 0, left: 0, height: 6, width: WT_W * progress, background: wt.accent }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, height: 6, width: canvasW * progress, background: wt.accent }} />
     </AbsoluteFill>
   );
 };

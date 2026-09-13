@@ -4,13 +4,17 @@
   "title": "Node Foyer — the phone sheet",
   "demoUrl": "https://node-foyer.vercel.app/",
   "captureKind": "production",
-  "capturedAt": "2026-09-13T01:37:32.139Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "capturedAt": "2026-09-13T03:15:32.966Z",
   "captureBuildSha": "ec2a44e19b304ab4ca2aa181f8722908a0329b5a",
   "capturePromoted": false,
   "snapshot": {
     "source": "ledger",
-    "sha256": "274ab988a64bfede8dc6e430018b3d5db82312927541f12d5e5327ea17a2c0bf",
-    "generatedAt": "2026-09-13T01:12:41.554Z"
+    "sha256": "c22727d4ddfe98a89351db36fb7d83392eac6f0ed8ed055a79bd8fb92a129914",
+    "generatedAt": "2026-09-13T03:12:41.783Z"
   },
   "storyboard": {
     "premise": "At phone width there is no hover, so the same apparatus a desktop reviewer sees on mouseover has to become a real, tappable dialog.",
@@ -25,31 +29,31 @@
     {
       "path": "wt/FYphone/00.png",
       "sha256": "42dab25cb328790de3b7a5bbca1ab5ea6a74c253ef63793507f1e903cc8f63c8",
-      "caption": "Long product names soft-hyphenate instead of breaking mid-word, even in a 390px card.",
+      "caption": "A visitor checking this board from their phone gets the same trustworthy detail a desktop visitor gets — starting with something small: even a long product name breaks cleanly onto the next line, never chopped mid-word, even on a screen this narrow.",
       "asserted": "css:[data-testid=\"foyer-card-NodeBenchBoilerplate\"] .foyer-card__name[aria-label]=\"NodeBenchBoilerplate\""
     },
     {
       "path": "wt/FYphone/01.png",
-      "sha256": "8dc1c06dd1bc03a3ca03af626febc62efe8595b4fc9ef9289ca5bab76cea7217",
-      "caption": "No hover on a phone — Details is the real, tappable path to the same apparatus.",
+      "sha256": "2f46940555cd43a79780068600084c464dd156d73d5b14fe51d618d3dae4bc77",
+      "caption": "There's no mouse to hover with on a phone, so tapping \"Details\" opens the same information a desktop visitor gets just by hovering.",
       "asserted": "css:[data-testid=\"foyer-card-NodeRoom\"] button.foyer-details-btn visible"
     },
     {
       "path": "wt/FYphone/02.png",
-      "sha256": "57e780a2702c65b25ecf2e8080e6d92b05a74b5093af44bee5c11e4496d2639c",
-      "caption": "The sheet opens as a real dialog over a backdrop — the wall behind it is now inert, not just visually dimmed.",
+      "sha256": "0bff4543d075b9079eec470a42978415a364eeaa481585329f4530007a67be55",
+      "caption": "The details panel slides up, and everything behind it stops responding to taps while it's open — it's dimmed on purpose, not just for looks.",
       "asserted": "css:.foyer-sheet-backdrop visible"
     },
     {
       "path": "wt/FYphone/03.png",
-      "sha256": "e520c45e0cde011aafd5704ab1d56da0cfcbf8bb4fb7272fba7ce1cfca5fded0",
-      "caption": "Open stays a full 44px target on the card face, never a text sliver.",
+      "sha256": "82df77a1b0c0230a830071f6cb68196581f45adb8c7172bf799a913a2f3e494e",
+      "caption": "The Open button stays big enough to tap accurately with a thumb — it never shrinks down to a sliver of text.",
       "asserted": "css:[data-testid=\"foyer-card-NodeRoom\"] a[href] visible"
     },
     {
       "path": "wt/FYphone/04.png",
-      "sha256": "e520c45e0cde011aafd5704ab1d56da0cfcbf8bb4fb7272fba7ce1cfca5fded0",
-      "caption": "Close returned focus to Details — nothing is left stranded on body.",
+      "sha256": "c00921913abe7dc7606bec376e29bb1466b4e93f8f7f81c01d1548f96459937b",
+      "caption": "After closing the panel, the keyboard cursor lands right back on the Details button — nothing gets lost when you close it.",
       "asserted": "css:[data-testid=\"foyer-card-NodeRoom\"] button.foyer-details-btn focused"
     }
   ]
