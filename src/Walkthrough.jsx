@@ -7,18 +7,25 @@ export const WT_H = 1080;
 
 const FONT = '"Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif';
 const IMG_W = 1360;
-const CAP_VW = 1280;                               // capture viewport CSS width
-const IMG_H = Math.round(IMG_W * 800 / CAP_VW);    // preserve 1280x800 aspect
-const SX = IMG_W / 1280, SY = IMG_H / 800;         // cursor coord -> displayed-image px
+const DEFAULT_CAPTURE = { width: 1280, height: 800 };
+const geometryFor = (wt) => {
+  const capture = wt.captureViewport || DEFAULT_CAPTURE;
+  const imgH = Math.round(IMG_W * capture.height / capture.width);
+  return {
+    imgH,
+    sx: IMG_W / capture.width,
+    sy: imgH / capture.height,
+  };
+};
 
 // Per-step "camera": zoom toward the click on action steps; pull back, gently
 // zoomed + centered, on the result/loading states (the result is scrolled to
 // the viewport centre at capture time). Pan/glide between steps (Arcade-style).
 const ACTION_SCALE = 1.36, RESULT_SCALE = 1.14, OPEN_SCALE = 1.04;
-const camTarget = (step) =>
+const camTarget = (step, geometry) =>
   step.cursor
-    ? { s: ACTION_SCALE, fx: step.cursor.x * SX, fy: step.cursor.y * SY }
-    : { s: RESULT_SCALE, fx: IMG_W / 2, fy: IMG_H / 2 };
+    ? { s: ACTION_SCALE, fx: step.cursor.x * geometry.sx, fy: step.cursor.y * geometry.sy }
+    : { s: RESULT_SCALE, fx: IMG_W / 2, fy: geometry.imgH / 2 };
 
 export const wtDuration = (wt) => wt.steps.reduce((a, s) => a + (s.hold || 60), 0);
 
@@ -70,6 +77,7 @@ export const Walkthrough = ({ wt }) => {
   const frame = useCurrentFrame();
   const steps = wt.steps || [];
   if (!steps.length) return <AbsoluteFill style={{ background: "#0b1220" }} />;
+  const geometry = geometryFor(wt);
 
   const starts = [];
   let acc = 0;
@@ -83,15 +91,15 @@ export const Walkthrough = ({ wt }) => {
 
   // ---- Camera: ease from previous target to this step's target (pre-move delay
   // then a gentle glide), so the eye registers context before the camera moves.
-  const tgt = camTarget(cur);
-  const prevTgt = i > 0 ? camTarget(prev) : { s: OPEN_SCALE, fx: IMG_W / 2, fy: IMG_H / 2 };
+  const tgt = camTarget(cur, geometry);
+  const prevTgt = i > 0 ? camTarget(prev, geometry) : { s: OPEN_SCALE, fx: IMG_W / 2, fy: geometry.imgH / 2 };
   const ct = interpolate(lf, [6, 26], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.cubic) });
   const s = prevTgt.s + (tgt.s - prevTgt.s) * ct;
   const fx = prevTgt.fx + (tgt.fx - prevTgt.fx) * ct;
   const fy = prevTgt.fy + (tgt.fy - prevTgt.fy) * ct;
-  let tx = IMG_W / 2 - fx * s, ty = IMG_H / 2 - fy * s;
+  let tx = IMG_W / 2 - fx * s, ty = geometry.imgH / 2 - fy * s;
   tx = Math.min(0, Math.max(IMG_W - IMG_W * s, tx));   // keep the scaled image covering the frame
-  ty = Math.min(0, Math.max(IMG_H - IMG_H * s, ty));
+  ty = Math.min(0, Math.max(geometry.imgH - geometry.imgH * s, ty));
 
   // ---- Pointer glide (in image-space; the camera scales it along with the UI).
   // Spring rather than cubic interpolate: stiffness 400 / damping 45 / clamped is the
@@ -99,8 +107,8 @@ export const Walkthrough = ({ wt }) => {
   // it accelerates and settles like a hand, where a symmetric cubic reads as a tween.
   let cursor = null, cursorOp = 0;
   if (cur.cursor) {
-    const c = { x: cur.cursor.x * SX, y: cur.cursor.y * SY };
-    const from = prev && prev.cursor ? { x: prev.cursor.x * SX, y: prev.cursor.y * SY } : c;
+    const c = { x: cur.cursor.x * geometry.sx, y: cur.cursor.y * geometry.sy };
+    const from = prev && prev.cursor ? { x: prev.cursor.x * geometry.sx, y: prev.cursor.y * geometry.sy } : c;
     const t = spring({ frame: lf, fps: WT_FPS, durationInFrames: 18, config: { stiffness: 400, damping: 45, mass: 1 }, overshootClamping: true });
     cursor = { x: from.x + (c.x - from.x) * t, y: from.y + (c.y - from.y) * t };
     cursorOp = interpolate(lf, [0, 8], [prev && prev.cursor ? 1 : 0, 1], { extrapolateRight: "clamp" });
@@ -131,9 +139,9 @@ export const Walkthrough = ({ wt }) => {
       {/* Browser window — overflow clips the zoomed camera */}
       <div style={{ position: "absolute", left: winLeft, top: winTop, width: IMG_W, borderRadius: 14, overflow: "hidden", boxShadow: "0 36px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06)", background: "#0d1526" }}>
         <Chrome accent={wt.accent} />
-        <div style={{ position: "relative", width: IMG_W, height: IMG_H, overflow: "hidden", background: "#fff" }}>
+        <div style={{ position: "relative", width: IMG_W, height: geometry.imgH, overflow: "hidden", background: "#fff" }}>
           {/* Camera: zoom + pan toward the active region */}
-          <div style={{ position: "absolute", top: 0, left: 0, width: IMG_W, height: IMG_H, transformOrigin: "0 0", transform: `translate(${tx}px, ${ty}px) scale(${s})` }}>
+          <div style={{ position: "absolute", top: 0, left: 0, width: IMG_W, height: geometry.imgH, transformOrigin: "0 0", transform: `translate(${tx}px, ${ty}px) scale(${s})` }}>
             {prevImg && <Img src={staticFile(prevImg)} style={{ position: "absolute", top: 0, left: 0, width: IMG_W }} />}
             <Img src={staticFile(curImg)} style={{ position: "absolute", top: 0, left: 0, width: IMG_W, opacity: fadeIn }} />
             {cursor && <Ripple x={cursor.x} y={cursor.y} lf={cur.click ? lf : -999} accent={wt.accent} />}
