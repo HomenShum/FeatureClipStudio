@@ -223,8 +223,8 @@ what problem it solved, or how to point it at a question of their own.
 **Comprehension is scored from a named audience's seat** — that is what `--for` is:
 
 ```bash
-npm run clip -- --comp WTC-TShero --out out/trialscope.mp4   --for "a non-technical person who has never heard of this domain"
-npm run judge -- out/trialscope.mp4 --for "a frontend engineer evaluating adoption" --gate 28
+npm run iterate -- --comp WTC-TShero --out out/trialscope.mp4   --for "a non-technical person who has never heard of this domain"
+npm run judge:rubric -- out/trialscope.mp4 --for "a frontend engineer evaluating adoption" --gate 28
 ```
 
 The same cut is a 2 on `lay_sense` for a domain expert and a 0 for someone who has
@@ -243,12 +243,12 @@ own critic's brief converges on whatever the critic likes, which is not the same
 a good demo, and leaves nobody holding the taste. The brief is written to disk and
 the process exits non-zero; a human or an agent applies it; round N+1 begins.
 
-**Anti-uniformity is enforced in code, not asked for in the prompt.** The rubric
-carried an anti-uniformity clause for three revisions and the judge still returned
-1/2 on 18 of 20 dimensions — a description wearing a score's clothes. Now if one
-score covers >70% of dimensions the judgement is re-requested once, with the
-offending distribution quoted back. A gate that returns the same verdict for every
-input is not a gate, and that includes the flat-1 verdict.
+**Anti-uniformity re-asking is opt-in.** `npm run judge:rubric` defaults to three
+samples; add `--reask` to request one extra judgment if more than 70% of dimensions
+share a single score. Re-asking is off by default because the historical comparison
+above reported downward bias. `npm run iterate` calls this numeric rubric;
+`npm run clip` calls the separate video judge through its own gates. These command
+paths use different rubrics; use the flags documented for the chosen path.
 
 The same three files are vendored into [NodeVideo](https://github.com/HomenShum/NodeVideo)
 and [NodeSlide](https://github.com/HomenShum/NodeSlide) under `tools/clip-gate/`,
