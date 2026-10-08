@@ -100,7 +100,7 @@ command. `npm run` is the discovery surface: the list below *is* the API.
 "studio":         "node run-remotion.mjs studio src/index.js",
 "render:example": "node run-remotion.mjs render src/index.js WT-NodeRoom out/example.mp4 --concurrency=2",
 "clip":           "node clip.mjs",
-"check":          "node check.mjs",
+"check":          "node check.mjs && npm run test:evidence && npm run proof",
 "probe:opening":  "node probe-opening-frame.mjs",
 "probe:maxpath":  "node probe-max-path.mjs"
 ```
@@ -166,8 +166,8 @@ logged, and the spec is retried in a brand-new page if `retries` was set. See St
 **Why this exists**
 A spec is plain data — `{ act: "click", sel: "btn:Approve" }`. Something has to turn
 `"btn:Approve"` into a real element and reject anything it does not understand. This is
-that boundary, and it is the closest thing this repository has to schema validation.
-There is no Zod, no JSON Schema, no type checker: the validation is a throw.
+that boundary, and it is the validation seam on this capture path.
+This capture path uses no Zod, JSON Schema or type checker: invalid ops throw.
 
 **Core code**
 ```js
@@ -403,11 +403,11 @@ stage**: every stage's output is a file, so nothing is lost by starting over.
 
 ## Step 9 — The tests that prove the flow
 
-There is no unit-test suite and no `npm test`. Saying otherwise would be the easiest
-lie in this document. There are three real gates, in ascending order of what they
-prove:
+Local evidence-bridge scenarios run with `npm run test:evidence`; there is no
+`npm test` alias. Separate source validation, local protocol execution and
+rendered-output checks by what each one proves:
 
-**1. `npm run check` → `check.mjs`** — two halves, and it prints how much of each it
+**1. `npm run check`** starts with `node check.mjs`; this source gate prints how much it
 did, so it cannot silently shrink (the fifteen-file hand-kept list it replaced had
 drifted to covering a third of the repository). On 2026-08-13 it said:
 
@@ -415,11 +415,11 @@ drifted to covering a third of the repository). On 2026-08-13 it said:
 [check] parsed 36/36 JavaScript files; 36/36 tour steps and 34/34 prose citations name a line that matches
 ```
 
-The first half runs `node --check` on every `.mjs`/`.js` file the package ships. Green
+Its syntax pass runs `node --check` on every `.mjs`/`.js` file the package ships. Green
 means every file is syntactically valid JavaScript and **nothing more**: `--check`
 parses, it does not import, execute, or resolve a dependency.
 
-The second half is the reason you can trust the numbers in this document. Every
+Its citation pass checks the source references in this document. Every
 `file:line` written here or in a `.tours/*.tour` step has to carry the text it expects
 to find, and the gate opens the file and compares. Until 2026-08-13 it asserted only
 that the number was within the file's length, which proves an anchor is *stable* and
@@ -427,6 +427,19 @@ never that it is *correct* — insert twenty lines at the top of `walkthrough.mj
 all 36 tour steps still passed while every one of them pointed at the wrong symbol.
 A citation written in a form the gate cannot read is reported as a problem rather
 than skipped, because a citation that looks checked and is not is how this came back.
+
+The same source gate also checks each committed `render.json` against its GIF,
+named judge-run bytes and kept-run hash. These are byte bindings, not a new
+judgment or a test that a depicted workflow passed.
+
+After that unchanged gate, `npm run check` runs `npm run test:evidence`, then
+`npm run proof`. The scenarios execute the local evidence protocol; proof
+recomputes its two committed outputs without writing and rejects missing or
+stale files. The bridge checks declared bytes and references while keeping
+media `observed`, `productWorkflowProof: not-certified` and `releaseReady: false`.
+A matching receipt reference does not certify its outcome or target binding;
+a retained supporting-file basis guard does not prove capture provenance.
+See [the scoped bridge contract and comparison](NODEKIT_PRESENT_EVIDENCE.md).
 
 **2. `npm run probe:opening` → `probe-opening-frame.mjs`** — the only committed gate
 that *runs the renderers and fails on a property of the rendered output*. It renders
@@ -447,8 +460,9 @@ back.
 
 **3. `.github/workflows/ci.yml`** — on every push and pull request: `npm ci`,
 `npm run check`, then a real Remotion render of frames 0–30 of `WT-NodeRoom`, and it
-asserts the MP4 exists and is non-empty. This is the only automated check that
-executes application code. It deliberately excludes the Playwright capture step, which
+asserts the MP4 exists and is non-empty. This step imports and renders the
+composition code; the appended bridge scenarios execute the local protocol.
+It deliberately excludes the Playwright capture step, which
 needs a live app that CI does not have.
 
 **What none of them prove:** that a capture against a real application produces correct

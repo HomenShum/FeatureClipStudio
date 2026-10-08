@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "featureclip.evidence-receipt/v1",
+  "collectionId": "featureclip-nodekit-present-p1",
+  "manifest": {
+    "path": "evidence/nodekit-present.manifest.json",
+    "digestMode": "canonical-json-sha256",
+    "sha256": "fe1d37f74a8d64ad65d4f49959fa3d20a2021cd4c70b4df6790e2f80d9b0daf1",
+    "schemaVersion": "featureclip.evidence-manifest/v1"
+  },
+  "projection": {
+    "path": "proof/nodekit-present.evidence-index.json",
+    "digestMode": "canonical-json-sha256",
+    "sha256": "aefddd8525c7a76b66b72d6a35b4cec5d7706a3b0ec03cad42b4f4d92013d1f0",
+    "schemaVersion": "nodekit.evidence-index/v1",
+    "changeId": "nodekit-factory-p1"
+  },
+  "checks": {
+    "passed": true,
+    "pathSafety": "passed",
+    "duplicateIds": "none",
+    "duplicatePaths": "none",
+    "artifactsDeclared": 3,
+    "artifactBytesVerified": 3,
+    "metadataMatched": 3,
+    "gitTracked": 3,
+    "workflowReceiptReferences": 0,
+    "generatedIllustrations": 0
+  },
+  "artifacts": [
+    {
+      "id": "noderoom-hero-walkthrough",
+      "path": "assets/feature-noderoom-hero.gif",
+      "sha256": "b443e36ac89a215027104576eb29c8bc4b258660872a43775390b6ab0f6a1673",
+      "bytes": 2843694,
+      "mediaType": "image/gif",
+      "dimensions": {
+        "width": 720,
+        "height": 405
+      },
+      "representation": "rendered-from-captured-product-ui",
+      "captureEnvironment": "deployed-application",
+      "artifactVerification": "repository-bytes",
+      "workflowVerification": "unverified",
+      "basis": [
+        {
+          "path": "walkthrough.noderoom.specs.mjs",
+          "digestMode": "normalized-text-sha256",
+          "sha256": "23a6068b0f83dcd090ad08a4779fcf6278aa78a5182d863b05a4e7b5a56d9426"
+        }
+      ],
+      "metadataMatched": true
+    },
+    {
+      "id": "room-os-v1-state-screenshot",
+      "path": "assets/room-os-v1-state-json.png",
+      "sha256": "44cef10aa164fb5491033bc596495b38d8a34ad63c2b53f466dfa18184bc48a8",
+      "bytes": 178021,
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1280,
+        "height": 897
+      },
+      "representation": "rendered-from-captured-product-ui",
+      "captureEnvironment": "deployed-application",
+      "artifactVerification": "repository-bytes",
+      "workflowVerification": "unverified",
+      "basis": [
+        {
+          "path": "assets/room-os-v1-state.json",
+          "digestMode": "normalized-text-sha256",
+          "sha256": "9c23f7a0bd5593fec06fa5595c567812f4929f39946eed97bd1e99223a013fdd"
+        },
+        {
+          "path": "walkthrough.roomos.mjs",
+          "digestMode": "normalized-text-sha256",
+          "sha256": "3f2b0e16daa2ce309e1e11d38e0a33ac90ee7a333a0b06c1831f8eec5663cbad"
+        }
+      ],
+      "metadataMatched": true
+    },
+    {
+      "id": "solo-founder-baseline-frame",
+      "path": "public/wt/SoloFounder/00.png",
+      "sha256": "382f000ab4fbc430138fde58b34f7905bbde99aaada1e06bfb5c7b1af2208e9f",
+      "bytes": 675621,
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 2560,
+        "height": 1600
+      },
+      "representation": "captured-product-ui",
+      "captureEnvironment": "local-fixture",
+      "artifactVerification": "repository-bytes",
+      "workflowVerification": "unverified",
+      "basis": [
+        {
+          "path": "walkthrough.solo-founder.specs.mjs",
+          "digestMode": "normalized-text-sha256",
+          "sha256": "3725d99e55838e04803af7674e3365f1bd99f62ab168a55e95362f06ea1d8a85"
+        }
+      ],
+      "metadataMatched": true
+    }
+  ],
+  "claimBoundary": {
+    "releaseReady": false,
+    "productWorkflowProof": "not-certified",
+    "statement": "This receipt verifies checked-input containment, Git tracking, media signatures, dimensions, byte sizes, digests, and the shape of declared provenance and receipt references. Supporting-file basis hashes are byte guards, not capture-time certificates. Receipt references do not certify outcomes, target bindings, freshness, judge quality, pixels, or release readiness. This is a trusted local single-writer check, not a filesystem sandbox."
+  }
+}

@@ -70,11 +70,25 @@ The accepted framing makes the selected control/result and both client labels re
 
 The default `npm run render:example` still renders historical WT-NodeRoom inputs and retains a separate output-quality hold. LiveSync acceptance does not certify other examples, responsive browser behavior, physical devices, provider behavior or production. The earlier install reported 12 affected packages (2 low, 10 high). The normal installed-tree audit for the exact Remotion 4.0.479 lock reported zero on September 7, 2026. That is a dated dependency result, not a full security assessment. Full criterion and overall grades remain null.
 
-Verify the packet and its selected current source bindings from the repository root:
+Verify the retained packet from the repository root. Check its selected historical source bindings only against the matching retained source checkout:
 
 ```sh
 python promotion/evidence/local-livesync-handoff-20260907/verify.py
-python promotion/evidence/local-livesync-handoff-20260907/verify.py --source-root .
+python promotion/evidence/local-livesync-handoff-20260907/verify.py --source-root "<matching-historical-checkout>"
 ```
 
-The first command checks exact packet bytes. The optional source check accepts only each row's demonstrated Git checkout newline transformation; it does not rerun capture/render or certify the whole repository. The evidence index records raw versus minimized receipts and which historical artifacts remain operator-local.
+The first command checks exact packet bytes. The optional source check compares its original selected snapshot, allowing only each row's demonstrated Git checkout newline transformation. Use the checkout matching those recorded bindings; later code or documentation changes do not re-certify that snapshot. It does not rerun capture/render or certify the whole repository. The evidence index records raw versus minimized receipts and which historical artifacts remain operator-local.
+
+## Local evidence bridge
+
+For a Change Story or deck, use the [NodeKit Present evidence bridge](docs/NODEKIT_PRESENT_EVIDENCE.md)
+for its commands, actual baseline/new comparison and declared limits. It projects
+selected historical media as `observed`, with `productWorkflowProof: not-certified`
+and `releaseReady: false`. Receipt references and retained supporting-file byte
+guards do not establish passing outcomes or capture provenance. This local protocol
+adds no new capture, render, provider, production or visual-quality certification.
+## Local presentation-file proof update (2026-10-08)
+
+The no-key bridge's named proof is `CURRENT-GATES-RETAINED-EVIDENCE-OBSERVED-DRIFT-REJECTED-01`. Unchanged main passed 43 parses, 36 tour assertions, 34 prose citations and three render records. The candidate passed 45 parses (two protocol files added), the same 36/34/3 assertions and 20 local scenarios with no failures or skips. The preserved old 13-scenario suite had passed while labelling a schema-only receipt verified; the corrected scenario returns observed, including failed and unbound references. These are different suites, not a speed comparison.
+
+The actual projection contains three observed historical assets and zero workflow receipt references, with not-certified/releaseReady false. Stale proof did not rewrite outputs; redirected directory/file outputs were rejected with foreign files unchanged; eight repeated rounds and two simultaneous disjoint fixture jobs passed. The [bridge update log](docs/NODEKIT_PRESENT_EVIDENCE.md) records the source/claim boundaries and preserved Windows launcher failure. No capture/render, provider, production, physical-device or pixel result was added by this work.

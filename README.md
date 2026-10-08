@@ -1468,3 +1468,39 @@ the whole pipeline: write a spec, capture, render, and embed the GIFs for you.
 ## License
 
 [MIT](LICENSE) © Homen Shum
+
+## NodeKit Present: local evidence bridge
+
+A developer preparing a Change Story or deck can use checked-in media as supporting
+material without claiming that the pictured workflow passed. The authored
+`evidence/nodekit-present.manifest.json` selects three historical assets and their
+declared provenance; it does not trigger a new capture or render.
+
+Run from this reviewed checkout's root:
+
+```sh
+npm run evidence:check
+npm run evidence:project
+npm run proof
+npm run check
+```
+
+`evidence:project` explicitly writes `proof/nodekit-present.evidence-index.json` and
+`proof/featureclip-evidence.receipt.json`. `proof` recomputes those outputs without
+writing and fails if they are missing or stale. `check` retains the existing syntax,
+citation and render-byte checks, then runs the local bridge scenarios and proof.
+
+Projected media stays `observed`; the receipt keeps
+`productWorkflowProof: not-certified` and `releaseReady: false`. A tracked, matching
+receipt reference is a declared link, counted as `workflowReceiptReferences`, not
+a certificate of passing outcomes, target binding, freshness or judge quality.
+Source-truth fields remain declared historical provenance. Active basis entries
+guard retained supporting driver/state-file bytes; they do not establish capture-time
+or current application behavior. Original changed README/NODE-LOOPS hashes remain
+historical limitations rather than being rebound to today's documentation.
+
+This is a trusted local, single-writer file workflow. Capture, rendering, provider
+judging and production verification remain separate. Read the
+[bridge contract, actual comparison results and limits](docs/NODEKIT_PRESENT_EVIDENCE.md)
+before consuming its output; these commands do not grant new visual or readiness
+grades.
