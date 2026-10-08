@@ -85,7 +85,7 @@
       "line": 36,
       "pattern": "Smoke render",
       "title": "12 — Gate 3: CI actually renders",
-      "description": "npm ci, npm run check, then a real Remotion render of frames 0-30 asserted to produce a non-empty MP4. This is the only automated check that executes application code. It deliberately excludes the Playwright capture step, which needs a live app CI does not have."
+      "description": "npm ci, npm run check, then a real Remotion render of frames 0-30 asserted to produce a non-empty MP4. The render step imports the composition code; the appended bridge scenarios execute the local evidence protocol and proof checks committed output without writing. Neither verifies a fresh product workflow. The Playwright capture step still needs a live app CI does not have."
     }
   ]
 }
