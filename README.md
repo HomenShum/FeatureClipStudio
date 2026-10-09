@@ -13,6 +13,8 @@
 <p align="center"><a href="#quick-start">Quickstart</a> · <a href="docs/START_HERE.md">Code&nbsp;walkthrough</a> · <a href="HANDOFF.md">Handoff</a> · <a href="https://homenshum.github.io/">All&nbsp;projects</a></p>
 <!-- brand:end -->
 
+# 🎬 FeatureClipStudio
+
 ### Turn live product flows into polished, storyboarded **proof assets**.
 
 Every UI state · an animated cursor that **glides to each click** (with a ripple) · a **zoom‑to‑focus camera** · the **loading/streaming captured live** (spinner spinning, results coming in) · step captions · raw JSON/state evidence when the proof depends on internals.
