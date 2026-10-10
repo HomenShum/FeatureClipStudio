@@ -6,7 +6,7 @@
       "id": "featureclip-noderoom-hero-walkthrough",
       "kind": "presentation-clip",
       "status": "observed",
-      "location": "repo://HomenShum/FeatureClipStudio/assets/feature-noderoom-hero.gif?sha256=b443e36ac89a215027104576eb29c8bc4b258660872a43775390b6ab0f6a1673",
+      "location": "repo://HomenShum/FeatureClipStudio/assets/feature-noderoom-hero.gif?sha256=ec0addd6a402f60e23c0ad8cf7016d260c46cfe9c81f9f4d8fbf64df580dc244",
       "summary": "NodeRoom agent workflow walkthrough: repository bytes, media signature, dimensions, and Git tracking match the manifest. Declared provenance is rendered-from-captured-product-ui in deployed-application; supporting-file basis bytes match; no workflow receipt reference. Historical capture provenance, current behavior, pixels, and release readiness are not certified."
     },
     {

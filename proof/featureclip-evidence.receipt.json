@@ -4,13 +4,13 @@
   "manifest": {
     "path": "evidence/nodekit-present.manifest.json",
     "digestMode": "canonical-json-sha256",
-    "sha256": "fe1d37f74a8d64ad65d4f49959fa3d20a2021cd4c70b4df6790e2f80d9b0daf1",
+    "sha256": "07dd0526c2c389fbeb1845a2dfa319cf117339b51e29bd724bcf8bc80b5ec90c",
     "schemaVersion": "featureclip.evidence-manifest/v1"
   },
   "projection": {
     "path": "proof/nodekit-present.evidence-index.json",
     "digestMode": "canonical-json-sha256",
-    "sha256": "aefddd8525c7a76b66b72d6a35b4cec5d7706a3b0ec03cad42b4f4d92013d1f0",
+    "sha256": "80740416b73e1cb42a32a2fd5a3fba40c680b6ac854948d894fe57e795c2d711",
     "schemaVersion": "nodekit.evidence-index/v1",
     "changeId": "nodekit-factory-p1"
   },
@@ -30,8 +30,8 @@
     {
       "id": "noderoom-hero-walkthrough",
       "path": "assets/feature-noderoom-hero.gif",
-      "sha256": "b443e36ac89a215027104576eb29c8bc4b258660872a43775390b6ab0f6a1673",
-      "bytes": 2843694,
+      "sha256": "ec0addd6a402f60e23c0ad8cf7016d260c46cfe9c81f9f4d8fbf64df580dc244",
+      "bytes": 2154783,
       "mediaType": "image/gif",
       "dimensions": {
         "width": 720,
