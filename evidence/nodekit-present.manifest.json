@@ -11,8 +11,8 @@
       "artifactKind": "clip",
       "path": "assets/feature-noderoom-hero.gif",
       "mediaType": "image/gif",
-      "sha256": "b443e36ac89a215027104576eb29c8bc4b258660872a43775390b6ab0f6a1673",
-      "bytes": 2843694,
+      "sha256": "ec0addd6a402f60e23c0ad8cf7016d260c46cfe9c81f9f4d8fbf64df580dc244",
+      "bytes": 2154783,
       "dimensions": {
         "width": 720,
         "height": 405
@@ -35,7 +35,8 @@
         "This selected historical asset has no workflow receipt reference. Matching bytes and declared metadata do not independently verify its provenance or depicted workflow.",
         "Historical supporting reference in original PR head 36dd7741e53a6cc66e4ea0eac48d8717fa60ee69: README.md, normalized-text-sha256 b2b9f0f4b1389ea9578c53040bec8941cad574aa2042510d58011ec6ea25f423. It changed on current main and is preserved as historical context, not rebound to this media.",
         "Historical supporting reference in original PR head 36dd7741e53a6cc66e4ea0eac48d8717fa60ee69: NODE-LOOPS.md, normalized-text-sha256 e7b926d35dea7be0cdeb1592dd2f56b920b2d30ae8a170eda1e81c30375f03e9. It changed on current main and is preserved as historical context, not rebound to this media.",
-        "Active basis entries guard only retained supporting-file bytes. Representation and capture environment are historical declarations; this bridge does not recapture media or certify current application behavior, workflow outcomes, or pixels."
+        "Active basis entries guard only retained supporting-file bytes. Representation and capture environment are historical declarations; this bridge does not recapture media or certify current application behavior, workflow outcomes, or pixels.",
+        "Re-encoded 2026-10-10 with LCDF Gifsicle 1.93 (lossless palette/frame optimisation, identical frame count, delays and loop count, SSIM reported in PR #25); previous bytes sha256 b443e36ac89a215027104576eb29c8bc4b258660872a43775390b6ab0f6a1673, 2843694 bytes. Pixels were not recaptured."
       ]
     },
     {
