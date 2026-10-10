@@ -4,7 +4,7 @@
   "manifest": {
     "path": "evidence/nodekit-present.manifest.json",
     "digestMode": "canonical-json-sha256",
-    "sha256": "f25247c1f8a2bc87f153f3f8ad5920b816f114e4e3c07c77cc99d563eebc7e41",
+    "sha256": "07dd0526c2c389fbeb1845a2dfa319cf117339b51e29bd724bcf8bc80b5ec90c",
     "schemaVersion": "featureclip.evidence-manifest/v1"
   },
   "projection": {
