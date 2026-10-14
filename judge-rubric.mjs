@@ -110,7 +110,7 @@ const run = async () => {
   const bytes = readFileSync(video);
   if (bytes.length > 19_000_000) throw new Error(`${(bytes.length / 1048576).toFixed(1)}MB > inline limit — use the Gemini Files API or render a smaller cut`);
   console.log(`[judge] ${video} — ${(bytes.length / 1048576).toFixed(1)}MB → gemini`);
-  const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
+  const model = JUDGE_MODEL;
   const mime = video.endsWith(".webm") ? "video/webm" : video.endsWith(".mov") ? "video/quicktime" : "video/mp4";
   const base = video.replace(/\.(mp4|webm|mov)$/i, "");
 
@@ -241,3 +241,5 @@ const run = async () => {
   }
 };
 run().catch((e) => { console.error(e.message || e); process.exit(1); });
+// Imports are hoisted; kept at the end so the line anchors in .tours/ and docs/START_HERE.md stay put.
+import { JUDGE_MODEL } from "./lib/judge-model.mjs";

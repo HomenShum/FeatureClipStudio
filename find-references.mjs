@@ -23,6 +23,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { JUDGE_MODEL } from "./lib/judge-model.mjs";
 
 const OUT_DIR = "references/video";
 const LEDGER = "references/video/ledger.json";
@@ -58,7 +59,7 @@ function videoId(url) {
 }
 const MAX_SECONDS = Number.parseInt(process.env.REFERENCE_MAX_SECONDS ?? "180", 10);
 const PER_QUERY = Number.parseInt(process.env.REFERENCE_PER_QUERY ?? "4", 10);
-const MODEL = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
+const MODEL = JUDGE_MODEL;
 
 const key = () => {
   for (const k of ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"]) if (process.env[k]) return process.env[k];

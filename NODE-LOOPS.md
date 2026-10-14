@@ -58,7 +58,7 @@ ffmpeg palette (`stats_mode=diff` + `lanczos` + `bayer` + `diff_mode=rectangle`)
 **The JUDGE = a separate video model, not the thing that drove the browser.**
 [`judge-video.mjs`](judge-video.mjs) sends the rendered MP4 (the pre-palette render,
 because GIF is not a supported Gemini video MIME) to Gemini video understanding
-(`GEMINI_JUDGE_MODEL`, default `gemini-3.5-flash`) with the anti-hero-shot `RUBRIC`. It
+(`GEMINI_JUDGE_MODEL`, default `gemini-3.6-flash`) with the anti-hero-shot `RUBRIC`. It
 returns strict JSON: per-dimension `{score, evidence}` **with timestamps**, a `defects`
 list (each `{ts, severity, observed, fix}`), and an overall `verdict`. It writes
 `out/<name>.judge.json` + `out/<name>.judge.md` (a scored table + timestamped defect
