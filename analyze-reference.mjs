@@ -20,6 +20,7 @@
 //     --competencies "multi-agent specialisation,context compression,HITL" --label cheiron-demo
 //
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { JUDGE_MODEL } from "./lib/judge-model.mjs";
 
 const argv = process.argv.slice(2);
 const flag = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
@@ -91,7 +92,7 @@ const call = async (win) => {
       ? `\nDecide competency_evidence for exactly these contested items: ${competencies}.`
       : "\nNo contested items were supplied; leave competency_evidence as an empty array rather than inventing items.";
   }
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${key()}`, {
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${JUDGE_MODEL}:generateContent?key=${key()}`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({

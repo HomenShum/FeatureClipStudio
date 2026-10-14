@@ -180,7 +180,7 @@ const run = async () => {
   // did not include it. ListModels is not an existence proof — it was stale for that key, and a
   // direct generateContent call returns 200 with valid strict JSON. Absence from an index is
   // absence from an index.
-  const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
+  const model = JUDGE_MODEL;
   const mime = video.endsWith(".webm") ? "video/webm" : video.endsWith(".mov") ? "video/quicktime" : "video/mp4";
   const call = async (parts) => {
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
@@ -256,3 +256,5 @@ ${JSON.stringify(observed, null, 1)}` },
   console.log(md);
 };
 run().catch((e) => { console.error(e.message || e); process.exit(1); });
+// Imports are hoisted; kept at the end so the line anchors in .tours/ and docs/START_HERE.md stay put.
+import { JUDGE_MODEL } from "./lib/judge-model.mjs";
