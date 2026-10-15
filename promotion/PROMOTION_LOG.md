@@ -653,3 +653,31 @@ report can be honest in every claim and still carry numbers from the wrong run.
   them — condition 5's error state is proved on the add path, which is the one a
   user hits — but an unexercised branch is an unexercised branch, and it is
   written down rather than left for the next reader to discover.
+
+
+## Documentation correction - 2026-10-15
+
+A developer trying the first render needs the README to name the example its
+command actually selects. The Quick start called it a Solo Founder 3D app,
+while the unchanged package script selects the historical `WT-NodeRoom`
+single-pane composition.
+
+- **Changed:** `README.md` now names that NodeRoom example and links the separately
+  reviewed local `WTC-LiveSync` route in [the handoff](../HANDOFF.md#first-render)
+  before the default commands. Rendering retained captures is distinct from
+  recapturing an application or proving its current behavior. The default's
+  separate output-quality hold remains explicit.
+- **Before/after:** the same finite source/command/link check found two mismatches
+  before the edit and zero afterward (8/10 to 10/10). It checks example identity,
+  the existing handoff anchor/composition route, every unchanged fenced block,
+  generated branding and the unchanged source/config boundary. This is a
+  documentation check, not a render, product-quality score or fresh media proof.
+- **Validation:** the existing `node check.mjs` exited 0 before and after the
+  README correction: 48/48 JavaScript parses, 36/36 tour anchors, 34/34 prose
+  citations and three retained render-record byte bindings. The output was
+  identical. The existing command excludes this promotion log; this entry is
+  appended after those checks, with its original raw-byte prefix preserved.
+- **Conditions newly PASS:** none. No command, runtime, configuration, dependency,
+  image or video changed. No capture, render, browser, provider, deployment or
+  new release-readiness observation was performed. Earlier failures and grades
+  above remain historical, with their original evidence boundaries.
