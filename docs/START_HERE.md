@@ -203,10 +203,10 @@ emits something that passes for evidence.** The same reasoning added the
 ## Step 4 — Agent orchestration: not on this path, and here is where it is
 
 **File:** `iterate.mjs`
-**Symbol:** the top-level round loop — `iterate.mjs:62` (`for (let r = 1; r <= rounds`)
-**Called by:** `npm run iterate` — `package.json:45` (`"iterate": "node iterate.mjs"`) — and
-nothing else. No script and no other file in this repository spawns it.
-**Calls next:** `iterate.mjs:72` (`judge-rubric.mjs`) → Google Gemini
+**Symbol:** the top-level round loop — `iterate.mjs:67` (`for (let r = 1; r <= rounds`)
+**Called by:** `npm run iterate` — `package.json:45` (`"iterate": "node iterate.mjs"`).
+The offline iteration-budget tests also spawn it against a synthetic child judge.
+**Calls next:** `iterate.mjs:77` (`judge-rubric.mjs`) → Google Gemini
 
 **Why this exists — and why the capture/render path has no agent at all**
 The stage the HUMAN-READY template calls "agent orchestration" **does not exist in
@@ -224,7 +224,7 @@ below it, so the loop can read pass/fail from the exit code. `npm run clip` does
 near-copies that write the same `.judge.json` / `.judge.md` pair; if you are reading
 a scorecard and cannot tell which produced it, that is why.
 
-**Core code** — the round's verdict, `iterate.mjs:92` (`if (passed) {`) onward:
+**Core code** — the round's verdict, `iterate.mjs:97` (`if (passed) {`) onward:
 ```js
   if (passed) {
     console.log(`\n[iterate] round ${r}: ${total}/40 >= ${gate} — shippable. History in ${LOG}`);
@@ -242,11 +242,17 @@ and, on the last round, the brief it refuses to apply:
 
 **Input** — a rendered MP4, an audience description (`--for`), a pass mark
 (`--gate`, default 28/40), and `GEMINI_API_KEY` in the environment.
+`--rounds` must be a positive safe integer; omitting it defaults to one round.
+Invalid, empty or missing supplied values now exit 1 before rendering or judging.
+Previously, zero/negative/nonnumeric budgets could report success without a review,
+and a fractional budget could report success after a failed review. The no-key
+`npm run test:iteration-budget` checks admission, outcomes and retained history
+with a synthetic judge; it does not measure video quality or provider behavior.
 **Output** — `<video>.judge.json`, `<video>.judge.md`, a per-round history appended to
 `<video>.rounds.md`, and on the final failing round `<video>.next-cut.md` —
-`iterate.mjs:99` (`next-cut.md`).
+`iterate.mjs:104` (`next-cut.md`).
 **Failure behavior** — no key: `judge-rubric.mjs:46` (`set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY`)
-throws. Below the gate: writes the brief and exits 1 — `iterate.mjs:111` (`revision brief written to`).
+throws. Below the gate: writes the brief and exits 1 — `iterate.mjs:116` (`revision brief written to`).
 **It deliberately does not edit your storyboard** — a loop that applies its own
 critic's notes converges on what the critic likes. The human is the steering
 mechanism, on purpose.
