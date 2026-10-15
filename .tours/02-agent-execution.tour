@@ -61,14 +61,14 @@
     },
     {
       "file": "iterate.mjs",
-      "line": 62,
+      "line": 67,
       "pattern": "for \\(let r = 1; r <= rounds",
       "title": "9 — The loop: render, judge, revise",
-      "description": "One round per iteration against a pass mark, default 28/40. Read the header comment above: a gate that runs once, after the work, is a grade. A gate that runs every round, before the work is called done, is a process. One thing the step order here hides: this is not the judge you just read. `iterate.mjs:72` (`judge-rubric.mjs`) spawns the other, gate-aware judge, and nothing in this repository spawns `iterate.mjs` at all — `npm run iterate` is its only caller."
+      "description": "One round per iteration against a pass mark, default 28/40. Read the header comment above: a gate that runs once, after the work, is a grade. A gate that runs every round, before the work is called done, is a process. One thing the step order here hides: this is not the judge you just read. `iterate.mjs:77` (`judge-rubric.mjs`) spawns the other, gate-aware judge. `npm run iterate` is the application entry; offline iteration-budget tests also spawn it against a synthetic child judge."
     },
     {
       "file": "iterate.mjs",
-      "line": 99,
+      "line": 104,
       "pattern": "writeFileSync\\(`\\$\\{base\\}\\.next-cut\\.md`",
       "title": "10 — It writes a brief and refuses to apply it",
       "description": "Below the gate, the critic's revision brief is written to `<video>.next-cut.md` and the process exits 1. It deliberately does not edit your storyboard: a loop that applies its own critic's notes converges on what the critic likes. The human is the steering mechanism, on purpose."
